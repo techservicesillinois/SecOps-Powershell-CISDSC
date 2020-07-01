@@ -1,0 +1,20 @@
+name: Pester Tests
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, macos-latest, windows-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: Install-Module -Name 'Pester' -Force -SkipPublisherCheck
+      shell: pwsh
+    - name: Run tests
+      run: Invoke-Pester -Path './test/' -CI
+      shell: pwsh
