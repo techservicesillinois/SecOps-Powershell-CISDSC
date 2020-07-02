@@ -8,13 +8,19 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04, macos-latest, windows-latest]
+        os: [windows-latest]
 
     steps:
     - uses: actions/checkout@v1
-    - name: Install dependencies
+    - name: Install dependencies PowerShell 5
+      run: Install-Module -Name 'Pester' -Force -SkipPublisherCheck
+      shell: powershell
+    - name: Run tests PowerShell 5
+      run: Invoke-Pester -Path '.\test\' -CI
+      shell: powershell
+    - name: Install dependencies PowerShell 7
       run: Install-Module -Name 'Pester' -Force -SkipPublisherCheck
       shell: pwsh
-    - name: Run tests
-      run: Invoke-Pester -Path './test/' -CI
+    - name: Run tests PowerShell 7
+      run: Invoke-Pester -Path '.\test\' -CI
       shell: pwsh
