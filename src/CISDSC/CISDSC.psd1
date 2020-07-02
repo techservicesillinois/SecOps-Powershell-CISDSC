@@ -16,7 +16,7 @@ ModuleVersion = '0.0.1'
 # CompatiblePSEditions = @()
 
 # ID used to uniquely identify this module
-GUID = '3a485daf-1879-4b8d-a6ad-32f58d627951'
+GUID = '49d4ebf7-5530-47aa-9b1e-41877bb6f1ba'
 
 # Author of this module
 Author = 'Cybersecurity Engineering'

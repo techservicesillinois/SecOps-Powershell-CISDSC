@@ -1,10 +1,9 @@
-$ModuleManifestName = 'CISDSC.psd1'
-$ModuleManifestPath = "$PSScriptRoot\..\$ModuleManifestName"
+[String]$ModuleRoot = Join-Path -Path (Split-Path -Path $PSScriptRoot -Parent) -ChildPath 'CISDSC'
+Import-Module -Name $ModuleRoot
 
 Describe 'Module Manifest Tests' {
     It 'Passes Test-ModuleManifest' {
-        Test-ModuleManifest -Path $ModuleManifestPath | Should Not BeNullOrEmpty
-        $? | Should Be $true
+        $ManifestPath = Join-Path -Path "$(Split-Path -Path $PSScriptRoot -Parent)" -ChildPath 'CISDSC/CISDSC.psd1'
+        Test-ModuleManifest -Path $ManifestPath | Should -Not -BeNullOrEmpty
     }
 }
-
