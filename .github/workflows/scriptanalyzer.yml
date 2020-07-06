@@ -1,0 +1,20 @@
+name: ScriptAnalyzer
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: Install-Module -Name 'PSScriptAnalyzer' -Force -SkipPublisherCheck
+      shell: pwsh
+    - name: ScriptAnalyzer
+      run: Invoke-ScriptAnalyzer -Path '.\src\' -Recurse -EnableExit
+      shell: pwsh

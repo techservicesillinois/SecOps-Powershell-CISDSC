@@ -1,0 +1,26 @@
+name: Pester Tests
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies PowerShell 5
+      run: Install-Module -Name 'Pester' -Force -SkipPublisherCheck
+      shell: powershell
+    - name: Run tests PowerShell 5
+      run: Invoke-Pester -Path '.\test\' -CI
+      shell: powershell
+    - name: Install dependencies PowerShell 7
+      run: Install-Module -Name 'Pester' -Force -SkipPublisherCheck
+      shell: pwsh
+    - name: Run tests PowerShell 7
+      run: Invoke-Pester -Path '.\test\' -CI
+      shell: pwsh
