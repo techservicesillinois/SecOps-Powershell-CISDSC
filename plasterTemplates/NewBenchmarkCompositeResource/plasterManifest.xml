@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<plasterManifest schemaVersion="1.1"
+                 templateType="Project"
+                 xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  <metadata>
+    <name>NewBenchmarkCompositeResource</name>
+    <id>51451f4f-5199-46f3-95ea-1b834807befa</id>
+    <version>1.0.0</version>
+    <title>New Benchmark Composite Resource</title>
+    <description>Creates files for a new CIS benchmark DSC composite resource.</description>
+    <author>Mike Kletz</author>
+    <tags>Module, ScriptModule, ModuleManifest, DSC, CIS</tags>
+  </metadata>
+  <parameters>
+        <parameter name='Level'
+                   type='choice'
+                   prompt='Select benchmark level'
+                   default='0'
+                   store='text'>
+            <choice label='L&amp;1'
+                        help="Level 1"
+                        value="L1"/>
+            <choice label='L&amp;2'
+                        help="Level 2"
+                        value="L2"/>
+        </parameter>
+
+        <parameter name='OS'
+                   type='choice'
+                   prompt='Select OS'
+                   store='text'>
+            <choice label='&amp;1 Microsoft_Windows_10_Enterprise'
+                        help="Microsoft Windows 10 Enterprise"
+                        value="Microsoft_Windows_10_Enterprise"/>
+            <choice label='&amp;2 Microsoft_Windows_Server_2016'
+                        help="Microsoft Windows Server 2016"
+                        value="Microsoft_Windows_Server_2016"/>
+            <choice label='&amp;3 Microsoft_Windows_Server_2019'
+                        help="Microsoft_Windows_Server_2019"
+                        value="Microsoft Windows Server 2019"/>
+        </parameter>
+
+        <parameter name='BenchmarkVersion'
+                   type='text'
+                   prompt='Enter the version number of benchmark'
+                   default='1.0.0'/>
+
+        <parameter name='OSBuild'
+                   type='text'
+                   prompt='Enter the build of the OS. Ex: 1607, 1909, etc.'/>
+
+        <parameter name='Author'
+                   type='choice'
+                   prompt='Select authoring team'
+                   default='0'
+                   store='text'>
+            <choice label='Cybersecurity &amp;Engineering'
+                        help="Cybersecurity Engineering"
+                        value="Cybersecurity Engineering"/>
+            <choice label='Cybersecurity &amp;Development'
+                        help="Cybersecurity Development"
+                        value="Cybersecurity Development"/>
+        </parameter>
+
+  </parameters>
+
+  <content>
+        <message>&#10;&#10;Scaffolding your DSC resource...&#10;&#10;&#10;</message>
+
+        <templateFile source='manifest.psd1'
+                      destination='CIS_${PLASTER_PARAM_Level}_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}\CIS_${PLASTER_PARAM_Level}_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.psd1'/>
+
+        <templateFile source='resource.schema.psm1'
+                      destination='CIS_${PLASTER_PARAM_Level}_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}\CIS_${PLASTER_PARAM_Level}_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.schema.psm1'/>
+
+        <message>
+
+Your new PowerShell DSC resource has been created.
+
+        </message>
+  </content>
+</plasterManifest>
