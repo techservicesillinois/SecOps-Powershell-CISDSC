@@ -12,19 +12,6 @@
     <tags>Module, ScriptModule, ModuleManifest, DSC, CIS</tags>
   </metadata>
   <parameters>
-        <parameter name='Level'
-                   type='choice'
-                   prompt='Select benchmark level'
-                   default='0'
-                   store='text'>
-            <choice label='L&amp;1'
-                        help="Level 1"
-                        value="L1"/>
-            <choice label='L&amp;2'
-                        help="Level 2"
-                        value="L2"/>
-        </parameter>
-
         <parameter name='OS'
                    type='choice'
                    prompt='Select OS'
@@ -68,10 +55,10 @@
         <message>&#10;&#10;Scaffolding your DSC resource...&#10;&#10;&#10;</message>
 
         <templateFile source='manifest.psd1'
-                      destination='CIS_${PLASTER_PARAM_Level}_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}\CIS_${PLASTER_PARAM_Level}_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.psd1'/>
+                      destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}\CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.psd1'/>
 
         <templateFile source='resource.schema.psm1'
-                      destination='CIS_${PLASTER_PARAM_Level}_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}\CIS_${PLASTER_PARAM_Level}_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.schema.psm1'/>
+                      destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}\CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.schema.psm1'/>
 
         <message>
 
