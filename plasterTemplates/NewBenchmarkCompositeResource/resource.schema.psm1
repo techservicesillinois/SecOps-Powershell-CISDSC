@@ -9,6 +9,9 @@ Configuration CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>
         [ValidateRange(1,2)]
         $Level = 1,
 
+        [boolean]
+        $BitLocker = $false,
+
         [String]
         $LocalAdminNewName = 'CISADMIN',
 
@@ -55,6 +58,11 @@ Configuration CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>
     }
 
     if($ExcludeList -notcontains '2.1.2' -and $Level -eq 2){
+        #Benchmarks contain two levels of settings. Level two is more intense so we assume one but have level two settings available.
+    }
+
+    if($ExcludeList -notcontains '2.2.1' -and $BitLocker){
+        #Benchmarks have a small amount of settings that are related to bitlocker but bitlocker itself is not required for the benchmark so they are optional extensions.
     }
     #endregion
 
