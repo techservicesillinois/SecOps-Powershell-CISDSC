@@ -13,6 +13,7 @@ The main form of contribution will be adding benchmarks for new OS/builds. The b
 Benchmarks are added in the form of composite resources. There is a Plaster template available for creating new composite resources [here](plasterTemplate/NewBenchmarkCompositeResource). The following will install Plaster and take you through the prompts to generate the scaffolding for the new composite resource.
 
 ```
+git clone https://github.com/techservicesillinois/SecOps-Powershell-CISDSC
 Install-Module -Name Plaster
 Invoke-Plaster -TemplatePath '.\plasterTemplates\NewBenchmarkCompositeResource\' -DestinationPath '.\src\CISDSC\dscresources'
 ```
@@ -24,7 +25,9 @@ Settings in the benchmark have three part identifiers that should be referenced 
 
 ![setting](/screenshots/setting.png)
 
-Level 1 & 2 benchmarks will be kept separate with the expectation being to achieve level 2 you need to use both the L1 and L2 resources applicable to your host.
+Both level 1 & 2 of the benchmark will be in the same resource with a level parameter. The same is true for the optional BitLocker components.
+
+Any setting that has multiple supported values or a min/max value should be parameterized with a default value. Ex: If the bench mark is a minimum log file size or a maximum amount of minutes on a timeout but not an explicit value.
 
 Your composite resource version should match the version of the benchmark to easily correlate what it was based on, this is handled by the Plaster template. Ex: The current benchmark for Windows 10 Enterprise 1909 is v1.8.1 since these are versioned as they are revisited by CIS them with new recommendations.
 
