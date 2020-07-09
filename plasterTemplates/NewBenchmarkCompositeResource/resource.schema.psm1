@@ -53,4 +53,14 @@ Configuration CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>
     #region 2.1 Section name
     if($ExcludeList -notcontains '2.1.1'){
     }
+
+    if($ExcludeList -notcontains '2.1.2' -and $Level -eq 2){
+    }
+    #endregion
+
+    #endregion
+
+    #region 3 Category name
+        #This section is intentionally blank and exists to ensure the structure of Windows benchmarks is consistent.
+    #endregion
 }
