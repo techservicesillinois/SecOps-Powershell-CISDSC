@@ -5,11 +5,34 @@ Configuration CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>
         [string[]]
         $ExcludeList,
 
+        [int]
+        [ValidateRange(1,2)]
+        $Level = 1,
+
         [String]
-        $LocalAdminNewName,
+        $LocalAdminNewName = 'CISADMIN',
 
         [string]
-        $LocalGuestNewName
+        $LocalGuestNewName = 'CISGUEST',
+
+        [string]
+        $LegalNoticeText = 'ADD TEXT HERE',
+
+        [string]
+        $LegalNoticeCaption = 'ADD TEXT HERE'
+
+        <#
+        Some benchmarks have multiple valid values or a value that is atleast/at most a value.
+        These are examples about how to implement
+
+        [int]
+        [ValidateRange(1,15)]
+        $2391AutoDisconnectIdleTime = 15,
+
+        [string]
+        [ValidateSet("Lock Workstation","Force Logoff","Disconnect if a Remote Desktop Services session")]
+        $2379ScRemoveOption = "Lock Workstation"
+        #>
     )
 
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
