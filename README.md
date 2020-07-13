@@ -22,11 +22,11 @@ Invoke-Plaster -TemplatePath '.\plasterTemplates\NewBenchmarkCompositeResource\'
 ```
 
 Settings in the benchmark have three part identifiers that should be referenced to support the exclude list as well as the regions laid out by the Plaster template. These ensure they are easily maintained by the developers and customized by the users. The PDF of the benchmarks is the best source for this.
-![category](/screenshots/category.png)
+![category](/screenshots/category.PNG)
 
-![section](/screenshots/section.png)
+![section](/screenshots/section.PNG)
 
-![setting](/screenshots/setting.png)
+![setting](/screenshots/setting.PNG)
 
 Both level 1 & 2 of the benchmark will be in the same resource with a level parameter. The same is true for the optional BitLocker components.
 
@@ -34,6 +34,6 @@ Any setting that has multiple supported values or a min/max value should be para
 
 Your composite resource version should match the version of the benchmark to easily correlate what it was based on, this is handled by the Plaster template. Ex: The current benchmark for Windows 10 Enterprise 1909 is v1.8.1 since these are versioned as they are revisited by CIS them with new recommendations.
 
-![version](/screenshots/version.png)
+![version](/screenshots/version.PNG)
 
 # To Do
