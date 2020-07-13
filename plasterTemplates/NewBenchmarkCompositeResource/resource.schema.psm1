@@ -5,12 +5,14 @@ Configuration CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>
         [string[]]
         $ExcludeList,
 
-        [int]
-        [ValidateRange(1,2)]
-        $Level = 1,
+        [boolean]
+        $LevelTwo = $false,
 
         [boolean]
         $BitLocker = $false,
+
+        [boolean]
+        $NextGenerationWindowsSecurity = $false,
 
         [String]
         $LocalAdminNewName = 'CISADMIN',
@@ -42,33 +44,4 @@ Configuration CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>
     Import-DSCResource -ModuleName 'AuditPolicyDSC' -ModuleVersion '1.4.0.0'
     Import-DSCResource -ModuleName 'SecurityPolicyDSC' -ModuleVersion '2.10.0.0'
 
-    #region 1 Category name
-
-    #region 1.1 Section name
-    if($ExcludeList -notcontains '1.1.1'){
-    }
-    #endregion
-
-    #endregion
-
-    #region 2 Category name
-
-    #region 2.1 Section name
-    if($ExcludeList -notcontains '2.1.1'){
-    }
-
-    if($ExcludeList -notcontains '2.1.2' -and $Level -eq 2){
-        #Benchmarks contain two levels of settings. Level two is more intense so we assume one but have level two settings available.
-    }
-
-    if($ExcludeList -notcontains '2.2.1' -and $BitLocker){
-        #Benchmarks have a small amount of settings that are related to bitlocker but bitlocker itself is not required for the benchmark so they are optional extensions.
-    }
-    #endregion
-
-    #endregion
-
-    #region 3 Category name
-        #This section is intentionally blank and exists to ensure the structure of Windows benchmarks is consistent.
-    #endregion
 }
