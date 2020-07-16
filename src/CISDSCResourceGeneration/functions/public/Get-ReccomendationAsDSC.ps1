@@ -22,7 +22,7 @@ function Get-ReccomendationAsDSC {
                 if($DSCHash['DSCParameters']['ValueData'] -in ($null,[string]::Empty)){
                     $DSCHash['DSCParameters']['ValueData'] = switch($DSCHash['DSCParameters']['ValueType']){
                         'MultiString' {"@('')"}
-                        Default {[string]::Empty}
+                        Default {"''"}
                     }
                 }
             }
