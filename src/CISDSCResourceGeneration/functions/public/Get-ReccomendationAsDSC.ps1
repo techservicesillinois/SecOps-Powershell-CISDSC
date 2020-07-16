@@ -36,7 +36,7 @@ function Get-ReccomendationAsDSC {
         $DSCBlock += "    }"
         $DSCBlock += "}"
 
-        $DSCBlock
+        $DSCBlock -join "`n"
     }
 
     end {
