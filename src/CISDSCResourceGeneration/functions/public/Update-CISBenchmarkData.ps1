@@ -15,17 +15,17 @@ function Update-CISBenchmarkData {
             Import-Excel -Path $Path -DataOnly -WorksheetName $_.Name | ForEach-Object -Process {
                 try{
                     if($_.'recommendation #'){
+
                         $_ | Add-Member -Name 'Level' -MemberType ScriptProperty -Value {Get-BenchmarkLevelFromTitle -Title $this.title}
                         $_ | Add-Member -Name 'ReccomendationVersioned' -MemberType ScriptProperty -Value {ConvertTo-Version -CISNumberString $this.'recommendation #'}
                         $_ | Add-Member -Name 'SectionVersioned' -MemberType ScriptProperty -Value {ConvertTo-Version -CISNumberString $this.'section #'}
                         $_ | Add-Member -Name 'TopLevelSection' -MemberType ScriptProperty -Value { $this.ReccomendationVersioned.Major }
 
-                        $_.'recommendation #' = ConvertTo-SingleQuotes $_.'recommendation #'
+                        $_.title = ConvertTo-SingleQuotes -String $_.title
 
                         $script:BenchmarkReccomendations.add($_.'recommendation #',$_)
                     }
                     else{
-                        $_.'section #' = ConvertTo-SingleQuotes $_.'section #'
                         $script:BenchmarkSections.Add($_.'section #',$_.title)
                     }
                 }
