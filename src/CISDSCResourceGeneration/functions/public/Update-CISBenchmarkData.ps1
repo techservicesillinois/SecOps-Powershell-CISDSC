@@ -44,8 +44,6 @@ function Update-CISBenchmarkData {
 function ConvertTo-SingleQuotes
 {
     [CmdletBinding()]
-    [Alias()]
-    [OutputType([int])]
     Param
     (
         [Parameter(Mandatory=$true,Position=0)]
