@@ -20,9 +20,12 @@ function Update-CISBenchmarkData {
                         $_ | Add-Member -Name 'SectionVersioned' -MemberType ScriptProperty -Value {ConvertTo-Version -CISNumberString $this.'section #'}
                         $_ | Add-Member -Name 'TopLevelSection' -MemberType ScriptProperty -Value { $this.ReccomendationVersioned.Major }
 
+                        $_.'recommendation #' = ConvertTo-SingleQuotes $_.'recommendation #'
+
                         $script:BenchmarkReccomendations.add($_.'recommendation #',$_)
                     }
                     else{
+                        $_.'section #' = ConvertTo-SingleQuotes $_.'section #'
                         $script:BenchmarkSections.Add($_.'section #',$_.title)
                     }
                 }
@@ -38,28 +41,5 @@ function Update-CISBenchmarkData {
 
     end {
 
-    }
-}
-
-function ConvertTo-SingleQuotes
-{
-    [CmdletBinding()]
-    Param
-    (
-        [Parameter(Mandatory=$true,Position=0)]
-        [String]$String
-    )
-
-    Begin
-    {
-    }
-    Process
-    {
-
-        ($String.Replace('"',"'"))
-
-    }
-    End
-    {
     }
 }
