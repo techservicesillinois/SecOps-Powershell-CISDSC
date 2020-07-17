@@ -1,4 +1,4 @@
-function Get-ReccomendationFromRegistryHash {
+function Join-RegistryValueToBenchmark {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]

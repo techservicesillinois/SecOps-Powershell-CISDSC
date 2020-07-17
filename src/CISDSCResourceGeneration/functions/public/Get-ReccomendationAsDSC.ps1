@@ -1,7 +1,7 @@
 function Get-ReccomendationAsDSC {
     [CmdletBinding()]
     param (
-        [System.Collections.Hashtable]$DSCHash
+        [ScaffoldingBlock]$ScaffoldingBlock
     )
 
     begin {
