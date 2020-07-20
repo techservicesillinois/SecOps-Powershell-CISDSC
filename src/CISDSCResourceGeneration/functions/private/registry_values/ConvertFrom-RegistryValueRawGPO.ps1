@@ -1,5 +1,4 @@
-Function ConvertFrom-RegistryValueRawGPO
-{
+Function ConvertFrom-RegistryValueRawGPO {
     [CmdletBinding()]
     [OutputType([String])]
     param
@@ -15,11 +14,12 @@ Function ConvertFrom-RegistryValueRawGPO
 
     $ValueName = Split-Path -Leaf $Key
 
-    $regHash = @{}
-    $regHash['ValueType'] = 'None'
-    $regHash['ValueName'] = $ValueName -replace "[^\u0020-\u007E]", ''
-    $regHash['ValueData'] = ''
-    $regHash['Key'] = "$(Split-Path -Parent $Key)" -replace "MACHINE\\", "HKLM:\"
+    $regHash = @{
+        'ValueType' = 'None'
+        'ValueName' = $ValueName -replace "[^\u0020-\u007E]", ''
+        'ValueData' = ''
+        'Key' = "$(Split-Path -Parent $Key)" -replace "MACHINE\\", "HKLM:\"
+    }
 
     if ([string]::IsNullOrEmpty($regHash.ValueName)){
         $regHash.Remove("ValueData")
@@ -48,12 +48,14 @@ Function ConvertFrom-RegistryValueRawGPO
         }
     }
 
+    Resolve-RegistryValueSpecialCases -regHash $reghash
+
     switch($regHash['ValueType']){
         '1' {
-            $regHash['ValueType'] = 'String'
+            $regHash['ValueType'] = "'String'"
         }
         '3' {
-            $regHash['ValueType'] = 'Binary'
+            $regHash['ValueType'] = "'Binary'"
 
             if ($regHash.ContainsKey("ValueData")){
                 if ($regHash['ValueData'].Count -gt 1){
@@ -70,7 +72,7 @@ Function ConvertFrom-RegistryValueRawGPO
             }
         }
         '4' {
-            $regHash['ValueType'] = 'Dword'
+            $regHash['ValueType'] = "'Dword'"
 
             $ValueData = 1
             if ($regHash['ValueData'] -match "(Disabled|Enabled|Not Defined|True|False)" -or $ValueData -eq "''"){
@@ -92,14 +94,19 @@ Function ConvertFrom-RegistryValueRawGPO
             }
         }
         '7' {
-            $regHash['ValueType'] = 'MultiString'
+            $regHash['ValueType'] = "'MultiString'"
+            $regHash['ValueData'] = "@('$($regHash['ValueData'] -join "','")')"
+
         }
         default {
             $regHash.Remove("ValueType")
         }
     }
 
-    Resolve-RegistrySpecialCases -regHash $reghash
+    $Reccomendation = Get-RegistryValueReccomendation -regHash $regHash
 
-    $regHash
+    $regHash['Key'] = "'$($regHash['Key'])'"
+    $regHash['ValueName'] = "'$($regHash['ValueName'])'"
+
+    [ScaffoldingBlock]::new($Reccomendation,'Registry',$reghash)
 }

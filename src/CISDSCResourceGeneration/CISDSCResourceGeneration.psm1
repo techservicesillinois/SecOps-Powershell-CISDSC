@@ -5,8 +5,7 @@ Get-ChildItem -Path $FunctionPath -Filter "*.ps1" -Recurse | ForEach-Object -Pro
     . $_.FullName | Out-Null
 }
 
-Class ScaffoldingBlock
-{
+Class ScaffoldingBlock {
     [object]$Reccomendation
     [string]$ResourceType
     [System.Collections.Hashtable]$ResourceParameters
@@ -20,25 +19,29 @@ Class ScaffoldingBlock
     }
 
     [string]GenerateTextBlock(){
-        [string[]]$DSCBlock = @()
-        [string]$IfClose = [string]::Empty
-
-        if($This.Reccomendation.Level){
-            $IfClose = ' -and ${0})' -f $This.Reccomendation.Level
-        }
-        $IfClose += '{'
-
-        $DSCBlock += 'if($ExcludeList -notcontains ''{0}''{1}' -f $This.Reccomendation.'recommendation #',$IfClose
-        $DSCBlock += "    $($This.DSCResourceType) '$($This.Reccomendation.title)'{"
-
-        foreach($Key in $This.DSCParameters.Keys){
-            $DSCBlock += "        $Key = $($This.DSCParameters[$Key])"
+        [string[]]$ResourceParametersString = @()
+        foreach($Key in $This.ResourceParameters.keys){
+            $ResourceParametersString += "           $Key = $($This.ResourceParameters[$Key])"
         }
 
-        $DSCBlock += "    }"
-        $DSCBlock += "}"
+        $blankDefinition = @'
+    if($ExcludeList -notcontains '{0}' -and ${1}){{
+        {2} "{3}"
+        {{
+{4}
+        }}
+    }}
+'@
 
-        return ($DSCBlock -join "`n")
+        $Replacements = @(
+            $This.Reccomendation.'recommendation #',
+            $This.Reccomendation.Level,
+            $This.ResourceType,
+            $This.Reccomendation.title,
+            ($ResourceParametersString -join "`n")
+        )
+
+        return ($blankDefinition -f $Replacements)
     }
 }
 
@@ -91,3 +94,67 @@ $script:UserRights = @{
     "SeSyncAgentPrivilege" = "Synchronize_directory_service_data"
     "SeTakeOwnershipPrivilege" =  "Take_ownership_of_files_or_other_objects"
 }
+
+$script:SecurityOptionSettings = @{
+    'ForceLogoffWhenHourExpire' = 'Network_security_Force_logoff_when_logon_hours_expire'
+    'LSAAnonymousNameLookup' = 'Network_access_Allow_anonymous_SID_Name_translation'
+    'EnableAdminAccount' = 'Accounts_Administrator_account_status'
+    'EnableGuestAccount' = 'Accounts_Guest_account_status'
+    'NewAdministratorName' = 'Accounts_Rename_administrator_account'
+    'NewGuestName' = 'Accounts_Rename_guest_account'
+}
+
+$script:AccountPolicySettings = @{
+    'MaximumPasswordAge' = 'Maximum_Password_Age'
+    'MinimumPasswordAge' = 'Minimum_Password_Age'
+    'MinimumPasswordLength' = 'Minimum_Password_Length'
+    'PasswordComplexity' = 'Password_must_meet_complexity_requirements'
+    'ClearTextPassword' = 'Store_passwords_using_reversible_encryption'
+    'PasswordHistorySize' = 'Enforce_password_history'
+    'MaxServiceAge' = 'Maximum_lifetime_for_service_ticket'
+    'MaxTicketAge' = 'Maximum_lifetime_for_user_ticket'
+    'MaxRenewAge' = 'Maximum_lifetime_for_user_ticket_renewal'
+    'MaxClockSkew' = 'Maximum_tolerance_for_computer_clock_synchronization'
+    'TicketValidateClient' = 'Enforce_user_logon_restrictions'
+    'LockoutDuration' = 'Account_lockout_duration'
+    'LockoutBadCount' = 'Account_lockout_threshold'
+    'ResetLockoutCount' = 'Reset_account_lockout_counter_after'
+}
+
+$script:SecuritySettingsWEnabledDisabled = @(
+    "Accounts_Administrator_account_status",
+    "Accounts_Guest_account_status",
+    "Enforce_user_logon_restrictions",
+    "Password_must_meet_complexity_requirements",
+    "Store_passwords_using_reversible_encryption",
+    "Network_access_Allow_anonymous_SID_Name_translation",
+    "Network_security_Force_logoff_when_logon_hours_expire"
+)
+
+$script:SecuritySettings = @(
+    "MinimumPasswordAge",
+    "MaximumPasswordAge",
+    "MinimumPasswordLength",
+    "PasswordComplexity",
+    "PasswordHistorySize",
+    "LockoutBadCount",
+    "ForceLogoffWhenHourExpire",
+    "NewAdministratorName",
+    "NewGuestName",
+    "ClearTextPassword",
+    "LSAAnonymousNameLookup",
+    "EnableAdminAccount",
+    "EnableGuestAccount",
+    "ResetLockoutCount",
+    "LockoutDuration",
+    "MaxServiceAge",
+    "MaxTicketAge",
+    "MaxRenewAge",
+    "MaxClockSkew",
+    "TicketValidateClient"
+)
+
+$script:EnabledDisabled = @(
+    "Disabled",
+    "Enabled"
+)
