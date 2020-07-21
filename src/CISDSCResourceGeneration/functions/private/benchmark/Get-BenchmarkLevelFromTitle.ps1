@@ -1,7 +1,9 @@
 function Get-BenchmarkLevelFromTitle {
     [CmdletBinding()]
+    [OutputType([string])]
     param (
         [Parameter(Mandatory = $True)]
+        [ValidateNotNullOrEmpty()]
         [string]$Title
     )
 

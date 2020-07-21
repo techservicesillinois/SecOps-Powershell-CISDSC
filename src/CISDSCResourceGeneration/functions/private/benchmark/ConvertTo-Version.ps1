@@ -1,5 +1,6 @@
 function ConvertTo-Version {
     [CmdletBinding()]
+    [OutputType([version])]
     param (
         [Parameter(Mandatory=$True)]
         [ValidateNotNullOrEmpty()]

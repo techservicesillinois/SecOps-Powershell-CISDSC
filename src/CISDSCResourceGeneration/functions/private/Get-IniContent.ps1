@@ -4,7 +4,7 @@ function Get-IniContent
     [OutputType([System.Collections.Hashtable])]
     param
     (
-        [Parameter(Mandatory=$true, ValueFromPipeline = $true, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Mandatory=$true)]
         [System.String]$Path
     )
 

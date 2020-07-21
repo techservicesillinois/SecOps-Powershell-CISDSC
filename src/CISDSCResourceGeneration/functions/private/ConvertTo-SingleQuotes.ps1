@@ -1,9 +1,10 @@
-function ConvertTo-SingleQuotes
-{
+function ConvertTo-SingleQuotes{
     [CmdletBinding()]
+    [OutputType([string])]
     Param
     (
-        [Parameter(Mandatory=$true,Position=0)]
+        [Parameter(Mandatory=$true)]
+        [ValidateNotNullOrEmpty()]
         [String]$String
     )
 
@@ -12,9 +13,7 @@ function ConvertTo-SingleQuotes
     }
     Process
     {
-
         ($String.Replace('"',"'"))
-
     }
     End
     {

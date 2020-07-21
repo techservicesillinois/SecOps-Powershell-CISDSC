@@ -1,5 +1,5 @@
 function Update-CISBenchmarkData {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory=$True)]
         [ValidateNotNullOrEmpty()]
@@ -27,6 +27,12 @@ function Update-CISBenchmarkData {
                     }
                     else{
                         $script:BenchmarkSections.Add($_.'section #',$_.title)
+                        if($_.title -eq 'System Services'){
+                            $script:ServiceSection = $_.'section #'
+                        }
+                        elseif($_.title -eq 'Administrative Templates (User)'){
+                            $script:UserSection = $_.'section #'
+                        }
                     }
                 }
                 catch [System.Management.Automation.MethodInvocationException]{
