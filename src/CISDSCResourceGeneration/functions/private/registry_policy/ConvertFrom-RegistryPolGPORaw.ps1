@@ -33,7 +33,7 @@ function ConvertFrom-RegistryPolGPORaw {
 
         $Reccomendation = Get-RegistryValueReccomendation -regHash $regHash
 
-        if($regHash['ValueType'] -eq 'String' -and $regHash['ValueData']){
+        if($regHash['ValueType'] -in ('ExpandString','String') -and $regHash['ValueData']){
             $regHash['ValueData'] = "'$($regHash['ValueData'])'"
         }
 
