@@ -5,6 +5,21 @@ Get-ChildItem -Path $FunctionPath -Filter "*.ps1" -Recurse | ForEach-Object -Pro
     . $_.FullName | Out-Null
 }
 
+Class Reccomendation {
+    [string]$SectionNum
+    [string]$ReccomendationNum
+    [string]$Title
+    [string]$Description
+    [string]$RemediationProcedure
+    [string]$AuditProcedure
+
+    Reccomendation([System.Management.Automation.PSCustomObject]$Excel){
+        #$This.title = $Excel.title -rep
+    }
+
+}
+
+
 Class ScaffoldingBlock {
     [object]$Reccomendation
     [string]$ResourceType
