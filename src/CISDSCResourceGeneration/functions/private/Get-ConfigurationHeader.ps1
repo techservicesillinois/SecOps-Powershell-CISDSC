@@ -15,20 +15,7 @@ Configuration {0}
 {{
     param
     (
-        [string[]]
-        $ExcludeList,
-
-        [boolean]
-        $LevelOne = $true,
-
-        [boolean]
-        $LevelTwo = $false,
-
-        [boolean]
-        $BitLocker = $false,
-
-        [boolean]
-        $NextGenerationWindowsSecurity = $false
+{1}
     )
 
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
@@ -37,7 +24,7 @@ Configuration {0}
 
 '@
 
-        $RawConfiguration -f $ResourceName
+        $RawConfiguration -f $ResourceName,(($script:DSCConfigurationParameters).TextBlock -join ",`n")
     }
 
     end {

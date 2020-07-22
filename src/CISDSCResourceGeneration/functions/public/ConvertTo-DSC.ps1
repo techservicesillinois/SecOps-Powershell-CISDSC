@@ -7,6 +7,8 @@ function ConvertTo-DSC {
         [Parameter(Mandatory=$true)]
         [string]$GPOPath,
 
+        [string]$StaticCorrectionsPath,
+
         [string]$OutputPath = (Join-Path -Path $PWD -ChildPath 'Output'),
 
         [Parameter(Mandatory=$true)]
@@ -19,6 +21,12 @@ function ConvertTo-DSC {
 
     process {
         Update-CISBenchmarkData -Path $BenchmarkPath
+
+        if($StaticCorrectionsPath){
+            Import-Csv -Path $StaticCorrectionsPath | ForEach-Object -Process {
+                $script:StaticCorrections.add($_.Key,$_.Reccomendation)
+            }
+        }
 
         [System.Collections.ArrayList]$ScaffoldingBlocks = @()
 

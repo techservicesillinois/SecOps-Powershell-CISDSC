@@ -19,6 +19,28 @@ Class Reccomendation {
 
 }
 
+Class DSCConfigurationParameter{
+    [string]$Name
+    [string]$DataType
+    [string]$DefaultValue
+    [string]$TextBlock
+
+    DSCConfigurationParameter($Name, $DataType, $DefaultValue){
+        $this.Name = $Name
+        $this.DataType = $DataType
+        $this.DefaultValue = $DefaultValue
+        $this.TextBlock = $this.GenerateTextBlock()
+    }
+
+    [string]GenerateTextBlock(){
+        $blankDefinition = @'
+        {0}
+        {1} = {2}
+'@
+
+        return ($blankDefinition -f $this.DataType,$this.Name,$this.DefaultValue)
+    }
+}
 
 Class ScaffoldingBlock {
     [object]$Reccomendation
@@ -32,12 +54,39 @@ Class ScaffoldingBlock {
         $this.ResourceType = $ResourceType
         $this.ResourceParameters = $ResourceParameters
         $this.ReccomendationVersioned = $Reccomendation.ReccomendationVersioned
+        $this.UpdateForPotentialParameter()
         $this.TextBlock = $this.GenerateTextBlock()
+    }
+
+    UpdateForPotentialParameter(){
+        if($this.Reccomendation.PotentialParameter){
+            switch($this.ResourceType){
+                'Registry'{
+                    [string]$DataType = switch($this.ResourceParameters['ValueType']){
+                        "'String'" {'[string]'}
+                        "'MultiString'" {'[string[]]'}
+                        "'Dword'" {'[int32]'}
+                    }
+                    [string]$Name = "$('$')$($this.ReccomendationVersioned.ToString().Replace('.',''))_$($this.ResourceParameters['ValueName'].replace("'",''))"
+                    $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$this.ResourceParameters['ValueData'])
+                    $this.ResourceParameters['ValueData'] = $Name
+                }
+
+                'AccountPolicy'{
+                    [string]$Name = "$('$')$($this.ReccomendationVersioned.ToString().Replace('.',''))_$($this.ResourceParameters['Name'].replace("'",'').replace('_',''))"
+                    $ValueKey = $this.ResourceParameters['Name'].replace("'",'')
+                    [string]$DataType = "[$($this.ResourceParameters[$ValueKey].GetType().Name)]"
+                    #[string]$DataType = "[derp]"
+                    $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$this.ResourceParameters[$ValueKey])
+                    $this.ResourceParameters[$ValueKey] = $Name
+                }
+            }
+        }
     }
 
     [string]GenerateTextBlock(){
         [string[]]$ResourceParametersString = @()
-        foreach($Key in $This.ResourceParameters.keys){
+        foreach($Key in $this.ResourceParameters.keys){
             $ResourceParametersString += "           $Key = $($This.ResourceParameters[$Key])"
         }
 
@@ -64,9 +113,17 @@ Class ScaffoldingBlock {
 
 $script:BenchmarkReccomendations = @{}
 $script:BenchmarkSections = @{}
+$script:StaticCorrections = @{}
+$script:DSCConfigurationParameters = @(
+    [DSCConfigurationParameter]::new('$ExcludeList','[string[]]','@()'),
+    [DSCConfigurationParameter]::new('$LevelOne','[boolean]','$true'),
+    [DSCConfigurationParameter]::new('$LevelTwo','[boolean]','$false'),
+    [DSCConfigurationParameter]::new('$BitLocker','[boolean]','$false'),
+    [DSCConfigurationParameter]::new('$NextGenerationWindowsSecurity','[boolean]','$false')
+)
+
 [int]$script:ServiceSection = 0
 [int]$script:UserSection = 0
-
 
 $script:UserRights = @{
     "SeTrustedCredManAccessPrivilege" = "Access_Credential_Manager_as_a_trusted_caller"
