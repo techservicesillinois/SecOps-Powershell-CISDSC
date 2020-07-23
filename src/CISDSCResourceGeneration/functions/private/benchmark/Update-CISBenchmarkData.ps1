@@ -3,7 +3,11 @@ function Update-CISBenchmarkData {
     param (
         [Parameter(Mandatory=$True)]
         [ValidateNotNullOrEmpty()]
-        [string]$Path
+        [string]$Path,
+
+        [Parameter(Mandatory=$True)]
+        [ValidateNotNullOrEmpty()]
+        [string]$OS
     )
 
     begin {
@@ -11,7 +15,22 @@ function Update-CISBenchmarkData {
     }
 
     process {
-        Get-ExcelSheetInfo -Path $Path | Where-Object -FilterScript {$_.Name -ne 'License'} | ForEach-Object -Process {
+
+        switch($OS){
+            {$_ -like '*Member Server'}{
+                $FilterScript = {$_.Name -ne 'License' -and $_.Name -notlike "*Domain Controller"}
+            }
+
+            {$_ -like '*Domain Controller'}{
+                $FilterScript = {$_.Name -ne 'License' -and $_.Name -notlike "*Member Server"}
+            }
+
+            Default{
+                $FilterScript = {$_.Name -ne 'License'}
+            }
+        }
+
+        Get-ExcelSheetInfo -Path $Path | Where-Object -FilterScript $FilterScript | ForEach-Object -Process {
             Import-Excel -Path $Path -DataOnly -WorksheetName $_.Name | ForEach-Object -Process {
                 try{
                     if($_.'recommendation #'){

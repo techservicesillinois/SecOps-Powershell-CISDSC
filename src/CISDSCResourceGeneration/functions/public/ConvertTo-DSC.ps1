@@ -12,7 +12,13 @@ function ConvertTo-DSC {
         [string]$OutputPath = (Join-Path -Path $PWD -ChildPath 'Output'),
 
         [Parameter(Mandatory=$true)]
-        [ValidateSet('Microsoft Windows 10 Enterprise','Microsoft Windows Server 2016','Microsoft Windows Server 2019')]
+        [ValidateSet(
+            'Microsoft Windows 10 Enterprise',
+            'Microsoft Windows Server 2016 Member Server',
+            'Microsoft Windows Server 2016 Domain Controller',
+            'Microsoft Windows Server 2019 Member Server',
+            'Microsoft Windows Server 2019 Domain Controller'
+        )]
         [string]$OS,
 
         [Parameter(Mandatory=$true)]
@@ -27,10 +33,10 @@ function ConvertTo-DSC {
     }
 
     process {
-        Update-CISBenchmarkData -Path $BenchmarkPath
+        Update-CISBenchmarkData -Path $BenchmarkPath -OS $OS
 
         if($StaticCorrectionsPath){
-            Import-Csv -Path $StaticCorrectionsPath | ForEach-Object -Process {
+            Import-Csv -Path $StaticCorrectionsPath -ErrorAction Stop | ForEach-Object -Process {
                 $script:StaticCorrections.add($_.Key,$_.Reccomendation)
             }
         }
@@ -121,7 +127,6 @@ function ConvertTo-DSC {
                 'BenchmarkVersion' = $BenchmarkVersion.ToString()
             }
             Invoke-Plaster @PlasterSplat | Out-Null
-            #New-ModuleManifest -Path $ManifestPath -RootModule "$($ResourceName).schema.psm1" -FunctionsToExport $ResourceName
         }
     }
 
