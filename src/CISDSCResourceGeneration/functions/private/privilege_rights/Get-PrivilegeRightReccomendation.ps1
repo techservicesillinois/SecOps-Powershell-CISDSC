@@ -11,9 +11,17 @@ function Get-PrivilegeRightReccomendation {
 
     process {
         $searchString = $privilegeHash['Policy'].replace('_',' ')
-        $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
-            $_.title -like "*'$($searchString)'*"
-        })
+
+        if($script:StaticCorrections[$searchString]){
+            $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+                $_.'recommendation #' -eq $script:StaticCorrections[$searchString]
+            })
+        }
+        else{
+            $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+                $_.title -like "*'$($searchString)'*"
+            })
+        }
 
         $Reccomendation
     }

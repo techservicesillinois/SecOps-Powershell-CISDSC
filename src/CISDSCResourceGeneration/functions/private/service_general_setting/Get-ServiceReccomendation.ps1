@@ -11,10 +11,18 @@ function Get-ServiceReccomendation {
 
     process {
         $searchString = "$($serviceHash['Name'])"
-        $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
-            $_.title -like "*$($searchString)*" -and
-            $_.TopLevelSection -eq $script:ServiceSection
-        })
+
+        if($script:StaticCorrections[$searchString]){
+            $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+                $_.'recommendation #' -eq $script:StaticCorrections[$searchString]
+            })
+        }
+        else{
+            $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+                $_.title -like "*$($searchString)*" -and
+                $_.TopLevelSection -eq $script:ServiceSection
+            })
+        }
 
         $Reccomendation
     }

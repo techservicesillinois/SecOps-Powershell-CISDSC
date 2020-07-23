@@ -13,11 +13,18 @@ function Get-AuditPolicySubcategoryReccomendation {
     }
 
     process {
+        if($script:StaticCorrections[$Subcategory]){
+            $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+                $_.'recommendation #' -eq $script:StaticCorrections[$Subcategory]
+            })
+        }
+        else{
+            $SearchString = "Ensure '$($Subcategory)'*'$($InclusionSetting)'"
 
-        $SearchString = "'$($Subcategory)'*'$($InclusionSetting)'"
-        $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
-            $_.title -like "*$($SearchString)"
-        })
+            $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+                $_.title -like "*$($SearchString)"
+            })
+        }
 
         $Reccomendation
     }

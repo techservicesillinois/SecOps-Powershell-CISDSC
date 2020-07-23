@@ -13,7 +13,7 @@ function ConvertFrom-AuditPolicySubcategoryRawGPO {
         $GUID = $Entry.'Subcategory GUID'.TrimStart('{').TrimEnd('}')
 
         if (!$script:AuditSubcategory.ContainsKey($GUID)){
-            Write-Warning -Message "Write-GPOAuditCSVData:$GUID ($($Entry.Subcategory)) is no longer supported or not implemented"
+            Write-Warning -Message "ConvertFrom-AuditPolicySubcategoryRawGPO:$GUID ($($Entry.Subcategory)) is no longer supported or not implemented"
         }
         else{
             $retHash = @{
