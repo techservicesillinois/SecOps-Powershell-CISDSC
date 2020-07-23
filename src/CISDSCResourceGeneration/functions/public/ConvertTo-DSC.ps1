@@ -12,7 +12,14 @@ function ConvertTo-DSC {
         [string]$OutputPath = (Join-Path -Path $PWD -ChildPath 'Output'),
 
         [Parameter(Mandatory=$true)]
-        [string]$ResourceName
+        [ValidateSet('Microsoft Windows 10 Enterprise','Microsoft Windows Server 2016','Microsoft Windows Server 2019')]
+        [string]$OS,
+
+        [Parameter(Mandatory=$true)]
+        [string]$OSBuild,
+
+        [Parameter(Mandatory=$true)]
+        [version]$BenchmarkVersion
     )
 
     begin {
@@ -95,11 +102,26 @@ function ConvertTo-DSC {
         }
 
         if($ScaffoldingBlocks){
-            [string]$ScaffoldingPath = Join-Path -Path $OutputPath -ChildPath "$($ResourceName).ps1"
+            [string]$ResourceName = "CIS_$($OS.replace(' ','_'))_Release_$($OSBuild)"
+            [string]$ResourcePath = Join-Path -Path $OutputPath -ChildPath $ResourceName
+            New-Item -Path $ResourcePath -ItemType Directory | Out-Null
+            [string]$ScaffoldingPath = Join-Path -Path $ResourcePath -ChildPath "$($ResourceName).schema.psm1"
+
             Set-Content -Path $ScaffoldingPath -Value (Get-ConfigurationHeader -ResourceName $ResourceName)
             Add-Content -Path $ScaffoldingPath -Value (($ScaffoldingBlocks | Sort-Object -Property 'ReccomendationVersioned').TextBlock -join "`n") -Force
             Add-Content -Path $ScaffoldingPath -Value '}' -Force
             Write-Verbose -Message "Generated scaffolding can be found at '$($ScaffoldingPath)'."
+
+            $PlasterSplat = @{
+                'TemplatePath' = (Join-Path -Path $script:PlasterTemplatePath -ChildPath 'NewCompositeResourceManifest')
+                'DestinationPath' = $ResourcePath
+                'NoLogo' = $true
+                'OS' = $OS.replace(' ','_')
+                'OSBuild' = $OSBuild
+                'BenchmarkVersion' = $BenchmarkVersion.ToString()
+            }
+            Invoke-Plaster @PlasterSplat | Out-Null
+            #New-ModuleManifest -Path $ManifestPath -RootModule "$($ResourceName).schema.psm1" -FunctionsToExport $ResourceName
         }
     }
 

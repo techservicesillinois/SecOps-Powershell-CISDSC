@@ -1,3 +1,4 @@
+$script:PlasterTemplatePath = Join-Path -Path $PSScriptRoot -ChildPath 'plasterTemplates'
 [String]$FunctionPath = Join-Path -Path $PSScriptRoot -ChildPath 'Functions'
 #All function files are executed while only public functions are exported to the shell.
 Get-ChildItem -Path $FunctionPath -Filter "*.ps1" -Recurse | ForEach-Object -Process {
@@ -55,6 +56,7 @@ Class ScaffoldingBlock {
         $this.ResourceParameters = $ResourceParameters
         $this.ReccomendationVersioned = $Reccomendation.ReccomendationVersioned
         $this.UpdateForPotentialParameter()
+        $script:UsedResourceTitles += $This.Reccomendation.title
         $this.TextBlock = $this.GenerateTextBlock()
     }
 
@@ -99,11 +101,17 @@ Class ScaffoldingBlock {
     }}
 '@
 
+        [string]$Title = $This.Reccomendation.title
+        [int]$TitleCount = ($script:UsedResourceTitles | Where-Object -FilterScript {$_ -eq $This.Reccomendation.title} | Measure-Object).count
+        if($TitleCount -gt 1){
+            $Title = "$($Title) ($($TitleCount))"
+        }
+
         $Replacements = @(
             $This.Reccomendation.'recommendation #',
             $This.Reccomendation.Level,
             $This.ResourceType,
-            $This.Reccomendation.title,
+            $Title,
             ($ResourceParametersString -join "`n")
         )
 
@@ -114,6 +122,10 @@ Class ScaffoldingBlock {
 $script:BenchmarkReccomendations = @{}
 $script:BenchmarkSections = @{}
 $script:StaticCorrections = @{}
+[string[]]$script:UsedResourceTitles = @()
+[int]$script:ServiceSection = 0
+[int]$script:UserSection = 0
+
 $script:DSCConfigurationParameters = @(
     [DSCConfigurationParameter]::new('$ExcludeList','[string[]]','@()'),
     [DSCConfigurationParameter]::new('$LevelOne','[boolean]','$true'),
@@ -121,9 +133,6 @@ $script:DSCConfigurationParameters = @(
     [DSCConfigurationParameter]::new('$BitLocker','[boolean]','$false'),
     [DSCConfigurationParameter]::new('$NextGenerationWindowsSecurity','[boolean]','$false')
 )
-
-[int]$script:ServiceSection = 0
-[int]$script:UserSection = 0
 
 $script:UserRights = @{
     "SeTrustedCredManAccessPrivilege" = "Access_Credential_Manager_as_a_trusted_caller"

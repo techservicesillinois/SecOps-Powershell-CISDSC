@@ -13,13 +13,13 @@ ModuleVersion = '<%=$PLASTER_PARAM_BenchmarkVersion%>'
 GUID = '<%=$PLASTER_Guid1%>'
 
 # Author of this module
-Author = '<%=$PLASTER_PARAM_Author%>'
+# Author = ''
 
 # Company or vendor of this module
-CompanyName = 'The University of Illinois'
+# CompanyName = ''
 
 # Copyright statement for this module
-Copyright = 'The University of Illinois Board of Trustees'
+# Copyright = ''
 
 # Description of the functionality provided by this module
 Description = 'Applies CIS benchmarks for <%=$PLASTER_PARAM_OS%> release <%=$PLASTER_PARAM_OSBuild%>.'
