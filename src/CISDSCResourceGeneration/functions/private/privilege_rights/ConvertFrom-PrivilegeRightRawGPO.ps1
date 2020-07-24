@@ -21,12 +21,12 @@ function ConvertFrom-PrivilegeRightRawGPO {
             'Force' = '$true'
         }
 
-        $Reccomendation = Get-PrivilegeRightReccomendation -privilegeHash $privilegeHash
+        $Recommendation = Get-PrivilegeRightRecommendation -privilegeHash $privilegeHash
 
         $privilegeHash['Policy'] = "'$($privilegeHash['Policy'])'"
         $privilegeHash['Identity'] = "@('$($privilegeHash['Identity'] -join "','")')"
 
-        [ScaffoldingBlock]::new($Reccomendation,'UserRightsAssignment',$privilegeHash)
+        [ScaffoldingBlock]::new($Recommendation,'UserRightsAssignment',$privilegeHash)
     }
 
     end {

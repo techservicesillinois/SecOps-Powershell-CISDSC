@@ -6,15 +6,15 @@ Get-ChildItem -Path $FunctionPath -Filter "*.ps1" -Recurse | ForEach-Object -Pro
     . $_.FullName | Out-Null
 }
 
-Class Reccomendation {
+Class Recommendation {
     [string]$SectionNum
-    [string]$ReccomendationNum
+    [string]$RecommendationNum
     [string]$Title
     [string]$Description
     [string]$RemediationProcedure
     [string]$AuditProcedure
 
-    Reccomendation([System.Management.Automation.PSCustomObject]$Excel){
+    Recommendation([System.Management.Automation.PSCustomObject]$Excel){
         #$This.title = $Excel.title -rep
     }
 
@@ -44,24 +44,24 @@ Class DSCConfigurationParameter{
 }
 
 Class ScaffoldingBlock {
-    [object]$Reccomendation
+    [object]$Recommendation
     [string]$ResourceType
     [System.Collections.Hashtable]$ResourceParameters
     [string]$TextBlock
-    [version]$ReccomendationVersioned
+    [version]$RecommendationVersioned
 
-    ScaffoldingBlock($Reccomendation, $ResourceType, $ResourceParameters){
-        $this.Reccomendation = $Reccomendation
+    ScaffoldingBlock($Recommendation, $ResourceType, $ResourceParameters){
+        $this.Recommendation = $Recommendation
         $this.ResourceType = $ResourceType
         $this.ResourceParameters = $ResourceParameters
-        $this.ReccomendationVersioned = $Reccomendation.ReccomendationVersioned
+        $this.RecommendationVersioned = $Recommendation.RecommendationVersioned
         $this.UpdateForPotentialParameter()
-        $script:UsedResourceTitles += $This.Reccomendation.title
+        $script:UsedResourceTitles += $This.Recommendation.title
         $this.TextBlock = $this.GenerateTextBlock()
     }
 
     UpdateForPotentialParameter(){
-        if($this.Reccomendation.PotentialParameter){
+        if($this.Recommendation.PotentialParameter){
             switch($this.ResourceType){
                 'Registry'{
                     [string]$DataType = switch($this.ResourceParameters['ValueType']){
@@ -69,13 +69,13 @@ Class ScaffoldingBlock {
                         "'MultiString'" {'[string[]]'}
                         "'Dword'" {'[int32]'}
                     }
-                    [string]$Name = "$('$')$($this.ReccomendationVersioned.ToString().Replace('.',''))_$($this.ResourceParameters['ValueName'].replace("'",''))"
+                    [string]$Name = "$('$')$($this.RecommendationVersioned.ToString().Replace('.',''))_$($this.ResourceParameters['ValueName'].replace("'",''))"
                     $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$this.ResourceParameters['ValueData'])
                     $this.ResourceParameters['ValueData'] = $Name
                 }
 
                 'AccountPolicy'{
-                    [string]$Name = "$('$')$($this.ReccomendationVersioned.ToString().Replace('.',''))_$($this.ResourceParameters['Name'].replace("'",'').replace('_',''))"
+                    [string]$Name = "$('$')$($this.RecommendationVersioned.ToString().Replace('.',''))_$($this.ResourceParameters['Name'].replace("'",'').replace('_',''))"
                     $ValueKey = $this.ResourceParameters['Name'].replace("'",'')
                     [string]$DataType = "[$($this.ResourceParameters[$ValueKey].GetType().Name)]"
                     #[string]$DataType = "[derp]"
@@ -101,15 +101,15 @@ Class ScaffoldingBlock {
     }}
 '@
 
-        [string]$Title = $This.Reccomendation.title
-        [int]$TitleCount = ($script:UsedResourceTitles | Where-Object -FilterScript {$_ -eq $This.Reccomendation.title} | Measure-Object).count
+        [string]$Title = $This.Recommendation.title
+        [int]$TitleCount = ($script:UsedResourceTitles | Where-Object -FilterScript {$_ -eq $This.Recommendation.title} | Measure-Object).count
         if($TitleCount -gt 1){
             $Title = "$($Title) ($($TitleCount))"
         }
 
         $Replacements = @(
-            $This.Reccomendation.'recommendation #',
-            $This.Reccomendation.Level,
+            $This.Recommendation.'recommendation #',
+            $This.Recommendation.Level,
             $This.ResourceType,
             $Title,
             ($ResourceParametersString -join "`n")
@@ -119,7 +119,7 @@ Class ScaffoldingBlock {
     }
 }
 
-$script:BenchmarkReccomendations = @{}
+$script:BenchmarkRecommendations = @{}
 $script:BenchmarkSections = @{}
 $script:StaticCorrections = @{}
 [string[]]$script:UsedResourceTitles = @()

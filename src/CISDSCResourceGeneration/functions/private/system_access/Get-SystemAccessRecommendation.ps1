@@ -1,4 +1,4 @@
-function Get-SystemAccessReccomendation {
+function Get-SystemAccessRecommendation {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -12,11 +12,11 @@ function Get-SystemAccessReccomendation {
     process {
         #Wildcards are used instead of spaces because CIS puts ':' in these policy names.
         $searchString = $SystemAccessHash['Name'].replace('_','*')
-        $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+        $Recommendation = $script:BenchmarkRecommendations.Values.Where({
             $_.title -like "*'$($searchString)'*"
         })
 
-        $Reccomendation
+        $Recommendation
     }
 
     end {

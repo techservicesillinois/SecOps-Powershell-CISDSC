@@ -24,11 +24,11 @@ function ConvertFrom-ServiceRawGPO {
             Default {Write-Warning -Message "Invalid ServiceData of $($values[0])) for $($Service)"}
         }
 
-        $Reccomendation = Get-ServiceReccomendation -serviceHash $serviceHash
+        $Recommendation = Get-ServiceRecommendation -serviceHash $serviceHash
 
         $serviceHash['Name'] = "'$($serviceHash['Name'])'"
 
-        [ScaffoldingBlock]::new($Reccomendation,'Service',$serviceHash)
+        [ScaffoldingBlock]::new($Recommendation,'Service',$serviceHash)
     }
 
     end {

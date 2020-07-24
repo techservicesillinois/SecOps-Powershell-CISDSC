@@ -37,7 +37,7 @@ function ConvertTo-DSC {
 
         if($StaticCorrectionsPath){
             Import-Csv -Path $StaticCorrectionsPath -ErrorAction Stop | ForEach-Object -Process {
-                $script:StaticCorrections.add($_.Key,$_.Reccomendation)
+                $script:StaticCorrections.add($_.Key,$_.Recommendation)
             }
         }
 
@@ -84,27 +84,27 @@ function ConvertTo-DSC {
             }
         }
 
-        $ReccomendationErrors = $ScaffoldingBlocks | Where-Object -FilterScript {($_.Reccomendation | Measure-Object).count -ne 1}
-        $ScaffoldingBlocks = $ScaffoldingBlocks | Where-Object -FilterScript {($_.Reccomendation | Measure-Object).count -eq 1 -and $_.Reccomendation.TopLevelSection -ne $script:UserSection}
+        $RecommendationErrors = $ScaffoldingBlocks | Where-Object -FilterScript {($_.Recommendation | Measure-Object).count -ne 1}
+        $ScaffoldingBlocks = $ScaffoldingBlocks | Where-Object -FilterScript {($_.Recommendation | Measure-Object).count -eq 1 -and $_.Recommendation.TopLevelSection -ne $script:UserSection}
 
         $CompareSplat = @{
-            'ReferenceObject' = ($script:BenchmarkReccomendations.Values | Where-Object -FilterScript {$_.TopLevelSection -ne $script:UserSection}).'recommendation #'
-            'DifferenceObject' = (($ScaffoldingBlocks).Reccomendation.'recommendation #' | Get-Unique)
+            'ReferenceObject' = ($script:BenchmarkRecommendations.Values | Where-Object -FilterScript {$_.TopLevelSection -ne $script:UserSection}).'recommendation #'
+            'DifferenceObject' = (($ScaffoldingBlocks).Recommendation.'recommendation #' | Get-Unique)
         }
-        $MissingReccomendations = @()
-        $MissingReccomendations += (Compare-Object @CompareSplat | Where-Object -FilterScript {$_.SideIndicator -eq '<='}).InputObject
+        $MissingRecommendations = @()
+        $MissingRecommendations += (Compare-Object @CompareSplat | Where-Object -FilterScript {$_.SideIndicator -eq '<='}).InputObject
 
-        if($MissingReccomendations.count -gt 0){
-            [string]$MissingReccomendationsPath = Join-Path -Path $OutputPath -ChildPath 'MissingReccomendations.txt'
-            $MissingReccomendations | Out-File -FilePath $MissingReccomendationsPath -Force
-            Write-Warning -Message "$($MissingReccomendationsPath.count) Missing reccomendations found. List can be found at '$($MissingReccomendationsPath)'"
+        if($MissingRecommendations.count -gt 0){
+            [string]$MissingRecommendationsPath = Join-Path -Path $OutputPath -ChildPath 'MissingRecommendations.txt'
+            $MissingRecommendations | Out-File -FilePath $MissingRecommendationsPath -Force
+            Write-Warning -Message "$($MissingRecommendationsPath.count) Missing Recommendations found. List can be found at '$($MissingRecommendationsPath)'"
         }
 
-        if($ReccomendationErrors){
-            [string]$ReccomendationErrorsPath = Join-Path -Path $OutputPath -ChildPath 'ReccomendationErrors.ps1'
-            Set-Content -Path $ReccomendationErrorsPath -Value "$($ReccomendationErrors.count) errors found. The bellow blocks where not able to be automatically matched to a reccomendation in '$($BenchmarkPath)'.`n" -Force
-            Add-Content -Path $ReccomendationErrorsPath -Value (($ReccomendationErrors).TextBlock -join "`n")
-            Write-Warning -Message "$($ReccomendationErrors.count) errors found. Settings that require manual intervention can be found at '$($ReccomendationErrorsPath)'"
+        if($RecommendationErrors){
+            [string]$RecommendationErrorsPath = Join-Path -Path $OutputPath -ChildPath 'RecommendationErrors.ps1'
+            Set-Content -Path $RecommendationErrorsPath -Value "$($RecommendationErrors.count) errors found. The bellow blocks where not able to be automatically matched to a Recommendation in '$($BenchmarkPath)'.`n" -Force
+            Add-Content -Path $RecommendationErrorsPath -Value (($RecommendationErrors).TextBlock -join "`n")
+            Write-Warning -Message "$($RecommendationErrors.count) errors found. Settings that require manual intervention can be found at '$($RecommendationErrorsPath)'"
         }
 
         if($ScaffoldingBlocks){
@@ -114,7 +114,7 @@ function ConvertTo-DSC {
             [string]$ScaffoldingPath = Join-Path -Path $ResourcePath -ChildPath "$($ResourceName).schema.psm1"
 
             Set-Content -Path $ScaffoldingPath -Value (Get-ConfigurationHeader -ResourceName $ResourceName)
-            Add-Content -Path $ScaffoldingPath -Value (($ScaffoldingBlocks | Sort-Object -Property 'ReccomendationVersioned').TextBlock -join "`n") -Force
+            Add-Content -Path $ScaffoldingPath -Value (($ScaffoldingBlocks | Sort-Object -Property 'RecommendationVersioned').TextBlock -join "`n") -Force
             Add-Content -Path $ScaffoldingPath -Value '}' -Force
             Write-Verbose -Message "Generated scaffolding can be found at '$($ScaffoldingPath)'."
 

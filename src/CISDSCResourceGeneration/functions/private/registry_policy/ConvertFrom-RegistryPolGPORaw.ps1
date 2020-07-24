@@ -31,7 +31,7 @@ function ConvertFrom-RegistryPolGPORaw {
             $regHash.Remove('ValueType')
         }
 
-        $Reccomendation = Get-RegistryValueReccomendation -regHash $regHash
+        $Recommendation = Get-RegistryValueRecommendation -regHash $regHash
 
         if($regHash['ValueType'] -in ('ExpandString','String') -and $regHash['ValueData']){
             $regHash['ValueData'] = "'$($regHash['ValueData'])'"
@@ -44,7 +44,7 @@ function ConvertFrom-RegistryPolGPORaw {
         $regHash['key'] = "'$($regHash['key'])'"
         $regHash['ValueName'] = "'$($regHash['ValueName'])'"
 
-        [ScaffoldingBlock]::new($Reccomendation,'Registry',$reghash)
+        [ScaffoldingBlock]::new($Recommendation,'Registry',$reghash)
     }
 
     end {

@@ -1,4 +1,4 @@
-function Get-PrivilegeRightReccomendation {
+function Get-PrivilegeRightRecommendation {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -13,17 +13,17 @@ function Get-PrivilegeRightReccomendation {
         $searchString = $privilegeHash['Policy'].replace('_',' ')
 
         if($script:StaticCorrections[$searchString]){
-            $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+            $Recommendation = $script:BenchmarkRecommendations.Values.Where({
                 $_.'recommendation #' -eq $script:StaticCorrections[$searchString]
             })
         }
         else{
-            $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+            $Recommendation = $script:BenchmarkRecommendations.Values.Where({
                 $_.title -like "*'$($searchString)'*"
             })
         }
 
-        $Reccomendation
+        $Recommendation
     }
 
     end {

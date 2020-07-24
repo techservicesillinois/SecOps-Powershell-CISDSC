@@ -1,4 +1,4 @@
-function Get-ServiceReccomendation {
+function Get-ServiceRecommendation {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -13,18 +13,18 @@ function Get-ServiceReccomendation {
         $searchString = "$($serviceHash['Name'])"
 
         if($script:StaticCorrections[$searchString]){
-            $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+            $Recommendation = $script:BenchmarkRecommendations.Values.Where({
                 $_.'recommendation #' -eq $script:StaticCorrections[$searchString]
             })
         }
         else{
-            $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+            $Recommendation = $script:BenchmarkRecommendations.Values.Where({
                 $_.title -like "*$($searchString)*" -and
                 $_.TopLevelSection -eq $script:ServiceSection
             })
         }
 
-        $Reccomendation
+        $Recommendation
     }
 
     end {

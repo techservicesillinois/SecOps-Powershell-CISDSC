@@ -103,10 +103,10 @@ Function ConvertFrom-RegistryValueRawGPO {
         }
     }
 
-    $Reccomendation = Get-RegistryValueReccomendation -regHash $regHash
+    $Recommendation = Get-RegistryValueRecommendation -regHash $regHash
 
     $regHash['Key'] = "'$($regHash['Key'])'"
     $regHash['ValueName'] = "'$($regHash['ValueName'])'"
 
-    [ScaffoldingBlock]::new($Reccomendation,'Registry',$reghash)
+    [ScaffoldingBlock]::new($Recommendation,'Registry',$reghash)
 }

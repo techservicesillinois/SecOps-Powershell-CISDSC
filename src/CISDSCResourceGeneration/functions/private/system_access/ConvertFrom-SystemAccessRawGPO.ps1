@@ -43,11 +43,11 @@ function ConvertFrom-SystemAccessRawGPO {
             $SecuritySetting = $ValueData
         }
 
-        $Reccomendation = Get-SystemAccessReccomendation -SystemAccessHash $SystemAccessHash
+        $Recommendation = Get-SystemAccessRecommendation -SystemAccessHash $SystemAccessHash
 
         $SystemAccessHash['Name'] = "'$($SystemAccessHash['Name'])'"
 
-        [ScaffoldingBlock]::new($Reccomendation,$ResourceName,$SystemAccessHash)
+        [ScaffoldingBlock]::new($Recommendation,$ResourceName,$SystemAccessHash)
     }
 
     end {

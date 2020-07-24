@@ -1,4 +1,4 @@
-function Get-AuditPolicySubcategoryReccomendation {
+function Get-AuditPolicySubcategoryRecommendation {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -14,19 +14,19 @@ function Get-AuditPolicySubcategoryReccomendation {
 
     process {
         if($script:StaticCorrections[$Subcategory]){
-            $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+            $Recommendation = $script:BenchmarkRecommendations.Values.Where({
                 $_.'recommendation #' -eq $script:StaticCorrections[$Subcategory]
             })
         }
         else{
             $SearchString = "Ensure '$($Subcategory)'*'$($InclusionSetting)'"
 
-            $Reccomendation = $script:BenchmarkReccomendations.Values.Where({
+            $Recommendation = $script:BenchmarkRecommendations.Values.Where({
                 $_.title -like "*$($SearchString)"
             })
         }
 
-        $Reccomendation
+        $Recommendation
     }
 
     end {

@@ -55,10 +55,10 @@ function ConvertFrom-AuditPolicySubcategoryRawGPO {
                 }
             }
 
-            $Reccomendation = Get-AuditPolicySubcategoryReccomendation -Subcategory $Entry.Subcategory -InclusionSetting $Entry.'Inclusion Setting'
+            $Recommendation = Get-AuditPolicySubcategoryRecommendation -Subcategory $Entry.Subcategory -InclusionSetting $Entry.'Inclusion Setting'
 
-            [ScaffoldingBlock]::new($Reccomendation,'AuditPolicySubcategory',$retHash)
-            [ScaffoldingBlock]::new($Reccomendation,'AuditPolicySubcategory',$duplicate)
+            [ScaffoldingBlock]::new($Recommendation,'AuditPolicySubcategory',$retHash)
+            [ScaffoldingBlock]::new($Recommendation,'AuditPolicySubcategory',$duplicate)
         }
     }
 
