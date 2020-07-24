@@ -49,7 +49,10 @@ PowerShellVersion = '5.1'
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-# RequiredModules = @()
+RequiredModules = @(
+    @{ModuleName='AuditPolicyDSC'; ModuleVersion='1.4.0.0'; GUID='644501e3-ebc7-451e-9155-366a4f8d4a9a'},
+    @{ModuleName='SecurityPolicyDSC'; ModuleVersion='2.10.0.0'; GUID='e2b73194-69ef-4fa6-b949-9f62ebe04989'}
+)
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
