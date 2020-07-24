@@ -14,7 +14,7 @@ Invoke-PSDepend -Force
 ```
 
 # How do I help?
-The main form of contribution will be adding benchmarks for new OS/builds. The benchmarks are available via the [CIS workbench](https://workbench.cisecurity.org/) and require a free account to access. You will need the excel copy of the benchmarks and the GPOs (build kit) for most cases.
+The main form of contribution will be adding benchmarks for new OS/builds. The benchmarks are available via the [CIS workbench](https://workbench.cisecurity.org/) and require a free account to access. You will need the excel copy of the benchmarks and the build kit (GPOs) for most cases.
 
 The [CISDSCResourceGeneration](/src/CISDSCResourceGeneration) module only available in this repository is designed to do the majority of the DSC generation as it's name implies. This module only works with Windows PowerShell 5.1 due to a dependency on [GPRegistryPolicyParser](https://www.powershellgallery.com/packages/GPRegistryPolicyParser). It appears as though PS 7 support is being worked on though.
 
