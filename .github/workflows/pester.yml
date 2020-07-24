@@ -12,15 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Install dependencies PowerShell 5
-      run: Install-Module -Name 'Pester' -Force -SkipPublisherCheck
+    - name: Install dependencies
+      run: Install-Module -Name 'PSDepend' -Force -SkipPublisherCheck; Invoke-PSDepend -Force
       shell: powershell
     - name: Run tests PowerShell 5
       run: Invoke-Pester -Path '.\test\' -CI
       shell: powershell
-    - name: Install dependencies PowerShell 7
-      run: Install-Module -Name 'Pester' -Force -SkipPublisherCheck
-      shell: pwsh
-    - name: Run tests PowerShell 7
-      run: Invoke-Pester -Path '.\test\' -CI
-      shell: pwsh
