@@ -2,38 +2,48 @@
 ![ScriptAnalyzer](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/workflows/ScriptAnalyzer/badge.svg)
 
 # What is This?
+This project is designed to deliver [CIS](https://www.cisecurity.org/) security benchmarks via PowerShell DSC. It is a heavily modified fork of [Microsoft's BaselineManagement](BaselineManagement) module.
 
 # How do I install it?
+The actual DSC resources should be installed via the CISDSC PSgallery page which doesn't exist yet.
 
-# How does it work?
+The required dev dependencies for developing resources can be install via the following PS with your working directory set to this cloned repository. These packages can be reviewed in the [build file](build.depend.psd1).
+```
+Install-Module -Name 'PSDepend'
+Invoke-PSDepend -Force
+```
 
 # How do I help?
-The main form of contribution will be adding benchmarks for new OS/builds. The benchmarks are available via the [CIS workbench](https://workbench.cisecurity.org/) and require a free account to access. You will need the excel copy of the benchmarks.
+The main form of contribution will be adding benchmarks for new OS/builds. The benchmarks are available via the [CIS workbench](https://workbench.cisecurity.org/) and require a free account to access. You will need the excel copy of the benchmarks and the GPOs (build kit) for most cases.
 
-Benchmarks are added in the form of composite resources. There is a Plaster template available for creating new composite resources [here](plasterTemplate/NewBenchmarkCompositeResource). The following will install Plaster and take you through the prompts to generate the scaffolding for the new composite resource.
+The [CISDSCResourceGeneration](/src/CISDSCResourceGeneration) module only available in this repository is designed to do the majority of the DSC generation as it's name implies. This module only works with Windows PowerShell 5.1 due to a dependency on [GPRegistryPolicyParser](https://www.powershellgallery.com/packages/GPRegistryPolicyParser). It appears as though PS 7 support is being worked on though.
+
+Your composite resource version should match the version of the benchmark to easily correlate what it was based on. Ex: The current benchmark for Windows 10 Enterprise 1909 is v1.8.1 since these are versioned as they are revisited by CIS them with new recommendations.
+
+Once you have the Excel documentation and the applicable build kit below is an example of how to generate the start of a composite resource. The build kits will need to be extracted as CIS provides them in .zip format.
+
+Member Server and Domain Controller benchmarks are created into separate resources. Due to this some files need removed from the remediation kit directory after its extracted. For member servers remove the 'DC-L1' and 'DC-L2' and for domain controllers remove 'MS-L1' and 'MS-L2'.
 
 ```
-git clone https://github.com/techservicesillinois/SecOps-Powershell-CISDSC
-Install-Module -Name Plaster
-Install-Module -Name ImportExcel
-
-Invoke-Plaster -TemplatePath '.\plasterTemplates\NewBenchmarkCompositeResource\' -DestinationPath '.\src\CISDSC\dscresources'
-.\plasterTemplates\generate_schemapsm1_contents_from_excel.ps1 -Path <Excel file from above> -TargetSchemaPsm1 <Output file from previous command> -UserSettingsSection <User settings section from excel file>
+Import-Module .\src\CISDSCResourceGeneration\CISDSCResourceGeneration.psd1 -Force
+$Splat = @{
+    BenchmarkPath = '.\CIS_Microsoft_Windows_Server_2016_RTM_Release_1607_Benchmark_v1.2.0.xlsx'
+    BenchmarkVersion = 1.2.0
+    GPOPath = '.\Server2016v1.2.0'
+    OutputPath = '.\CISDSC\dscresources'
+    StaticCorrectionsPath = '.\static_corrections.csv'
+    OS = 'Microsoft Windows Server 2016 Member Server'
+    OSBuild = '1607'
+}
+ConvertTo-DSC @Splat
 ```
 
-Settings in the benchmark have three part identifiers that should be referenced to support the exclude list as well as the regions laid out by the Plaster template. These ensure they are easily maintained by the developers and customized by the users. The PDF of the benchmarks is the best source for this.
-![category](/screenshots/category.PNG)
+Successfully generated resources will be placed into the generated composite resource however some settings have been known to link between the build kit and Excel document cleanly. This can be due to any number of things including: Human error, outdated registry/policy name in one or the other, mismatched values in GPO vs the excel document.
 
-![section](/screenshots/section.PNG)
+Settings found in the build kit without a match will be placed in the output path in a file named 'RecommendationsErrors.ps1' and will require manual intervention. Once the Recommendations # is identified for the resource it can be specified in [static_corrections.csv](static_corrections.csv) so that it can be corrected on the current and future benchmarks. Since recommendations are shared across the various MS products this should be a greatly reduced effort over time.
 
-![setting](/screenshots/setting.PNG)
+Recommendations that are in the Excel file but not the build kit will be placed in another file in the output path named 'MissingRecommendations.txt'. There will likely be overlap between this and 'RecommendationsErrors.ps1' so it may be a helpful place to start looking.
 
-Both level 1 & 2 of the benchmark will be in the same resource with a level parameter. The same is true for the optional BitLocker components.
-
-Any setting that has multiple supported values or a min/max value should be parameterized with a default value. Ex: If the bench mark is a minimum log file size or a maximum amount of minutes on a timeout but not an explicit value.
-
-Your composite resource version should match the version of the benchmark to easily correlate what it was based on, this is handled by the Plaster template. Ex: The current benchmark for Windows 10 Enterprise 1909 is v1.8.1 since these are versioned as they are revisited by CIS them with new recommendations.
-
-![version](/screenshots/version.PNG)
+User settings (typically section 19 of the documentation) are purposely excluded from the generated DSC because DSC cannot be used to configure the HKCU registry hive.
 
 # To Do
