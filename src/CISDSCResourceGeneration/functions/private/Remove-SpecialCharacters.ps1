@@ -1,4 +1,4 @@
-function ConvertTo-SingleQuotes{
+function Remove-SpecialCharacters{
     [CmdletBinding()]
     [OutputType([string])]
     Param
@@ -13,7 +13,7 @@ function ConvertTo-SingleQuotes{
     }
     Process
     {
-        ($String.Replace('"',"'"))
+        $String -replace "[^a-zA-Z0-9() ]",""
     }
     End
     {
