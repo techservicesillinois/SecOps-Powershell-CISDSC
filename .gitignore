@@ -1,0 +1,12 @@
+*.xlsx
+*.docx
+*.pol
+*.cmtx
+*.inf
+*.admx
+*.adm
+audit.csv
+manifest.xml
+Backup.xml
+bkupInfo.xml
+gpreport.xml
