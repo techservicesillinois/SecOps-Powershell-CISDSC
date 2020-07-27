@@ -15,6 +15,7 @@ Class Recommendation{
     [string]$RemediationProcedure
     [string]$AuditProcedure
     [string]$Level
+    #The version typing is required later for sorting properly.
     [Version]$RecommendationVersioned
     [Version]$SectionVersioned
     [int]$TopLevelSection
@@ -62,6 +63,7 @@ Class Recommendation{
     }
 
     [version]ConvertNumStringToVersion([string]$CISNumberString){
+        #.Net is limited to 4 part version numbers and some CIS recommendations are 5+. This method will consoldate everything past the 4th number into one.
         function Get-DotCount([string]$String){
             ($string.length - $string.replace('.','').length)
         }
@@ -98,8 +100,7 @@ Class DSCConfigurationParameter{
 
     [string]GenerateTextBlock(){
         $blankDefinition = @'
-        {0}
-        {1} = {2}
+        {0}{1} = {2}
 '@
 
         return ($blankDefinition -f $this.DataType,$this.Name,$this.DefaultValue)
