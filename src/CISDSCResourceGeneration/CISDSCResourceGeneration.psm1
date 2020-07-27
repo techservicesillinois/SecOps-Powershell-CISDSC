@@ -142,7 +142,6 @@ Class ScaffoldingBlock {
                     [string]$Name = "$('$')$($this.RecommendationVersioned.ToString().Replace('.',''))_$($this.ResourceParameters['Name'].replace("'",'').replace('_',''))"
                     $ValueKey = $this.ResourceParameters['Name'].replace("'",'')
                     [string]$DataType = "[$($this.ResourceParameters[$ValueKey].GetType().Name)]"
-                    #[string]$DataType = "[derp]"
                     $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$this.ResourceParameters[$ValueKey])
                     $this.ResourceParameters[$ValueKey] = $Name
                 }
