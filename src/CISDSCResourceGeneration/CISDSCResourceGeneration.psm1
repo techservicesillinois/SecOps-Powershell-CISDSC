@@ -6,6 +6,81 @@ Get-ChildItem -Path $FunctionPath -Filter "*.ps1" -Recurse | ForEach-Object -Pro
     . $_.FullName | Out-Null
 }
 
+Class Recommendation{
+    [string]$SectionNum
+    [string]$RecommendationNum
+    [string]$Title
+    [String]$DSCTitle
+    [string]$Description
+    [string]$RemediationProcedure
+    [string]$AuditProcedure
+    [string]$Level
+    [Version]$RecommendationVersioned
+    [Version]$SectionVersioned
+    [int]$TopLevelSection
+    [Boolean]$DSCParameter
+
+    Recommendation([Object]$ExcelRow){
+        $This.SectionNum = $ExcelRow.'section #'
+        $This.RecommendationNum = $ExcelRow.'recommendation #'
+        $This.Title = $ExcelRow.Title.Replace('"',"'")
+        $This.DSCTitle = $This.Title -replace "[^a-zA-Z0-9() ]",""
+        $This.Description = $ExcelRow.Description
+        $This.RemediationProcedure = $ExcelRow.'remediation procedure'
+        $This.AuditProcedure = $ExcelRow.'audit procedure'
+
+        [regex]$LevelPattern = '^\(.{2}\)'
+        switch($LevelPattern.Match($This.Title).Value){
+            '(L1)'{$This.Level = 'LevelOne'}
+            '(L2)'{$This.Level = 'LevelTwo'}
+            '(BL)'{$This.Level = 'BitLocker'}
+            '(NG)'{$This.Level = 'NextGenerationWindowsSecurity'}
+            default {$This.Level = [string]::Empty}
+        }
+
+        $This.RecommendationVersioned = $This.ConvertNumStringToVersion($This.RecommendationNum)
+        $This.SectionVersioned = $This.ConvertNumStringToVersion($This.SectionNum)
+        $This.TopLevelSection = $This.RecommendationVersioned.Major
+
+        switch($This.Title){
+            {$_ -like "*or more*"}{$This.DSCParameter = $True}
+            {$_ -like "*or fewer*"}{$This.DSCParameter = $True}
+            {$_ -like "*or greater*"}{$This.DSCParameter = $True}
+            {$_ -like "*or less*"}{$This.DSCParameter = $True}
+            {$_ -like "*less than*"}{$This.DSCParameter = $True}
+            {$_ -like "*greater than*"}{$This.DSCParameter = $True}
+            {$_ -like "*fewer than*"}{$This.DSCParameter = $True}
+            {$_ -like "*more than*"}{$This.DSCParameter = $True}
+            {$_ -eq "Configure 'Interactive logon: Message text for users attempting to log on'"}{$This.DSCParameter = $True}
+            {$_ -eq "Configure 'Interactive logon: Message title for users attempting to log on'"}{$This.DSCParameter = $True}
+            {$_ -eq "Configure 'Accounts: Rename administrator account'"}{$This.DSCParameter = $True}
+            {$_ -eq "Configure 'Accounts: Rename guest account'"}{$This.DSCParameter = $True}
+            default {$This.DSCParameter = $False}
+        }
+    }
+
+    [version]ConvertNumStringToVersion([string]$CISNumberString){
+        function Get-DotCount([string]$String){
+            ($string.length - $string.replace('.','').length)
+        }
+
+        [string]$VerString = $CISNumberString
+        [int]$Dotcount = Get-DotCount -String $VerString
+
+        if($Dotcount -eq 0){
+            $VerString = "$($VerString).0"
+        }
+        elseif($Dotcount -ge 4) {
+            do{
+                $VerString = $VerString.Remove($VerString.LastIndexOf('.'),1)
+            }
+            until((Get-DotCount -String $VerString) -eq 3)
+        }
+
+        return [version]$VerString
+    }
+}
+
 Class DSCConfigurationParameter{
     [string]$Name
     [string]$DataType
@@ -30,7 +105,7 @@ Class DSCConfigurationParameter{
 }
 
 Class ScaffoldingBlock {
-    [object]$Recommendation
+    [Recommendation]$Recommendation
     [string]$ResourceType
     [System.Collections.Hashtable]$ResourceParameters
     [string]$TextBlock
@@ -41,13 +116,13 @@ Class ScaffoldingBlock {
         $this.ResourceType = $ResourceType
         $this.ResourceParameters = $ResourceParameters
         $this.RecommendationVersioned = $Recommendation.RecommendationVersioned
-        $this.UpdateForPotentialParameter()
-        $script:UsedResourceTitles += $This.Recommendation.title
+        $this.UpdateForDSCParameter()
+        $script:UsedResourceTitles += $This.Recommendation.DSCTitle
         $this.TextBlock = $this.GenerateTextBlock()
     }
 
-    UpdateForPotentialParameter(){
-        if($this.Recommendation.PotentialParameter){
+    UpdateForDSCParameter(){
+        if($this.Recommendation.DSCParameter){
             switch($this.ResourceType){
                 'Registry'{
                     [string]$DataType = switch($this.ResourceParameters['ValueType']){
@@ -87,14 +162,15 @@ Class ScaffoldingBlock {
     }}
 '@
 
-        [string]$Title = $This.Recommendation.title
-        [int]$TitleCount = ($script:UsedResourceTitles | Where-Object -FilterScript {$_ -eq $This.Recommendation.title} | Measure-Object).count
+        [string]$Title = $This.Recommendation.DSCTitle
+
+        [int]$TitleCount = ($script:UsedResourceTitles | Where-Object -FilterScript {$_ -eq $Title} | Measure-Object).count
         if($TitleCount -gt 1){
             $Title = "$($Title) ($($TitleCount))"
         }
 
         $Replacements = @(
-            $This.Recommendation.'recommendation #',
+            $This.Recommendation.RecommendationNum,
             $This.Recommendation.Level,
             $This.ResourceType,
             $Title,
