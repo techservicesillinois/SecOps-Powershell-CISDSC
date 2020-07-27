@@ -21,7 +21,14 @@ function Get-RecommendationCustomizability{
             'less than',
             'greater than',
             'fewer than',
-            'more than'
+            'more than',
+
+            #These Recommendations will always need parameterized input, but do not match the key phrases above
+            "Configure 'Interactive logon: Message text for users attempting to log on'",
+            "Configure 'Interactive logon: Message title for users attempting to log on'",
+            "Configure 'Accounts: Rename administrator account'",
+            "Configure 'Accounts: Rename guest account'"
+
         )
         foreach($Phrase in $Phrases){
             if($Title -like "*$Phrase*"){
