@@ -1,4 +1,4 @@
-function Remove-SpecialCharacters{
+function Format-ReccomendationTitle{
     [CmdletBinding()]
     [OutputType([string])]
     Param

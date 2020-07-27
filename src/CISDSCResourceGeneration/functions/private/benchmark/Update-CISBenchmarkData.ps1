@@ -41,7 +41,7 @@ function Update-CISBenchmarkData {
                         $_ | Add-Member -Name 'TopLevelSection' -MemberType ScriptProperty -Value { $this.RecommendationVersioned.Major }
                         $_ | Add-Member -Name 'PotentialParameter' -MemberType ScriptProperty -Value {Get-RecommendationCustomizability -Title $this.title}
 
-                        $_.title = Remove-SpecialCharacters -String $_.title
+                        $_.title = Format-ReccomendationTitle -String $_.title
 
                         $script:BenchmarkRecommendations.add($_.'recommendation #',$_)
                     }
