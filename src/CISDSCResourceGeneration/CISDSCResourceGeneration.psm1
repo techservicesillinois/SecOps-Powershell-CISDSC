@@ -166,6 +166,7 @@ Class ScaffoldingBlock {
 
         [string]$Title = $This.Recommendation.DSCTitle
 
+        #Some recommendations result in multiple settings being changed. Since DSC requires unique titles a (#) is appended to what would otherwise be breaking duplicates in the resource.
         [int]$TitleCount = ($script:UsedResourceTitles | Where-Object -FilterScript {$_ -eq $Title} | Measure-Object).count
         if($TitleCount -gt 1){
             $Title = "$($Title) ($($TitleCount))"
@@ -198,6 +199,7 @@ $script:DSCConfigurationParameters = @(
     [DSCConfigurationParameter]::new('$NextGenerationWindowsSecurity','[boolean]','$false')
 )
 
+#Below is various dictionaries used to translate values from group policy to DSC.
 $script:UserRights = @{
     "SeTrustedCredManAccessPrivilege" = "Access_Credential_Manager_as_a_trusted_caller"
     "SeNetworkLogonRight" = "Access_this_computer_from_the_network"
