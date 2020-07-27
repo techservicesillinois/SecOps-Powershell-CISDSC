@@ -23,7 +23,9 @@ Class Recommendation{
     Recommendation([Object]$ExcelRow){
         $This.SectionNum = $ExcelRow.'section #'
         $This.RecommendationNum = $ExcelRow.'recommendation #'
+        #Quotes are normalized for consistentcy in checks.
         $This.Title = $ExcelRow.Title.Replace('"',"'")
+        #Most special characters are filtered out of the title for the DSC resource. This prevents various encoding issues.
         $This.DSCTitle = $This.Title -replace "[^a-zA-Z0-9() ]",""
         $This.Description = $ExcelRow.Description
         $This.RemediationProcedure = $ExcelRow.'remediation procedure'
