@@ -118,7 +118,7 @@ Class DSCConfigurationParameter{
             }
             {$_ -like "*between*"}{
                 #this helps mitigate some false positives from the word between appearing by ensuring two values are in the title.
-                if($Start = $NumbersInTitle[1]){
+                if(($Start = $NumbersInTitle[1])){
                     $End = $NumbersInTitle[0]
                     $This.Validation = "[ValidateRange($($Start),$($End))]"
                 }
