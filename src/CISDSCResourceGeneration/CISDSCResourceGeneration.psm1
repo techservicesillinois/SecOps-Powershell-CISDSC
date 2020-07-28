@@ -6,6 +6,7 @@ Get-ChildItem -Path $FunctionPath -Filter "*.ps1" -Recurse | ForEach-Object -Pro
     . $_.FullName | Out-Null
 }
 
+#This class is utilized by Update-CISBenchmarkData to cleanly import the information from the CIS excel files.
 Class Recommendation{
     [string]$SectionNum
     [string]$RecommendationNum
@@ -82,6 +83,9 @@ Class Recommendation{
     }
 }
 
+#This class is utilized to help centralize the logic for generating parameters for recommendations where appropriate.
+#These are created within the ScaffoldingBlock class and later used within Get-ConfigurationHeader
+#The constructor should probably be reworked to just take a scaffolding block object vs the various properties individually.
 Class DSCConfigurationParameter{
     [string]$Name
     [string]$DataType
@@ -93,8 +97,10 @@ Class DSCConfigurationParameter{
         $This.Name = $Name
         $This.DataType = $DataType
         $This.DefaultValue = $DefaultValue
-
+        #We can always expect the first 5 characters of the title to be the level acronym. EX: '(L1) '
         [int[]]$NumbersInTitle = [int[]]($Title.Substring(5) -replace '[^0-9 ]' -split ' ').where({$_}) | Sort-Object -Descending
+        #Some benchmarks implying a lower value is acceptable specifically say but not 0 implying a minimum value of 1 instead.
+        #So the true/false value of that text appearing can be directly converted to a 1/0 for the minimum value.
         [Boolean]$ButNotZero = $Title -like "*but not 0*"
 
         [int]$Start = 0
@@ -111,9 +117,14 @@ Class DSCConfigurationParameter{
                 $This.Validation = "[ValidateRange($($Start),$($End))]"
             }
             {$_ -like "*between*"}{
-                $Start = $NumbersInTitle[1]
-                $End = $NumbersInTitle[0]
-                $This.Validation = "[ValidateRange($($Start),$($End))]"
+                #this helps mitigate some false positives from the word between appearing by ensuring two values are in the title.
+                if($Start = $NumbersInTitle[1]){
+                    $End = $NumbersInTitle[0]
+                    $This.Validation = "[ValidateRange($($Start),$($End))]"
+                }
+                else{
+                    $This.Validation = $null
+                }
             }
             Default{
                 $This.Validation = $null
@@ -138,7 +149,9 @@ Class DSCConfigurationParameter{
     }
 }
 
-Class ScaffoldingBlock {
+#This class contains the logic combining the CIS Excel information and DSC into actual text to be placed into the resulting composite resource.
+#Used within ConvertTo-DSC
+Class ScaffoldingBlock{
     [Recommendation]$Recommendation
     [string]$ResourceType
     [System.Collections.Hashtable]$ResourceParameters
@@ -165,6 +178,7 @@ Class ScaffoldingBlock {
                         "'Dword'" {'[int32]'}
                     }
                     [string]$Name = "$('$')$($This.RecommendationVersioned.ToString().Replace('.',''))$($This.ResourceParameters['ValueName'].replace("'",''))"
+                    #Titles are stored in script scope so they can be de-duplicated later.
                     $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$This.ResourceParameters['ValueData'],$This.Recommendation.DSCTitle)
                     $This.ResourceParameters['ValueData'] = $Name
                 }
@@ -173,6 +187,7 @@ Class ScaffoldingBlock {
                     [string]$Name = "$('$')$($This.RecommendationVersioned.ToString().Replace('.',''))$($This.ResourceParameters['Name'].replace("'",'').replace('_',''))"
                     $ValueKey = $This.ResourceParameters['Name'].replace("'",'')
                     [string]$DataType = "[$($This.ResourceParameters[$ValueKey].GetType().Name)]"
+                    #Titles are stored in script scope so they can be de-duplicated later.
                     $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$This.ResourceParameters[$ValueKey],$This.Recommendation.DSCTitle)
                     $This.ResourceParameters[$ValueKey] = $Name
                 }
@@ -241,7 +256,7 @@ $script:DSCConfigurationParameters = @(
 )
 
 #Below is various dictionaries used to translate values from group policy to DSC.
-#These where pulled from https://github.com/microsoft/BaselineManagement
+#These where pulled from https://github.com/microsoft/BaselineManagement/blob/master/src/Helpers/Enumerations.ps1
 $script:UserRights = @{
     "SeTrustedCredManAccessPrivilege" = "Access_Credential_Manager_as_a_trusted_caller"
     "SeNetworkLogonRight" = "Access_this_computer_from_the_network"
