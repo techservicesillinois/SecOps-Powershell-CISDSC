@@ -1,7 +1,6 @@
 [String]$SourceRoot = Join-Path -Path (Split-Path -Path $PSScriptRoot -Parent) -ChildPath 'src'
 [String]$ModuleRoot = Join-Path -Path $SourceRoot -ChildPath 'CISDSCResourceGeneration'
-($ENV:PSModulePath.split(';')) + $SourceRoot -join ';'
-Import-Module -Name 'CISDSCResourceGeneration'
+Import-Module -Name "$($ModuleRoot)\CISDSCResourceGeneration.psd1"
 
 Describe 'Module Manifest Tests' {
     It 'Passes Test-ModuleManifest' {
