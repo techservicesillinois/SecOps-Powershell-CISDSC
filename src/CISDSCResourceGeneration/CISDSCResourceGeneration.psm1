@@ -50,10 +50,7 @@ Class Recommendation{
             {$_ -like "*or fewer*"}{$This.DSCParameter = $True}
             {$_ -like "*or greater*"}{$This.DSCParameter = $True}
             {$_ -like "*or less*"}{$This.DSCParameter = $True}
-            {$_ -like "*less than*"}{$This.DSCParameter = $True}
-            {$_ -like "*greater than*"}{$This.DSCParameter = $True}
-            {$_ -like "*fewer than*"}{$This.DSCParameter = $True}
-            {$_ -like "*more than*"}{$This.DSCParameter = $True}
+            {$_ -like "*between*"}{$This.DSCParameter = $True}
             {$_ -eq "Configure 'Interactive logon: Message text for users attempting to log on'"}{$This.DSCParameter = $True}
             {$_ -eq "Configure 'Interactive logon: Message title for users attempting to log on'"}{$This.DSCParameter = $True}
             {$_ -eq "Configure 'Accounts: Rename administrator account'"}{$This.DSCParameter = $True}
@@ -90,20 +87,49 @@ Class DSCConfigurationParameter{
     [string]$DataType
     [string]$DefaultValue
     [string]$TextBlock
+    [string]$Validation
 
-    DSCConfigurationParameter($Name, $DataType, $DefaultValue){
+    DSCConfigurationParameter($Name, $DataType, $DefaultValue, $Title){
         $this.Name = $Name
         $this.DataType = $DataType
         $this.DefaultValue = $DefaultValue
+
+        [int[]]$NumbersInTitle = [int[]]($Title.Substring(5) -replace '[^0-9 ]' -split ' ').where({$_}) | Sort-Object -Descending
+        [Boolean]$ButNotZero = $Title -like "*but not 0*"
+
+        [int]$Start = 0
+        [int]$End = 0
+        switch($Title){
+            {$_ -like "*or more*" -or $_ -like "*or greater*"}{
+                $Start = $NumbersInTitle[0]
+                $End = [int32]::MaxValue
+                $This.Validation = "[ValidateRange($($Start),$($End))]"
+            }
+            {$_ -like "*or fewer*" -or $_ -like "*or less*"}{
+                $Start = [int]$ButNotZero
+                $End = $NumbersInTitle[0]
+                $This.Validation = "[ValidateRange($($Start),$($End))]"
+            }
+            {$_ -like "*between*"}{
+                $Start = $NumbersInTitle[1]
+                $End = $NumbersInTitle[0]
+                $This.Validation = "[ValidateRange($($Start),$($End))]"
+            }
+            Default{
+                $This.Validation = $null
+            }
+        }
+
         $this.TextBlock = $this.GenerateTextBlock()
     }
 
     [string]GenerateTextBlock(){
         $blankDefinition = @'
-        {0}{1} = {2}
+        {0}
+        {1}{2} = {3}
 '@
 
-        return ($blankDefinition -f $this.DataType,$this.Name,$this.DefaultValue)
+        return ($blankDefinition -f $This.Validation,$This.DataType,$This.Name,$This.DefaultValue)
     }
 }
 
@@ -133,16 +159,16 @@ Class ScaffoldingBlock {
                         "'MultiString'" {'[string[]]'}
                         "'Dword'" {'[int32]'}
                     }
-                    [string]$Name = "$('$')$($this.RecommendationVersioned.ToString().Replace('.',''))_$($this.ResourceParameters['ValueName'].replace("'",''))"
-                    $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$this.ResourceParameters['ValueData'])
+                    [string]$Name = "$('$')$($this.RecommendationVersioned.ToString().Replace('.',''))$($this.ResourceParameters['ValueName'].replace("'",''))"
+                    $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$this.ResourceParameters['ValueData'],$This.Recommendation.DSCTitle)
                     $this.ResourceParameters['ValueData'] = $Name
                 }
 
                 'AccountPolicy'{
-                    [string]$Name = "$('$')$($this.RecommendationVersioned.ToString().Replace('.',''))_$($this.ResourceParameters['Name'].replace("'",'').replace('_',''))"
+                    [string]$Name = "$('$')$($this.RecommendationVersioned.ToString().Replace('.',''))$($this.ResourceParameters['Name'].replace("'",'').replace('_',''))"
                     $ValueKey = $this.ResourceParameters['Name'].replace("'",'')
                     [string]$DataType = "[$($this.ResourceParameters[$ValueKey].GetType().Name)]"
-                    $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$this.ResourceParameters[$ValueKey])
+                    $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$this.ResourceParameters[$ValueKey],$This.Recommendation.DSCTitle)
                     $this.ResourceParameters[$ValueKey] = $Name
                 }
             }
@@ -192,14 +218,15 @@ $script:StaticCorrections = @{}
 [int]$script:UserSection = 0
 
 $script:DSCConfigurationParameters = @(
-    [DSCConfigurationParameter]::new('$ExcludeList','[string[]]','@()'),
-    [DSCConfigurationParameter]::new('$LevelOne','[boolean]','$true'),
-    [DSCConfigurationParameter]::new('$LevelTwo','[boolean]','$false'),
-    [DSCConfigurationParameter]::new('$BitLocker','[boolean]','$false'),
-    [DSCConfigurationParameter]::new('$NextGenerationWindowsSecurity','[boolean]','$false')
+    [DSCConfigurationParameter]::new('$ExcludeList','[string[]]','@()','blank'),
+    [DSCConfigurationParameter]::new('$LevelOne','[boolean]','$true','blank'),
+    [DSCConfigurationParameter]::new('$LevelTwo','[boolean]','$false','blank'),
+    [DSCConfigurationParameter]::new('$BitLocker','[boolean]','$false','blank'),
+    [DSCConfigurationParameter]::new('$NextGenerationWindowsSecurity','[boolean]','$false','blank')
 )
 
 #Below is various dictionaries used to translate values from group policy to DSC.
+#These where pulled from https://github.com/microsoft/BaselineManagement
 $script:UserRights = @{
     "SeTrustedCredManAccessPrivilege" = "Access_Credential_Manager_as_a_trusted_caller"
     "SeNetworkLogonRight" = "Access_this_computer_from_the_network"
