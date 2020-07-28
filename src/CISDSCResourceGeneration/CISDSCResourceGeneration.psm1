@@ -90,9 +90,9 @@ Class DSCConfigurationParameter{
     [string]$Validation
 
     DSCConfigurationParameter($Name, $DataType, $DefaultValue, $Title){
-        $this.Name = $Name
-        $this.DataType = $DataType
-        $this.DefaultValue = $DefaultValue
+        $This.Name = $Name
+        $This.DataType = $DataType
+        $This.DefaultValue = $DefaultValue
 
         [int[]]$NumbersInTitle = [int[]]($Title.Substring(5) -replace '[^0-9 ]' -split ' ').where({$_}) | Sort-Object -Descending
         [Boolean]$ButNotZero = $Title -like "*but not 0*"
@@ -120,7 +120,7 @@ Class DSCConfigurationParameter{
             }
         }
 
-        $this.TextBlock = $this.GenerateTextBlock()
+        $This.TextBlock = $This.GenerateTextBlock()
     }
 
     <# Example of formated definition
@@ -146,35 +146,35 @@ Class ScaffoldingBlock {
     [version]$RecommendationVersioned
 
     ScaffoldingBlock($Recommendation, $ResourceType, $ResourceParameters){
-        $this.Recommendation = $Recommendation
-        $this.ResourceType = $ResourceType
-        $this.ResourceParameters = $ResourceParameters
-        $this.RecommendationVersioned = $Recommendation.RecommendationVersioned
-        $this.UpdateForDSCParameter()
+        $This.Recommendation = $Recommendation
+        $This.ResourceType = $ResourceType
+        $This.ResourceParameters = $ResourceParameters
+        $This.RecommendationVersioned = $Recommendation.RecommendationVersioned
+        $This.UpdateForDSCParameter()
         $script:UsedResourceTitles += $This.Recommendation.DSCTitle
-        $this.TextBlock = $this.GenerateTextBlock()
+        $This.TextBlock = $This.GenerateTextBlock()
     }
 
     UpdateForDSCParameter(){
-        if($this.Recommendation.DSCParameter){
-            switch($this.ResourceType){
+        if($This.Recommendation.DSCParameter){
+            switch($This.ResourceType){
                 'Registry'{
-                    [string]$DataType = switch($this.ResourceParameters['ValueType']){
+                    [string]$DataType = switch($This.ResourceParameters['ValueType']){
                         "'String'" {'[string]'}
                         "'MultiString'" {'[string[]]'}
                         "'Dword'" {'[int32]'}
                     }
-                    [string]$Name = "$('$')$($this.RecommendationVersioned.ToString().Replace('.',''))$($this.ResourceParameters['ValueName'].replace("'",''))"
-                    $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$this.ResourceParameters['ValueData'],$This.Recommendation.DSCTitle)
-                    $this.ResourceParameters['ValueData'] = $Name
+                    [string]$Name = "$('$')$($This.RecommendationVersioned.ToString().Replace('.',''))$($This.ResourceParameters['ValueName'].replace("'",''))"
+                    $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$This.ResourceParameters['ValueData'],$This.Recommendation.DSCTitle)
+                    $This.ResourceParameters['ValueData'] = $Name
                 }
 
                 'AccountPolicy'{
-                    [string]$Name = "$('$')$($this.RecommendationVersioned.ToString().Replace('.',''))$($this.ResourceParameters['Name'].replace("'",'').replace('_',''))"
-                    $ValueKey = $this.ResourceParameters['Name'].replace("'",'')
-                    [string]$DataType = "[$($this.ResourceParameters[$ValueKey].GetType().Name)]"
-                    $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$this.ResourceParameters[$ValueKey],$This.Recommendation.DSCTitle)
-                    $this.ResourceParameters[$ValueKey] = $Name
+                    [string]$Name = "$('$')$($This.RecommendationVersioned.ToString().Replace('.',''))$($This.ResourceParameters['Name'].replace("'",'').replace('_',''))"
+                    $ValueKey = $This.ResourceParameters['Name'].replace("'",'')
+                    [string]$DataType = "[$($This.ResourceParameters[$ValueKey].GetType().Name)]"
+                    $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$This.ResourceParameters[$ValueKey],$This.Recommendation.DSCTitle)
+                    $This.ResourceParameters[$ValueKey] = $Name
                 }
             }
         }
@@ -182,7 +182,7 @@ Class ScaffoldingBlock {
 
     [string]GenerateTextBlock(){
         [string[]]$ResourceParametersString = @()
-        foreach($Key in $this.ResourceParameters.keys){
+        foreach($Key in $This.ResourceParameters.keys){
             $ResourceParametersString += "           $Key = $($This.ResourceParameters[$Key])"
         }
 
