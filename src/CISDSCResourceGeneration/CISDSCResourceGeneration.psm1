@@ -51,10 +51,10 @@ Class Recommendation{
             {$_ -like "*or greater*"}{$This.DSCParameter = $True}
             {$_ -like "*or less*"}{$This.DSCParameter = $True}
             {$_ -like "*between*"}{$This.DSCParameter = $True}
-            {$_ -eq "Configure 'Interactive logon: Message text for users attempting to log on'"}{$This.DSCParameter = $True}
-            {$_ -eq "Configure 'Interactive logon: Message title for users attempting to log on'"}{$This.DSCParameter = $True}
-            {$_ -eq "Configure 'Accounts: Rename administrator account'"}{$This.DSCParameter = $True}
-            {$_ -eq "Configure 'Accounts: Rename guest account'"}{$This.DSCParameter = $True}
+            {$_ -eq "(L1) Configure 'Interactive logon: Message text for users attempting to log on'"}{$This.DSCParameter = $True}
+            {$_ -eq "(L1) Configure 'Interactive logon: Message title for users attempting to log on'"}{$This.DSCParameter = $True}
+            {$_ -eq "(L1) Configure 'Accounts: Rename administrator account'"}{$This.DSCParameter = $True}
+            {$_ -eq "(L1) Configure 'Accounts: Rename guest account'"}{$This.DSCParameter = $True}
             default {$This.DSCParameter = $False}
         }
     }
