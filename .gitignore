@@ -10,4 +10,4 @@ manifest.xml
 Backup.xml
 bkupInfo.xml
 gpreport.xml
-!/test/test_examples.xlsx
+!/test/example_files/test_examples.xlsx
