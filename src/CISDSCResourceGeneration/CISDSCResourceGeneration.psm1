@@ -123,6 +123,11 @@ Class DSCConfigurationParameter{
         $this.TextBlock = $this.GenerateTextBlock()
     }
 
+    <# Example of formated definition
+        [ValidateRange(1,60)]
+        [Int32]$112MaximumPasswordAge = 60
+    #>
+
     [string]GenerateTextBlock(){
         $blankDefinition = @'
         {0}
@@ -180,6 +185,16 @@ Class ScaffoldingBlock {
         foreach($Key in $this.ResourceParameters.keys){
             $ResourceParametersString += "           $Key = $($This.ResourceParameters[$Key])"
         }
+
+        <# Example of formatted definition
+            if($ExcludeList -notcontains '1.1.3' -and $LevelOne){
+                AccountPolicy "(L1) Ensure Minimum password age is set to 1 or more day(s)"
+                {
+                    Minimum_Password_Age = $113MinimumPasswordAge
+                    Name = 'Minimum_Password_Age'
+                }
+            }
+        #>
 
         $blankDefinition = @'
     if($ExcludeList -notcontains '{0}' -and ${1}){{
