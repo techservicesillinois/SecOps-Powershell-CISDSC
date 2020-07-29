@@ -123,3 +123,20 @@ Describe 'Class: ScaffoldingBlock' {
         }
     }
 }
+
+Describe 'Helper: Get-IniContent' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Returns a hashtable with hashtable values' {
+            $Ini = Get-IniContent -Path "$($PSScriptRoot)\example_files\GptTmpl.inf"
+            $Ini -is [System.Collections.Hashtable] | Should -Be $True
+            $Ini['Version'] -is [System.Collections.Hashtable] | Should -Be $True
+            $Ini['Version']['Revision'] | Should -Be 1
+        }
+
+        It 'Finds all the caegories' {
+            $Ini = Get-IniContent -Path "$($PSScriptRoot)\example_files\GptTmpl.inf"
+            [string[]]$ExpectedKeys = @('Unicode','System Access','Privilege Rights','Registry Values','Version')
+            $ExpectedKeys | Where-Object -FilterScript {$_ -notin $Ini.keys} | Should -Be $null
+        }
+    }
+}
