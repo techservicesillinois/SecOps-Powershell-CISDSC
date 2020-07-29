@@ -241,7 +241,6 @@ Class ScaffoldingBlock{
 }
 
 $script:BenchmarkRecommendations = @{}
-$script:BenchmarkSections = @{}
 $script:StaticCorrections = @{}
 [string[]]$script:UsedResourceTitles = @()
 [int]$script:ServiceSection = 0
