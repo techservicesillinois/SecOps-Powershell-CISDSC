@@ -29,31 +29,18 @@ function Update-CISBenchmarkData {
     }
 
     process {
-        switch($OS){
-            {$_ -like '*Member Server'}{
-                $FilterScript = {$_.Name -ne 'License' -and $_.Name -notlike "*Domain Controller"}
-            }
-
-            {$_ -like '*Domain Controller'}{
-                $FilterScript = {$_.Name -ne 'License' -and $_.Name -notlike "*Member Server"}
-            }
-
-            Default{
-                $FilterScript = {$_.Name -ne 'License'}
-            }
-        }
-
-        Get-ExcelSheetInfo -Path $Path | Where-Object -FilterScript $FilterScript | ForEach-Object -Process {
+        Get-CISBenchmarkValidWorksheets -Path $Path -OS $OS | ForEach-Object -Process {
             Import-Excel -Path $Path -DataOnly -WorksheetName $_.Name | ForEach-Object -Process {
                 try{
                     if($_.'recommendation #'){
                         $script:BenchmarkRecommendations.add($_.'recommendation #',([Recommendation]::New($_)))
                     }
                     else{
-                        switch($_.title){
-                            'System Services'{$script:ServiceSection = $_.'section #'}
-                            'Administrative Templates (User)'{$script:UserSection = $_.'section #'}
-                            Default{}
+                        if($_.title -eq 'System Services'){
+                            $script:ServiceSection = $_.'section #'
+                        }
+                        elseif($_.title -eq 'Administrative Templates (User)'){
+                            $script:UserSection = $_.'section #'
                         }
                     }
                 }
