@@ -12,7 +12,7 @@ Describe 'Module Manifest Tests' {
 Describe 'Class: Recommendation' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
         It 'Constructs from an Excel recommendation row' {
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\test_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.Title -like "(L1)*"})[0]
             {[Recommendation]::New($ExcelExample)} | Should -Not -Throw
         }
@@ -23,7 +23,7 @@ Describe 'Class: Recommendation' {
             @{ Prefix = '(BL)'; Translation = 'BitLocker' },
             @{ Prefix = '(NG)'; Translation = 'NextGenerationWindowsSecurity' }
         ){
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\test_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.Title -like "(L1)*"})[0]
             $ExcelExample.Title = $ExcelExample.Title.replace('(L1)',$Prefix)
             ([Recommendation]::New($ExcelExample)).Level | Should -Be $Translation
@@ -34,7 +34,7 @@ Describe 'Class: Recommendation' {
             @{ num = '1.1.1.1'; version = [version]'1.1.1.1' }
             @{ num = '1.1.1.1.1.1'; version = [version]'1.1.1.111' }
         ){
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\test_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.Title -like "(L1)*"})[0]
 
             $ExcelExample.'Recommendation #' = $Num
@@ -48,7 +48,7 @@ Describe 'Class: Recommendation' {
 (L1) Ensure 'Remove access to “Pause updates” feature' is set to 'Enabled''
 "@; Expectation = "(L1) Ensure Remove access to Pause updates feature is set to Enabled" }
         ){
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\test_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.Title -like "(L1)*"})[0]
 
             $ExcelExample.Title = $Title
@@ -86,7 +86,7 @@ Describe 'Class: DSCConfigurationParameter' {
 Describe 'Class: ScaffoldingBlock' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
         It 'Adjusts for detected parameters' {
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\test_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.'Recommendation #' -eq '1.1.1'})
 
             $Recommendation1 = [Recommendation]::New($ExcelExample)
@@ -106,7 +106,7 @@ Describe 'Class: ScaffoldingBlock' {
         }
 
         It 'Adjusts title name if its a repeat' {
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\test_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.'Recommendation #' -eq '1.1.1'})
 
             $Recommendation = [Recommendation]::New($ExcelExample)
