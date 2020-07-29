@@ -170,3 +170,28 @@ Describe 'Helper: Update-CISBenchmarkData' {
         }
     }
 }
+
+Describe 'Helper: Get-RecommendationFromGPOHash' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Finds exactly one result under normal circumstances' -TestCases @(
+            @{'Type' = 'AuditPolicy'; 'GPOHash' = @{'Subcategory' = 'Audit Security Group Management'; 'InclusionSetting' = 'Success'}},
+            @{'Type' = 'PrivilegeRight'; 'GPOHash' = @{'Policy' = 'Force_shutdown_from_a_remote_system'}},
+            @{'Type' = 'Service'; 'GPOHash' = @{'Name' = 'bthserv'}},
+            @{'Type' = 'SystemAccess'; 'GPOHash' = @{'Name' = 'Accounts_Administrator_account_status'}},
+            @{'Type' = 'Registry'; 'GPOHash' = @{'Key' = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'; 'ValueName' = 'NoConnectedUser'}}
+        ){
+            Update-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
+            (Get-RecommendationFromGPOHash -GPOHash $GPOHash -Type $Type | Measure-Object).count | Should -Be 1
+        }
+
+        It 'Writes a warning for zero recommendations returned' {
+            Update-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
+            Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'NotReal'} -Type 'Service' 3>&1 | Should -Be 'Failed to find a recommendation for Service NotReal.'
+        }
+
+        It 'Writes a warning for multiple recommendations returned' {
+            Update-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
+            Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'a'} -Type 'Service' 3>&1 | Should -Be 'Found multiple recommendation matches for Service a.'
+        }
+    }
+}
