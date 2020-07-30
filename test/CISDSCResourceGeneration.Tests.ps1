@@ -195,3 +195,63 @@ Describe 'Helper: Get-RecommendationFromGPOHash' {
         }
     }
 }
+
+Describe 'Helper: Conversion functions' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        Update-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
+
+        It 'ConvertFrom-AuditPolicySubcategoryRawGPO returns valid objects' {
+            $Block = ConvertFrom-AuditPolicySubcategoryRawGPO -SubcategoryGUID '{0cce9248-69ae-11d9-bed3-505054503030}' -Subcategory 'Audit PNP Activity' -InclusionSetting 'Success'
+            ($Block | Measure-Object).count | Should -Be 2
+            ($Block[0] -is [ScaffoldingBlock]) -and ($Block[1] -is [ScaffoldingBlock]) | Should -Be $True
+            $Block[0].ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('Name','Ensure','AuditFlag')} | Should -Be $null
+            $Block[1].ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('Name','Ensure','AuditFlag')} | Should -Be $null
+        }
+
+        It 'ConvertFrom-PrivilegeRightRawGPO returns valid objects' {
+            $Block = ConvertFrom-PrivilegeRightRawGPO -Policy 'SeCreateGlobalPrivilege' -Identity '*S-1-5-6,*S-1-5-20,*S-1-5-19,*S-1-5-32-544'
+            $Block -is [ScaffoldingBlock] | Should -Be $True
+            $Block.ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('Policy','Identity','Force')} | Should -Be $null
+        }
+
+        It 'ConvertFrom-RegistryPolGPORaw returns valid objects for creates' {
+            $Block = ConvertFrom-RegistryPolGPORaw -KeyName 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging' -ValueName 'LogFileSize' -ValueType 'REG_DWORD' -ValueData '16384'
+            $Block -is [ScaffoldingBlock] | Should -Be $True
+            $Block.ResourceParameters['Key'] | Should -Be "'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging'"
+            $Block.ResourceParameters['ValueType'] | Should -Be "'Dword'"
+            $Block.ResourceParameters['Ensure'] | Should -Be "'Present'"
+            $Block.ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('ValueType','ValueName','ValueData','Key','Ensure')} | Should -Be $null
+        }
+
+        It 'ConvertFrom-RegistryPolGPORaw returns valid objects for deletes' {
+            $Block = ConvertFrom-RegistryPolGPORaw -KeyName 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -ValueName '**del.DisableBkGndGroupPolicy' -ValueType 'REG_DWord' -ValueData ''
+            $Block -is [ScaffoldingBlock] | Should -Be $True
+            $Block.ResourceParameters['Key'] | Should -Be "'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'"
+            $Block.ResourceParameters['Ensure'] | Should -Be "'Absent'"
+            $Block.ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('ValueName','Key','Ensure')} | Should -Be $null
+        }
+
+        It 'ConvertFrom-RegistryValueRawGPO returns valid objects' {
+            $Block = ConvertFrom-RegistryValueRawGPO -Key 'MACHINE\System\CurrentControlSet\Control\Lsa\NoLMHash' -ValueData '4,1'
+            $Block -is [ScaffoldingBlock] | Should -Be $True
+            $Block.ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('ValueType','ValueName','ValueData','Key')} | Should -Be $null
+            $Block.ResourceParameters['Key'] | Should -Be "'HKLM:\System\CurrentControlSet\Control\Lsa'"
+            $Block.ResourceParameters['ValueName'] | Should -Be "'NoLMHash'"
+            $Block.ResourceParameters['ValueType'] | Should -Be "'Dword'"
+            $Block.ResourceParameters['ValueData'] | Should -Be 1
+        }
+
+        It 'ConvertFrom-ServiceRawGPO returns valid objects' {
+            $Block = ConvertFrom-ServiceRawGPO -Service 'IISADMIN' -ServiceData '4'
+            $Block -is [ScaffoldingBlock] | Should -Be $True
+            $Block.ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('Name','State')} | Should -Be $null
+            $Block.ResourceParameters['ServiceData'] = "'Stopped'"
+        }
+
+        It 'ConvertFrom-SystemAccessRawGPO returns valid objects' {
+            $Block = ConvertFrom-SystemAccessRawGPO -Key 'PasswordComplexity' -SecurityData '1'
+            $Block -is [ScaffoldingBlock] | Should -Be $True
+            ($Block.ResourceParameters.keys | Measure-Object).count | Should -Be 2
+        }
+    }
+}
