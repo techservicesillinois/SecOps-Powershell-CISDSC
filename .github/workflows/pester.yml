@@ -16,5 +16,5 @@ jobs:
       run: Install-Module -Name 'PSDepend' -Force -SkipPublisherCheck; Invoke-PSDepend -Force
       shell: powershell
     - name: Run tests PowerShell 5
-      run: Invoke-Pester -Path '.\test\' -CI
+      run: Invoke-Pester -Path '.\test\' -CI -Output Detailed
       shell: powershell
