@@ -1,6 +1,6 @@
 [String]$SourceRoot = Join-Path -Path (Split-Path -Path $PSScriptRoot -Parent) -ChildPath 'src'
 [String]$ModuleRoot = Join-Path -Path $SourceRoot -ChildPath 'CISDSCResourceGeneration'
-Import-Module -Name "$($ModuleRoot)\CISDSCResourceGeneration.psd1"
+Import-Module -Name "$($ModuleRoot)\CISDSCResourceGeneration.psd1" -Force
 
 Describe 'Module Manifest Tests' {
     It 'Passes Test-ModuleManifest' {
@@ -12,7 +12,7 @@ Describe 'Module Manifest Tests' {
 Describe 'Class: Recommendation' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
         It 'Constructs from an Excel recommendation row' {
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\test_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.Title -like "(L1)*"})[0]
             {[Recommendation]::New($ExcelExample)} | Should -Not -Throw
         }
@@ -23,7 +23,7 @@ Describe 'Class: Recommendation' {
             @{ Prefix = '(BL)'; Translation = 'BitLocker' },
             @{ Prefix = '(NG)'; Translation = 'NextGenerationWindowsSecurity' }
         ){
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\test_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.Title -like "(L1)*"})[0]
             $ExcelExample.Title = $ExcelExample.Title.replace('(L1)',$Prefix)
             ([Recommendation]::New($ExcelExample)).Level | Should -Be $Translation
@@ -34,7 +34,7 @@ Describe 'Class: Recommendation' {
             @{ num = '1.1.1.1'; version = [version]'1.1.1.1' }
             @{ num = '1.1.1.1.1.1'; version = [version]'1.1.1.111' }
         ){
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\test_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.Title -like "(L1)*"})[0]
 
             $ExcelExample.'Recommendation #' = $Num
@@ -48,7 +48,7 @@ Describe 'Class: Recommendation' {
 (L1) Ensure 'Remove access to “Pause updates” feature' is set to 'Enabled''
 "@; Expectation = "(L1) Ensure Remove access to Pause updates feature is set to Enabled" }
         ){
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\test_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.Title -like "(L1)*"})[0]
 
             $ExcelExample.Title = $Title
@@ -86,7 +86,7 @@ Describe 'Class: DSCConfigurationParameter' {
 Describe 'Class: ScaffoldingBlock' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
         It 'Adjusts for detected parameters' {
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\test_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.'Recommendation #' -eq '1.1.1'})
 
             $Recommendation1 = [Recommendation]::New($ExcelExample)
@@ -106,7 +106,7 @@ Describe 'Class: ScaffoldingBlock' {
         }
 
         It 'Adjusts title name if its a repeat' {
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\test_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.'Recommendation #' -eq '1.1.1'})
 
             $Recommendation = [Recommendation]::New($ExcelExample)
@@ -137,6 +137,36 @@ Describe 'Helper: Get-IniContent' {
             $Ini = Get-IniContent -Path "$($PSScriptRoot)\example_files\GptTmpl.inf"
             [string[]]$ExpectedKeys = @('Unicode','System Access','Privilege Rights','Registry Values','Version')
             $ExpectedKeys | Where-Object -FilterScript {$_ -notin $Ini.keys} | Should -Be $null
+        }
+    }
+}
+
+Describe 'Helper: Get-CISBenchmarkValidWorksheets' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Returns the correctly filtered workseets' -TestCases @(
+            @{Workbook = 'desktop_examples.xlsx'; OS = 'Microsoft Windows 10 Enterprise'; Expectation = ('Level 1 (L1) - Corporate_Enter','BitLocker (BL) - Level 1 (L1)','Next Generation - Level 1 (L1)','BitLocker (BL) 1 - Level 1 (L1)','Level 2 (L2) - High Security_S','BitLocker (BL) - Level 2 (L2)','Next Generation - Level 2 (L2)','BitLocker (BL) 1 - Level 2 (L2)','BitLocker (BL) - optional add','Next Generation Windows Securi')},
+            @{Workbook = 'server_examples.xlsx'; OS = 'Microsoft Windows Server 2019 Member Server'; Expectation = ('Level 1 - Member Server','Level 2 - Member Server','Next Generation Windows Securi','Next Generation Windows Secur 1')},
+            @{Workbook = 'server_examples.xlsx'; OS = 'Microsoft Windows Server 2019 Domain Controller'; Expectation = ('Level 1 - Domain Controller','Level 2 - Domain Controller','Next Generation Windows Securi','Next Generation Windows Secur 1')}
+        ){
+            [string]$Path = "$($PSScriptRoot)\example_files\$($Workbook)"
+            Get-CISBenchmarkValidWorksheets -Path $Path -OS $OS | Where-Object {$_.Name -notin $Expectation} | Should -Be $Null
+        }
+    }
+}
+
+Describe 'Helper: Update-CISBenchmarkData' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Stores [Recommendation] objects in script scope' {
+            $script:BenchmarkRecommendations.Clear()
+            Update-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
+            $script:BenchmarkRecommendations.Values[0] -is [Recommendation]
+        }
+
+        It 'Updates the unique section values' {
+            Update-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
+
+            $script:ServiceSection | Should -Be 5
+            $script:UserSection | Should -Be 19
         }
     }
 }
