@@ -15,7 +15,7 @@
     Path to the GPO files (build kit) from CIS containing the benchmarks settings.
 .EXAMPLE
 #>
-function Get-RegistryPolScaffoldingBlocks {
+function Import-RegistryPol {
     [CmdletBinding()]
     [OutputType('System.Object[]')]
     param (

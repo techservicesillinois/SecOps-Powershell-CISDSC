@@ -13,7 +13,7 @@
     Path to the GPO files (build kit) from CIS containing the benchmarks settings.
 .EXAMPLE
 #>
-function Get-AudicCsvScaffoldingBlocks {
+function Import-AudicCsv {
     [CmdletBinding()]
     [OutputType('System.Object[]')]
     param (

@@ -258,22 +258,22 @@ Describe 'Helper: Conversion functions' {
 
 Describe 'Helper: File import functions' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
-        It 'Get-AudicCsvScaffoldingBlocks returns objects from a valid Audit.csv' {
+        It 'Import-AudicCsv returns objects from a valid Audit.csv' {
             [string]$GPOPath = "$($PSScriptRoot)\example_files"
-            {Get-AudicCsvScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
-            (Get-AudicCsvScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
+            {Import-AudicCsv -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
+            (Import-AudicCsv -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
         }
 
-        It 'Get-InfScaffoldingBlocks returns objects from a valid GptTmpl.inf' {
+        It 'Import-GptTmpl returns objects from a valid GptTmpl.inf' {
             [string]$GPOPath = "$($PSScriptRoot)\example_files"
-            {Get-InfScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
-            (Get-InfScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
+            {Import-GptTmpl -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
+            (Import-GptTmpl -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
         }
 
-        It 'Get-RegistryPolScaffoldingBlocks returns objects from a valid registry.pol' {
+        It 'Import-RegistryPol returns objects from a valid registry.pol' {
             [string]$GPOPath = "$($PSScriptRoot)\example_files"
-            {Get-RegistryPolScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
-            (Get-RegistryPolScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue) -is [ScaffoldingBlock] | Should -Be $True
+            {Import-RegistryPol -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
+            (Import-RegistryPol -GPOPath $GPOPath -WarningAction SilentlyContinue) -is [ScaffoldingBlock] | Should -Be $True
         }
     }
 }

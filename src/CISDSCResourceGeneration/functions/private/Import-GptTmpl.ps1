@@ -11,7 +11,7 @@
     Path to the GPO files (build kit) from CIS containing the benchmarks settings.
 .EXAMPLE
 #>
-function Get-InfScaffoldingBlocks {
+function Import-GptTmpl {
     [CmdletBinding()]
     [OutputType('System.Object[]')]
     param (
