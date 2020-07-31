@@ -17,6 +17,7 @@
 #>
 function Get-RegistryPolScaffoldingBlocks {
     [CmdletBinding()]
+    [OutputType('System.Object[]')]
     param (
         [Parameter(Mandatory=$true)]
         [string]$GPOPath
