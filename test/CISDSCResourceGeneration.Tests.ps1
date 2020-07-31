@@ -273,7 +273,7 @@ Describe 'Helper: File import functions' {
         It 'Import-RegistryPol returns objects from a valid registry.pol' {
             [string]$GPOPath = "$($PSScriptRoot)\example_files"
             {Import-RegistryPol -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
-            (Import-RegistryPol -GPOPath $GPOPath -WarningAction SilentlyContinue) -is [ScaffoldingBlock] | Should -Be $True
+            (Import-RegistryPol -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
         }
     }
 }
