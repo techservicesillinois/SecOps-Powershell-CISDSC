@@ -273,7 +273,7 @@ Describe 'Helper: File import functions' {
         It 'Get-RegistryPolScaffoldingBlocks returns objects from a valid registry.pol' {
             [string]$GPOPath = "$($PSScriptRoot)\example_files"
             {Get-RegistryPolScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
-            (Get-RegistryPolScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
+            (Get-RegistryPolScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue) -is [ScaffoldingBlock] | Should -Be $True
         }
     }
 }
