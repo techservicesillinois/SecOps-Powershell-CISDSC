@@ -255,3 +255,25 @@ Describe 'Helper: Conversion functions' {
         }
     }
 }
+
+Describe 'Helper: File import functions' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Get-AudicCsvScaffoldingBlocks returns objects from a valid Audit.csv' {
+            [string]$GPOPath = "$($PSScriptRoot)\example_files"
+            {Get-AudicCsvScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
+            (Get-AudicCsvScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
+        }
+
+        It 'Get-InfScaffoldingBlocks returns objects from a valid GptTmpl.inf' {
+            [string]$GPOPath = "$($PSScriptRoot)\example_files"
+            {Get-InfScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
+            (Get-InfScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
+        }
+
+        It 'Get-RegistryPolScaffoldingBlocks returns objects from a valid registry.pol' {
+            [string]$GPOPath = "$($PSScriptRoot)\example_files"
+            {Get-RegistryPolScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
+            (Get-RegistryPolScaffoldingBlocks -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
+        }
+    }
+}
