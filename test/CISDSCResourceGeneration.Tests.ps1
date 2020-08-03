@@ -300,3 +300,34 @@ Describe 'Helper: Recommendation audit functions' {
         }
     }
 }
+
+Describe 'Helper: Test-FilePathParameter' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Errors if the file does not exist' {
+            {Test-FilePathParameter -Path "$($PSScriptRoot)\not_real.xlsx"} | Should -Throw
+        }
+
+        It 'Returns true is the file exists' {
+            Test-FilePathParameter -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" | Should -Be $True
+        }
+    }
+}
+
+Describe 'ConvertTo-DSC' {
+    It 'Exports files' {
+        $Splat = @{
+            BenchmarkPath = "$($PSScriptRoot)\example_files\desktop_examples.xlsx"
+            BenchmarkVersion = '1.8.1'
+            GPOPath = "$($PSScriptRoot)\example_files"
+            OutputPath = '.\Output'
+            OS = 'Microsoft Windows 10 Enterprise'
+            OSBuild = '1909'
+        }
+        ConvertTo-DSC @Splat
+
+        Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.psd1' | Should -Be $True
+        Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.schema.psm1' | Should -Be $True
+    }
+
+    #ToDo find a way to actually test the composite resource can be used in a configuration successfully.
+}
