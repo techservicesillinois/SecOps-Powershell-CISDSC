@@ -254,6 +254,8 @@ $script:DSCConfigurationParameters = @(
     [DSCConfigurationParameter]::new('$NextGenerationWindowsSecurity','[boolean]','$false','blank')
 )
 
+[System.Collections.ArrayList]$script:ScaffoldingBlocks = @()
+
 #Below is various dictionaries used to translate values from group policy to DSC.
 #These where pulled from https://github.com/microsoft/BaselineManagement/blob/master/src/Helpers/Enumerations.ps1
 $script:UserRights = @{
