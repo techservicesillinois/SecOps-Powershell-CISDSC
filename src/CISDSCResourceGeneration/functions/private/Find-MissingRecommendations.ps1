@@ -1,3 +1,14 @@
+<#
+.Synopsis
+   Audits the scaffoldingblocks vs the CIS benchmarks to find anything missing. This will identify settings potentially missing from the GPOs.
+   Any errors found will be exported in a file at the $OutputPath named 'MissingRecommendations.txt'
+.DESCRIPTION
+   Audits the scaffoldingblocks vs the CIS benchmarks to find anything missing. This will identify settings potentially missing from the GPOs.
+   Any errors found will be exported in a file at the $OutputPath named 'MissingRecommendations.txt'
+.PARAMETER OutputPath
+    Output directory for the files generated.
+.EXAMPLE
+#>
 function Find-MissingRecommendations {
     [CmdletBinding()]
     param (

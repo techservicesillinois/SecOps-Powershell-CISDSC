@@ -1,3 +1,26 @@
+<#
+.Synopsis
+   Audits the scaffoldingblocks to identify any GPO settings that did not locate a match in the CIS benchmarks.
+   Common situations for these are:
+    1) The registry key or setting name has changed and was only updated in the GPO
+    2) The recommendation broke a formating standard
+    3) The GPO setting is slightly off. IE: Enables success/failure auditing when the benchmark only says success.
+
+    This is used to idenfity settings that will require an entry in the static corrections file.
+    Any errors found will be exported in a file at the $OutputPath named 'RecommendationErrors.ps1'
+.DESCRIPTION
+   Audits the scaffoldingblocks to identify any GPO settings that did not locate a match in the CIS benchmarks.
+   Common situations for these are:
+    1) The registry key or setting name has changed and was only updated in the GPO
+    2) The recommendation broke a formating standard
+    3) The GPO setting is slightly off. IE: Enables success/failure auditing when the benchmark only says success.
+
+    This is used to idenfity settings that will require an entry in the static corrections file.
+    Any errors found will be exported in a file at the $OutputPath named 'RecommendationErrors.ps1'
+.PARAMETER OutputPath
+    Output directory for the files generated.
+.EXAMPLE
+#>
 function Find-RecommendationErrors {
     [CmdletBinding()]
     param (
