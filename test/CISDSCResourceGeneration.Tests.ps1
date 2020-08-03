@@ -322,6 +322,7 @@ Describe 'ConvertTo-DSC' {
             OutputPath = '.\Output'
             OS = 'Microsoft Windows 10 Enterprise'
             OSBuild = '1909'
+            WarningAction = 'SilentlyContinue'
         }
         ConvertTo-DSC @Splat
 
