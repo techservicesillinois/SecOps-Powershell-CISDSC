@@ -277,3 +277,26 @@ Describe 'Helper: File import functions' {
         }
     }
 }
+
+Describe 'Helper: Recommendation audit functions' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        [string]$GPOPath = "$($PSScriptRoot)\example_files"
+        $script:ScaffoldingBlocks += Import-AudicCsv -GPOPath $GPOPath -WarningAction SilentlyContinue
+
+        It 'Find-MissingRecommendations: writes a warning for findings' {
+            Find-MissingRecommendations -OutputPath '.\' 3>&1 | Should -Not -Be $null
+        }
+
+        It 'Find-MissingRecommendations: populates a file with the findings' {
+            (Get-Item -Path '.\MissingRecommendations.txt').Length | Should -Not -BeLessThan 5
+        }
+
+        It 'Find-RecommendationErrors: writes a warning for findings' {
+            Find-RecommendationErrors -OutputPath '.\' 3>&1 | Should -Not -Be $null
+        }
+
+        It 'Find-RecommendationErrors: populates a file with the findings' {
+            (Get-Item -Path '.\RecommendationErrors.ps1').Length | Should -Not -BeLessThan 5
+        }
+    }
+}
