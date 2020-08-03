@@ -40,10 +40,10 @@
   <content>
         <message>&#10;&#10;Scaffolding your DSC resource...&#10;&#10;&#10;</message>
 
-        <templateFile source='manifest.psd1'
+        <templateFile source='manifest.psd1.plaster'
                       destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.psd1'/>
 
-        <templateFile source='resource.schema.psm1'
+        <templateFile source='resource.schema.psm1.plaster'
                       destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.schema.psm1'/>
         <message>
 
