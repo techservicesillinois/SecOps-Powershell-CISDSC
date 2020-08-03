@@ -1,5 +1,6 @@
 function Test-FilePathParameter {
     [CmdletBinding()]
+    [OutputType('System.Boolean')]
     param (
         [Parameter(Mandatory=$true)]
         [string]$Path
@@ -14,6 +15,7 @@ function Test-FilePathParameter {
             $true
         }
         else{
+            $false
             Throw "Invalid path given: $($Path)"
         }
     }
