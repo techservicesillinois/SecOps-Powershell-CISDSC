@@ -11,3 +11,4 @@ Backup.xml
 bkupInfo.xml
 gpreport.xml
 !/test/example_files/*
+!/test/example_files/*/*

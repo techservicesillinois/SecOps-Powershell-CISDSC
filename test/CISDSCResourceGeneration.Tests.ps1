@@ -255,3 +255,25 @@ Describe 'Helper: Conversion functions' {
         }
     }
 }
+
+Describe 'Helper: File import functions' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Import-AudicCsv returns objects from a valid Audit.csv' {
+            [string]$GPOPath = "$($PSScriptRoot)\example_files"
+            {Import-AudicCsv -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
+            (Import-AudicCsv -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
+        }
+
+        It 'Import-GptTmpl returns objects from a valid GptTmpl.inf' {
+            [string]$GPOPath = "$($PSScriptRoot)\example_files"
+            {Import-GptTmpl -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
+            (Import-GptTmpl -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
+        }
+
+        It 'Import-RegistryPol returns objects from a valid registry.pol' {
+            [string]$GPOPath = "$($PSScriptRoot)\example_files"
+            {Import-RegistryPol -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
+            (Import-RegistryPol -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
+        }
+    }
+}
