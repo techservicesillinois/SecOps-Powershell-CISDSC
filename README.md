@@ -14,6 +14,9 @@ Invoke-PSDepend -Force
 ```
 
 # How do I help?
+
+[Static corrections](docs/static_corrections.md)
+
 The main form of contribution will be adding benchmarks for new OS/builds. The benchmarks are available via the [CIS workbench](https://workbench.cisecurity.org/) and require a free account to access. You will need the excel copy of the benchmarks and the build kit (GPOs) for most cases.
 
 The [CISDSCResourceGeneration](/src/CISDSCResourceGeneration) module only available in this repository is designed to do the majority of the DSC generation as it's name implies. This module only works with Windows PowerShell 5.1 due to a dependency on [GPRegistryPolicyParser](https://www.powershellgallery.com/packages/GPRegistryPolicyParser). It appears as though PS 7 support is being worked on though.
@@ -39,10 +42,6 @@ ConvertTo-DSC @Splat
 ```
 
 Successfully generated resources will be placed into the generated composite resource however some settings have been known to link between the build kit and Excel document cleanly. This can be due to any number of things including: Human error, outdated registry/policy name in one or the other, mismatched values in GPO vs the excel document.
-
-Settings found in the build kit without a match will be placed in the output path in a file named 'RecommendationsErrors.ps1' and will require manual intervention. Once the Recommendations # is identified for the resource it can be specified in [static_corrections.csv](static_corrections.csv) so that it can be corrected on the current and future benchmarks. Since recommendations are shared across the various MS products this should be a greatly reduced effort over time.
-
-Recommendations that are in the Excel file but not the build kit will be placed in another file in the output path named 'MissingRecommendations.txt'. There will likely be overlap between this and 'RecommendationsErrors.ps1' so it may be a helpful place to start looking.
 
 User settings (typically section 19 of the documentation) are purposely excluded from the generated DSC because DSC cannot be used to configure the HKCU registry hive.
 
