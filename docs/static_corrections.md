@@ -7,6 +7,8 @@ Occasionally there are will be some discrepancies between the build kit (GPOs) a
 
 3) Incomplete documentation: This is often the result of a recommended setting impacting more registry keys than the documentation implies. The below example is for recommendation 18.9.11.1.14 "(BL) Ensure 'Configure use of passwords for fixed data drives' is set to 'Disabled'" while the documentation only mentions the FDVPassphrase value the GPOs will remove the other keys if FDVPassphrase is disabled.</br>![Example](screenshots/multiple_keys.PNG)
 
+4) Incorrect audit level: Occasionally there will be a mismatch between the benchmark and GPO with the level of auditing. Ex: documentation calls for success auditing but the GPO enables success/failure. For the time being it would require manual intervention to edit the resource and the documentation should win in this case. A better solution needs to be identified.
+
 # How do I add a static correction?
 'ConvertTo-DSC' has a parameter for a -StaticCorrectionsPath and there is a [static_corrections.csv](../static_corrections.csv) maintained in this repository that can be provided to it. The file is a simple two column CSV that takes a 'key' and a recommendation number to correct it to. The key will vary based on what type of setting is being corrected.
 
