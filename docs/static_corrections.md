@@ -16,7 +16,7 @@ Occasionally there are will be some discrepancies between the build kit (GPOs) a
 
 3) AuditPolicySubcategory: Is just the name. Ex: 'Credential Validation' -> 'Credential Validation'
 
-4) UserRightsAssignment: Is the policy name replacing '_' with spaces. Ex: 'Access_Credential_Manager_as_a_trusted_caller' -> 'Access Credential Manager as a trusted_caller'
+4) UserRightsAssignment: Is the policy name replacing '_' with spaces. Ex: 'Access_Credential_Manager_as_a_trusted_caller' -> 'Access Credential Manager as a trusted caller'
 
 5) SystemAccess: Is the name replacing '_' with '\*'. Ex: 'Accounts_Administrator_account_status' -> 'Accounts\*Administrator\*account\*status'
 
@@ -24,3 +24,6 @@ Occasionally there are will be some discrepancies between the build kit (GPOs) a
 https://getadmx.com/ is an amazing resource for finding the GPO admx setting name that uses a given registry key. You can use the banner at the top to browse through keys graphically or there is usually a lot of luck in just googling the key and having it's getadmx.com link show up first.
 
 Once you find the GetADMX.com page for the setting it's easy to correlate to the documentation. In the below example we see the ADMX title is "Prevent the computer from joining a homegroup" doing a CTRL+F on the documentation for that text finds "18.9.35.1 (L1) Ensure 'Prevent the computer from joining a homegroup' is set to 'Enabled'" which is our correction.</br>![Example](screenshots/getadmx_example.PNG)
+
+# Other info
+1) Entries in [static_corrections.csv](../static_corrections.csv) will always overwrite a match in the Excel documentation by 'ConvertTo-DSC'
