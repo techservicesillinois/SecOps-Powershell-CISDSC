@@ -13,7 +13,7 @@ Install-Module -Name 'PSDepend'
 Invoke-PSDepend -Force
 ```
 
-# How do I help?
+# How can I contribute?
 
 [Static corrections](docs/static_corrections.md)
 
