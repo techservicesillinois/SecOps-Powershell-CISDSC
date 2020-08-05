@@ -11,6 +11,6 @@ The actual DSC resources should be installed via the CISDSC PSgallery page which
 The process of setting up a development environment for contributes is outlined in [new resources](docs/new_resources.md).
 
 # How can I contribute?
-The most common form of code contributions come in the form of [static corrections](docs/static_corrections.md) and [new resources](docs/new_resources.md). However edits and addition to documentation are also always welcome.
+The most common form of code contributions come in the form of [static corrections](docs/static_corrections.md) and [new resources](docs/new_resources.md). However edits and additions to documentation are also always welcome.
 
 # To Do
