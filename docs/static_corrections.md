@@ -16,7 +16,7 @@ Occasionally there are will be some discrepancies between the build kit (GPOs) a
 
 3) AuditPolicySubcategory: Is just the name. Ex: 'Credential Validation' -> 'Credential Validation'
 
-4) UserRightsAssignment: Is the policy name replacing '_' with spaces. Ex: 'Access_Credential_Manager_as_a_trusted_caller' -> 'Access Credential Manager as a trusted_caller'
+4) UserRightsAssignment: Is the policy name replacing '_' with spaces. Ex: 'Access_Credential_Manager_as_a_trusted_caller' -> 'Access Credential Manager as a trusted caller'
 
 5) SystemAccess: Is the name replacing '_' with '\*'. Ex: 'Accounts_Administrator_account_status' -> 'Accounts\*Administrator\*account\*status'
 
