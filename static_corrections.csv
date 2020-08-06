@@ -1,6 +1,5 @@
-"Key","Recommendation"
+"Key","Recommendation","Reason"
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration","18.8.22.1.5"
-"Audit Logoff","17.5.3"
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\FVE:FDVNoBitLockerToGoReader","18.9.11.3.1"
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\FVE:FDVEnforcePassphrase","18.9.11.1.14"
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\FVE:FDVPassphraseComplexity","18.9.11.1.14"
