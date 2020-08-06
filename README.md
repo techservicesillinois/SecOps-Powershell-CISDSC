@@ -7,7 +7,8 @@ This project is designed to deliver [CIS](https://www.cisecurity.org/) security 
 It also contains a module to assist in the creation of these resources via [CISDSCResourceGeneration](src/CISDSCResourceGeneration) which is a heavily modified fork of [Microsoft's BaselineManagement](BaselineManagement) module.
 
 # How do I install it?
-The actual DSC resources should be installed via the CISDSC PSgallery page which doesn't exist yet.
+The actual DSC resources should be installed via the CISDSC PSgallery page which doesn't exist yet.</br>
+
 The process of setting up a development environment for contributes is outlined in [new resources](docs/new_resources.md).
 
 # How can I contribute?
