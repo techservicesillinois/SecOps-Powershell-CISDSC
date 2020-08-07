@@ -183,7 +183,7 @@ Class ScaffoldingBlock{
                     $This.ResourceParameters['ValueData'] = $Name
                 }
 
-                'AccountPolicy'{
+                {$_ -in ('SecurityOption','AccountPolicy')}{
                     [string]$Name = "$('$')$($This.RecommendationVersioned.ToString().Replace('.',''))$($This.ResourceParameters['Name'].replace("'",'').replace('_',''))"
                     $ValueKey = $This.ResourceParameters['Name'].replace("'",'')
                     [string]$DataType = "[$($This.ResourceParameters[$ValueKey].GetType().Name)]"
