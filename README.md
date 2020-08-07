@@ -12,10 +12,10 @@ PowerShell DSC is a configuration management framework built into Windows 7+ pow
 </br>**What is PowerShell DSC (Desired State Configuration)?**</br>[![video](https://img.youtube.com/vi/k_rXBIHu3xk/0.jpg)](https://www.youtube.com/watch?v=k_rXBIHu3xk)
 
 PowerShell DSC resources like the ones offered here can be utilized within other configuration management platforms as well. Making this an easy solution regardless of your platform of choice. </br>
-[Ansible](https://docs.ansible.com/ansible/latest/modules/win_dsc_module.html)</br>
-[Chef](https://docs.chef.io/resources/dsc_resource/)</br>
-[Puppet](https://puppet.com/blog/managing-powershell-dsc-puppet/)</br>
-[Manually](https://docs.microsoft.com/en-us/powershell/scripting/dsc/configurations/write-compile-apply-configuration?view=powershell-7#compile-the-configuration)
+- [Ansible](https://docs.ansible.com/ansible/latest/modules/win_dsc_module.html)</br>
+- [Chef](https://docs.chef.io/resources/dsc_resource/)</br>
+- [Puppet](https://puppet.com/blog/managing-powershell-dsc-puppet/)</br>
+- [Manually](https://docs.microsoft.com/en-us/powershell/scripting/dsc/configurations/write-compile-apply-configuration?view=powershell-7#compile-the-configuration)
 
 More detailed information can be found in the [getting started with DSC document](docs/dsc_getting_started.md)
 
