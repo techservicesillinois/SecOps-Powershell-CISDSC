@@ -46,5 +46,5 @@
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU:AUOptions","18.9.102.2","These are unmentioned keys impacted by the remediation steps"
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription:EnableInvocationHeader","18.9.95.2","These are unmentioned keys impacted by the remediation steps"
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription:OutputDirectory","18.9.95.2","These are unmentioned keys impacted by the remediation steps"
-"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths:\\*\SYSVOL","18.5.14.1","The slash is breaking the regex pattern"
-"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths:\\*\NETLOGON","18.5.14.1","The slash is breaking the regex pattern"
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths:\\*\SYSVOL","18.5.14.1","The asterik is breaking the regex pattern"
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths:\\*\NETLOGON","18.5.14.1","The asterik is breaking the regex pattern"
