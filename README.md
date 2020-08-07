@@ -17,7 +17,7 @@ PowerShell DSC is a configuration management framework built into Windows 7+ pow
   </a>
 </p>
 
-PowerShell DSC resources like the ones offered here can be utilized within other configuration management platforms as well. Making this an easy solution regardless of your platform of choice. </br>
+PowerShell DSC resources like the ones offered here can be utilized within other configuration management platforms as well. Making this an easy solution regardless of your platform of choice.</br>
 - [Ansible](https://docs.ansible.com/ansible/latest/modules/win_dsc_module.html)</br>
 - [Chef](https://docs.chef.io/resources/dsc_resource/)</br>
 - [Puppet](https://puppet.com/blog/managing-powershell-dsc-puppet/)</br>
@@ -26,11 +26,11 @@ PowerShell DSC resources like the ones offered here can be utilized within other
 More detailed information can be found in the [getting started with DSC document](docs/dsc_getting_started.md)
 
 # How do I install it?
-The actual DSC resources should be installed via the CISDSC module's PSgallery page which doesn't exist yet.</br>
+The actual DSC resources should be installed via the CISDSC module's PSGallery page which doesn't exist yet.</br>
 
 The process of setting up a development environment for contributes is outlined in [new resources](docs/new_resources.md).
 
 # How can I contribute?
-The most common form of code contributions come in the form of [static corrections](docs/static_corrections.md) and [new resources](docs/new_resources.md). However edits and additions to documentation are also always welcome.
+The most common form of code contributions come in the form of [static corrections](docs/static_corrections.md) and [new resources](docs/new_resources.md). However edits and additions to documentation or the CISDSCResourceGeneration module are also encouraged.
 
 # To Do
