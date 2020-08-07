@@ -12,7 +12,7 @@ Occasionally there are will be some discrepancies between the build kit (GPOs) a
 # How do I add a static correction?
 'ConvertTo-DSC' has a parameter for a -StaticCorrectionsPath and there is a [static_corrections.csv](../static_corrections.csv) maintained in this repository that can be provided to it. The file is a simple two column CSV that takes a 'key' and a recommendation number to correct it to. The key will vary based on what type of setting is being corrected. There is also a reason column that is just meant to be a human reference for what was the cause behind the correction. This is useful to identify patterns for potential code updates or providing feedback to CIS.
 
-1) Registry: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration' Comparing to DSC the formatting will be 'Key:ValueName' accounting for 'HKLM:' being replaced with 'HKEY_LOCAL_MACHINE', this is to keep the naming convention consistent with the documentation.
+1) Registry: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration' Comparing to DSC the formatting will be 'Key:ValueName' accounting for 'HKLM:' being replaced with 'HKEY_LOCAL_MACHINE', this is to keep the naming convention consistent with the documentation. If the ValueName is an empty string you must still include the colon.
 
 2) Service: The key is just the name. Ex: 'RsMan' -> 'RsMan'
 
@@ -29,3 +29,6 @@ Once you find the GetADMX.com page for the setting it's easy to correlate to the
 
 # Other info
 1) Entries in [static_corrections.csv](../static_corrections.csv) will always overwrite a match in the Excel documentation by 'ConvertTo-DSC'
+
+# How do I test a correction?
+1) You will need to generate the resource again and verify the resulting 'RecommendationErrors.ps1'. Instructions for doing so are located in the [new resources](new_resources.md#How-do-I-create-new-ones?) documentation.
