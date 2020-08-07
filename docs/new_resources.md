@@ -36,6 +36,7 @@ Invoke-PSDepend -Force
 
 3) The following example will generate a new DSC composite resource. You will need to edit the parameters accordingly.
 ```
+Import-Module '.\src\CISDSCResourceGeneration\CISDSCResourceGeneration.psd1' -Force
 $Splat = @{
     BenchmarkPath = 'C:\CIS_Microsoft_Windows_10_Enterprise_Release_1909_Benchmark_v1.8.1.xlsx'
     BenchmarkVersion = '1.8.1'
