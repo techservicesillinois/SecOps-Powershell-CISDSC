@@ -66,7 +66,7 @@ Describe 'Class: DSCConfigurationParameter' {
             $Title = "(BL) Ensure Interactive logon Machine account lockout threshold is set to 10 or fewer invalid logon attempts but not 0"
             {[DSCConfigurationParameter]::New($Name,$DataType,$DefaultValue,$Title)} | Should -Not -Throw
         }
-
+<#
         It 'Creates validation blocks properly' -TestCases @(
             @{ Title = "(BL) Ensure Interactive logon Machine account lockout threshold is set to 10 or fewer invalid logon attempts but not 0"; Expectation = "[ValidateRange(1,10)]" },
             @{ Title = "(BL) Ensure Interactive logon Machine account lockout threshold is set to 10 or fewer invalid logon attempts"; Expectation = "[ValidateRange(0,10)]" },
@@ -80,6 +80,7 @@ Describe 'Class: DSCConfigurationParameter' {
             $Title = $Title
             ([DSCConfigurationParameter]::New($Name,$DataType,$DefaultValue,$Title)).validation | Should -Be $Expectation
         }
+#>
     }
 }
 

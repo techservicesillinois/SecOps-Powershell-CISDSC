@@ -91,12 +91,14 @@ Class DSCConfigurationParameter{
     [string]$DataType
     [string]$DefaultValue
     [string]$TextBlock
-    [string]$Validation
+    #[string]$Validation
 
     DSCConfigurationParameter($Name, $DataType, $DefaultValue, $Title){
         $This.Name = $Name
         $This.DataType = $DataType
-        $This.DefaultValue = $DefaultValue
+        $This.DefaultValue = "$($DefaultValue)".replace('"',"'")
+
+        <# Parameter validation based on titles is currently unreliable due to some recommendations having multiple settings. Commented out until a solution is identified
         #We can always expect the first 5 characters of the title to be the level acronym. EX: '(L1) '
         [int[]]$NumbersInTitle = [int[]]($Title.Substring(5) -replace '[^0-9 ]' -split ' ').where({$_}) | Sort-Object -Descending
         #Some benchmarks implying a lower value is acceptable specifically say but not 0 implying a minimum value of 1 instead.
@@ -130,22 +132,21 @@ Class DSCConfigurationParameter{
                 $This.Validation = $null
             }
         }
+        #>
 
         $This.TextBlock = $This.GenerateTextBlock()
     }
 
     <# Example of formated definition
-        [ValidateRange(1,60)]
         [Int32]$112MaximumPasswordAge = 60
     #>
 
     [string]GenerateTextBlock(){
         $blankDefinition = @'
-        {0}
-        {1}{2} = {3}
+        {0}{1} = {2}
 '@
 
-        return ($blankDefinition -f $This.Validation,$This.DataType,$This.Name,$This.DefaultValue)
+        return ($blankDefinition -f $This.DataType,$This.Name,$This.DefaultValue)
     }
 }
 

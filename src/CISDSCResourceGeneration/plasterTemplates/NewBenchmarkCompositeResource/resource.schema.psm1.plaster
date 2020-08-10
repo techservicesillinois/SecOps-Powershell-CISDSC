@@ -2,7 +2,7 @@ Configuration CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>
 {
     param
     (
-        <%=$PLASTER_PARAM_DSCParameters%>
+<%=$PLASTER_PARAM_DSCParameters%>
     )
 
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
