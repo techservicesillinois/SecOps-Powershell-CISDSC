@@ -42,7 +42,7 @@ function Get-RecommendationFromGPOHash {
 
             'Registry'{
                 [string]$CorrectionKey = "$($GPOHash['Key'] -replace 'HKLM:','HKEY_LOCAL_MACHINE'):$($GPOHash['ValueName'])"
-                [string]$patternString = "(?i)^($($CorrectionKey))$".replace("\","\\")
+                [string]$patternString = "(?i)^($($CorrectionKey))$".replace("\","\\").Replace('*','[*]')
                 [scriptblock]$FilterScript = {($_.AuditProcedure -split "`n") -match $patternString}
             }
         }
