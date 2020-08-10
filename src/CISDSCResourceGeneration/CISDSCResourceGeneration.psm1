@@ -97,7 +97,7 @@ Class DSCConfigurationParameter{
         $This.Name = $Name
         $This.DataType = $DataType
         $This.DefaultValue = "$($DefaultValue)".replace('"',"'")
-        
+
         <# Parameter validation based on titles is currently unreliable due to some recommendations having multiple settings. Commented out until a solution is identified
         #We can always expect the first 5 characters of the title to be the level acronym. EX: '(L1) '
         [int[]]$NumbersInTitle = [int[]]($Title.Substring(5) -replace '[^0-9 ]' -split ' ').where({$_}) | Sort-Object -Descending
