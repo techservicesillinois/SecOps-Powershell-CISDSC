@@ -9,6 +9,8 @@ Occasionally there are will be some discrepancies between the build kit (GPOs) a
 
 4) Incorrect audit level: Occasionally there will be a mismatch between the benchmark and GPO with the level of auditing. Ex: documentation calls for success auditing but the GPO enables success/failure. For the time being it would require manual intervention to edit the resource and the documentation should win in this case. A better solution needs to be identified. An [issue](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/43) is open for this enhancement.
 
+5) Incorrect benchmark: Occasionally settings from other benchmarks make their way into the GPOs and just need to be ignored. Ex: 'Computer Account Management' audit options appears in the Windows 10 1909 GPOs when this is a domain controller only setting.
+
 # How do I add a static correction?
 'ConvertTo-DSC' has a parameter for a -StaticCorrectionsPath and there is a [static_corrections.csv](../static_corrections.csv) maintained in this repository that can be provided to it. The file is a simple two column CSV that takes a 'key' and a recommendation number to correct it to. The key will vary based on what type of setting is being corrected. There is also a reason column that is just meant to be a human reference for what was the cause behind the correction. This is useful to identify patterns for potential code updates or providing feedback to CIS.
 
@@ -16,7 +18,7 @@ Occasionally there are will be some discrepancies between the build kit (GPOs) a
 
 2) Service: The key is just the name. Ex: 'RsMan' -> 'RsMan'
 
-3) AuditPolicySubcategory: Is just the name. Ex: 'Credential Validation' -> 'Credential Validation'
+3) AuditPolicySubcategory: Is just the name with the word audit added. Ex: 'Credential Validation' -> 'Audit Credential Validation'
 
 4) UserRightsAssignment: Is the policy name replacing '_' with spaces. Ex: 'Access_Credential_Manager_as_a_trusted_caller' -> 'Access Credential Manager as a trusted caller'
 
