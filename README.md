@@ -4,7 +4,7 @@
 # What is This?
 This project is designed to deliver [CIS](https://www.cisecurity.org/) security benchmarks in PowerShell DSC via the included [CISDSC](src/CISDSC) module.
 
-It also contains a module to assist in the creation of these resources via [CISDSCResourceGeneration](src/CISDSCResourceGeneration) which is a heavily modified fork of [Microsoft's BaselineManagement]([BaselineManagement](https://github.com/microsoft/BaselineManagement)) module.
+It also contains a module to assist in the creation of these resources via [CISDSCResourceGeneration](src/CISDSCResourceGeneration) which is a heavily modified fork of [Microsoft's BaselineManagement](https://github.com/microsoft/BaselineManagement) module.
 
 You can be notified of new releases by following the [notifications documentation](docs/notification.md).
 
