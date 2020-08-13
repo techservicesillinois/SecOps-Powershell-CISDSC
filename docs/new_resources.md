@@ -51,3 +51,10 @@ ConvertTo-DSC @Splat
 Successfully generated resources will be placed into the generated composite resource however some settings have been known to link between the GPOs and Excel document cleanly.
 
 4) Resolve errors identified in the previous step. Potential causes and resolutions are outlined in the [static corrections](static_correctiond.md) documentation.
+
+# How do I add or update them within the module?
+1) For additions the DscResourcesToExport field of the [module manifest](..\src\CISDSC\CISDSC.psd1) should be updated with the new resource.
+
+2) An example of how to use the resource should be placed in the [examples directory](..\src\CISDSC\Examples)
+
+3) Document what was added or updated in the [changelog](..\changelog.txt).

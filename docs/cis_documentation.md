@@ -16,3 +16,10 @@ There is a lot of items available via the workbench site so it's easiest to find
 
 It is important to get the most recent version of these items. All versions are made available on this site. You will need the excel copy of the benchmarks and the build kit (GPOs for Windows) for most cases.
 </br>![Example](screenshots/CIS_files.PNG)
+
+# How do I open tickets for feedback?
+1) Sign into [CIS workbench](https://workbench.cisecurity.org/)
+2) Navigate to the [communities page](https://workbench.cisecurity.org/communities/public)
+3) Search for and join the 'CIS Microsoft Windows Benchmarks' community. Without this step you can view benchmark tickets but not create them so do not assume you've already done this.
+4) Now you can locate your benchmark from the [benchmarks page](https://workbench.cisecurity.org/benchmarks)
+5) Once you've entered your benchmark specific page you can drill down to the specific recommendation with the issue and open a ticket for the correction.
