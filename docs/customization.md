@@ -11,7 +11,7 @@ Configuration Win10_1909_L1
     {
         CIS_Microsoft_Windows_10_Enterprise_Release_1909 'CIS Benchmarks'
         {
-            #These exclusions are services that are not in default installs of Windows. Remove the exlusions if they are applicable to your envrionment.
+            #These exclusions are services that are not in default installs of Windows. Remove the exclusions if they are applicable to your environment.
             'ExcludeList' = @('5.6','5.7','5.10','5.11','5.14','5.28','5.32','5.40')
             '2315AccountsRenameadministratoraccount' = 'CISAdmin'
             '2316AccountsRenameguestaccount' = 'CISGuest'
@@ -34,4 +34,4 @@ password(s)'". You can use the documentation linked above to identify the accept
 </br>![Example](screenshots/parameters.PNG)
 
 # Special cases
-There are a handful of special cases for customization. Those are pictures above for the legal disclaimer text and built-in account renames. These will require a value be provided as shown or their recommendation IDs be added to the ExclusionList. This is due to the fact that these field are always organization specific so there are no safe defaults for these values.
+There are a handful of special cases for customization. Those are displayed above for the legal disclaimer text and built-in account renames. These will require a value be provided as shown or their recommendation IDs be added to the ExclusionList. This is due to the fact that these field are always organization specific so there are no safe defaults for these values.
