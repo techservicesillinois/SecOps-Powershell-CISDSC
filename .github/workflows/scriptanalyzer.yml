@@ -16,5 +16,5 @@ jobs:
       run: Install-Module -Name 'PSScriptAnalyzer' -Force -SkipPublisherCheck
       shell: pwsh
     - name: ScriptAnalyzer
-      run: Invoke-ScriptAnalyzer -Path '.\src\' -Recurse -EnableExit
+      run: Invoke-ScriptAnalyzer -Path '.\src\' -Recurse -EnableExit -SaveDscDependency
       shell: pwsh
