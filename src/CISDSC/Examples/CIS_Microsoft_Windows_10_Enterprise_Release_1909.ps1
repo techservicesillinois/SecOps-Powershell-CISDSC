@@ -1,4 +1,4 @@
-Configuration Win10_1909
+Configuration Win10_1909_L1
 {
     Import-DSCResource -ModuleName 'CISDSC'
 
@@ -16,4 +16,6 @@ Configuration Win10_1909
     }
 }
 
-Win10_1909
+Win10_1909_L1
+#Uncomment the following line to also apply the configuration on the localmachine
+#Start-DscConfiguration -Path '.\Win10_1909_L1' -Verbose -Wait
