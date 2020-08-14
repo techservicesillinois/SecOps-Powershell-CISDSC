@@ -32,6 +32,8 @@ The actual DSC resources should be installed via the CISDSC module's PSGallery p
 
 The process of setting up a development environment for contributions is outlined in [new resources](docs/new_resources.md).
 
+The process of customizing these resources for your environment is outlined in [customization](docs/customization.md).
+
 # How can I contribute?
 The most common form of code contributions come in the form of [static corrections](docs/static_corrections.md) and [new resources](docs/new_resources.md). However edits and additions to documentation or the CISDSCResourceGeneration module are also encouraged.
 
