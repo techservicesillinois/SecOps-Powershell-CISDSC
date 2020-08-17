@@ -18,6 +18,6 @@ jobs:
     - name: ScriptAnalyzer DSCResources
       run: Invoke-ScriptAnalyzer -Path '.\src\CISDSC\DSCResources' -Recurse -EnableExit -SaveDscDependency
       shell: pwsh
-      - name: ScriptAnalyzer CISDSCResourceGeneration
+    - name: ScriptAnalyzer CISDSCResourceGeneration
       run: Invoke-ScriptAnalyzer -Path '.\src\CISDSCResourceGeneration' -Recurse -EnableExit -SaveDscDependency
       shell: pwsh
