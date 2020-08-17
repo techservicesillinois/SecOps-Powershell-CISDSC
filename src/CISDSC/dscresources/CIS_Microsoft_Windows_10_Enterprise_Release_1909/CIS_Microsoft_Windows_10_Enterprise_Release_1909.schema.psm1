@@ -1702,6 +1702,22 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1909
            AuditFlag = 'Success'
         }
     }
+    if($ExcludeList -notcontains '17.5.3' -and $LevelOne){
+        AuditPolicySubcategory "(L1) Ensure 'Audit Logoff' is set to include 'Success'"
+        {
+           Name = 'Logoff'
+           Ensure = 'Present'
+           AuditFlag = 'Success'
+        }
+    }
+    if($ExcludeList -notcontains '17.5.3' -and $LevelOne){
+        AuditPolicySubcategory "(L1) Ensure 'Audit Logoff' is set to include 'Success' (2)"
+        {
+           Name = 'Logoff'
+           Ensure = 'Absent'
+           AuditFlag = 'Failure'
+        }
+    }
     if($ExcludeList -notcontains '17.5.4' -and $LevelOne){
         AuditPolicySubcategory "(L1) Ensure Audit Logon is set to Success and Failure"
         {
@@ -5377,6 +5393,16 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1909
         }
     }
     if($ExcludeList -notcontains '18.9.102.1.2' -and $LevelOne){
+        Registry "(L1) Ensure 'Select when Preview Builds and Feature Updates are received' is set to 'Enabled: Semi-Annual Channel, 180 or more days' (4)"
+        {
+           ValueName = 'PauseFeatureUpdatesStartTime'
+           ValueData = '0'
+           Ensure = 'Present'
+           ValueType = 'String'
+           Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate'
+        }
+    }
+    if($ExcludeList -notcontains '18.9.102.1.2' -and $LevelOne){
         Registry "(L1) Ensure Select when Preview Builds and Feature Updates are received is set to Enabled SemiAnnual Channel 180 or more days (3)"
         {
            ValueName = 'DeferFeatureUpdatesPeriodInDays'
@@ -5423,6 +5449,16 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1909
            ValueData = 0
            Ensure = 'Present'
            ValueType = 'Dword'
+           Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate'
+        }
+    }
+    if($ExcludeList -notcontains '18.9.102.1.3' -and $LevelOne){
+        Registry "(L1) Ensure 'Select when Quality Updates are received' is set to 'Enabled: 0 days' (3)"
+        {
+           ValueName = 'PauseQualityUpdatesStartTime'
+           ValueData = '0'
+           Ensure = 'Present'
+           ValueType = 'String'
            Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate'
         }
     }
