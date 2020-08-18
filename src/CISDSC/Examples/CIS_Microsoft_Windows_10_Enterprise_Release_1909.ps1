@@ -7,7 +7,16 @@ Configuration Win10_1909_L1
         CIS_Microsoft_Windows_10_Enterprise_Release_1909 'CIS Benchmarks'
         {
             #These exclusions are services that are not in default installs of Windows. Remove the exlusions if they are applicable to your envrionment.
-            'ExcludeList' = @('5.6','5.7','5.10','5.11','5.14','5.28','5.32','5.40')
+            'ExcludeList' = @(
+                '5.6', # IIS Admin Service (IISADMIN) N/A
+                '5.7', # Infrared monitor service (irmon) N/A
+                '5.10',# LxssManager (LxssManager) N/A
+                '5.11',# Microsoft FTP Service (FTPSVC) N/A
+                '5.14',# OpenSSH SSH Server (sshd) N/A
+                '5.28',# Simple TCP/IP Services (simptcp) N/A
+                '5.32',# Web Management Service (WMSvc) N/A
+                '5.40'# World Wide Web Publishing Service (W3SVC) N/A
+            )
             '2315AccountsRenameadministratoraccount' = 'CISAdmin'
             '2316AccountsRenameguestaccount' = 'CISGuest'
             '2376LegalNoticeCaption' = 'Legal Notice'
