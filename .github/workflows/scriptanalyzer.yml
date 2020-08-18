@@ -15,6 +15,9 @@ jobs:
     - name: Install dependencies
       run: Install-Module -Name 'PSScriptAnalyzer' -Force -SkipPublisherCheck
       shell: pwsh
-    - name: ScriptAnalyzer
-      run: Invoke-ScriptAnalyzer -Path '.\src\' -Recurse -EnableExit
+    - name: ScriptAnalyzer DSCResources
+      run: Invoke-ScriptAnalyzer -Path '.\src\CISDSC\DSCResources' -Recurse -EnableExit -SaveDscDependency
+      shell: pwsh
+    - name: ScriptAnalyzer CISDSCResourceGeneration
+      run: Invoke-ScriptAnalyzer -Path '.\src\CISDSCResourceGeneration' -Recurse -EnableExit -SaveDscDependency
       shell: pwsh
