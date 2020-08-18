@@ -52,9 +52,13 @@ Successfully generated resources will be placed into the generated composite res
 
 4) Resolve errors identified in the previous step. Potential causes and resolutions are outlined in the [static corrections](static_correctiond.md) documentation.
 
+5) Verify your results with the [CIS-CAT](https://workbench.cisecurity.org/files/2151) assessment tool available from the [CIS workbench](https://workbench.cisecurity.org/). A HTML report from the tool will be required later. Documentation for the tool can be found [here](https://ccpa-docs.readthedocs.io/en/latest/User%20Guide%20for%20CLI/).
+
 # How do I add or update them within the module?
 1) For additions the DscResourcesToExport field of the [module manifest](..\src\CISDSC\CISDSC.psd1) should be updated with the new resource.
 
-2) An example of how to use the resource should be placed in the [examples directory](..\src\CISDSC\Examples)
+2) An example of how to use the resource should be placed in the [examples directory](..\src\CISDSC\Examples).
 
 3) Document what was added or updated in the [changelog](..\changelog.txt).
+
+4) Submit a pull request with an attached HTML report from the CIS-CAT assessment tool.

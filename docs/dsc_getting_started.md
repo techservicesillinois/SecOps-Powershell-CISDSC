@@ -17,7 +17,7 @@ winrm quickconfig
 
 PowerShell
 ```
-Enable-PSRemoting –force
+Enable-PSRemoting –Force
 ```
 
 If you
