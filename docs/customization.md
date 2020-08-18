@@ -1,6 +1,6 @@
 # How do I exclude recommendations?
 It is not uncommon for a recommendation to need to be excluded from configurations or slightly adjusted. These resources have built-in support for these situations.
-Every resource contains an 'ExcludeList' property that allows you to exclude settings based on their recommendation ID. These IDs can be found in the CIS documentation available from [CIS](src/../cis_documentation.md) or the [documentation page](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/wiki/Benchmark-documentation) of this repository. Using these PDFs you should be able to identify your setting in question and locate it's ID number. Enabling exclusions will look similar to the below example.
+Every resource contains an 'ExcludeList' property that allows you to exclude settings based on their recommendation ID. These IDs can be found in the CIS documentation available from [CIS](src/../cis_documentation.md) or the [documentation page](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/wiki/Benchmark-documentation) of this repository. Using these PDFs you should be able to identify your setting in question and locate its ID number. Enabling exclusions will look similar to the below example.
 
 ```
 Configuration Win10_1909_L1
@@ -23,7 +23,7 @@ Configuration Win10_1909_L1
 ```
 
 # How do I customize values of recommendations?
-Some recommendations are for ranges of values not an explicit value. An example being a minimum numbers of days or log size vs enabled/disabled. These customizations are also accounted for in these resources via parameters. Available parameters can always be found with the below command substituting the resource name for your applicable OS.
+Some recommendations are for ranges of values not an explicit value. Examples include minimum number of days or log size. These customizations are also accounted for in these resources via parameters. Available parameters can always be found with the below command substituting the resource name for your applicable OS.
 
 ```
 (Get-DscResource -Module CISDSC -Name CIS_Microsoft_Windows_10_Enterprise_Release_1909).Properties
