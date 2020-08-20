@@ -15,7 +15,7 @@ Configuration Win10_1909_L1
                 '5.14',# OpenSSH SSH Server (sshd)
                 '5.28',# Simple TCP/IP Services (simptcp)
                 '5.32',# Web Management Service (WMSvc)
-                '5.40'# World Wide Web Publishing Service (W3SVC)
+                '5.40' # World Wide Web Publishing Service (W3SVC)
             )
             '2315AccountsRenameadministratoraccount' = 'CISAdmin'
             '2316AccountsRenameguestaccount' = 'CISGuest'
