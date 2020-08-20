@@ -8,14 +8,14 @@ Configuration Win10_1909_L1
         {
             #These exclusions are services that are not in default installs of Windows. Remove the exlusions if they are applicable to your envrionment.
             'ExcludeList' = @(
-                '5.6', # IIS Admin Service (IISADMIN) N/A
-                '5.7', # Infrared monitor service (irmon) N/A
-                '5.10',# LxssManager (LxssManager) N/A
-                '5.11',# Microsoft FTP Service (FTPSVC) N/A
-                '5.14',# OpenSSH SSH Server (sshd) N/A
-                '5.28',# Simple TCP/IP Services (simptcp) N/A
-                '5.32',# Web Management Service (WMSvc) N/A
-                '5.40'# World Wide Web Publishing Service (W3SVC) N/A
+                '5.6', # IIS Admin Service (IISADMIN)
+                '5.7', # Infrared monitor service (irmon)
+                '5.10',# LxssManager (LxssManager)
+                '5.11',# Microsoft FTP Service (FTPSVC)
+                '5.14',# OpenSSH SSH Server (sshd)
+                '5.28',# Simple TCP/IP Services (simptcp)
+                '5.32',# Web Management Service (WMSvc)
+                '5.40'# World Wide Web Publishing Service (W3SVC)
             )
             '2315AccountsRenameadministratoraccount' = 'CISAdmin'
             '2316AccountsRenameguestaccount' = 'CISGuest'
