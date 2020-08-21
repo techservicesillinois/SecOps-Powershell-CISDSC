@@ -24,9 +24,9 @@ Configuration MyWorkstation
 ```
 
 # How do I create new ones?
-1) Acquire the GPOs and Excel documentation from [CIS](static_corrections.md).
+1) Acquire the GPOs and Excel documentation from [CIS](./../static_corrections.csv).
 
-2) Set up your development environment with the following PowerShell. This will clone this repository and install the dependencies specified in [build.depend.psd1](..\build.depend.psd1). Due to the dependency on [GPRegistryPolicyParser](https://www.powershellgallery.com/packages/GPRegistryPolicyParser) you will need to do this in Windows PowerShell 5.1.
+2) Set up your development environment with the following PowerShell. This will clone this repository and install the dependencies specified in [build.depend.psd1](./../build.depend.psd1). Due to the dependency on [GPRegistryPolicyParser](https://www.powershellgallery.com/packages/GPRegistryPolicyParser) you will need to do this in Windows PowerShell 5.1.
 ```
 git clone https://github.com/techservicesillinois/SecOps-Powershell-CISDSC
 Set-Location -Path '.\SecOps-Powershell-CISDSC'
@@ -50,14 +50,14 @@ ConvertTo-DSC @Splat
 ```
 Successfully generated resources will be placed into the generated composite resource however some settings have been known to link between the GPOs and Excel document cleanly.
 
-4) Resolve errors identified in the previous step. Potential causes and resolutions are outlined in the [static corrections](static_correctiond.md) documentation.
+4) Resolve errors identified in the previous step. Potential causes and resolutions are outlined in the [static corrections](./../static_corrections.csv) documentation.
 
 5) Verify your results with the [CIS-CAT](https://workbench.cisecurity.org/files/2151) assessment tool available from the [CIS workbench](https://workbench.cisecurity.org/). A HTML report from the tool will be required later. Documentation for the tool can be found [here](https://ccpa-docs.readthedocs.io/en/latest/User%20Guide%20for%20CLI/).
 
 # How do I add or update them within the module?
-1) For additions the DscResourcesToExport field of the [module manifest](..\src\CISDSC\CISDSC.psd1) should be updated with the new resource.
+1) For additions the DscResourcesToExport field of the [module manifest](./../src/CISDSC/CISDSC.psd1) should be updated with the new resource.
 
-2) An example of how to use the resource should be placed in the [examples directory](..\src\CISDSC\Examples).
+2) An example of how to use the resource should be placed in the [examples directory](./../src/CISDSC/Examples/).
 
 3) Document what was added or updated in the [changelog](./../changelog.txt).
 
