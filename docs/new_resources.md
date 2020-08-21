@@ -59,6 +59,6 @@ Successfully generated resources will be placed into the generated composite res
 
 2) An example of how to use the resource should be placed in the [examples directory](..\src\CISDSC\Examples).
 
-3) Document what was added or updated in the [changelog](..\changelog.txt).
+3) Document what was added or updated in the [changelog](changelog.txt).
 
 4) Submit a pull request with an attached HTML report from the CIS-CAT assessment tool.

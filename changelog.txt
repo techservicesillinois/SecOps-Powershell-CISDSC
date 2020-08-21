@@ -1,2 +1,4 @@
 1.0.0
 - Added DSC resource for Windows 10 Enterprise 1909
+1.1.0
+- Added DSC resource for Windows 10 Enterprise 1809
