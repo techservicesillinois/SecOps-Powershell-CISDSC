@@ -13,14 +13,11 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
         [int32]$1826PasswordAgeDays = 30,
         [string]$18410ScreenSaverGracePeriod = '5',
         [int32]$18413WarningLevel = 90,
-        [int32]$18910212BranchReadinessLevel = 32,
-        [int32]$18910212DeferFeatureUpdates = 1,
         [int32]$18910212DeferFeatureUpdatesPeriodInDays = 180,
         [int32]$1892612MaxSize = 32768,
         [int32]$1892622MaxSize = 196608,
         [int32]$1892632MaxSize = 32768,
         [int32]$1892642MaxSize = 32768,
-        [int32]$18941AllowSharedLocalAppData = 0,
         [int32]$189593101MaxIdleTime = 900000,
         [String]$2315AccountsRenameadministratoraccount = 'CISADMIN',
         [String]$2316AccountsRenameguestaccount = 'CISGUEST',
@@ -3310,7 +3307,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
         Registry "(L2) Ensure Allow a Windows app to share application data between users is set to Disabled"
         {
            ValueName = 'AllowSharedLocalAppData'
-           ValueData = $18941AllowSharedLocalAppData
+           ValueData = 0
            Ensure = 'Present'
            ValueType = 'Dword'
            Key = 'HKLM:\Software\Policies\Microsoft\Windows\CurrentVersion\AppModel\StateManager'
@@ -5446,7 +5443,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
         Registry "(L1) Ensure Select when Preview Builds and Feature Updates are received is set to Enabled SemiAnnual Channel 180 or more days (2)"
         {
            ValueName = 'BranchReadinessLevel'
-           ValueData = $18910212BranchReadinessLevel
+           ValueData = 32
            Ensure = 'Present'
            ValueType = 'Dword'
            Key = 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate'
@@ -5456,7 +5453,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
         Registry "(L1) Ensure Select when Preview Builds and Feature Updates are received is set to Enabled SemiAnnual Channel 180 or more days"
         {
            ValueName = 'DeferFeatureUpdates'
-           ValueData = $18910212DeferFeatureUpdates
+           ValueData = 1
            Ensure = 'Present'
            ValueType = 'Dword'
            Key = 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate'
