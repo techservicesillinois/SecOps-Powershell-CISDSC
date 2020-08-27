@@ -16,5 +16,15 @@ Function Resolve-RegistryValueSpecialCases
             #Change the type to REG_SZ
             $regHash.ValueType = '1'
         }
+
+        "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\PauseFeatureUpdatesStartTime"{
+            #There is an encoding error on registry.pol that makes this a mystery character instead of the intended '0'.
+            $regHash.ValueData = "'0'"
+        }
+
+        "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\PauseQualityUpdatesStartTime"{
+            #There is an encoding error on registry.pol that makes this a mystery character instead of the intended '0'.
+            $regHash.ValueData = "'0'"
+        }
     }
 }
