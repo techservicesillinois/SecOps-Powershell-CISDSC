@@ -26,5 +26,11 @@ Function Resolve-RegistryValueSpecialCases
             #There is an encoding error on registry.pol that makes this a mystery character instead of the intended '0'.
             $regHash.ValueData = "'0'"
         }
+
+        "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\ScreenSaverGracePeriod"{
+            #This comes through as a string for some reason but should be a DWORD per https://getadmx.com/?Category=SecurityBaseline&Policy=Microsoft.Policies.MSS::Pol_MSS_ScreenSaverGracePeriod
+            $regHash.ValueData = 0
+            $regHash.ValueType = '4'
+        }
     }
 }
