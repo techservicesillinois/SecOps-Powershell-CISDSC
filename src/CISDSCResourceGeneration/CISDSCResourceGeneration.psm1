@@ -51,7 +51,7 @@ Class Recommendation{
             {$_ -like "*or fewer*"}{$This.DSCParameter = $True}
             {$_ -like "*or greater*"}{$This.DSCParameter = $True}
             {$_ -like "*or less*"}{$This.DSCParameter = $True}
-            {$_ -like "*between*"}{$This.DSCParameter = $True}
+            #{$_ -like "*between*"}{$This.DSCParameter = $True} this was causing false positives.
             {$_ -eq "(L1) Configure 'Interactive logon: Message text for users attempting to log on'"}{$This.DSCParameter = $True}
             {$_ -eq "(L1) Configure 'Interactive logon: Message title for users attempting to log on'"}{$This.DSCParameter = $True}
             {$_ -eq "(L1) Configure 'Accounts: Rename administrator account'"}{$This.DSCParameter = $True}
