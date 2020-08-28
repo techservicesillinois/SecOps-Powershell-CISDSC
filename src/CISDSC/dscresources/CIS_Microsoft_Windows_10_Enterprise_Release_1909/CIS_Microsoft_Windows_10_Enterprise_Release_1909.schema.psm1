@@ -2787,8 +2787,8 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1909
            Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}'
         }
     }
-    if($ExcludeList -notcontains '18.8.21.2' -and $LevelOne){
-        Registry "(L1) Ensure Configure registry policy processing Do not apply during periodic background processing is set to Enabled FALSE (2)"
+    if($ExcludeList -notcontains '18.8.21.3' -and $LevelOne){
+        Registry "(L1) Ensure Configure registry policy processing Process even if the Group Policy objects have not changed is set to Enabled: TRUE"
         {
            ValueName = 'NoGPOListChanges'
            ValueData = 0

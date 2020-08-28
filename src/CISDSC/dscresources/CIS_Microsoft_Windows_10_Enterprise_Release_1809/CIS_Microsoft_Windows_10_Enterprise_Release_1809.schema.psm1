@@ -2144,6 +2144,16 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
         }
     }
     if($ExcludeList -notcontains '18.3.5' -and $LevelOne){
+        Registry "(L1) Ensure NetBT NodeType configuration is set to Enabled: Pnode"
+        {
+           ValueName = 'NodeType'
+           ValueData = 2
+           Ensure = 'Present'
+           ValueType = 'Dword'
+           Key = 'HKLM:\SYSTEM\CurrentControlSet\Services\Netbt\Parameters'
+        }
+    }
+    if($ExcludeList -notcontains '18.3.6' -and $LevelOne){
         Registry "(L1) Ensure WDigest Authentication is set to Disabled"
         {
            ValueName = 'UseLogonCredential'
@@ -2281,16 +2291,6 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
            Ensure = 'Present'
            ValueType = 'Dword'
            Key = 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Security'
-        }
-    }
-    if($ExcludeList -notcontains '18.5.4.1' -and $LevelOne){
-        Registry "(L1) Set NetBIOS node type to Pnode (Ensure NetBT Parameter NodeType is set to 0x2 (2))"
-        {
-           ValueName = 'NodeType'
-           ValueData = 2
-           Ensure = 'Present'
-           ValueType = 'Dword'
-           Key = 'HKLM:\SYSTEM\CurrentControlSet\Services\Netbt\Parameters'
         }
     }
     if($ExcludeList -notcontains '18.5.4.2' -and $LevelOne){
@@ -2797,14 +2797,14 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
            Key = 'HKLM:\Software\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}'
         }
     }
-    if($ExcludeList -notcontains '18.8.21.2' -and $LevelOne){
-        Registry "(L1) Ensure Configure registry policy processing Do not apply during periodic background processing is set to Enabled FALSE (2)"
+    if($ExcludeList -notcontains '18.8.21.3' -and $LevelOne){
+        Registry "(L1) Ensure Configure registry policy processing Process even if the Group Policy objects have not changed is set to Enabled: TRUE"
         {
            ValueName = 'NoGPOListChanges'
            ValueData = 0
            Ensure = 'Present'
            ValueType = 'Dword'
-           Key = 'HKLM:\Software\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}'
+           Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}'
         }
     }
     if($ExcludeList -notcontains '18.8.21.4' -and $LevelOne){
