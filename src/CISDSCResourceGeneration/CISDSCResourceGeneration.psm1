@@ -98,42 +98,6 @@ Class DSCConfigurationParameter{
         $This.DataType = $DataType
         $This.DefaultValue = "$($DefaultValue)".replace('"',"'")
 
-        <# Parameter validation based on titles is currently unreliable due to some recommendations having multiple settings. Commented out until a solution is identified
-        #We can always expect the first 5 characters of the title to be the level acronym. EX: '(L1) '
-        [int[]]$NumbersInTitle = [int[]]($Title.Substring(5) -replace '[^0-9 ]' -split ' ').where({$_}) | Sort-Object -Descending
-        #Some benchmarks implying a lower value is acceptable specifically say but not 0 implying a minimum value of 1 instead.
-        #So the true/false value of that text appearing can be directly converted to a 1/0 for the minimum value.
-        [Boolean]$ButNotZero = $Title -like "*but not 0*"
-
-        [int]$Start = 0
-        [int]$End = 0
-        switch($Title){
-            {$_ -like "*or more*" -or $_ -like "*or greater*"}{
-                $Start = $NumbersInTitle[0]
-                $End = [int32]::MaxValue
-                $This.Validation = "[ValidateRange($($Start),$($End))]"
-            }
-            {$_ -like "*or fewer*" -or $_ -like "*or less*"}{
-                $Start = [int]$ButNotZero
-                $End = $NumbersInTitle[0]
-                $This.Validation = "[ValidateRange($($Start),$($End))]"
-            }
-            {$_ -like "*between*"}{
-                #this helps mitigate some false positives from the word between appearing by ensuring two values are in the title.
-                if(($Start = $NumbersInTitle[1])){
-                    $End = $NumbersInTitle[0]
-                    $This.Validation = "[ValidateRange($($Start),$($End))]"
-                }
-                else{
-                    $This.Validation = $null
-                }
-            }
-            Default{
-                $This.Validation = $null
-            }
-        }
-        #>
-
         $This.TextBlock = $This.GenerateTextBlock()
     }
 
