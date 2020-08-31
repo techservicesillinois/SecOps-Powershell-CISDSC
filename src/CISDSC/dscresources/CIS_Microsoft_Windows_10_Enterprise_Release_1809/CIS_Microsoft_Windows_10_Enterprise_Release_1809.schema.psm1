@@ -2,35 +2,59 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
 {
     param
     (
-        [Int32]$111Enforcepasswordhistory = 24,
+        [ValidateRange(60,999)]
         [Int32]$112MaximumPasswordAge = 60,
+        [ValidateRange(1,998)]
         [Int32]$113MinimumPasswordAge = 1,
-        [Int32]$114MinimumPasswordLength = 14,
+        [ValidateRange(15,99999)]
         [Int32]$121Accountlockoutduration = 15,
+        [ValidateRange(10,999)]
         [Int32]$122Accountlockoutthreshold = 10,
+        [ValidateRange(15,99999)]
         [Int32]$123Resetaccountlockoutcounterafter = 15,
+        [ValidateRange(15,64)]
         [int32]$1825PasswordLength = 15,
+        [ValidateRange(30,365)]
         [int32]$1826PasswordAgeDays = 30,
-        [string]$18410ScreenSaverGracePeriod = '5',
+        [ValidateRange(0,5)]
+        [int32]$18410ScreenSaverGracePeriod = 0,
+        [ValidateRange(0,90)]
         [int32]$18413WarningLevel = 90,
+        [ValidateRange(180,365)]
         [int32]$18910212DeferFeatureUpdatesPeriodInDays = 180,
+        [ValidateRange(32768,2147483647)]
         [int32]$1892612MaxSize = 32768,
+        [ValidateRange(196608,2147483647)]
         [int32]$1892622MaxSize = 196608,
+        [ValidateRange(32768,2147483647)]
         [int32]$1892632MaxSize = 32768,
+        [ValidateRange(32768,2147483647)]
         [int32]$1892642MaxSize = 32768,
+        [ValidateRange(60000,900000)]
         [int32]$189593101MaxIdleTime = 900000,
-        [String]$2315AccountsRenameadministratoraccount = 'CISADMIN',
-        [String]$2316AccountsRenameguestaccount = 'CISGUEST',
-        [int32]$2365MaximumPasswordAge = 30,
+        [ValidateLength(1,256)]
+        [String]$2315AccountsRenameadministratoraccount,
+        [ValidateLength(1,256)]
+        [String]$2316AccountsRenameguestaccount,
+        [ValidateRange(1,10)]
         [int32]$2373MaxDevicePasswordFailedAttempts = 10,
+        [ValidateLength(1,900)]
         [int32]$2374InactivityTimeoutSecs = 900,
-        [string]$2375LegalNoticeText = 'ADD TEXT HERE',
-        [string]$2376LegalNoticeCaption = 'ADD TEXT HERE',
+        [ValidateLength(1,2048)]
+        [string]$2375LegalNoticeText,
+        [ValidateLength(1,512)]
+        [string]$2376LegalNoticeCaption,
+        [ValidateSet('0','1','2','3','4')]
         [string]$2377CachedLogonsCount = '4',
+        [ValidateLength(5,14)]
         [int32]$2378PasswordExpiryWarning = 14,
+        [ValidateLength(1,15)]
         [int32]$2391AutoDisconnect = 15,
+        [ValidateRange(16384,2147483647)]
         [int32]$916LogFileSize = 16384,
+        [ValidateRange(16384,2147483647)]
         [int32]$926LogFileSize = 16384,
+        [ValidateRange(16384,2147483647)]
         [int32]$938LogFileSize = 16384,
         [boolean]$BitLocker = $false,
         [string[]]$ExcludeList = @(),
@@ -60,7 +84,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
         AccountPolicy "(L1) Ensure Enforce password history is set to 24 or more password(s)"
         {
            Name = 'Enforce_password_history'
-           Enforce_password_history = $111Enforcepasswordhistory
+           Enforce_password_history = 24
         }
     }
     if($ExcludeList -notcontains '1.1.2' -and $LevelOne){
@@ -80,7 +104,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
     if($ExcludeList -notcontains '1.1.4' -and $LevelOne){
         AccountPolicy "(L1) Ensure Minimum password length is set to 14 or more character(s)"
         {
-           Minimum_Password_Length = $114MinimumPasswordLength
+           Minimum_Password_Length = 14
            Name = 'Minimum_Password_Length'
         }
     }
