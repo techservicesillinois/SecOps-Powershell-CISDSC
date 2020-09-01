@@ -60,12 +60,16 @@ function Get-RecommendationFromGPOHash {
 
         if($RecommendationCount -eq 0){
             Write-Warning -Message "Failed to find a recommendation for $($Type) $($CorrectionKey)."
+            $GPOHash.add('Error','Failed to find a recommendation')
+            $script:RecommendationErrors += $GPOHash
         }
         elseif($RecommendationCount -gt 1){
             Write-Warning -Message "Found multiple recommendation matches for $($Type) $($CorrectionKey)."
+            $GPOHash.add('Error',"Found multiple recommendations $(($Recommendation).RecommendationNum -join ', ')")
+            $script:RecommendationErrors += $GPOHash
         }
         else{
-            return $Recommendation
+            return $Recommendation.RecommendationNum
         }
     }
 
