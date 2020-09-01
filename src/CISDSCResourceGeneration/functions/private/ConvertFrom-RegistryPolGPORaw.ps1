@@ -26,6 +26,7 @@ function ConvertFrom-RegistryPolGPORaw {
             'ValueType' = $script:RegistryDataType[$ValueType.ToString()]
             'Ensure' = "'Present'"
             'ValueData' = $ValueData
+            'ResourceType' = 'Registry'
         }
 
         if($regHash['ValueName'].StartsWith('**del.')){
@@ -41,7 +42,7 @@ function ConvertFrom-RegistryPolGPORaw {
             $regHash.Remove('ValueType')
         }
 
-        $Recommendation = Get-RecommendationFromGPOHash -GPOHash $regHash -Type 'Registry'
+        $RecommendationNum = Get-RecommendationFromGPOHash -GPOHash $regHash -Type 'Registry'
 
         if($regHash['ValueType'] -in ('ExpandString','String') -and $regHash['ValueData']){
             $regHash['ValueData'] = "'$($regHash['ValueData'])'"
@@ -54,7 +55,9 @@ function ConvertFrom-RegistryPolGPORaw {
         $regHash['key'] = "'$($regHash['key'])'"
         $regHash['ValueName'] = "'$($regHash['ValueName'])'"
 
-        [ScaffoldingBlock]::new($Recommendation,'Registry',$reghash)
+        if($RecommendationNum){
+            $script:BenchmarkRecommendations["$RecommendationNum"].ResourceParameters += $regHash
+        }
     }
 
     end {

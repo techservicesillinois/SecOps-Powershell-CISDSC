@@ -19,6 +19,7 @@ Function ConvertFrom-RegistryValueRawGPO {
         'ValueName' = $ValueName -replace "[^\u0020-\u007E]", ''
         'ValueData' = ''
         'Key' = "$(Split-Path -Parent $Key)" -replace "MACHINE\\", "HKLM:\"
+        'ResourceType' = 'Registry'
     }
 
     if ([string]::IsNullOrEmpty($regHash.ValueName)){
@@ -103,10 +104,12 @@ Function ConvertFrom-RegistryValueRawGPO {
         }
     }
 
-    $Recommendation = Get-RecommendationFromGPOHash -GPOHash $regHash -Type 'Registry'
+    $RecommendationNum = Get-RecommendationFromGPOHash -GPOHash $regHash -Type 'Registry'
 
     $regHash['Key'] = "'$($regHash['Key'])'"
     $regHash['ValueName'] = "'$($regHash['ValueName'])'"
 
-    [ScaffoldingBlock]::new($Recommendation,'Registry',$reghash)
+    if($RecommendationNum){
+        $script:BenchmarkRecommendations["$RecommendationNum"].ResourceParameters += $regHash
+    }
 }

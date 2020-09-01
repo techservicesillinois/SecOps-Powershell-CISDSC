@@ -15,6 +15,7 @@ function ConvertFrom-ServiceRawGPO {
     process {
         $serviceHash = @{
             'Name' = $Service
+            'ResourceType' = 'Service'
         }
 
         switch (($ServiceData -split ',')[0]){
@@ -24,11 +25,13 @@ function ConvertFrom-ServiceRawGPO {
             Default {Write-Warning -Message "Invalid ServiceData of $($values[0])) for $($Service)"}
         }
 
-        $Recommendation = Get-RecommendationFromGPOHash -GPOHash $serviceHash -Type 'Service'
+        $RecommendationNum = Get-RecommendationFromGPOHash -GPOHash $serviceHash -Type 'Service'
 
         $serviceHash['Name'] = "'$($serviceHash['Name'])'"
 
-        [ScaffoldingBlock]::new($Recommendation,'Service',$serviceHash)
+        if($RecommendationNum){
+            $script:BenchmarkRecommendations["$RecommendationNum"].ResourceParameters += $serviceHash
+        }
     }
 
     end {
