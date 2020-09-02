@@ -1,5 +1,5 @@
 # What are we statically correcting?
-Occasionally there are will be some discrepancies between the build kit (GPOs) and the benchmark documentation. These will be placed in a 'RecommendationErrors.ps1' file when those are provided to 'ConvertTo-DSC'. These discrepancies typically fall into one of the following categories.
+Occasionally there are will be some discrepancies between the build kit (GPOs) and the benchmark documentation. These will be placed in a 'RecommendationErrors.txt' file when those are provided to 'ConvertTo-DSC'. These discrepancies typically fall into one of the following categories. Recommendations that failed to find a match will be exported to 'MissingRecommendations.csv' which can be a helpful starting place for tracking down the cause of errors.
 
 1) Simple typos: This will usually be on the benchmark's end as most registry settings in GPOs are not typed by the user.
 
@@ -35,4 +35,4 @@ Once you find the GetADMX.com page for the setting it's easy to correlate to the
 2) If your correction is related to documentation errors that should be corrected consider opening a ticket with CIS with the process outlined [here](cis_documentation.md#How-do-I-open-tickets-for-feedback?).
 
 # How do I test a correction?
-1) You will need to generate the resource again and verify the resulting 'RecommendationErrors.ps1'. Instructions for doing so are located in the [new resources](new_resources.md#How-do-I-create-new-ones?) documentation.
+1) You will need to generate the resource again and verify the resulting 'RecommendationErrors.txt'. Instructions for doing so are located in the [new resources](new_resources.md#How-do-I-create-new-ones?) documentation.

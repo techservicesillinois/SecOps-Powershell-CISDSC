@@ -94,6 +94,7 @@ function ConvertTo-DSC {
         Import-RegistryPol -GPOPath $GPOPath
 
         Export-RecommendationErrors -OutputPath $OutputPath
+        Export-MissingRecommendations -OutputPath $OutputPath
         $FoundRecommendations = ($script:BenchmarkRecommendations).Values | Where-Object -FilterScript {$_.ResourceParameters}
         $FoundRecommendations | ForEach-Object -Process {
             $_.GenerateTextBlock()

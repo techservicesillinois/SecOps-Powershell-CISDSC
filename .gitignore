@@ -12,8 +12,7 @@ bkupInfo.xml
 gpreport.xml
 !/test/example_files/*
 !/test/example_files/*/*
-MissingRecommendations.txt
-RecommendationErrors.ps1
+MissingRecommendations.csv
 RecommendationErrors.txt
 coverage.xml
 testResults.xml
