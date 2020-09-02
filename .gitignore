@@ -14,7 +14,6 @@ gpreport.xml
 !/test/example_files/*/*
 MissingRecommendations.csv
 RecommendationErrors.txt
-RecommendationErrors.txt
 coverage.xml
 testResults.xml
 *.bak*
