@@ -19,14 +19,17 @@ function ConvertFrom-PrivilegeRightRawGPO {
             'Policy' = $script:UserRights[$Policy]
             'Identity' = ($Identity -split ',')
             'Force' = '$true'
+            'ResourceType' = 'UserRightsAssignment'
         }
 
-        $Recommendation = Get-RecommendationFromGPOHash -GPOHash $privilegeHash -Type 'PrivilegeRight'
+        $RecommendationNum = Get-RecommendationFromGPOHash -GPOHash $privilegeHash -Type 'PrivilegeRight'
 
         $privilegeHash['Policy'] = "'$($privilegeHash['Policy'])'"
         $privilegeHash['Identity'] = "@('$($privilegeHash['Identity'] -join "','")')"
 
-        [ScaffoldingBlock]::new($Recommendation,'UserRightsAssignment',$privilegeHash)
+        if($RecommendationNum){
+            $script:BenchmarkRecommendations["$RecommendationNum"].ResourceParameters += $privilegeHash
+        }
     }
 
     end {

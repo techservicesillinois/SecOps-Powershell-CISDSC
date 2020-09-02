@@ -63,7 +63,17 @@ function ConvertTo-DSC {
     )
 
     begin {
-
+        $script:RecommendationErrors.Clear()
+        $script:BenchmarkRecommendations.Clear()
+        $script:StaticCorrections.Clear()
+        $script:DSCConfigurationParameters.Clear()
+        $script:DSCConfigurationParameters += @(
+            '        [string[]]$ExcludeList = @()',
+            '        [boolean]$LevelOne = $true',
+            '        [boolean]$LevelTwo = $false',
+            '        [boolean]$BitLocker = $false',
+            '        [boolean]$NextGenerationWindowsSecurity = $false'
+        )
     }
 
     process {
@@ -79,21 +89,23 @@ function ConvertTo-DSC {
             New-Item -Path $OutputPath -ItemType Directory | Out-Null
         }
 
-        $script:ScaffoldingBlocks += Import-GptTmpl -GPOPath $GPOPath
-        $script:ScaffoldingBlocks += Import-AudicCsv -GPOPath $GPOPath
-        $script:ScaffoldingBlocks += Import-RegistryPol -GPOPath $GPOPath
+        Import-GptTmpl -GPOPath $GPOPath
+        Import-AudicCsv -GPOPath $GPOPath
+        Import-RegistryPol -GPOPath $GPOPath
 
-        Find-RecommendationErrors -OutputPath $OutputPath
-        $script:ScaffoldingBlocks = $script:ScaffoldingBlocks | Where-Object -FilterScript {($_.Recommendation | Measure-Object).count -eq 1 -and $_.Recommendation.TopLevelSection -ne $script:UserSection}
-        Find-MissingRecommendations -OutputPath $OutputPath
+        Export-RecommendationErrors -OutputPath $OutputPath
+        $FoundRecommendations = ($script:BenchmarkRecommendations).Values | Where-Object -FilterScript {$_.ResourceParameters}
+        $FoundRecommendations | ForEach-Object -Process {
+            $_.GenerateTextBlock()
+        }
 
-        if($script:ScaffoldingBlocks){
+        if($FoundRecommendations){
             [string]$ResourceName = "CIS_$($OS.replace(' ','_'))_Release_$($OSBuild)"
             [string]$ResourcePath = Join-Path -Path $OutputPath -ChildPath $ResourceName
             [string]$ScaffoldingPath = Join-Path -Path $ResourcePath -ChildPath "$($ResourceName).schema.psm1"
             New-Item -Path $ResourcePath -ItemType Directory | Out-Null
             #Setting this inside the splat loses data. I assume because script scope variables cannot be read by invoke-plaster.
-            [String]$DSCParameters = (($script:DSCConfigurationParameters | Sort-Object -Property 'Name').TextBlock -join ",`n")
+            $script:DSCConfigurationParameters += (($FoundRecommendations).DSCConfigParameter | Sort-Object -Property 'Name').TextBlock
 
             $PlasterSplat = @{
                 'TemplatePath' = (Join-Path -Path $script:PlasterTemplatePath -ChildPath 'NewBenchmarkCompositeResource')
@@ -102,8 +114,8 @@ function ConvertTo-DSC {
                 'OS' = $OS.replace(' ','_')
                 'OSBuild' = $OSBuild
                 'BenchmarkVersion' = $BenchmarkVersion.ToString()
-                'DSCParameters' = $DSCParameters
-                'DSCScaffolding' = (($script:ScaffoldingBlocks | Sort-Object -Property 'RecommendationVersioned').TextBlock -join "`n")
+                'DSCParameters' = ($script:DSCConfigurationParameters -join ",`n")
+                'DSCScaffolding' = (($FoundRecommendations | Sort-Object -Property 'RecommendationVersioned').DSCTextBlock -join "`n")
             }
             Invoke-Plaster @PlasterSplat | Out-Null
 

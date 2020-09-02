@@ -41,13 +41,16 @@ function ConvertFrom-SystemAccessRawGPO {
         $SystemAccessHash = @{
             'Name' = $SecuritySetting
             $SecuritySetting = $ValueData
+            'ResourceType' = $ResourceName
         }
 
-        $Recommendation = Get-RecommendationFromGPOHash -GPOHash $SystemAccessHash -Type 'SystemAccess'
+        $RecommendationNum = Get-RecommendationFromGPOHash -GPOHash $SystemAccessHash -Type 'SystemAccess'
 
         $SystemAccessHash['Name'] = "'$($SystemAccessHash['Name'])'"
 
-        [ScaffoldingBlock]::new($Recommendation,$ResourceName,$SystemAccessHash)
+        if($RecommendationNum){
+            $script:BenchmarkRecommendations["$RecommendationNum"].ResourceParameters += $SystemAccessHash
+        }
     }
 
     end {

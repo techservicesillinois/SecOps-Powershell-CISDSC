@@ -6,21 +6,48 @@ Get-ChildItem -Path $FunctionPath -Filter "*.ps1" -Recurse | ForEach-Object -Pro
     . $_.FullName | Out-Null
 }
 
+#This class is utilized to help centralize the logic for generating parameters for recommendations where appropriate.
+#These are created within the ScaffoldingBlock class and later used within Get-ConfigurationHeader
+#The constructor should probably be reworked to just take a scaffolding block object vs the various properties individually.
+Class DSCConfigurationParameter{
+    [string]$Name
+    [string]$DataType
+    [string]$DefaultValue
+    [string]$TextBlock
+
+    DSCConfigurationParameter($RecommendationNum, $Name, $DataType, $DefaultValue){
+        [string]$SanitizedName = $Name -replace "[^a-zA-Z0-9]",""
+        [string]$SanitizedRecommendationNum = $RecommendationNum.Replace('.','')
+
+        $This.Name = '${0}{1}' -f $SanitizedRecommendationNum,$SanitizedName
+        $This.DataType = $DataType
+        $This.DefaultValue = "$($DefaultValue)".replace('"',"'")
+
+        <# Example of formated definition
+            [Int32]$112MaximumPasswordAge = 60
+        #>
+        $This.TextBlock = "        $($This.DataType)$($This.Name) = $($This.DefaultValue)"
+    }
+}
+
 #This class is utilized by Update-CISBenchmarkData to cleanly import the information from the CIS excel files.
 Class Recommendation{
     [string]$SectionNum
     [string]$RecommendationNum
     [string]$Title
-    [String]$DSCTitle
+    [string]$DSCTitle
     [string]$Description
     [string]$RemediationProcedure
     [string]$AuditProcedure
     [string]$Level
     #The version typing is required later for sorting properly.
-    [Version]$RecommendationVersioned
-    [Version]$SectionVersioned
+    [version]$RecommendationVersioned
+    [version]$SectionVersioned
     [int]$TopLevelSection
-    [Boolean]$DSCParameter
+    [System.Collections.Hashtable[]]$ResourceParameters
+    [string]$DSCTextBlock
+    [DSCConfigurationParameter]$DSCConfigParameter
+
 
     Recommendation([Object]$ExcelRow){
         $This.SectionNum = $ExcelRow.'section #'
@@ -45,19 +72,6 @@ Class Recommendation{
         $This.RecommendationVersioned = $This.ConvertNumStringToVersion($This.RecommendationNum)
         $This.SectionVersioned = $This.ConvertNumStringToVersion($This.SectionNum)
         $This.TopLevelSection = $This.RecommendationVersioned.Major
-
-        switch($This.Title){
-            {$_ -like "*or more*"}{$This.DSCParameter = $True}
-            {$_ -like "*or fewer*"}{$This.DSCParameter = $True}
-            {$_ -like "*or greater*"}{$This.DSCParameter = $True}
-            {$_ -like "*or less*"}{$This.DSCParameter = $True}
-            #{$_ -like "*between*"}{$This.DSCParameter = $True} this was causing false positives.
-            {$_ -eq "(L1) Configure 'Interactive logon: Message text for users attempting to log on'"}{$This.DSCParameter = $True}
-            {$_ -eq "(L1) Configure 'Interactive logon: Message title for users attempting to log on'"}{$This.DSCParameter = $True}
-            {$_ -eq "(L1) Configure 'Accounts: Rename administrator account'"}{$This.DSCParameter = $True}
-            {$_ -eq "(L1) Configure 'Accounts: Rename guest account'"}{$This.DSCParameter = $True}
-            default {$This.DSCParameter = $False}
-        }
     }
 
     [version]ConvertNumStringToVersion([string]$CISNumberString){
@@ -81,181 +95,90 @@ Class Recommendation{
 
         return [version]$VerString
     }
-}
-
-#This class is utilized to help centralize the logic for generating parameters for recommendations where appropriate.
-#These are created within the ScaffoldingBlock class and later used within Get-ConfigurationHeader
-#The constructor should probably be reworked to just take a scaffolding block object vs the various properties individually.
-Class DSCConfigurationParameter{
-    [string]$Name
-    [string]$DataType
-    [string]$DefaultValue
-    [string]$TextBlock
-    #[string]$Validation
-
-    DSCConfigurationParameter($Name, $DataType, $DefaultValue, $Title){
-        $This.Name = $Name
-        $This.DataType = $DataType
-        $This.DefaultValue = "$($DefaultValue)".replace('"',"'")
-
-        <# Parameter validation based on titles is currently unreliable due to some recommendations having multiple settings. Commented out until a solution is identified
-        #We can always expect the first 5 characters of the title to be the level acronym. EX: '(L1) '
-        [int[]]$NumbersInTitle = [int[]]($Title.Substring(5) -replace '[^0-9 ]' -split ' ').where({$_}) | Sort-Object -Descending
-        #Some benchmarks implying a lower value is acceptable specifically say but not 0 implying a minimum value of 1 instead.
-        #So the true/false value of that text appearing can be directly converted to a 1/0 for the minimum value.
-        [Boolean]$ButNotZero = $Title -like "*but not 0*"
-
-        [int]$Start = 0
-        [int]$End = 0
-        switch($Title){
-            {$_ -like "*or more*" -or $_ -like "*or greater*"}{
-                $Start = $NumbersInTitle[0]
-                $End = [int32]::MaxValue
-                $This.Validation = "[ValidateRange($($Start),$($End))]"
-            }
-            {$_ -like "*or fewer*" -or $_ -like "*or less*"}{
-                $Start = [int]$ButNotZero
-                $End = $NumbersInTitle[0]
-                $This.Validation = "[ValidateRange($($Start),$($End))]"
-            }
-            {$_ -like "*between*"}{
-                #this helps mitigate some false positives from the word between appearing by ensuring two values are in the title.
-                if(($Start = $NumbersInTitle[1])){
-                    $End = $NumbersInTitle[0]
-                    $This.Validation = "[ValidateRange($($Start),$($End))]"
-                }
-                else{
-                    $This.Validation = $null
-                }
-            }
-            Default{
-                $This.Validation = $null
-            }
-        }
-        #>
-
-        $This.TextBlock = $This.GenerateTextBlock()
-    }
-
-    <# Example of formated definition
-        [Int32]$112MaximumPasswordAge = 60
-    #>
-
-    [string]GenerateTextBlock(){
-        $blankDefinition = @'
-        {0}{1} = {2}
-'@
-
-        return ($blankDefinition -f $This.DataType,$This.Name,$This.DefaultValue)
-    }
-}
-
-#This class contains the logic combining the CIS Excel information and DSC into actual text to be placed into the resulting composite resource.
-#Used within ConvertTo-DSC
-Class ScaffoldingBlock{
-    [Recommendation]$Recommendation
-    [string]$ResourceType
-    [System.Collections.Hashtable]$ResourceParameters
-    [string]$TextBlock
-    [version]$RecommendationVersioned
-
-    ScaffoldingBlock($Recommendation, $ResourceType, $ResourceParameters){
-        $This.Recommendation = $Recommendation
-        $This.ResourceType = $ResourceType
-        $This.ResourceParameters = $ResourceParameters
-        $This.RecommendationVersioned = $Recommendation.RecommendationVersioned
-        $This.UpdateForDSCParameter()
-        $script:UsedResourceTitles += $This.Recommendation.DSCTitle
-        $This.TextBlock = $This.GenerateTextBlock()
-    }
 
     UpdateForDSCParameter(){
-        if($This.Recommendation.DSCParameter){
-            switch($This.ResourceType){
-                'Registry'{
-                    [string]$DataType = switch($This.ResourceParameters['ValueType']){
-                        "'String'" {'[string]'}
-                        "'MultiString'" {'[string[]]'}
-                        "'Dword'" {'[int32]'}
-                    }
-                    [string]$Name = "$('$')$($This.RecommendationVersioned.ToString().Replace('.',''))$($This.ResourceParameters['ValueName'].replace("'",''))"
-                    #Titles are stored in script scope so they can be de-duplicated later.
-                    $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$This.ResourceParameters['ValueData'],$This.Recommendation.DSCTitle)
-                    $This.ResourceParameters['ValueData'] = $Name
-                }
+        [boolean]$NeedsParam = switch($This.Title){
+            {$_ -like "*or more*"}{$True}
+            {$_ -like "*or fewer*"}{$True}
+            {$_ -like "*or greater*"}{$True}
+            {$_ -like "*or less*"}{$True}
+            {$_ -eq "(L1) Configure 'Interactive logon: Message text for users attempting to log on'"}{$True}
+            {$_ -eq "(L1) Configure 'Interactive logon: Message title for users attempting to log on'"}{$True}
+            {$_ -eq "(L1) Configure 'Accounts: Rename administrator account'"}{$True}
+            {$_ -eq "(L1) Configure 'Accounts: Rename guest account'"}{$True}
+            default {$False}
+        }
 
-                {$_ -in ('SecurityOption','AccountPolicy')}{
-                    [string]$Name = "$('$')$($This.RecommendationVersioned.ToString().Replace('.',''))$($This.ResourceParameters['Name'].replace("'",'').replace('_',''))"
-                    $ValueKey = $This.ResourceParameters['Name'].replace("'",'')
-                    [string]$DataType = "[$($This.ResourceParameters[$ValueKey].GetType().Name)]"
-                    #Titles are stored in script scope so they can be de-duplicated later.
-                    $script:DSCConfigurationParameters += [DSCConfigurationParameter]::new($Name,$DataType,$This.ResourceParameters[$ValueKey],$This.Recommendation.DSCTitle)
-                    $This.ResourceParameters[$ValueKey] = $Name
+        if($NeedsParam){
+            [int[]]$NumbersInTitle = [int[]]($This.Title.Substring(5) -replace '[^0-9 ]' -split ' ').where({$_}) | Sort-Object -Descending
+
+            #Recommendations can have many associated settings but typically only one of these is configurable.
+            #The configurable setting is identified by it's value matching a number in the title if there are no numbers they are all given a parameter.
+            foreach($Hash in $This.ResourceParameters){
+                foreach($Value in $Hash.Values){
+                    if( ($Value -in $NumbersInTitle) -or !$NumbersInTitle -or $This.ResourceParameters.Count -eq 1){
+                        switch($Hash['ResourceType']){
+                            'Registry'{
+                                [string]$DataType = switch($Hash['ValueType']){
+                                    "'String'" {'[string]'}
+                                    "'MultiString'" {'[string[]]'}
+                                    "'Dword'" {'[int32]'}
+                                }
+                                $This.DSCConfigParameter = [DSCConfigurationParameter]::new($This.RecommendationNum,$Hash['ValueName'],$DataType,$Hash['ValueData'])
+                                $Hash['ValueData'] = $This.DSCConfigParameter.Name
+                            }
+
+                            {$_ -in ('SecurityOption','AccountPolicy')}{
+                                $ValueKey = $Hash['Name'].replace("'",'')
+                                [string]$DataType = "[$($Hash[$ValueKey].GetType().Name)]"
+                                $This.DSCConfigParameter = [DSCConfigurationParameter]::new($This.RecommendationNum,$Hash['Name'],$DataType,$Hash[$ValueKey])
+                                $Hash[$ValueKey] = $This.DSCConfigParameter.Name
+                            }
+                        }
+                        break
+                    }
                 }
             }
         }
     }
 
-    [string]GenerateTextBlock(){
-        [string[]]$ResourceParametersString = @()
-        foreach($Key in $This.ResourceParameters.keys){
-            $ResourceParametersString += "           $Key = $($This.ResourceParameters[$Key])"
-        }
+    GenerateTextBlock(){
+        $This.UpdateForDSCParameter()
 
-        <# Example of formatted definition
-            if($ExcludeList -notcontains '1.1.3' -and $LevelOne){
-                AccountPolicy "(L1) Ensure Minimum password age is set to 1 or more day(s)"
-                {
-                    Minimum_Password_Age = $113MinimumPasswordAge
-                    Name = 'Minimum_Password_Age'
+        [string]$Conditional = '    if($ExcludeList -notcontains ''{0}'' -and ${1}){{' -f $This.RecommendationNum,$This.Level
+        [int]$TitleCount = 1
+        [string[]]$ResourceParametersString = @()
+        $ResourceParametersString += $Conditional
+
+        foreach($Hash in $This.ResourceParameters){
+            if($This.ResourceParameters.Count -gt 1){
+                $FunctionalTitle = "$($This.DSCTitle) ($($TitleCount))"
+                $TitleCount++
+            }
+            else{
+                $FunctionalTitle = $This.DSCTitle
+            }
+
+            $ResourceParametersString += '        {0} "{1}" {{' -f $Hash['ResourceType'],$FunctionalTitle
+            foreach($Key in ($Hash.keys | Sort-Object)){
+                if($Key -ne 'ResourceType'){
+                    $ResourceParametersString += "            $($Key) = $($Hash[$Key])"
                 }
             }
-        #>
-
-        $blankDefinition = @'
-    if($ExcludeList -notcontains '{0}' -and ${1}){{
-        {2} "{3}"
-        {{
-{4}
-        }}
-    }}
-'@
-
-        [string]$Title = $This.Recommendation.DSCTitle
-
-        #Some recommendations result in multiple settings being changed. Since DSC requires unique titles a (#) is appended to what would otherwise be breaking duplicates in the resource.
-        [int]$TitleCount = ($script:UsedResourceTitles | Where-Object -FilterScript {$_ -eq $Title} | Measure-Object).count
-        if($TitleCount -gt 1){
-            $Title = "$($Title) ($($TitleCount))"
+            $ResourceParametersString += '        }'
         }
 
-        $Replacements = @(
-            $This.Recommendation.RecommendationNum,
-            $This.Recommendation.Level,
-            $This.ResourceType,
-            $Title,
-            ($ResourceParametersString -join "`n")
-        )
-
-        return ($blankDefinition -f $Replacements)
+        $ResourceParametersString += "    }"
+        $This.DSCTextBlock = ($ResourceParametersString -join "`n")
     }
 }
 
 $script:BenchmarkRecommendations = @{}
 $script:StaticCorrections = @{}
-[string[]]$script:UsedResourceTitles = @()
 [int]$script:ServiceSection = 0
 [int]$script:UserSection = 0
-
-$script:DSCConfigurationParameters = @(
-    [DSCConfigurationParameter]::new('$ExcludeList','[string[]]','@()','blank'),
-    [DSCConfigurationParameter]::new('$LevelOne','[boolean]','$true','blank'),
-    [DSCConfigurationParameter]::new('$LevelTwo','[boolean]','$false','blank'),
-    [DSCConfigurationParameter]::new('$BitLocker','[boolean]','$false','blank'),
-    [DSCConfigurationParameter]::new('$NextGenerationWindowsSecurity','[boolean]','$false','blank')
-)
-
-[System.Collections.ArrayList]$script:ScaffoldingBlocks = @()
+[System.Collections.ArrayList]$script:RecommendationErrors = @()
+[System.Collections.ArrayList]$script:DSCConfigurationParameters = @()
 
 #Below is various dictionaries used to translate values from group policy to DSC.
 #These where pulled from https://github.com/microsoft/BaselineManagement/blob/master/src/Helpers/Enumerations.ps1

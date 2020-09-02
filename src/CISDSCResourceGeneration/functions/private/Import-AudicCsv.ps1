@@ -15,7 +15,6 @@
 #>
 function Import-AudicCsv {
     [CmdletBinding()]
-    [OutputType('System.Object[]')]
     param (
         [Parameter(Mandatory=$true)]
         [string]$GPOPath
@@ -26,20 +25,16 @@ function Import-AudicCsv {
     }
 
     process {
-        [System.Collections.ArrayList]$ScaffoldingBlocks = @()
-
         Get-ChildItem -Path $GPOPath -Filter 'Audit.csv' -Recurse | ForEach-Object -Process {
             $CSV = Import-CSV -Path $_.FullName
 
             foreach($Row in $CSV){
                 switch ($Row){
-                    {!([string]::IsNullOrEmpty($Row.'Subcategory GUID'))} {$ScaffoldingBlocks += ConvertFrom-AuditPolicySubcategoryRawGPO -SubcategoryGUID $Row.'Subcategory GUID' -Subcategory $Row.Subcategory -InclusionSetting $Row.'Inclusion Setting'}
+                    {!([string]::IsNullOrEmpty($Row.'Subcategory GUID'))} {ConvertFrom-AuditPolicySubcategoryRawGPO -SubcategoryGUID $Row.'Subcategory GUID' -Subcategory $Row.Subcategory -InclusionSetting $Row.'Inclusion Setting'}
                     Default {Write-Warning -Message "Audit: $($CSV.SubCategory) is not currently supported"}
                 }
             }
         }
-
-        $ScaffoldingBlocks
     }
 
     end {

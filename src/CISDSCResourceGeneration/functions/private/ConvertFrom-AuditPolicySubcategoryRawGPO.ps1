@@ -26,6 +26,7 @@ function ConvertFrom-AuditPolicySubcategoryRawGPO {
                 'Name' = "'$($script:AuditSubcategory[$GUID])'"
                 'Ensure' = [string]::Empty
                 'AuditFlag' = [string]::Empty
+                'ResourceType' = 'AuditPolicySubcategory'
             }
 
             switch -regex ($InclusionSetting){
@@ -61,10 +62,12 @@ function ConvertFrom-AuditPolicySubcategoryRawGPO {
                 }
             }
 
-            $Recommendation = Get-RecommendationFromGPOHash -GPOHash @{'Subcategory'=$Subcategory; 'InclusionSetting'=$InclusionSetting} -Type 'AuditPolicy'
+            $RecommendationNum = Get-RecommendationFromGPOHash -GPOHash @{'Subcategory'=$Subcategory; 'InclusionSetting'=$InclusionSetting} -Type 'AuditPolicy'
 
-            [ScaffoldingBlock]::new($Recommendation,'AuditPolicySubcategory',$retHash)
-            [ScaffoldingBlock]::new($Recommendation,'AuditPolicySubcategory',$duplicate)
+            if($RecommendationNum){
+                $script:BenchmarkRecommendations["$RecommendationNum"].ResourceParameters += $retHash
+                $script:BenchmarkRecommendations["$RecommendationNum"].ResourceParameters += $duplicate
+            }
         }
     }
 

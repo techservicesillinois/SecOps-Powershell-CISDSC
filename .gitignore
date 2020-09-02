@@ -14,3 +14,7 @@ gpreport.xml
 !/test/example_files/*/*
 MissingRecommendations.txt
 RecommendationErrors.ps1
+RecommendationErrors.txt
+coverage.xml
+testResults.xml
+*.bak*

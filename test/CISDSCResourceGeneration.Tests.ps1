@@ -60,67 +60,11 @@ Describe 'Class: Recommendation' {
 Describe 'Class: DSCConfigurationParameter' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
         It 'Constructs under normal circumstances' {
-            $Name = '2373MaxDevicePasswordFailedAttempts'
+            $RecommendationNum = '2.3.7.3'
+            $Name = 'MaxDevicePasswordFailedAttempts'
             $DataType = "'[Int32]'"
             $DefaultValue = "10"
-            $Title = "(BL) Ensure Interactive logon Machine account lockout threshold is set to 10 or fewer invalid logon attempts but not 0"
-            {[DSCConfigurationParameter]::New($Name,$DataType,$DefaultValue,$Title)} | Should -Not -Throw
-        }
-<#
-        It 'Creates validation blocks properly' -TestCases @(
-            @{ Title = "(BL) Ensure Interactive logon Machine account lockout threshold is set to 10 or fewer invalid logon attempts but not 0"; Expectation = "[ValidateRange(1,10)]" },
-            @{ Title = "(BL) Ensure Interactive logon Machine account lockout threshold is set to 10 or fewer invalid logon attempts"; Expectation = "[ValidateRange(0,10)]" },
-            @{ Title = "(BL) Ensure Interactive logon Machine account lockout threshold is set to 10 or more invalid logon attempts"; Expectation = "[ValidateRange(10,$([int32]::MaxValue))]" },
-            @{ Title = "(BL) Ensure Interactive logon Machine account lockout threshold is set to between 10 and 20 invalid logon attempts"; Expectation = "[ValidateRange(10,20)]" },
-            @{ Title = "(BL) Ensure Interactive logon Machine account lockout threshold is set to whatever I'm not your boss invalid logon attempts"; Expectation = [string]::Empty }
-        ){
-            $Name = '2373MaxDevicePasswordFailedAttempts'
-            $DataType = "'[Int32]'"
-            $DefaultValue = "10"
-            $Title = $Title
-            ([DSCConfigurationParameter]::New($Name,$DataType,$DefaultValue,$Title)).validation | Should -Be $Expectation
-        }
-#>
-    }
-}
-
-Describe 'Class: ScaffoldingBlock' {
-    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
-        It 'Adjusts for detected parameters' {
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
-                Where-Object -FilterScript {$_.'Recommendation #' -eq '1.1.1'})
-
-            $Recommendation1 = [Recommendation]::New($ExcelExample)
-            $Recommendation2 = [Recommendation]::New($ExcelExample)
-            $Recommendation2.DSCParameter = $False
-            $ResourceParameters = @{
-                'Name' = 'Enforce_password_history'
-                'Enforce_password_history' = 24
-            }
-
-            $script:UsedResourceTitles.clear()
-            $Block2 = [ScaffoldingBlock]::New($Recommendation2, 'AccountPolicy', $ResourceParameters)
-            $script:UsedResourceTitles.clear()
-            $Block1 = [ScaffoldingBlock]::New($Recommendation1, 'AccountPolicy', $ResourceParameters)
-
-            $Block1.TextBlock | Should -Not -Be $Block2.TextBlock
-        }
-
-        It 'Adjusts title name if its a repeat' {
-            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
-                Where-Object -FilterScript {$_.'Recommendation #' -eq '1.1.1'})
-
-            $Recommendation = [Recommendation]::New($ExcelExample)
-            $ResourceParameters = @{
-                'Name' = 'Enforce_password_history'
-                'Enforce_password_history' = 24
-            }
-            $script:UsedResourceTitles.clear()
-            $Block1 = [ScaffoldingBlock]::New($Recommendation, 'AccountPolicy', $ResourceParameters)
-            $Block2 = [ScaffoldingBlock]::New($Recommendation, 'AccountPolicy', $ResourceParameters)
-
-            $script:UsedResourceTitles[0] | Should -Be $script:UsedResourceTitles[1]
-            $Block1.TextBlock | Should -Not -Be $Block2.TextBlock
+            {[DSCConfigurationParameter]::New($RecommendationNum,$Name,$DataType,$DefaultValue)} | Should -Not -Throw
         }
     }
 }
@@ -134,7 +78,7 @@ Describe 'Helper: Get-IniContent' {
             $Ini['Version']['Revision'] | Should -Be 1
         }
 
-        It 'Finds all the caegories' {
+        It 'Finds all the categories' {
             $Ini = Get-IniContent -Path "$($PSScriptRoot)\example_files\GptTmpl.inf"
             [string[]]$ExpectedKeys = @('Unicode','System Access','Privilege Rights','Registry Values','Version')
             $ExpectedKeys | Where-Object -FilterScript {$_ -notin $Ini.keys} | Should -Be $null
@@ -202,57 +146,46 @@ Describe 'Helper: Conversion functions' {
         Update-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
 
         It 'ConvertFrom-AuditPolicySubcategoryRawGPO returns valid objects' {
-            $Block = ConvertFrom-AuditPolicySubcategoryRawGPO -SubcategoryGUID '{0cce9248-69ae-11d9-bed3-505054503030}' -Subcategory 'Audit PNP Activity' -InclusionSetting 'Success'
-            ($Block | Measure-Object).count | Should -Be 2
-            ($Block[0] -is [ScaffoldingBlock]) -and ($Block[1] -is [ScaffoldingBlock]) | Should -Be $True
-            $Block[0].ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('Name','Ensure','AuditFlag')} | Should -Be $null
-            $Block[1].ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('Name','Ensure','AuditFlag')} | Should -Be $null
+            ConvertFrom-AuditPolicySubcategoryRawGPO -SubcategoryGUID '{0cce9248-69ae-11d9-bed3-505054503030}' -Subcategory 'Audit PNP Activity' -InclusionSetting 'Success'
+            ($script:BenchmarkRecommendations['17.3.1'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
+            $script:BenchmarkRecommendations['17.3.1'].ResourceParameters[0].keys | Where-Object -FilterScript {$_ -notin ('Name','Ensure','AuditFlag','ResourceType')} | Should -Be $null
+            $script:BenchmarkRecommendations['17.3.1'].ResourceParameters[1].keys | Where-Object -FilterScript {$_ -notin ('Name','Ensure','AuditFlag','ResourceType')} | Should -Be $null
         }
 
         It 'ConvertFrom-PrivilegeRightRawGPO returns valid objects' {
-            $Block = ConvertFrom-PrivilegeRightRawGPO -Policy 'SeCreateGlobalPrivilege' -Identity '*S-1-5-6,*S-1-5-20,*S-1-5-19,*S-1-5-32-544'
-            $Block -is [ScaffoldingBlock] | Should -Be $True
-            $Block.ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('Policy','Identity','Force')} | Should -Be $null
+            ConvertFrom-PrivilegeRightRawGPO -Policy 'SeCreateGlobalPrivilege' -Identity '*S-1-5-6,*S-1-5-20,*S-1-5-19,*S-1-5-32-544'
+            ($script:BenchmarkRecommendations['2.2.12'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
+            $script:BenchmarkRecommendations['2.2.12'].ResourceParameters[0].keys | Where-Object -FilterScript {$_ -notin ('Policy','Identity','Force','ResourceType')} | Should -Be $null
         }
 
         It 'ConvertFrom-RegistryPolGPORaw returns valid objects for creates' {
-            $Block = ConvertFrom-RegistryPolGPORaw -KeyName 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging' -ValueName 'LogFileSize' -ValueType 'REG_DWORD' -ValueData '16384'
-            $Block -is [ScaffoldingBlock] | Should -Be $True
-            $Block.ResourceParameters['Key'] | Should -Be "'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging'"
-            $Block.ResourceParameters['ValueType'] | Should -Be "'Dword'"
-            $Block.ResourceParameters['Ensure'] | Should -Be "'Present'"
-            $Block.ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('ValueType','ValueName','ValueData','Key','Ensure')} | Should -Be $null
+            ConvertFrom-RegistryPolGPORaw -KeyName 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging' -ValueName 'LogFileSize' -ValueType 'REG_DWORD' -ValueData '16384'
+            ($script:BenchmarkRecommendations['9.3.8'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
+            $script:BenchmarkRecommendations['9.3.8'].ResourceParameters[0].keys | Where-Object -FilterScript {$_ -notin ('ValueType','ValueName','ValueData','Key','Ensure','ResourceType')} | Should -Be $null
         }
 
         It 'ConvertFrom-RegistryPolGPORaw returns valid objects for deletes' {
-            $Block = ConvertFrom-RegistryPolGPORaw -KeyName 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -ValueName '**del.DisableBkGndGroupPolicy' -ValueType 'REG_DWord' -ValueData ''
-            $Block -is [ScaffoldingBlock] | Should -Be $True
-            $Block.ResourceParameters['Key'] | Should -Be "'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'"
-            $Block.ResourceParameters['Ensure'] | Should -Be "'Absent'"
-            $Block.ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('ValueName','Key','Ensure')} | Should -Be $null
+            ConvertFrom-RegistryPolGPORaw -KeyName 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -ValueName '**del.DisableBkGndGroupPolicy' -ValueType 'REG_DWord' -ValueData ''
+            ($script:BenchmarkRecommendations['18.8.21.5'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
+            $script:BenchmarkRecommendations['18.8.21.5'].ResourceParameters[0].keys | Where-Object -FilterScript {$_ -notin ('ValueName','Key','Ensure','ResourceType')} | Should -Be $null
         }
 
         It 'ConvertFrom-RegistryValueRawGPO returns valid objects' {
-            $Block = ConvertFrom-RegistryValueRawGPO -Key 'MACHINE\System\CurrentControlSet\Control\Lsa\NoLMHash' -ValueData '4,1'
-            $Block -is [ScaffoldingBlock] | Should -Be $True
-            $Block.ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('ValueType','ValueName','ValueData','Key')} | Should -Be $null
-            $Block.ResourceParameters['Key'] | Should -Be "'HKLM:\System\CurrentControlSet\Control\Lsa'"
-            $Block.ResourceParameters['ValueName'] | Should -Be "'NoLMHash'"
-            $Block.ResourceParameters['ValueType'] | Should -Be "'Dword'"
-            $Block.ResourceParameters['ValueData'] | Should -Be 1
+            ConvertFrom-RegistryValueRawGPO -Key 'MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\PasswordExpiryWarning' -ValueData '4,14'
+            ($script:BenchmarkRecommendations['2.3.7.8'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
+            $script:BenchmarkRecommendations['2.3.7.8'].ResourceParameters[0].keys | Where-Object -FilterScript {$_ -notin ('ValueType','ValueName','ValueData','Key','ResourceType')} | Should -Be $null
         }
 
         It 'ConvertFrom-ServiceRawGPO returns valid objects' {
-            $Block = ConvertFrom-ServiceRawGPO -Service 'IISADMIN' -ServiceData '4'
-            $Block -is [ScaffoldingBlock] | Should -Be $True
-            $Block.ResourceParameters.keys | Where-Object -FilterScript {$_ -notin ('Name','State')} | Should -Be $null
-            $Block.ResourceParameters['ServiceData'] = "'Stopped'"
+            ConvertFrom-ServiceRawGPO -Service 'IISADMIN' -ServiceData '4'
+            ($script:BenchmarkRecommendations['5.6'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
+            $script:BenchmarkRecommendations['5.6'].ResourceParameters[0].keys | Where-Object -FilterScript {$_ -notin ('Name','State','ResourceType')} | Should -Be $null
         }
 
         It 'ConvertFrom-SystemAccessRawGPO returns valid objects' {
-            $Block = ConvertFrom-SystemAccessRawGPO -Key 'PasswordComplexity' -SecurityData '1'
-            $Block -is [ScaffoldingBlock] | Should -Be $True
-            ($Block.ResourceParameters.keys | Measure-Object).count | Should -Be 2
+            ConvertFrom-SystemAccessRawGPO -Key 'EnableAdminAccount' -SecurityData '0'
+            ($script:BenchmarkRecommendations['2.3.1.1'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
+            ($script:BenchmarkRecommendations['2.3.1.1'].ResourceParameters[0].keys | Measure-Object).count | Should -Be 3
         }
     }
 }
@@ -262,42 +195,16 @@ Describe 'Helper: File import functions' {
         It 'Import-AudicCsv returns objects from a valid Audit.csv' {
             [string]$GPOPath = "$($PSScriptRoot)\example_files"
             {Import-AudicCsv -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
-            (Import-AudicCsv -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
         }
 
         It 'Import-GptTmpl returns objects from a valid GptTmpl.inf' {
             [string]$GPOPath = "$($PSScriptRoot)\example_files"
             {Import-GptTmpl -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
-            (Import-GptTmpl -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
         }
 
         It 'Import-RegistryPol returns objects from a valid registry.pol' {
             [string]$GPOPath = "$($PSScriptRoot)\example_files"
             {Import-RegistryPol -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
-            (Import-RegistryPol -GPOPath $GPOPath -WarningAction SilentlyContinue)[0] -is [ScaffoldingBlock] | Should -Be $True
-        }
-    }
-}
-
-Describe 'Helper: Recommendation audit functions' {
-    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
-        [string]$GPOPath = "$($PSScriptRoot)\example_files"
-        $script:ScaffoldingBlocks += Import-AudicCsv -GPOPath $GPOPath -WarningAction SilentlyContinue
-
-        It 'Find-MissingRecommendations: writes a warning for findings' {
-            Find-MissingRecommendations -OutputPath '.\' 3>&1 | Should -Not -Be $null
-        }
-
-        It 'Find-MissingRecommendations: populates a file with the findings' {
-            (Get-Item -Path '.\MissingRecommendations.txt').Length | Should -Not -BeLessThan 5
-        }
-
-        It 'Find-RecommendationErrors: writes a warning for findings' {
-            Find-RecommendationErrors -OutputPath '.\' 3>&1 | Should -Not -Be $null
-        }
-
-        It 'Find-RecommendationErrors: populates a file with the findings' {
-            (Get-Item -Path '.\RecommendationErrors.ps1').Length | Should -Not -BeLessThan 5
         }
     }
 }
