@@ -72,7 +72,6 @@ function ConvertTo-DSC {
         $script:RecommendationErrors.Clear()
         $script:BenchmarkRecommendations.Clear()
         $script:StaticCorrections.Clear()
-        $script:ParameterValidations.Clear()
         $script:DSCConfigurationParameters.Clear()
         $script:DSCConfigurationParameters += @(
             '        [string[]]$ExcludeList = @()',
@@ -93,9 +92,7 @@ function ConvertTo-DSC {
         }
 
         if($ParameterValidationsPath){
-            Import-Csv -Path $ParameterValidationsPath | ForEach-Object -Process {
-                $script:ParameterValidations.add($_.Recommendation,$_.ValidationString)
-            }
+            Import-ParameterValidations -Path $ParameterValidationsPath
         }
 
         if(!(Test-Path -Path $OutputPath)){
