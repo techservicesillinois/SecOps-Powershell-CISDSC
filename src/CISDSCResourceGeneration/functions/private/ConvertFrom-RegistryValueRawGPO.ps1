@@ -1,6 +1,5 @@
 Function ConvertFrom-RegistryValueRawGPO {
     [CmdletBinding()]
-    [OutputType([String])]
     param
     (
         [Parameter(Mandatory = $true)]
@@ -48,8 +47,6 @@ Function ConvertFrom-RegistryValueRawGPO {
             continue
         }
     }
-
-    Resolve-RegistryValueSpecialCases -regHash $reghash
 
     switch($regHash['ValueType']){
         '1' {
