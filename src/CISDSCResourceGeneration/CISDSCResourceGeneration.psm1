@@ -7,8 +7,6 @@ Get-ChildItem -Path $FunctionPath -Filter "*.ps1" -Recurse | ForEach-Object -Pro
 }
 
 #This class is utilized to help centralize the logic for generating parameters for recommendations where appropriate.
-#These are created within the ScaffoldingBlock class and later used within Get-ConfigurationHeader
-#The constructor should probably be reworked to just take a scaffolding block object vs the various properties individually.
 Class DSCConfigurationParameter{
     [string]$Name
     [string]$DataType
