@@ -42,6 +42,7 @@ function ConvertFrom-RegistryPolGPORaw {
             $regHash.Remove('ValueType')
         }
 
+        $regHash = Resolve-RegistryValueSpecialCases -regHash $regHash
         $RecommendationNum = Get-RecommendationFromGPOHash -GPOHash $regHash -Type 'Registry'
 
         if($regHash['ValueType'] -in ('ExpandString','String') -and $regHash['ValueData']){
