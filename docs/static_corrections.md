@@ -1,5 +1,5 @@
 # What are we statically correcting?
-Occasionally there are will be some discrepancies between the build kit (GPOs) and the benchmark documentation. These will be placed in a 'RecommendationErrors.txt' file when those are provided to 'ConvertTo-DSC'. These discrepancies typically fall into one of the following categories.
+Occasionally there are will be some discrepancies between the build kit (GPOs) and the benchmark documentation. These will be placed in a 'RecommendationErrors.txt' file when those are provided to 'ConvertTo-DSC'. These discrepancies typically fall into one of the following categories. Recommendations that failed to find a match will be exported to 'MissingRecommendations.csv' which can be a helpful starting place for tracking down the cause of errors.
 
 1) Simple typos: This will usually be on the benchmark's end as most registry settings in GPOs are not typed by the user.
 
