@@ -66,6 +66,17 @@ Describe 'Class: DSCConfigurationParameter' {
             $DefaultValue = "10"
             {[DSCConfigurationParameter]::New($RecommendationNum,$Name,$DataType,$DefaultValue)} | Should -Not -Throw
         }
+
+        It 'Adds a validation block if appropriate' {
+            Import-ParameterValidations -Path "$($PSScriptRoot)\example_files\parameter_validations.csv"
+
+            $RecommendationNum = '1.1.2'
+            $Name = 'MaximumPasswordAge'
+            $DataType = "'[Int32]'"
+            $DefaultValue = "60"
+            $Param = [DSCConfigurationParameter]::New($RecommendationNum,$Name,$DataType,$DefaultValue)
+            $Param.Textblock -like "*[ValidateRange(60,999)]*" | Should -Be $True
+        }
     }
 }
 
@@ -217,6 +228,15 @@ Describe 'Helper: Test-FilePathParameter' {
 
         It 'Returns true is the file exists' {
             Test-FilePathParameter -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" | Should -Be $True
+        }
+    }
+}
+
+Describe 'Helper: Import-ParameterValidations' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Populates the hashtable of validation blocks' {
+            Import-ParameterValidations -Path "$($PSScriptRoot)\example_files\parameter_validations.csv"
+            $script:ParameterValidations | Should -Not -BeNullOrEmpty
         }
     }
 }
