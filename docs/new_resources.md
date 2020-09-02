@@ -43,6 +43,7 @@ $Splat = @{
     GPOPath = 'C:\Windows10v1.8.0'
     OutputPath = '.\src\CISDSC\dscresources'
     StaticCorrectionsPath = '.\static_corrections.csv'
+    ParameterValidationsPath = '.\parameter_validations.csv'
     OS = 'Microsoft Windows 10 Enterprise'
     OSBuild = '1909'
 }
@@ -52,7 +53,12 @@ Successfully generated resources will be placed into the generated composite res
 
 4) Resolve errors identified in the previous step. Potential causes and resolutions are outlined in the [static corrections](./static_corrections.md) documentation.
 
-5) Verify your results with the [CIS-CAT](https://workbench.cisecurity.org/files/2151) assessment tool available from the [CIS workbench](https://workbench.cisecurity.org/). A HTML report from the tool will be required later. Documentation for the tool can be found [here](https://ccpa-docs.readthedocs.io/en/latest/User%20Guide%20for%20CLI/).
+5) Verify the appropriate validation for generated parameters via MS documentation or otherwise and add it to the [parameter validation](/parameter_validations.csv) documentation.
+
+6) Regenerate your resource after completing the previous two steps.
+
+7) Verify your results with the [CIS-CAT](https://workbench.cisecurity.org/files/2151) assessment tool available from the [CIS workbench](https://workbench.cisecurity.org/). A HTML report from the tool will be required later. Documentation for the tool can be found [here](https://ccpa-docs.readthedocs.io/en/latest/User%20Guide%20for%20CLI/).
+
 
 # How do I add or update them within the module?
 1) For additions the DscResourcesToExport field of the [module manifest](./../src/CISDSC/CISDSC.psd1) should be updated with the new resource.
