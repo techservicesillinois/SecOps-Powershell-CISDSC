@@ -43,6 +43,9 @@ function ConvertTo-DSC {
         [ValidateScript({Test-FilePathParameter -Path $_ })]
         [string]$StaticCorrectionsPath,
 
+        [ValidateScript({Test-FilePathParameter -Path $_ })]
+        [string]$ParameterValidationsPath,
+
         [string]$OutputPath = (Join-Path -Path $PWD -ChildPath 'Output'),
 
         [Parameter(Mandatory=$true)]
@@ -66,6 +69,7 @@ function ConvertTo-DSC {
         $script:RecommendationErrors.Clear()
         $script:BenchmarkRecommendations.Clear()
         $script:StaticCorrections.Clear()
+        $script:ParameterValidations.Clear()
         $script:DSCConfigurationParameters.Clear()
         $script:DSCConfigurationParameters += @(
             '        [string[]]$ExcludeList = @()',
@@ -82,6 +86,12 @@ function ConvertTo-DSC {
         if($StaticCorrectionsPath){
             Import-Csv -Path $StaticCorrectionsPath | ForEach-Object -Process {
                 $script:StaticCorrections.add($_.Key,$_.Recommendation)
+            }
+        }
+
+        if($ParameterValidationsPath){
+            Import-Csv -Path $ParameterValidationsPath | ForEach-Object -Process {
+                $script:ParameterValidations.add($_.Recommendation,$_.ValidationString)
             }
         }
 
