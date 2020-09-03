@@ -25,7 +25,7 @@ function Import-CISBenchmarkData {
     )
 
     begin {
-
+        $script:BenchmarkRecommendations.Clear()
     }
 
     process {

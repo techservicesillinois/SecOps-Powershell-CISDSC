@@ -70,7 +70,6 @@ function ConvertTo-DSC {
 
     begin {
         $script:RecommendationErrors.Clear()
-        $script:BenchmarkRecommendations.Clear()
         $script:StaticCorrections.Clear()
         $script:DSCConfigurationParameters.Clear()
         $script:DSCConfigurationParameters += @(
