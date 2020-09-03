@@ -149,6 +149,12 @@ Describe 'Helper: Get-RecommendationFromGPOHash' {
             Update-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
             Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'a'} -Type 'Service' 3>&1 | Should -Be 'Found multiple recommendation matches for Service a.'
         }
+
+        It 'Applies static corrections' {
+            Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' 3>&1 | Should -Be 'Failed to find a recommendation for AuditPolicy Audit Logoff.'
+            Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
+            Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' | Should -Be '17.5.3'
+        }
     }
 }
 
@@ -237,6 +243,15 @@ Describe 'Helper: Import-ParameterValidations' {
         It 'Populates the hashtable of validation blocks' {
             Import-ParameterValidations -Path "$($PSScriptRoot)\example_files\parameter_validations.csv"
             $script:ParameterValidations | Should -Not -BeNullOrEmpty
+        }
+    }
+}
+
+Describe 'Helper: Import-StaticCorrections' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Populates the hashtable of static corrections' {
+            Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
+            $script:StaticCorrections | Should -Not -BeNullOrEmpty
         }
     }
 }
