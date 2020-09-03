@@ -10,9 +10,9 @@
 .PARAMETER OS
     The operating system the benchmark is written for. This will seperate member server and domain controller worksheets.
 .EXAMPLE
-    Update-CISBenchmarkData -Path '.\CIS_Microsoft_Windows_10_Enterprise_Release_1909_Benchmark_v1.8.1.xlsx' -OS 'Microsoft Windows 10 Enterprise'
+    Import-CISBenchmarkData -Path '.\CIS_Microsoft_Windows_10_Enterprise_Release_1909_Benchmark_v1.8.1.xlsx' -OS 'Microsoft Windows 10 Enterprise'
 #>
-function Update-CISBenchmarkData {
+function Import-CISBenchmarkData {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory=$True)]
