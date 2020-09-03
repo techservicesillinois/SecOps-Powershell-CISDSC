@@ -9,6 +9,8 @@
     Path to the GPO files (build kit) from CIS containing the benchmarks settings.
 .PARAMETER StaticCorrectionsPath
     Path to the CSV file containing known static corrections for GPO -> Excel mismatchs.
+.PARAMETER ParameterValidationsPath
+    Path to the CSV file containing known parameter validation blocks.
 .PARAMETER OutputPath
     Output directory for the files generated. This will default to .\Output
 .PARAMETER OS
@@ -24,6 +26,7 @@
         GPOPath = '.\Server2016v1.2.0'
         OutputPath = '.\CISDSC\dscresources'
         StaticCorrectionsPath = '.\static_corrections.csv'
+        ParameterValidationsPath = '.\parameter_validations.csv'
         OS = 'Microsoft Windows Server 2016 Member Server'
         OSBuild = '1607'
     }
@@ -42,6 +45,9 @@ function ConvertTo-DSC {
 
         [ValidateScript({Test-FilePathParameter -Path $_ })]
         [string]$StaticCorrectionsPath,
+
+        [ValidateScript({Test-FilePathParameter -Path $_ })]
+        [string]$ParameterValidationsPath,
 
         [string]$OutputPath = (Join-Path -Path $PWD -ChildPath 'Output'),
 
@@ -83,6 +89,10 @@ function ConvertTo-DSC {
             Import-Csv -Path $StaticCorrectionsPath | ForEach-Object -Process {
                 $script:StaticCorrections.add($_.Key,$_.Recommendation)
             }
+        }
+
+        if($ParameterValidationsPath){
+            Import-ParameterValidations -Path $ParameterValidationsPath
         }
 
         if(!(Test-Path -Path $OutputPath)){

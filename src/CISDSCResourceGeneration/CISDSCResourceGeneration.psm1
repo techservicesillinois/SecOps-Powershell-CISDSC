@@ -22,9 +22,14 @@ Class DSCConfigurationParameter{
         $This.DefaultValue = "$($DefaultValue)".replace('"',"'")
 
         <# Example of formated definition
+            [ValidateRange(60,999)]
             [Int32]$112MaximumPasswordAge = 60
         #>
-        $This.TextBlock = "        $($This.DataType)$($This.Name) = $($This.DefaultValue)"
+        if($script:ParameterValidations["$RecommendationNum"]){
+            $This.TextBlock = "        $($script:ParameterValidations["$RecommendationNum"])`n"
+        }
+
+        $This.TextBlock += "        $($This.DataType)$($This.Name) = $($This.DefaultValue)"
     }
 }
 
@@ -173,6 +178,7 @@ Class Recommendation{
 
 $script:BenchmarkRecommendations = @{}
 $script:StaticCorrections = @{}
+$script:ParameterValidations = @{}
 [int]$script:ServiceSection = 0
 [int]$script:UserSection = 0
 [System.Collections.ArrayList]$script:RecommendationErrors = @()
