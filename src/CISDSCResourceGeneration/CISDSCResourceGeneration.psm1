@@ -182,7 +182,6 @@ $script:ParameterValidations = @{}
 [int]$script:ServiceSection = 0
 [int]$script:UserSection = 0
 [System.Collections.ArrayList]$script:RecommendationErrors = @()
-[System.Collections.ArrayList]$script:DSCConfigurationParameters = @()
 
 #Below is various dictionaries used to translate values from group policy to DSC.
 #These where pulled from https://github.com/microsoft/BaselineManagement/blob/master/src/Helpers/Enumerations.ps1
