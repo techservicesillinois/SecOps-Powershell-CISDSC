@@ -33,7 +33,7 @@ Class DSCConfigurationParameter{
     }
 }
 
-#This class is utilized by Update-CISBenchmarkData to cleanly import the information from the CIS excel files.
+#This class is utilized by Import-CISBenchmarkData to cleanly import the information from the CIS excel files.
 Class Recommendation{
     [string]$SectionNum
     [string]$RecommendationNum

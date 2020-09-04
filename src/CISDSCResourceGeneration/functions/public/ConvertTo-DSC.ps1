@@ -70,7 +70,6 @@ function ConvertTo-DSC {
 
     begin {
         $script:RecommendationErrors.Clear()
-        $script:BenchmarkRecommendations.Clear()
         $script:StaticCorrections.Clear()
         $script:DSCConfigurationParameters.Clear()
         $script:DSCConfigurationParameters += @(
@@ -83,7 +82,7 @@ function ConvertTo-DSC {
     }
 
     process {
-        Update-CISBenchmarkData -Path $BenchmarkPath -OS $OS
+        Import-CISBenchmarkData -Path $BenchmarkPath -OS $OS
 
         if($StaticCorrectionsPath){
             Import-Csv -Path $StaticCorrectionsPath | ForEach-Object -Process {
