@@ -241,6 +241,22 @@ Describe 'Helper: Import-ParameterValidations' {
     }
 }
 
+Describe 'Helper: Get-DSCParameterTextBlocks' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        Import-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
+        Import-GptTmpl -GPOPath "$($PSScriptRoot)\example_files"
+        Import-AudicCsv -GPOPath "$($PSScriptRoot)\example_files"
+        Import-RegistryPol -GPOPath "$($PSScriptRoot)\example_files"
+
+        It 'Filters defaults appropriately' {
+            (Get-DSCParameterTextBlocks -Recommendations $Nothing)[0] | Should -Be '        [string[]]$ExcludeList = @()'
+            (Get-DSCParameterTextBlocks -Recommendations $Nothing | Measure-Object).Count | Should -Be 1
+            Get-DSCParameterTextBlocks -Recommendations ($script:BenchmarkRecommendations).Values | Should -Contain '        [boolean]$LevelOne = $true'
+            Get-DSCParameterTextBlocks -Recommendations ($script:BenchmarkRecommendations).Values | Should -Contain '        [boolean]$LevelTwo = $false'
+        }
+    }
+}
+
 Describe 'ConvertTo-DSC' {
     It 'Exports files' {
         $Splat = @{
