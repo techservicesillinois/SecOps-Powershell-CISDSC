@@ -159,6 +159,7 @@ Describe 'Helper: Get-RecommendationFromGPOHash' {
         }
 
         It 'Applies static corrections' {
+            $script:StaticCorrections.Clear()
             Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' 3>&1 | Should -Be 'Failed to find a recommendation for AuditPolicy Audit Logoff.'
             Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
             Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' | Should -Be '17.5.3'
