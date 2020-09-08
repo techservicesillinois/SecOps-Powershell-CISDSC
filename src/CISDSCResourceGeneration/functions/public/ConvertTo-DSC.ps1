@@ -70,16 +70,13 @@ function ConvertTo-DSC {
 
     begin {
         $script:RecommendationErrors.Clear()
-        $script:StaticCorrections.Clear()
     }
 
     process {
         Import-CISBenchmarkData -Path $BenchmarkPath -OS $OS
 
         if($StaticCorrectionsPath){
-            Import-Csv -Path $StaticCorrectionsPath | ForEach-Object -Process {
-                $script:StaticCorrections.add($_.Key,$_.Recommendation)
-            }
+            Import-StaticCorrections -Path $StaticCorrectionsPath
         }
 
         if($ParameterValidationsPath){
