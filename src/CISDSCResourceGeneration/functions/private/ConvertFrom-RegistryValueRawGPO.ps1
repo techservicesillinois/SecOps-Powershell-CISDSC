@@ -48,6 +48,8 @@ Function ConvertFrom-RegistryValueRawGPO {
         }
     }
 
+    $regHash = Resolve-RegistryValueSpecialCases -regHash $regHash
+
     switch($regHash['ValueType']){
         '1' {
             $regHash['ValueType'] = "'String'"

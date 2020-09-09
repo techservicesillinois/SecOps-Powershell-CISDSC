@@ -30,6 +30,12 @@ Function Resolve-RegistryValueSpecialCases
             $regHash.ValueData = 0
             $regHash.ValueType = 'Dword'
         }
+
+        'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeText'{
+            #This value is set as a multi string value but needs to be a standard string.
+            $regHash.ValueData = '"ADD TEXT HERE"'
+            $regHash.ValueType = '1'
+        }
     }
 
     return $regHash
