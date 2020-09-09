@@ -41,11 +41,11 @@ Describe 'Class: Recommendation' {
         }
 
         It 'Sanitizes the title for the resulting DSC' -TestCases @(
-            @{ Title = "(L1) Ensure 'Enforce password history' is set to '24 or more password(s)'"; Expectation = "(L1) Ensure Enforce password history is set to 24 or more password(s)"},
-            @{ Title = "(L1) Ensure 'Interactive logon: Do not require CTRL+ALT+DEL' is set to 'Disabled'"; Expectation = "(L1) Ensure Interactive logon Do not require CTRLALTDEL is set to Disabled"},
+            @{ Title = "(L1) Ensure 'Enforce password history' is set to '24 or more password(s)'"; Expectation = "1.1.1 - (L1) Ensure Enforce password history is set to 24 or more password(s)"},
+            @{ Title = "(L1) Ensure 'Interactive logon: Do not require CTRL+ALT+DEL' is set to 'Disabled'"; Expectation = "1.1.1 - (L1) Ensure Interactive logon Do not require CTRLALTDEL is set to Disabled"},
             @{ Title = @"
 (L1) Ensure 'Remove access to “Pause updates” feature' is set to 'Enabled''
-"@; Expectation = "(L1) Ensure Remove access to Pause updates feature is set to Enabled" }
+"@; Expectation = "1.1.1 - (L1) Ensure Remove access to Pause updates feature is set to Enabled" }
         ){
             $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
                 Where-Object -FilterScript {$_.Title -like "(L1)*"})[0]
