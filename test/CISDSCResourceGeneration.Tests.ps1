@@ -1,7 +1,6 @@
 [String]$SourceRoot = Join-Path -Path (Split-Path -Path $PSScriptRoot -Parent) -ChildPath 'src'
 [String]$ModuleRoot = Join-Path -Path $SourceRoot -ChildPath 'CISDSCResourceGeneration'
 Import-Module -Name "$($ModuleRoot)\CISDSCResourceGeneration.psd1" -Force
-
 Describe 'Module Manifest Tests' {
     It 'Passes Test-ModuleManifest' {
         $ManifestPath = Join-Path -Path "$(Split-Path -Path $PSScriptRoot -Parent)" -ChildPath 'src\CISDSCResourceGeneration\CISDSCResourceGeneration.psd1'
@@ -127,6 +126,15 @@ Describe 'Helper: Import-CISBenchmarkData' {
     }
 }
 
+Describe 'Helper: Import-StaticCorrections' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Populates the hashtable of static corrections' {
+            Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
+            $script:StaticCorrections | Should -Not -BeNullOrEmpty
+        }
+    }
+}
+
 Describe 'Helper: Get-RecommendationFromGPOHash' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
         It 'Finds exactly one result under normal circumstances' -TestCases @(
@@ -151,6 +159,7 @@ Describe 'Helper: Get-RecommendationFromGPOHash' {
         }
 
         It 'Applies static corrections' {
+            $script:StaticCorrections.Clear()
             Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' 3>&1 | Should -Be 'Failed to find a recommendation for AuditPolicy Audit Logoff.'
             Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
             Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' | Should -Be '17.5.3'
@@ -247,11 +256,18 @@ Describe 'Helper: Import-ParameterValidations' {
     }
 }
 
-Describe 'Helper: Import-StaticCorrections' {
+Describe 'Helper: Get-DSCParameterTextBlocks' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
-        It 'Populates the hashtable of static corrections' {
-            Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
-            $script:StaticCorrections | Should -Not -BeNullOrEmpty
+        Import-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
+        Import-GptTmpl -GPOPath "$($PSScriptRoot)\example_files"
+        Import-AudicCsv -GPOPath "$($PSScriptRoot)\example_files"
+        Import-RegistryPol -GPOPath "$($PSScriptRoot)\example_files"
+
+        It 'Filters defaults appropriately' {
+            (Get-DSCParameterTextBlocks -Recommendations $Nothing)[0] | Should -Be '        [string[]]$ExcludeList = @()'
+            (Get-DSCParameterTextBlocks -Recommendations $Nothing | Measure-Object).Count | Should -Be 1
+            Get-DSCParameterTextBlocks -Recommendations ($script:BenchmarkRecommendations).Values | Should -Contain '        [boolean]$LevelOne = $true'
+            Get-DSCParameterTextBlocks -Recommendations ($script:BenchmarkRecommendations).Values | Should -Contain '        [boolean]$LevelTwo = $false'
         }
     }
 }
