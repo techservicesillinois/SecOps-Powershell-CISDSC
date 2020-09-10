@@ -3,9 +3,9 @@ name: ScriptAnalyzer
 on:
   pull_request:
     branches:
-      - master
+    - master
     paths:
-      - 'src/**'
+    - 'src/**'
 
 jobs:
   build:
