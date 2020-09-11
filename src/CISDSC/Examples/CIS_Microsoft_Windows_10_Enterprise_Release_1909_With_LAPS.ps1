@@ -10,8 +10,7 @@ Configuration Win10_1909_L1_With_LAPS
             ProductId = 'EA8CB806-C109-4700-96B4-F1F268E5036C'
         }
 
-        CIS_Microsoft_Windows_10_Enterprise_Release_1909 'CIS Benchmarks'
-        {
+        CIS_Microsoft_Windows_10_Enterprise_Release_1909 'CIS Benchmarks' {
             #These exclusions are services that are not in default installs of Windows. Remove the exlusions if they are applicable to your envrionment.
             'ExcludeList' = @(
                 '5.6', # IIS Admin Service (IISADMIN)
