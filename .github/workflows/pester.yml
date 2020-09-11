@@ -1,6 +1,11 @@
 name: Pester Tests
 
-on: [pull_request]
+on:
+  pull_request:
+    branches:
+    - master
+    paths:
+    - 'src/**'
 
 jobs:
   build:
