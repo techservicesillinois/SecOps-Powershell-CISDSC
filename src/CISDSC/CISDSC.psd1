@@ -85,8 +85,8 @@ RequiredModules = @(
 
 # DSC resources to export from this module
 DscResourcesToExport = @(
-    'CIS_Microsoft_Windows_10_Enterprise_Release_1909',
     'CIS_Microsoft_Windows_10_Enterprise_Release_1809',
+    'CIS_Microsoft_Windows_10_Enterprise_Release_1909',
     'CIS_Microsoft_Windows_10_Enterprise_Release_2004'
 )
 
