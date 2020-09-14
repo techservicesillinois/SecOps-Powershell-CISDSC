@@ -31,6 +31,6 @@ use multiple lines to tell you how super secure it is.
 
 Win10_1809_L1
 #Uncomment the following line to also apply the configuration on the localmachine
-#Start-DscConfiguration -Path '.\Win10_1909_L1' -Verbose -Wait -Force
+#Start-DscConfiguration -Path '.\Win10_1809_L1' -Verbose -Wait -Force
 #This version will capture errors and verbose to a log file
-#Start-DscConfiguration -Path '.\Win10_1909_L1' -Verbose -Wait -Force 4>&1 2>&1 > 'c:\DSC.log'
+#Start-DscConfiguration -Path '.\Win10_1809_L1' -Verbose -Wait -Force 4>&1 2>&1 > 'c:\DSC.log'
