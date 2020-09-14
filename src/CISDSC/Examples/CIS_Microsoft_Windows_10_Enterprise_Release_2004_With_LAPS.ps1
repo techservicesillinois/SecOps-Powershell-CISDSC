@@ -1,5 +1,6 @@
 Configuration Win10_2004_L1_With_LAPS
 {
+    Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
     Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_10_Enterprise_Release_2004'
 
     node 'localhost'
