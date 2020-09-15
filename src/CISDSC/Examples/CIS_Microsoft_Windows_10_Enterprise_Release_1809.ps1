@@ -1,3 +1,10 @@
+#Requires -module CISDSC
+
+<#
+    .DESCRIPTION
+    Applies CIS Level one benchmarks for Windows 10 build 1809 with the non-standard services excluded.
+#>
+
 Configuration Win10_1809_L1
 {
     Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_10_Enterprise_Release_1809'
@@ -6,7 +13,6 @@ Configuration Win10_1809_L1
     {
         CIS_Microsoft_Windows_10_Enterprise_Release_1809 'CIS Benchmarks'
         {
-            #These exclusions are services that are not in default installs of Windows. Remove the exlusions if they are applicable to your envrionment.
             'ExcludeList' = @(
                 '5.6', # IIS Admin Service (IISADMIN)
                 '5.7', # Infrared monitor service (irmon)
@@ -30,7 +36,4 @@ use multiple lines to tell you how super secure it is.
 }
 
 Win10_1809_L1
-#Uncomment the following line to also apply the configuration on the localmachine
-#Start-DscConfiguration -Path '.\Win10_1809_L1' -Verbose -Wait -Force
-#This version will capture errors and verbose to a log file
-#Start-DscConfiguration -Path '.\Win10_1809_L1' -Verbose -Wait -Force 4>&1 2>&1 > 'c:\DSC.log'
+Start-DscConfiguration -Path '.\Win10_1809_L1' -Verbose -Wait -Force
