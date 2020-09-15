@@ -1,7 +1,7 @@
-Configuration Win10_1909_L1_With_LAPS
+Configuration Win10_2004_L1_With_LAPS
 {
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
-    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_10_Enterprise_Release_1909'
+    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_10_Enterprise_Release_2004'
 
     node 'localhost'
     {
@@ -12,15 +12,16 @@ Configuration Win10_1909_L1_With_LAPS
             ProductId = 'EA8CB806-C109-4700-96B4-F1F268E5036C'
         }
 
-        CIS_Microsoft_Windows_10_Enterprise_Release_1909 'CIS Benchmarks' {
+        CIS_Microsoft_Windows_10_Enterprise_Release_2004 'CIS Benchmarks' {
             #These exclusions are services that are not in default installs of Windows. Remove the exlusions if they are applicable to your envrionment.
             'ExcludeList' = @(
                 '5.6', # IIS Admin Service (IISADMIN)
                 '5.7', # Infrared monitor service (irmon)
                 '5.10',# LxssManager (LxssManager)
                 '5.11',# Microsoft FTP Service (FTPSVC)
-                '5.14',# OpenSSH SSH Server (sshd)
-                '5.28',# Simple TCP/IP Services (simptcp)
+                '5.13',# OpenSSH SSH Server (sshd)
+                '5.27',# Simple TCP/IP Services (simptcp)
+                '5.29',# Special Administration Console Helper (sacsvr)
                 '5.32',# Web Management Service (WMSvc)
                 '5.40' # World Wide Web Publishing Service (W3SVC)
             )
@@ -37,8 +38,8 @@ use multiple lines to tell you how super secure it is.
     }
 }
 
-Win10_1909_L1_With_LAPS
+Win10_2004_L1_With_LAPS
 #Uncomment the following line to also apply the configuration on the localmachine
-#Start-DscConfiguration -Path '.\Win10_1909_L1_With_LAPS' -Verbose -Wait -Force
+#Start-DscConfiguration -Path '.\Win10_2004_L1_With_LAPS' -Verbose -Wait -Force
 #This version will capture errors and verbose to a log file
-#Start-DscConfiguration -Path '.\Win10_1909_L1_With_LAPS' -Verbose -Wait -Force 4>&1 2>&1 > 'c:\DSC.log'
+#Start-DscConfiguration -Path '.\Win10_2004_L1_With_LAPS' -Verbose -Wait -Force 4>&1 2>&1 > 'c:\DSC.log'
