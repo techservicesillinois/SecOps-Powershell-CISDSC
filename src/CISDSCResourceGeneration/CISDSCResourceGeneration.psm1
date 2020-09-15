@@ -19,7 +19,18 @@ Class DSCConfigurationParameter{
 
         $This.Name = '${0}{1}' -f $SanitizedRecommendationNum,$SanitizedName
         $This.DataType = $DataType
-        $This.DefaultValue = "$($DefaultValue)".replace('"',"'")
+
+        #These specific parameters do not have an appropriate default as these are organization specific settings. This check avoids the need to remove the default from the CIS GPOs manually after generation.
+        [string[]]$NoDefaultValueExceptions = @(
+            '$2315AccountsRenameadministratoraccount',
+            '$2316AccountsRenameguestaccount',
+            '$2375LegalNoticeText',
+            '$2376LegalNoticeCaption'
+        )
+
+        if($This.Name -notin $NoDefaultValueExceptions){
+            $This.DefaultValue = " = $($DefaultValue)".replace('"',"'")
+        }
 
         <# Example of formated definition
             [ValidateRange(60,999)]
@@ -29,7 +40,7 @@ Class DSCConfigurationParameter{
             $This.TextBlock = "        $($script:ParameterValidations["$RecommendationNum"])`n"
         }
 
-        $This.TextBlock += "        $($This.DataType)$($This.Name) = $($This.DefaultValue)"
+        $This.TextBlock += "        $($This.DataType)$($This.Name)$($This.DefaultValue)"
     }
 }
 
