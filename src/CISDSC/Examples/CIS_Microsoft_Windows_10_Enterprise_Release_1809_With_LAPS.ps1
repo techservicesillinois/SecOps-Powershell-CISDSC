@@ -44,4 +44,4 @@ use multiple lines to tell you how super secure it is.
 }
 
 Win10_1809_L1_With_LAPS
-Start-DscConfiguration -Path '.\Win10_1809_L1_With_LAPS' -Verbose -Wait -Force
+Start-DscConfiguration -Path '.\Win10_1809_L1_With_LAPS'-Verbose -Wait

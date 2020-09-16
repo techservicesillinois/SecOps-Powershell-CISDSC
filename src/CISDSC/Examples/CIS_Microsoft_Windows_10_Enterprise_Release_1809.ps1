@@ -36,4 +36,4 @@ use multiple lines to tell you how super secure it is.
 }
 
 Win10_1809_L1
-Start-DscConfiguration -Path '.\Win10_1809_L1' -Verbose -Wait -Force
+Start-DscConfiguration -Path '.\Win10_1809_L1'-Verbose -Wait
