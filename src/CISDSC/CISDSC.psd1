@@ -114,7 +114,7 @@ PrivateData = @{
         # IconUri = ''
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/master/Release_Notes.md'
+        ReleaseNotes = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/master/CHANGELOG.md'
 
         # Prerelease string of this module
         # Prerelease = ''
