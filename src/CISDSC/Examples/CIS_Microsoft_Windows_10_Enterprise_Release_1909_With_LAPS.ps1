@@ -1,3 +1,11 @@
+#Requires -module CISDSC
+
+<#
+    .DESCRIPTION
+    Applies CIS Level one benchmarks for Windows 10 build 1909 with the non-standard services excluded.
+    This will also install LAPS (Local Administrator Password Solution) from the internet via download.microsoft.com unless the URL is changed to a network accesible path for your envrionment.
+#>
+
 Configuration Win10_1909_L1_With_LAPS
 {
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
@@ -7,13 +15,11 @@ Configuration Win10_1909_L1_With_LAPS
     {
         Package 'InstallLAPS' {
             Name  = 'Local Administrator Password Solution'
-            #Path can be substituted for a file path in your envrionment
             Path = 'https://download.microsoft.com/download/C/7/A/C7AAD914-A8A6-4904-88A1-29E657445D03/LAPS.x64.msi'
             ProductId = 'EA8CB806-C109-4700-96B4-F1F268E5036C'
         }
 
         CIS_Microsoft_Windows_10_Enterprise_Release_1909 'CIS Benchmarks' {
-            #These exclusions are services that are not in default installs of Windows. Remove the exlusions if they are applicable to your envrionment.
             'ExcludeList' = @(
                 '5.6', # IIS Admin Service (IISADMIN)
                 '5.7', # Infrared monitor service (irmon)
@@ -38,7 +44,4 @@ use multiple lines to tell you how super secure it is.
 }
 
 Win10_1909_L1_With_LAPS
-#Uncomment the following line to also apply the configuration on the localmachine
-#Start-DscConfiguration -Path '.\Win10_1909_L1_With_LAPS' -Verbose -Wait -Force
-#This version will capture errors and verbose to a log file
-#Start-DscConfiguration -Path '.\Win10_1909_L1_With_LAPS' -Verbose -Wait -Force 4>&1 2>&1 > 'c:\DSC.log'
+Start-DscConfiguration -Path '.\Win10_1909_L1_With_LAPS'-Verbose -Wait
