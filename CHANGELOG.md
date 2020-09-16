@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.0] - 2017-06-20
+## [1.0.0] - 2020-09-15
 ### Added
 - Added DSC resource for Windows 10 Enterprise 1809 based on benchmark v1.6.1
 - Windows 10 Enterprise 1903 is intentionally omitted due to approaching EOL
