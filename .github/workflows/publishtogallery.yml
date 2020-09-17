@@ -11,6 +11,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: Install-Module -Name 'PSDepend' -Force -SkipPublisherCheck; Invoke-PSDepend -Force
+      shell: pwsh
     - name: Run publish script
       env:
         NuGetApiKey: ${{ secrets.NuGetApiKey }}
