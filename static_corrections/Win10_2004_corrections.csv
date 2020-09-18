@@ -46,3 +46,7 @@
 "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters:DisabledComponents","18.5.19.2.1","Key is only mentioned in the impact statement","#11366"
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\MpEngine:EnableFileHashComputation","18.9.45.5.1","Documentation states the valuename is FileHashComputation","#11367"
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\Network Protection:EnableNetworkProtection","18.9.45.4.3.1","Value is only in remediation steps"
+"HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses:1","18.8.7.1.5","key is in a related recommendation 18.8.7.1.5"
+"HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses:2","18.8.7.1.5","key is in a related recommendation 18.8.7.1.5"
+"HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses:3","18.8.7.1.5","key is in a related recommendation 18.8.7.1.5"
+"HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses:4","18.8.7.1.5","key is in a related recommendation 18.8.7.1.5"
