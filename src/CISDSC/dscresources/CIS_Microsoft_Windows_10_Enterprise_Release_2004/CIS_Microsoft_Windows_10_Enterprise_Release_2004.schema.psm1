@@ -11,6 +11,8 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         [Int32]$112MaximumPasswordAge = 60,
         [ValidateRange(1,998)]
         [Int32]$113MinimumPasswordAge = 1,
+        [ValidateRange(14,128)]
+        [Int32]$114MinimumPasswordLength = 14,
         [ValidateRange(15,99999)]
         [Int32]$121Accountlockoutduration = 15,
         [ValidateRange(10,999)]
@@ -99,7 +101,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     }
     if($ExcludeList -notcontains '1.1.4' -and $LevelOne){
         AccountPolicy "1.1.4 - (L1) Ensure Minimum password length is set to 14 or more character(s)" {
-            Minimum_Password_Length = 14
+            Minimum_Password_Length = $114MinimumPasswordLength
             Name = 'Minimum_Password_Length'
         }
     }
