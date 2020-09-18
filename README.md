@@ -17,6 +17,7 @@ PowerShell DSC is a configuration management framework built into Windows 7+ pow
     <b>What is PowerShell DSC (Desired State Configuration)?</b></br>
     <img width="480" height="360" src="https://img.youtube.com/vi/k_rXBIHu3xk/0.jpg">
   </a>
+  </br>Credit to "Eye on Tech" for the great explanation video
 </p>
 
 PowerShell DSC resources like the ones offered here can be utilized within other configuration management platforms as well. Making this an easy solution regardless of your platform of choice.</br>
@@ -28,7 +29,10 @@ PowerShell DSC resources like the ones offered here can be utilized within other
 More detailed information can be found in the [getting started with DSC document](docs/dsc_getting_started.md)
 
 # How do I install it?
-The actual DSC resources should be installed via the CISDSC module's PSGallery page which doesn't exist yet.</br>
+The actual DSC resources should be installed via the CISDSC module's [PSGallery page](https://www.powershellgallery.com/packages/CISDSC).
+```
+Install-Module -Name CISDSC
+```
 
 The process of setting up a development environment for contributions is outlined in [new resources](docs/new_resources.md).
 
