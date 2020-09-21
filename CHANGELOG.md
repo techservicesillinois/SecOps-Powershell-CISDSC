@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+### Changed
+### Removed
+
+## [1.0.1] - 2020-09-21
+### Added
 - Added missing key for HKLM:\SOFTWARE\Policies\Microsoft\AppHVSI:AppHVSIClipboardFileType to Windows 10 Enterprise 2004 18.9.46.5
 
 ### Changed
