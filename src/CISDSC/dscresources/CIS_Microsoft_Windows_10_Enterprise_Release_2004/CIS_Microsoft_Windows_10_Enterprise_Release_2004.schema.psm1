@@ -3947,11 +3947,18 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         }
     }
     if($ExcludeList -notcontains '18.9.46.5' -and $NextGenerationWindowsSecurity){
-        Registry "18.9.46.5 - (NG) Ensure Configure Microsoft Defender Application Guard clipboard settings Clipboard behavior setting is set to Enabled Enable clipboard operation from an isolated session to the host" {
+        Registry "18.9.46.5 - (NG) Ensure Configure Microsoft Defender Application Guard clipboard settings Clipboard behavior setting is set to Enabled Enable clipboard operation from an isolated session to the host (1)" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\AppHVSI'
             ValueData = 1
             ValueName = 'AppHVSIClipboardSettings'
+            ValueType = 'Dword'
+        }
+        Registry "18.9.46.5 - (NG) Ensure Configure Microsoft Defender Application Guard clipboard settings Clipboard behavior setting is set to Enabled Enable clipboard operation from an isolated session to the host (2)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\SOFTWARE\Policies\Microsoft\AppHVSI'
+            ValueData = 1
+            ValueName = 'AppHVSIClipboardFileType'
             ValueType = 'Dword'
         }
     }
