@@ -2346,47 +2346,42 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1909
         }
     }
     if($ExcludeList -notcontains '18.8.7.1.4' -and $BitLocker){
-        Registry "18.8.7.1.4 - (BL) Ensure Prevent installation of devices using drivers that match these device setup classes is set to Enabled (1)" {
+        Registry "18.8.7.1.4 - (BL) Ensure Prevent installation of devices using drivers that match these device setup classes is set to Enabled" {
             Ensure = 'Present'
             Key = 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions'
             ValueData = 1
             ValueName = 'DenyDeviceClasses'
             ValueType = 'Dword'
         }
-        Registry "18.8.7.1.4 - (BL) Ensure Prevent installation of devices using drivers that match these device setup classes is set to Enabled (2)" {
+    }
+    if($ExcludeList -notcontains '18.8.7.1.5' -and $BitLocker){
+        Registry "18.8.7.1.5 - (BL) Ensure Prevent installation of devices using drivers that match these device setup classes Prevent installation of devices using drivers for these device setup is set to IEEE 1394 device setup classes (1)" {
             Ensure = 'Present'
             Key = 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses'
             ValueData = '{d48179be-ec20-11d1-b6b8-00c04fa372a7}'
             ValueName = '1'
             ValueType = 'String'
         }
-        Registry "18.8.7.1.4 - (BL) Ensure Prevent installation of devices using drivers that match these device setup classes is set to Enabled (3)" {
+        Registry "18.8.7.1.5 - (BL) Ensure Prevent installation of devices using drivers that match these device setup classes Prevent installation of devices using drivers for these device setup is set to IEEE 1394 device setup classes (2)" {
             Ensure = 'Present'
             Key = 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses'
             ValueData = '{7ebefbc0-3200-11d2-b4c2-00a0C9697d07}'
             ValueName = '2'
             ValueType = 'String'
         }
-        Registry "18.8.7.1.4 - (BL) Ensure Prevent installation of devices using drivers that match these device setup classes is set to Enabled (4)" {
+        Registry "18.8.7.1.5 - (BL) Ensure Prevent installation of devices using drivers that match these device setup classes Prevent installation of devices using drivers for these device setup is set to IEEE 1394 device setup classes (3)" {
             Ensure = 'Present'
             Key = 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses'
             ValueData = '{c06ff265-ae09-48f0-812c-16753d7cba83}'
             ValueName = '3'
             ValueType = 'String'
         }
-        Registry "18.8.7.1.4 - (BL) Ensure Prevent installation of devices using drivers that match these device setup classes is set to Enabled (5)" {
+        Registry "18.8.7.1.5 - (BL) Ensure Prevent installation of devices using drivers that match these device setup classes Prevent installation of devices using drivers for these device setup is set to IEEE 1394 device setup classes (4)" {
             Ensure = 'Present'
             Key = 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses'
             ValueData = '{6bdd1fc1-810f-11d0-bec7-08002be2092f}'
             ValueName = '4'
             ValueType = 'String'
-        }
-    }
-    if($ExcludeList -notcontains '18.8.7.1.5' -and $BitLocker){
-        Registry "18.8.7.1.5 - (BL) Ensure Prevent installation of devices using drivers that match these device setup classes Prevent installation of devices using drivers for these device setup is set to IEEE 1394 device setup classes" {
-            Ensure = 'Absent'
-            Key = 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses'
-            ValueName = ''
         }
     }
     if($ExcludeList -notcontains '18.8.7.1.6' -and $BitLocker){
