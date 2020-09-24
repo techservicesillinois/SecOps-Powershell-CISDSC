@@ -7,6 +7,7 @@ This document aims to outline the requirements for the various forms of contribu
 - Update the "Unreleased" section of the [changelog](/CHANGELOG.md) to reflect it was added
 - Do not increment the CISDSC version number as this will be done when a release is staged
 - Resources are expected to have a version number matching the benchmark version they are based on
+- All parameters are expected to have validation blocks with entries tracked in a [parameter validation](/parameter_validation) file
 
 ## Resource Corrections
 - Subject to review via pull request
