@@ -1,7 +1,7 @@
 name: spellcheck docs
 
 on:
-pull_request:
+  pull_request:
     branches:
     - main
 
