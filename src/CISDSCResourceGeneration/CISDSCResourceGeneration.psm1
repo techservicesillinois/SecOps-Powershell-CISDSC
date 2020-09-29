@@ -12,6 +12,8 @@ Class DSCConfigurationParameter{
     [string]$DataType
     [string]$DefaultValue
     [string]$TextBlock
+    [string]$DocumentationPropertyBlock
+    [string]$DocumentationSyntaxBlock
 
     DSCConfigurationParameter($RecommendationNum, $Name, $DataType, $DefaultValue){
         [string]$SanitizedName = $Name -replace "[^a-zA-Z0-9]",""
@@ -31,6 +33,9 @@ Class DSCConfigurationParameter{
         if($This.Name -notin $NoDefaultValueExceptions){
             $This.DefaultValue = " = $($DefaultValue)".replace('"',"'")
         }
+        else{
+            $This.DefaultValue = [string]::Empty
+        }
 
         <# Example of formated definition
             [ValidateRange(60,999)]
@@ -38,9 +43,40 @@ Class DSCConfigurationParameter{
         #>
         if($script:ParameterValidations["$RecommendationNum"]){
             $This.TextBlock = "        $($script:ParameterValidations["$RecommendationNum"])`n"
+
+            # Regex to get the values in parentheses and replace with curly braces. [ValidateRange(60,999)] -> { 60,999 }
+            [regex]$ValuesRegex = "\((.*?)\)"
+            $DocumentationSyntaxValues = $ValuesRegex.Match($script:ParameterValidations["$RecommendationNum"]).Value
+            $DocumentationSyntaxValues = $DocumentationSyntaxValues.Replace('(','{ ')
+            $DocumentationSyntaxValues = $DocumentationSyntaxValues.Replace(')',' } ')
+
+            if($script:ParameterValidations["$RecommendationNum"] -like "*ValidateRange*"){
+                $DocumentationSyntaxValues = $DocumentationSyntaxValues.Replace(',','-')
+            }
+            elseif($script:ParameterValidations["$RecommendationNum"] -like "*ValidateSet*") {
+                $DocumentationSyntaxValues = $DocumentationSyntaxValues.Replace(',',' | ')
+            }
+            elseif($script:ParameterValidations["$RecommendationNum"] -like "*ValidateLength*") {
+                $DocumentationSyntaxValues = $DocumentationSyntaxValues.Replace(',','-')
+            }
+        }
+        else{
+            $DocumentationSyntaxValues = [string]::Empty
         }
 
         $This.TextBlock += "        $($This.DataType)$($This.Name)$($This.DefaultValue)"
+
+        $DocumentationPropertyBlockValues = @(
+            "|$($This.Name.TrimStart('$'))",
+            "$($This.DefaultValue.TrimStart(' = '))",
+            $RecommendationNum,
+            $script:BenchmarkRecommendations["$RecommendationNum"].Title,
+            #Empty string at the end is to ensure there is a trailing ' |'
+            ''
+        )
+        $This.DocumentationPropertyBlock = $DocumentationPropertyBlockValues -join ' |'
+
+        $This.DocumentationSyntaxBlock = "    [ $($This.Name.TrimStart('$')) = $($DataType) $($DocumentationSyntaxValues)]"
     }
 }
 
