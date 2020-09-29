@@ -6,7 +6,6 @@ This project is designed to deliver [CIS](https://www.cisecurity.org/) security 
 
 It also contains a module to assist in the creation of these resources via [CISDSCResourceGeneration](src/CISDSCResourceGeneration) which is a heavily modified fork of [Microsoft's BaselineManagement](https://github.com/microsoft/BaselineManagement) module.
 
-You can be notified of new releases by following the [notifications documentation](docs/notification.md).
 
 # What is PowerShell DSC?
 PowerShell DSC is a configuration management framework built into Windows 7+ powered by PowerShell. The below video gives a high level explanation of the framework.
@@ -31,14 +30,16 @@ More detailed information can be found in the [getting started with DSC document
 # How do I install it?
 The actual DSC resources should be installed via the CISDSC module's [PSGallery page](https://www.powershellgallery.com/packages/CISDSC).
 ```
-Install-Module -Name CISDSC
+# This will install on the local machine
+Install-Module -Name 'CISDSC'
+
+# This will download a copy of the module and its dependencies to the specified location
+Save-Module -Name 'CISDSC' -Path 'Replace Me'
 ```
 
-The process of setting up a development environment for contributions is outlined in [new resources](docs/new_resources.md).
+You can be notified of new releases by following the [notifications documentation](docs/notification.md).
 
 The process of customizing these resources for your environment is outlined in [customization](docs/customization.md).
 
 # How can I contribute?
-The most common form of code contributions come in the form of [static corrections](docs/static_corrections.md) and [new resources](docs/new_resources.md). However edits and additions to documentation or the CISDSCResourceGeneration module are also encouraged.
-
-# To Do
+Contribution information can be found in the [contributions documentation](docs/contribution.md).
