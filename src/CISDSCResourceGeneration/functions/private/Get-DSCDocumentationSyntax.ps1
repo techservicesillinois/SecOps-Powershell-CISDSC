@@ -32,6 +32,5 @@ function Get-DSCDocumentationSyntax {
     }
 
     end {
-
     }
 }

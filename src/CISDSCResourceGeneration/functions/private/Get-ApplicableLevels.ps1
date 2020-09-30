@@ -16,6 +16,5 @@ function Get-ApplicableLevels {
     }
 
     end {
-
     }
 }
