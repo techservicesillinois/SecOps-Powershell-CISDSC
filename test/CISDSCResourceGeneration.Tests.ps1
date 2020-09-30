@@ -256,18 +256,39 @@ Describe 'Helper: Import-ParameterValidations' {
     }
 }
 
-Describe 'Helper: Get-DSCParameterTextBlocks' {
+Describe 'Helper: Text block generation' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
         Import-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
         Import-GptTmpl -GPOPath "$($PSScriptRoot)\example_files"
         Import-AudicCsv -GPOPath "$($PSScriptRoot)\example_files"
         Import-RegistryPol -GPOPath "$($PSScriptRoot)\example_files"
 
-        It 'Filters defaults appropriately' {
-            (Get-DSCParameterTextBlocks -Recommendations $Nothing)[0] | Should -Be '        [string[]]$ExcludeList = @()'
-            (Get-DSCParameterTextBlocks -Recommendations $Nothing | Measure-Object).Count | Should -Be 1
-            Get-DSCParameterTextBlocks -Recommendations ($script:BenchmarkRecommendations).Values | Should -Contain '        [boolean]$LevelOne = $true'
-            Get-DSCParameterTextBlocks -Recommendations ($script:BenchmarkRecommendations).Values | Should -Contain '        [boolean]$LevelTwo = $false'
+        It 'Lists the appropriate levels' {
+            (Get-ApplicableLevels -Recommendations ($script:BenchmarkRecommendations).Values | Measure-Object).Count | Should -be 4
+        }
+
+        It 'Generates parameters correctly' {
+            [string[]]$Levels = @()
+            $Levels += Get-ApplicableLevels -Recommendations ($script:BenchmarkRecommendations).Values
+            (Get-DSCParameterTextBlocks -Recommendations $Nothing -Levels $Levels)[0] | Should -Be '        [string[]]$ExcludeList = @()'
+            (Get-DSCParameterTextBlocks -Recommendations ($script:BenchmarkRecommendations).Values -Levels $Levels) | Should -Contain '        [boolean]$LevelOne = $true'
+            (Get-DSCParameterTextBlocks -Recommendations ($script:BenchmarkRecommendations).Values -Levels $Levels) | Should -Contain '        [boolean]$LevelTwo = $false'
+        }
+
+        It 'Generates parameter documentation correctly' {
+            [string[]]$Levels = @()
+            $Levels += Get-ApplicableLevels -Recommendations ($script:BenchmarkRecommendations).Values
+            (Get-DSCDocumentationPropertyTable -Recommendations $Nothing -Levels $Levels)[0] | Should -Be '|ExcludeList | | |Excludes the provided recommendation IDs from the configuration |'
+            (Get-DSCDocumentationPropertyTable -Recommendations ($script:BenchmarkRecommendations).Values -Levels $Levels) | Should -Contain '|LevelOne |`$true` | |Applies level one recommendations |'
+            (Get-DSCDocumentationPropertyTable -Recommendations ($script:BenchmarkRecommendations).Values -Levels $Levels) | Should -Contain '|LevelTwo |`$false` | |Applies level two recommendations |'
+        }
+
+        It 'Generates parameter syntax documentation correction' {
+            [string[]]$Levels = @()
+            $Levels += Get-ApplicableLevels -Recommendations ($script:BenchmarkRecommendations).Values
+            (Get-DSCDocumentationSyntax -Recommendations $Nothing -Levels $Levels)[0] | Should -Be '    [ ExclusionList = [string[]] ]'
+            (Get-DSCDocumentationSyntax -Recommendations ($script:BenchmarkRecommendations).Values -Levels $Levels) | Should -Contain '    [ LevelOne = [boolean] ]'
+            (Get-DSCDocumentationSyntax -Recommendations ($script:BenchmarkRecommendations).Values -Levels $Levels) | Should -Contain '    [ LevelTwo = [boolean] ]'
         }
     }
 }
