@@ -1,3 +1,19 @@
+<#
+.Synopsis
+   This function generates the properties section of the markdown documentation for resource parameters.
+   Based on Microsoft's template https://github.com/MicrosoftDocs/PowerShell-Docs/blob/staging/reference/docs-conceptual/dsc/reference/resources/windows/registryResource.md
+.DESCRIPTION
+   This function generates the properties section of the markdown documentation for resource parameters.
+   Based on Microsoft's template https://github.com/MicrosoftDocs/PowerShell-Docs/blob/staging/reference/docs-conceptual/dsc/reference/resources/windows/registryResource.md
+.PARAMETER Recommendations
+    Recommendations to pull the text from. This is generated as part of the DSCConfigParameter property.
+.PARAMETER Levels
+    All applicable levels from the provided recommendations. Value is provided by Get-ApplicableLevels
+.EXAMPLE
+    [string[]]$Levels = @()
+    $Levels += Get-ApplicableLevels -Recommendations $FoundRecommendations
+    $DocumentationPropertyBlock = Get-DSCDocumentationPropertyTable -Recommendations $FoundRecommendations -Levels $Levels
+#>
 function Get-DSCDocumentationPropertyTable {
     [CmdletBinding()]
     [OutputType('System.String')]
