@@ -6,10 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Added missing parameter validation for 189623101MaxIdleTime in Windows 10 Enterprise 2004
-- Added docs folder within the module outlining the Windows 10 resources
 ### Changed
 ### Removed
+
+## [1.0.2] - 2020-09-30
+### Added
+- Added missing parameter validation for 189623101MaxIdleTime in Windows 10 Enterprise 2004
+- Added docs folder within the module outlining the Windows 10 resources
 
 ## [1.0.1] - 2020-09-21
 ### Added
