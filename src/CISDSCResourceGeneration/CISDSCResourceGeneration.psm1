@@ -77,8 +77,10 @@ Class DSCConfigurationParameter{
             #Empty string at the end is to ensure there is a trailing ' |' which is required for the markdown
             ''
         )
+        # |112MaximumPasswordAge |60 |1.1.2 |(L1) Ensure 'Maximum password age' is set to '60 or fewer days, but not 0' |
         $This.DocumentationPropertyBlock = $DocumentationPropertyBlockValues -join ' |'
 
+        # [ 112MaximumPasswordAge = [Int32] { 60-999 } ]
         $This.DocumentationSyntaxBlock = "    [ $($This.Name.TrimStart('$')) = $($DataType) $($DocumentationSyntaxValues)]"
     }
 }
