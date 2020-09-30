@@ -104,7 +104,12 @@ function ConvertTo-DSC {
             [string]$ScaffoldingPath = Join-Path -Path $ResourcePath -ChildPath "$($ResourceName).schema.psm1"
             New-Item -Path $ResourcePath -ItemType Directory | Out-Null
             #Setting this inside the splat loses data. I assume because script scope variables cannot be read by invoke-plaster.
-            $DSCConfigurationParameters = Get-DSCParameterTextBlocks -Recommendations $FoundRecommendations
+            [string[]]$Levels = @()
+            $Levels += Get-ApplicableLevels -Recommendations $FoundRecommendations
+
+            $DSCConfigurationParameters = Get-DSCParameterTextBlocks -Recommendations $FoundRecommendations -Levels $Levels
+            $DocumentationPropertyBlock = Get-DSCDocumentationPropertyTable -Recommendations $FoundRecommendations -Levels $Levels
+            $DocumentationSyntaxBlock = Get-DSCDocumentationSyntax -Recommendations $FoundRecommendations -Levels $Levels
 
             $PlasterSplat = @{
                 'TemplatePath' = (Join-Path -Path $script:PlasterTemplatePath -ChildPath 'NewBenchmarkCompositeResource')
@@ -115,6 +120,8 @@ function ConvertTo-DSC {
                 'BenchmarkVersion' = $BenchmarkVersion.ToString()
                 'DSCParameters' = ($DSCConfigurationParameters -join ",`n")
                 'DSCScaffolding' = (($FoundRecommendations | Sort-Object -Property 'RecommendationVersioned').DSCTextBlock -join "`n")
+                'DocumentationPropertyTable' = ($DocumentationPropertyBlock -join "`n")
+                'DocumentationSyntax' = ($DocumentationSyntaxBlock -join "`n")
             }
             Invoke-Plaster @PlasterSplat | Out-Null
 

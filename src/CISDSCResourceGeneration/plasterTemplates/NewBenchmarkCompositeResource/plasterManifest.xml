@@ -35,6 +35,14 @@
                    type='text'
                    prompt='The resulting DSC'/>
 
+        <parameter name='DocumentationPropertyTable'
+                   type='text'
+                   prompt='Property table for the documentation'/>
+
+        <parameter name='DocumentationSyntax'
+                   type='text'
+                   prompt='Syntax for the documentation'/>
+
   </parameters>
 
   <content>
@@ -45,6 +53,9 @@
 
         <templateFile source='resource.schema.psm1.plaster'
                       destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.schema.psm1'/>
+
+        <templateFile source='resource.documentation.md'
+                      destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.md'/>
         <message>
 
 Your new PowerShell DSC resource has been created.

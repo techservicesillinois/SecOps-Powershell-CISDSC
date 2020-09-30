@@ -2,7 +2,8 @@ function Get-DSCParameterTextBlocks {
     [CmdletBinding()]
     [OutputType('System.String')]
     param (
-        [Recommendation[]]$Recommendations
+        [Recommendation[]]$Recommendations,
+        [System.String[]]$Levels
     )
 
     begin {
@@ -11,9 +12,6 @@ function Get-DSCParameterTextBlocks {
     process {
         [System.Collections.ArrayList]$DSCConfigurationParameters = @()
         $DSCConfigurationParameters += '        [string[]]$ExcludeList = @()'
-
-        [System.Collections.ArrayList]$Levels = @()
-        $Levels += ($Recommendations).Level | Select-Object -Unique
 
         if($Levels -contains 'LevelOne'){
             $DSCConfigurationParameters += '        [boolean]$LevelOne = $true'
