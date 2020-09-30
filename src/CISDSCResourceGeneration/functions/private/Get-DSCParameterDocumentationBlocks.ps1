@@ -23,7 +23,7 @@ function Get-DSCDocumentationPropertyTable {
             $Documentation += '|BitLocker |`$false` | |Applies bitlocker recommendations |'
         }
         if($Levels -contains 'NextGenerationWindowsSecurity'){
-            $Documentation += '|NextGenerationWindowsSecurity |`$False` | |Applies Next Generation Windows Security recommendations |'
+            $Documentation += '|NextGenerationWindowsSecurity |`$false` | |Applies Next Generation Windows Security recommendations |'
         }
 
         $Documentation += (($Recommendations).DSCConfigParameter | Sort-Object -Property 'Name').DocumentationPropertyBlock
