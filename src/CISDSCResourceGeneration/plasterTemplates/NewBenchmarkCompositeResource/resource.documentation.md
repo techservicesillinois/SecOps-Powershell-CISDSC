@@ -1,5 +1,5 @@
 ---
-ms.date: <%=$PLASTER_Date%>
+date: <%=$PLASTER_Date%>
 keywords: dsc,powershell,configuration,setup,cis,security,<%=$PLASTER_PARAM_OSBuild%>
 title: CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>
 ---

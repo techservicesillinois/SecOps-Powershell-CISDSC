@@ -1,5 +1,5 @@
 ---
-ms.date: 9/30/2020
+date: 9/30/2020
 keywords: dsc,powershell,configuration,setup,cis,security,1809
 title: CIS_Microsoft_Windows_10_Enterprise_Release_1809
 ---
