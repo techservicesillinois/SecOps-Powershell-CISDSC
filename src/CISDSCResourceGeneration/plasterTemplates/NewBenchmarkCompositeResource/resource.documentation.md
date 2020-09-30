@@ -32,7 +32,7 @@ CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> [string] #Resourc
 ## Properties
 
 |Property |DefaultValue | Recommendation ID|Recommendation
-|---|---|---|---|---|
+|---|---|---|---|
 <%=$PLASTER_PARAM_DocumentationPropertyTable%>
 
 ## Common properties

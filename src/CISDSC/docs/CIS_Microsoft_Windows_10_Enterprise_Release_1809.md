@@ -64,7 +64,7 @@ CIS_Microsoft_Windows_10_Enterprise_Release_1809 [string] #ResourceName
 ## Properties
 
 |Property |DefaultValue | Recommendation ID|Recommendation
-|---|---|---|---|---|
+|---|---|---|---|
 |ExcludeList | | |Excludes the provided recommendation IDs from the configuration |
 |LevelOne |`$true` | |Applies level one recommendations |
 |LevelTwo |`$false` | |Applies level two recommendations. Does not include level one, both must be set to `$true`. |
