@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Added missing parameter validation for 189623101MaxIdleTime in Windows 10 Enterprise 2004
 ### Changed
 ### Removed
 

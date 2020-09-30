@@ -37,6 +37,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         [int32]$1892632MaxSize = 32768,
         [ValidateRange(32768,2147483647)]
         [int32]$1892642MaxSize = 32768,
+        [ValidateRange(60000,900000)]
         [int32]$189623101MaxIdleTime = 900000,
         [ValidateLength(1,256)]
         [String]$2315AccountsRenameadministratoraccount,
