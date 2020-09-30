@@ -308,6 +308,7 @@ Describe 'ConvertTo-DSC' {
 
         Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.psd1' | Should -Be $True
         Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.schema.psm1' | Should -Be $True
+        Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.md' | Should -Be $True
     }
 
     #ToDo find a way to actually test the composite resource can be used in a configuration successfully.
