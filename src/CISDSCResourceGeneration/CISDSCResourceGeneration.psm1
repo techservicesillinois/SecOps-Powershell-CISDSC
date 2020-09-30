@@ -51,12 +51,15 @@ Class DSCConfigurationParameter{
             $DocumentationSyntaxValues = $DocumentationSyntaxValues.Replace(')',' } ')
 
             if($script:ParameterValidations["$RecommendationNum"] -like "*ValidateRange*"){
+                # { 60,999 } -> { 60-999 }
                 $DocumentationSyntaxValues = $DocumentationSyntaxValues.Replace(',','-')
             }
             elseif($script:ParameterValidations["$RecommendationNum"] -like "*ValidateSet*") {
+                # { 1,2,3 } -> { 1 | 2 | 3 }
                 $DocumentationSyntaxValues = $DocumentationSyntaxValues.Replace(',',' | ')
             }
             elseif($script:ParameterValidations["$RecommendationNum"] -like "*ValidateLength*") {
+                # { 60,999 } -> { 60-999 }
                 $DocumentationSyntaxValues = $DocumentationSyntaxValues.Replace(',','-')
             }
         }
@@ -71,7 +74,7 @@ Class DSCConfigurationParameter{
             "$($This.DefaultValue.TrimStart(' = '))",
             $RecommendationNum,
             $script:BenchmarkRecommendations["$RecommendationNum"].Title,
-            #Empty string at the end is to ensure there is a trailing ' |'
+            #Empty string at the end is to ensure there is a trailing ' |' which is required for the markdown
             ''
         )
         $This.DocumentationPropertyBlock = $DocumentationPropertyBlockValues -join ' |'
