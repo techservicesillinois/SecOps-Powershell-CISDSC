@@ -280,7 +280,7 @@ Describe 'Helper: Text block generation' {
             $Levels += Get-ApplicableLevels -Recommendations ($script:BenchmarkRecommendations).Values
             (Get-DSCDocumentationPropertyTable -Recommendations $Nothing -Levels $Levels)[0] | Should -Be '|ExcludeList | | |Excludes the provided recommendation IDs from the configuration |'
             (Get-DSCDocumentationPropertyTable -Recommendations ($script:BenchmarkRecommendations).Values -Levels $Levels) | Should -Contain '|LevelOne |`$true` | |Applies level one recommendations |'
-            (Get-DSCDocumentationPropertyTable -Recommendations ($script:BenchmarkRecommendations).Values -Levels $Levels) | Should -Contain '|LevelTwo |`$false` | |Applies level two recommendations |'
+            (Get-DSCDocumentationPropertyTable -Recommendations ($script:BenchmarkRecommendations).Values -Levels $Levels) | Should -Contain '|LevelTwo |`$false` | |Applies level two recommendations. Does not include level one, both must be set to `$true`. |'
         }
 
         It 'Generates parameter syntax documentation correction' {

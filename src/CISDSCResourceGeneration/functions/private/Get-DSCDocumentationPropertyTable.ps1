@@ -17,7 +17,7 @@ function Get-DSCDocumentationPropertyTable {
             $Documentation += '|LevelOne |`$true` | |Applies level one recommendations |'
         }
         if($Levels -contains 'LevelTwo'){
-            $Documentation += '|LevelTwo |`$false` | |Applies level two recommendations |'
+            $Documentation += '|LevelTwo |`$false` | |Applies level two recommendations. Does not include level one, both must be set to `$true`. |'
         }
         if($Levels -contains 'BitLocker'){
             $Documentation += '|BitLocker |`$false` | |Applies bitlocker recommendations |'
