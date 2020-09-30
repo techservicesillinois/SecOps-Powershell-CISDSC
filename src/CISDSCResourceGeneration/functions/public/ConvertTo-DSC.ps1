@@ -105,7 +105,7 @@ function ConvertTo-DSC {
             New-Item -Path $ResourcePath -ItemType Directory | Out-Null
             #Setting this inside the splat loses data. I assume because script scope variables cannot be read by invoke-plaster.
             [string[]]$Levels = @()
-            $Levels += ($FoundRecommendations).Level | Select-Object -Unique
+            $Levels += Get-ApplicableLevels -Recommendations $FoundRecommendations
 
             $DSCConfigurationParameters = Get-DSCParameterTextBlocks -Recommendations $FoundRecommendations -Levels $Levels
             $DocumentationPropertyBlock = Get-DSCDocumentationPropertyTable -Recommendations $FoundRecommendations -Levels $Levels
