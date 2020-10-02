@@ -21,7 +21,7 @@ jobs:
       run: Install-Module -Name 'PSScriptAnalyzer' -Force -SkipPublisherCheck
       shell: pwsh
     - name: Copy to module dir
-      run: Copy-Item -Path '.\src\CISDSC' -DestinationPath "$($pshome)\modules" -Recurse -Force
+      run: Copy-Item -Path '.\src\CISDSC' -Destination "$($pshome)\modules" -Recurse -Force
       shell: pwsh
     - name: ScriptAnalyzer DSCResources
       run: Invoke-ScriptAnalyzer -Path '.\src\CISDSC' -Recurse -EnableExit -SaveDscDependency -ExcludeRule 'PSDSCDscTestsPresent'
