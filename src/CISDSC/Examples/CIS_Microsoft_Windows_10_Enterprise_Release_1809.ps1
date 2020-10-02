@@ -2,7 +2,8 @@
 
 <#
     .DESCRIPTION
-    Applies CIS Level one benchmarks for Windows 10 build 1809 with the non-standard services excluded.
+    Applies CIS Level one benchmarks for Windows 10 build 1809 the no exclusions.
+    Exclusion documentation can be found in the docs folder of this module.
 #>
 
 Configuration Win10_1809_L1
@@ -13,16 +14,6 @@ Configuration Win10_1809_L1
     {
         CIS_Microsoft_Windows_10_Enterprise_Release_1809 'CIS Benchmarks'
         {
-            'ExcludeList' = @(
-                '5.6', # IIS Admin Service (IISADMIN)
-                '5.7', # Infrared monitor service (irmon)
-                '5.10',# LxssManager (LxssManager)
-                '5.11',# Microsoft FTP Service (FTPSVC)
-                '5.14',# OpenSSH SSH Server (sshd)
-                '5.28',# Simple TCP/IP Services (simptcp)
-                '5.32',# Web Management Service (WMSvc)
-                '5.40' # World Wide Web Publishing Service (W3SVC)
-            )
             '2315AccountsRenameadministratoraccount' = 'CISAdmin'
             '2316AccountsRenameguestaccount' = 'CISGuest'
             '2376LegalNoticeCaption' = 'Legal Notice'

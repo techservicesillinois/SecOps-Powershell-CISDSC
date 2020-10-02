@@ -2,7 +2,8 @@
 
 <#
     .DESCRIPTION
-    Applies CIS Level one benchmarks for Windows 10 build 2004 with the non-standard services excluded.
+    Applies CIS Level one benchmarks for Windows 10 build 2004 with no exclusions.
+    Exclusion documentation can be found in the docs folder of this module.
     This will also install LAPS (Local Administrator Password Solution) from the internet via download.microsoft.com unless the URL is changed to a network accesible path for your envrionment.
 #>
 
@@ -20,17 +21,6 @@ Configuration Win10_2004_L1_With_LAPS
         }
 
         CIS_Microsoft_Windows_10_Enterprise_Release_2004 'CIS Benchmarks' {
-            'ExcludeList' = @(
-                '5.6', # IIS Admin Service (IISADMIN)
-                '5.7', # Infrared monitor service (irmon)
-                '5.10',# LxssManager (LxssManager)
-                '5.11',# Microsoft FTP Service (FTPSVC)
-                '5.13',# OpenSSH SSH Server (sshd)
-                '5.27',# Simple TCP/IP Services (simptcp)
-                '5.29',# Special Administration Console Helper (sacsvr)
-                '5.32',# Web Management Service (WMSvc)
-                '5.40' # World Wide Web Publishing Service (W3SVC)
-            )
             '2315AccountsRenameadministratoraccount' = 'CISAdmin'
             '2316AccountsRenameguestaccount' = 'CISGuest'
             '2376LegalNoticeCaption' = 'Legal Notice'
