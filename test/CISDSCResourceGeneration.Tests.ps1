@@ -205,7 +205,7 @@ Describe 'Helper: Conversion functions' {
         It 'ConvertFrom-ServiceRawGPO returns valid objects' {
             ConvertFrom-ServiceRawGPO -Service 'IISADMIN'
             ($script:BenchmarkRecommendations['5.6'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
-            $script:BenchmarkRecommendations['5.6'].ResourceParameters[0].keys | Where-Object -FilterScript {$_ -notin ('Name')} | Should -Be $null
+            $script:BenchmarkRecommendations['5.6'].ResourceParameters[0].keys | Where-Object -FilterScript {$_ -notin ('Name','ResourceType')} | Should -Be $null
         }
 
         It 'ConvertFrom-SystemAccessRawGPO returns valid objects' {
