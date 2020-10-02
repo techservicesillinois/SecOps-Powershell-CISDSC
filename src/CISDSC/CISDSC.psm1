@@ -25,7 +25,7 @@ class CISService
     [bool]Test()
     {
         $Service = $This.GetService()
-        # Is the service abscent or disabled + stopped. Abscent is considered desired state.
+        # Is the service absent or disabled + stopped. Abscent is considered desired state.
         $Test = ($null -eq $Service -or ($Service.StartType -eq 'Disabled' -and $Service.Status -eq 'Stopped'))
         return $Test
     }
