@@ -64,7 +64,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
     )
 
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
-    Import-DSCResource -Name 'CISService'
+    Import-DSCResource -ModuleName 'CISDSC' -Name 'CISService'
     Import-DSCResource -ModuleName 'AuditPolicyDSC' -ModuleVersion '1.4.0.0'
     Import-DSCResource -ModuleName 'SecurityPolicyDSC' -ModuleVersion '2.10.0.0'
 
