@@ -3,7 +3,7 @@
 <#
     .DESCRIPTION
     Applies CIS Level one benchmarks for Windows 10 build 1909 with no exclusions.
-    Exclusion documentation can be found for the applicable documentation in the docs folder of this module.
+    Exclusion documentation can be found in the docs folder of this module.
 #>
 
 Configuration Win10_1909_L1
