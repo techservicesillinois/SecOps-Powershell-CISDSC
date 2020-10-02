@@ -20,8 +20,11 @@ jobs:
     - name: Install dependencies
       run: Install-Module -Name 'PSScriptAnalyzer' -Force -SkipPublisherCheck
       shell: pwsh
+    - name: Copy to module dir
+      run: Copy-Item -Path '.\src\CISDSC' -DestinationPath "$($pshome)\modules" -Recurse -Force
+      shell: pwsh
     - name: ScriptAnalyzer DSCResources
-      run: Invoke-ScriptAnalyzer -Path '.\src\CISDSC\DSCResources' -Recurse -EnableExit -SaveDscDependency
+      run: Invoke-ScriptAnalyzer -Path '.\src\CISDSC' -Recurse -EnableExit -SaveDscDependency -ExcludeRule 'PSDSCDscTestsPresent'
       shell: pwsh
     - name: ScriptAnalyzer CISDSCResourceGeneration
       run: Invoke-ScriptAnalyzer -Path '.\src\CISDSCResourceGeneration' -Recurse -EnableExit -SaveDscDependency
