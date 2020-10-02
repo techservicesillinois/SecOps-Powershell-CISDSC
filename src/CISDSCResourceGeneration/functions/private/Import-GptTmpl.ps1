@@ -36,7 +36,7 @@ function Import-GptTmpl {
                         'Registry Values' {ConvertFrom-RegistryValueRawGPO -Key $subkey -ValueData $ini[$key][$subKey]}
                         'Privilege Rights' {ConvertFrom-PrivilegeRightRawGPO -Policy $subkey -Identity $ini[$key][$subKey]}
                         'System Access' {ConvertFrom-SystemAccessRawGPO -Key $subkey -SecurityData $ini[$key][$subKey]}
-                        'Service General Setting' {ConvertFrom-ServiceRawGPO -Service $subkey -ServiceData $ini[$key][$subKey]}
+                        'Service General Setting' {ConvertFrom-ServiceRawGPO -Service $subkey}
                         Default {Write-Warning -Message "Inf: $($Key) not yet supported."}
                     }
                 }
