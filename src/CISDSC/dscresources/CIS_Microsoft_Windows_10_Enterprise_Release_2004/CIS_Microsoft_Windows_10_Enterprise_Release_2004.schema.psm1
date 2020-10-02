@@ -66,6 +66,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     )
 
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
+    Import-DSCResource -Name 'CISService'
     Import-DSCResource -ModuleName 'AuditPolicyDSC' -ModuleVersion '1.4.0.0'
     Import-DSCResource -ModuleName 'SecurityPolicyDSC' -ModuleVersion '2.10.0.0'
 
@@ -934,267 +935,223 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         }
     }
     if($ExcludeList -notcontains '5.1' -and $LevelTwo){
-        Service "5.1 - (L2) Ensure Bluetooth Audio Gateway Service (BTAGService) is set to Disabled" {
+        CISService "5.1 - (L2) Ensure Bluetooth Audio Gateway Service (BTAGService) is set to Disabled" {
             Name = 'BTAGService'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.2' -and $LevelTwo){
-        Service "5.2 - (L2) Ensure Bluetooth Support Service (bthserv) is set to Disabled" {
+        CISService "5.2 - (L2) Ensure Bluetooth Support Service (bthserv) is set to Disabled" {
             Name = 'bthserv'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.3' -and $LevelOne){
-        Service "5.3 - (L1) Ensure Computer Browser (Browser) is set to Disabled or Not Installed" {
+        CISService "5.3 - (L1) Ensure Computer Browser (Browser) is set to Disabled or Not Installed" {
             Name = 'Browser'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.4' -and $LevelTwo){
-        Service "5.4 - (L2) Ensure Downloaded Maps Manager (MapsBroker) is set to Disabled" {
+        CISService "5.4 - (L2) Ensure Downloaded Maps Manager (MapsBroker) is set to Disabled" {
             Name = 'MapsBroker'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.5' -and $LevelTwo){
-        Service "5.5 - (L2) Ensure Geolocation Service (lfsvc) is set to Disabled" {
+        CISService "5.5 - (L2) Ensure Geolocation Service (lfsvc) is set to Disabled" {
             Name = 'lfsvc'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.6' -and $LevelOne){
-        Service "5.6 - (L1) Ensure IIS Admin Service (IISADMIN) is set to Disabled or Not Installed" {
+        CISService "5.6 - (L1) Ensure IIS Admin Service (IISADMIN) is set to Disabled or Not Installed" {
             Name = 'IISADMIN'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.7' -and $LevelOne){
-        Service "5.7 - (L1) Ensure Infrared monitor service (irmon) is set to Disabled or Not Installed" {
+        CISService "5.7 - (L1) Ensure Infrared monitor service (irmon) is set to Disabled or Not Installed" {
             Name = 'irmon'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.8' -and $LevelOne){
-        Service "5.8 - (L1) Ensure Internet Connection Sharing (ICS) (SharedAccess) is set to Disabled" {
+        CISService "5.8 - (L1) Ensure Internet Connection Sharing (ICS) (SharedAccess) is set to Disabled" {
             Name = 'SharedAccess'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.9' -and $LevelTwo){
-        Service "5.9 - (L2) Ensure Link-Layer Topology Discovery Mapper (lltdsvc) is set to Disabled" {
+        CISService "5.9 - (L2) Ensure Link-Layer Topology Discovery Mapper (lltdsvc) is set to Disabled" {
             Name = 'lltdsvc'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.10' -and $LevelOne){
-        Service "5.10 - (L1) Ensure LxssManager (LxssManager) is set to Disabled or Not Installed" {
+        CISService "5.10 - (L1) Ensure LxssManager (LxssManager) is set to Disabled or Not Installed" {
             Name = 'LxssManager'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.11' -and $LevelOne){
-        Service "5.11 - (L1) Ensure Microsoft FTP Service (FTPSVC) is set to Disabled or Not Installed" {
+        CISService "5.11 - (L1) Ensure Microsoft FTP Service (FTPSVC) is set to Disabled or Not Installed" {
             Name = 'ftpsvc'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.12' -and $LevelTwo){
-        Service "5.12 - (L2) Ensure Microsoft iSCSI Initiator Service (MSiSCSI) is set to Disabled" {
+        CISService "5.12 - (L2) Ensure Microsoft iSCSI Initiator Service (MSiSCSI) is set to Disabled" {
             Name = 'MSiSCSI'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.13' -and $LevelOne){
-        Service "5.13 - (L1) Ensure OpenSSH SSH Server (sshd) is set to Disabled or Not Installed" {
+        CISService "5.13 - (L1) Ensure OpenSSH SSH Server (sshd) is set to Disabled or Not Installed" {
             Name = 'sshd'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.14' -and $LevelTwo){
-        Service "5.14 - (L2) Ensure Peer Name Resolution Protocol (PNRPsvc) is set to Disabled" {
+        CISService "5.14 - (L2) Ensure Peer Name Resolution Protocol (PNRPsvc) is set to Disabled" {
             Name = 'PNRPsvc'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.15' -and $LevelTwo){
-        Service "5.15 - (L2) Ensure Peer Networking Grouping (p2psvc) is set to Disabled" {
+        CISService "5.15 - (L2) Ensure Peer Networking Grouping (p2psvc) is set to Disabled" {
             Name = 'p2psvc'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.16' -and $LevelTwo){
-        Service "5.16 - (L2) Ensure Peer Networking Identity Manager (p2pimsvc) is set to Disabled" {
+        CISService "5.16 - (L2) Ensure Peer Networking Identity Manager (p2pimsvc) is set to Disabled" {
             Name = 'p2pimsvc'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.17' -and $LevelTwo){
-        Service "5.17 - (L2) Ensure PNRP Machine Name Publication Service (PNRPAutoReg) is set to Disabled" {
+        CISService "5.17 - (L2) Ensure PNRP Machine Name Publication Service (PNRPAutoReg) is set to Disabled" {
             Name = 'PNRPAutoReg'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.18' -and $LevelTwo){
-        Service "5.18 - (L2) Ensure Problem Reports and Solutions Control Panel Support (wercplsupport) is set to Disabled" {
+        CISService "5.18 - (L2) Ensure Problem Reports and Solutions Control Panel Support (wercplsupport) is set to Disabled" {
             Name = 'wercplsupport'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.19' -and $LevelTwo){
-        Service "5.19 - (L2) Ensure Remote Access Auto Connection Manager (RasAuto) is set to Disabled" {
+        CISService "5.19 - (L2) Ensure Remote Access Auto Connection Manager (RasAuto) is set to Disabled" {
             Name = 'RasAuto'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.20' -and $LevelTwo){
-        Service "5.20 - (L2) Ensure Remote Desktop Configuration (SessionEnv) is set to Disabled" {
+        CISService "5.20 - (L2) Ensure Remote Desktop Configuration (SessionEnv) is set to Disabled" {
             Name = 'SessionEnv'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.21' -and $LevelTwo){
-        Service "5.21 - (L2) Ensure Remote Desktop Services (TermService) is set to Disabled" {
+        CISService "5.21 - (L2) Ensure Remote Desktop Services (TermService) is set to Disabled" {
             Name = 'TermService'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.22' -and $LevelTwo){
-        Service "5.22 - (L2) Ensure Remote Desktop Services UserMode Port Redirector (UmRdpService) is set to Disabled" {
+        CISService "5.22 - (L2) Ensure Remote Desktop Services UserMode Port Redirector (UmRdpService) is set to Disabled" {
             Name = 'UmRdpService'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.23' -and $LevelOne){
-        Service "5.23 - (L1) Ensure Remote Procedure Call (RPC) Locator (RpcLocator) is set to Disabled" {
+        CISService "5.23 - (L1) Ensure Remote Procedure Call (RPC) Locator (RpcLocator) is set to Disabled" {
             Name = 'RpcLocator'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.24' -and $LevelTwo){
-        Service "5.24 - (L2) Ensure Remote Registry (RemoteRegistry) is set to Disabled" {
+        CISService "5.24 - (L2) Ensure Remote Registry (RemoteRegistry) is set to Disabled" {
             Name = 'RemoteRegistry'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.25' -and $LevelOne){
-        Service "5.25 - (L1) Ensure Routing and Remote Access (RemoteAccess) is set to Disabled" {
+        CISService "5.25 - (L1) Ensure Routing and Remote Access (RemoteAccess) is set to Disabled" {
             Name = 'RemoteAccess'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.26' -and $LevelTwo){
-        Service "5.26 - (L2) Ensure Server (LanmanServer) is set to Disabled" {
+        CISService "5.26 - (L2) Ensure Server (LanmanServer) is set to Disabled" {
             Name = 'LanmanServer'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.27' -and $LevelOne){
-        Service "5.27 - (L1) Ensure Simple TCPIP Services (simptcp) is set to Disabled or Not Installed" {
+        CISService "5.27 - (L1) Ensure Simple TCPIP Services (simptcp) is set to Disabled or Not Installed" {
             Name = 'simptcp'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.28' -and $LevelTwo){
-        Service "5.28 - (L2) Ensure SNMP Service (SNMP) is set to Disabled or Not Installed" {
+        CISService "5.28 - (L2) Ensure SNMP Service (SNMP) is set to Disabled or Not Installed" {
             Name = 'SNMP'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.29' -and $LevelOne){
-        Service "5.29 - (L1) Ensure Special Administration Console Helper (sacsvr) is set to Disabled or Not Installed" {
+        CISService "5.29 - (L1) Ensure Special Administration Console Helper (sacsvr) is set to Disabled or Not Installed" {
             Name = 'sacsvr'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.30' -and $LevelOne){
-        Service "5.30 - (L1) Ensure SSDP Discovery (SSDPSRV) is set to Disabled" {
+        CISService "5.30 - (L1) Ensure SSDP Discovery (SSDPSRV) is set to Disabled" {
             Name = 'SSDPSRV'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.31' -and $LevelOne){
-        Service "5.31 - (L1) Ensure UPnP Device Host (upnphost) is set to Disabled" {
+        CISService "5.31 - (L1) Ensure UPnP Device Host (upnphost) is set to Disabled" {
             Name = 'upnphost'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.32' -and $LevelOne){
-        Service "5.32 - (L1) Ensure Web Management Service (WMSvc) is set to Disabled or Not Installed" {
+        CISService "5.32 - (L1) Ensure Web Management Service (WMSvc) is set to Disabled or Not Installed" {
             Name = 'WMSVC'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.33' -and $LevelTwo){
-        Service "5.33 - (L2) Ensure Windows Error Reporting Service (WerSvc) is set to Disabled" {
+        CISService "5.33 - (L2) Ensure Windows Error Reporting Service (WerSvc) is set to Disabled" {
             Name = 'WerSvc'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.34' -and $LevelTwo){
-        Service "5.34 - (L2) Ensure Windows Event Collector (Wecsvc) is set to Disabled" {
+        CISService "5.34 - (L2) Ensure Windows Event Collector (Wecsvc) is set to Disabled" {
             Name = 'Wecsvc'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.35' -and $LevelOne){
-        Service "5.35 - (L1) Ensure Windows Media Player Network Sharing Service (WMPNetworkSvc) is set to Disabled or Not Installed" {
+        CISService "5.35 - (L1) Ensure Windows Media Player Network Sharing Service (WMPNetworkSvc) is set to Disabled or Not Installed" {
             Name = 'WMPNetworkSvc'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.36' -and $LevelOne){
-        Service "5.36 - (L1) Ensure Windows Mobile Hotspot Service (icssvc) is set to Disabled" {
+        CISService "5.36 - (L1) Ensure Windows Mobile Hotspot Service (icssvc) is set to Disabled" {
             Name = 'icssvc'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.37' -and $LevelTwo){
-        Service "5.37 - (L2) Ensure Windows Push Notifications System Service (WpnService) is set to Disabled" {
+        CISService "5.37 - (L2) Ensure Windows Push Notifications System Service (WpnService) is set to Disabled" {
             Name = 'WpnService'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.38' -and $LevelTwo){
-        Service "5.38 - (L2) Ensure Windows PushToInstall Service (PushToInstall) is set to Disabled" {
+        CISService "5.38 - (L2) Ensure Windows PushToInstall Service (PushToInstall) is set to Disabled" {
             Name = 'PushToInstall'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.39' -and $LevelTwo){
-        Service "5.39 - (L2) Ensure Windows Remote Management (WS-Management) (WinRM) is set to Disabled" {
+        CISService "5.39 - (L2) Ensure Windows Remote Management (WS-Management) (WinRM) is set to Disabled" {
             Name = 'WinRM'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.40' -and $LevelOne){
-        Service "5.40 - (L1) Ensure World Wide Web Publishing Service (W3SVC) is set to Disabled or Not Installed" {
+        CISService "5.40 - (L1) Ensure World Wide Web Publishing Service (W3SVC) is set to Disabled or Not Installed" {
             Name = 'W3SVC'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.41' -and $LevelOne){
-        Service "5.41 - (L1) Ensure Xbox Accessory Management Service (XboxGipSvc) is set to Disabled" {
+        CISService "5.41 - (L1) Ensure Xbox Accessory Management Service (XboxGipSvc) is set to Disabled" {
             Name = 'XboxGipSvc'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.42' -and $LevelOne){
-        Service "5.42 - (L1) Ensure Xbox Live Auth Manager (XblAuthManager) is set to Disabled" {
+        CISService "5.42 - (L1) Ensure Xbox Live Auth Manager (XblAuthManager) is set to Disabled" {
             Name = 'XblAuthManager'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.43' -and $LevelOne){
-        Service "5.43 - (L1) Ensure Xbox Live Game Save (XblGameSave) is set to Disabled" {
+        CISService "5.43 - (L1) Ensure Xbox Live Game Save (XblGameSave) is set to Disabled" {
             Name = 'XblGameSave'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '5.44' -and $LevelOne){
-        Service "5.44 - (L1) Ensure Xbox Live Networking Service (XboxNetApiSvc) is set to Disabled" {
+        CISService "5.44 - (L1) Ensure Xbox Live Networking Service (XboxNetApiSvc) is set to Disabled" {
             Name = 'XboxNetApiSvc'
-            State = 'Stopped'
         }
     }
     if($ExcludeList -notcontains '9.1.1' -and $LevelOne){
