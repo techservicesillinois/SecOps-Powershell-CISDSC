@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Added CISService resource. This is a custom resource for managing services that will pass absent or disabled removing the need to add absent services to the ExcludeList of configurations.
 ### Changed
 ### Removed
 

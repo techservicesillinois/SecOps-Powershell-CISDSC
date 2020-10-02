@@ -1,7 +1,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-# RootModule = ''
+RootModule = 'CISDSC.psm1'
 
 # Version number of this module.
 ModuleVersion = '1.0.2'
@@ -77,6 +77,7 @@ RequiredModules = @(
 
 # DSC resources to export from this module
 DscResourcesToExport = @(
+    'CISService',
     'CIS_Microsoft_Windows_10_Enterprise_Release_1809',
     'CIS_Microsoft_Windows_10_Enterprise_Release_1909',
     'CIS_Microsoft_Windows_10_Enterprise_Release_2004'
