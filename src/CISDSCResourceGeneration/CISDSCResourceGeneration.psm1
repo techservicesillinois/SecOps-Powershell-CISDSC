@@ -24,10 +24,10 @@ Class DSCConfigurationParameter{
 
         #These specific parameters do not have an appropriate default as these are organization specific settings. This check avoids the need to remove the default from the CIS GPOs manually after generation.
         [string[]]$NoDefaultValueExceptions = @(
-            '$2315AccountsRenameadministratoraccount',
-            '$2316AccountsRenameguestaccount',
-            '$2375LegalNoticeText',
-            '$2376LegalNoticeCaption'
+            ('${0}AccountsRenameadministratoraccount' -f $script:AccountsRenameadministratoraccountNum),
+            ('${0}AccountsRenameguestaccount' -f $script:AccountsRenameguestaccountNum),
+            ('${0}LegalNoticeText' -f $script:LegalNoticeTextNum),
+            ('${0}LegalNoticeCaption' -f $script:LegalNoticeCaptionNum)
         )
 
         if($This.Name -notin $NoDefaultValueExceptions){
@@ -233,6 +233,10 @@ $script:StaticCorrections = @{}
 $script:ParameterValidations = @{}
 [int]$script:ServiceSection = 0
 [int]$script:UserSection = 0
+[string]$script:AccountsRenameadministratoraccountNum = [string]::Empty
+[string]$script:AccountsRenameguestaccountNum = [string]::Empty
+[string]$script:LegalNoticeTextNum = [string]::Empty
+[string]$script:LegalNoticeCaptionNum = [string]::Empty
 [System.Collections.ArrayList]$script:RecommendationErrors = @()
 
 #Below is various dictionaries used to translate values from group policy to DSC.
