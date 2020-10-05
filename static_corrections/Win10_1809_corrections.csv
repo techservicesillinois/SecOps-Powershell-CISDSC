@@ -16,7 +16,7 @@
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\FVE:UseTPMKeyPIN","18.9.11.2.16","These are unmentioned keys impacted by the remediation steps"
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Security:FlashClickToRunMode","18.9.45.9","Outdate key in benchmark, https://getadmx.com/?Category=Windows_10_2016&Policy=Microsoft.Policies.MicrosoftEdge::AllowFlashClickToRun"
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}:NoBackgroundPolicy","18.8.21.2","Benchmark has a typo. '\NoBackgroundPolicy' vs ':NoBackgroundPolicy'"
-"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}:NoGPOListChanges","18.8.21.2","Benchmark has a typo. '\NoGPOListChanges' vs ':NoGPOListChanges'"
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}:NoGPOListChanges","18.8.21.3","Benchmark has a typo. '\NoGPOListChanges' vs ':NoGPOListChanges'"
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\HomeGroup:DisableHomeGroup","18.9.35.1","Benchmark has a typo. '\DisableHomeGroup' vs ':DisableHomeGroup'"
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging:EnableScriptBlockInvocationLogging","18.9.95.1","Outdated key in benchmark, https://getadmx.com/?Category=Windows_10_2016&Policy=Microsoft.Policies.PowerShell::EnableScriptBlockLogging"
 "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters:DisabledComponents","18.5.19.2.1","Benchmark has a typo. 'Parameters' vs 'Parameter'"

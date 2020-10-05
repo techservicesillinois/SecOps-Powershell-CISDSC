@@ -6,11 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Added CISService resource. This is a custom resource for managing services that will pass absent or disabled removing the need to add absent services to the ExcludeList of configurations.
-- Updated Windows 10 Enterprise 1809,1909, and 2004 to use the new CISService resource.
-
 ### Changed
 ### Removed
+
+## [1.1.0] - 2020-10-05
+### Added
+- Added CISService resource. This is a custom resource for managing services that will consider an absent or disabled service to be in desired state.
+### Changed
+- Updated Windows 10 Enterprise 1809, 1909, and 2004 to use the new CISService resource. This means users will no longer have to explicitly exclude absent services from their configurations to avoid errors. This is not a breaking a change.
+### Removed
+- Removed duplicate entry for HKLM:\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}:NoGPOListChanges in Windows 10 Enterprise 1809
 
 ## [1.0.2] - 2020-09-30
 ### Added
