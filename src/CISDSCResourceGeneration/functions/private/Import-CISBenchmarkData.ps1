@@ -33,6 +33,20 @@ function Import-CISBenchmarkData {
             Import-Excel -Path $Path -DataOnly -WorksheetName $_.Name | ForEach-Object -Process {
                 try{
                     if($_.'recommendation #'){
+                        # For some reason I do not understand a switch statement here just does not work.
+                        if($_.title -eq "(L1) Configure 'Interactive logon: Message text for users attempting to log on'"){
+                            $script:LegalNoticeTextNum = $_.'recommendation #'
+                        }
+                        elseif($_.title -eq "(L1) Configure 'Interactive logon: Message title for users attempting to log on'"){
+                            $script:LegalNoticeCaptionNum = $_.'recommendation #'
+                        }
+                        elseif($_.title -eq "(L1) Configure 'Accounts: Rename administrator account'"){
+                            $script:AccountsRenameadministratoraccountNum = $_.'recommendation #'
+                        }
+                        elseif($_.title -eq "(L1) Configure 'Accounts: Rename guest account'"){
+                            $script:AccountsRenameguestaccountNum = $_.'recommendation #'
+                        }
+
                         $script:BenchmarkRecommendations.add($_.'recommendation #',([Recommendation]::New($_)))
                     }
                     else{
