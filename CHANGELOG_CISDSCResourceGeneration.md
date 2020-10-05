@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed
 
+## 2.1.1
+### Added
+### Changed
+- Changed service logic to use the CISService resource
+### Removed
+
 ## 2.1 - 9/30/20
 ### Added
 - Functionality to generate resource documentation along side the DSC resources
