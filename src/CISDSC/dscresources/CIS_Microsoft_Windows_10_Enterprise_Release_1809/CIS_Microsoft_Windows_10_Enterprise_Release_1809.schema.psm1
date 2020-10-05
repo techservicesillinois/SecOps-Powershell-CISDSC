@@ -2360,18 +2360,11 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
         }
     }
     if($ExcludeList -notcontains '18.8.21.2' -and $LevelOne){
-        Registry "18.8.21.2 - (L1) Ensure Configure registry policy processing Do not apply during periodic background processing is set to Enabled FALSE (1)" {
+        Registry "18.8.21.2 - (L1) Ensure Configure registry policy processing Do not apply during periodic background processing is set to Enabled FALSE" {
             Ensure = 'Present'
             Key = 'HKLM:\Software\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}'
             ValueData = 0
             ValueName = 'NoBackgroundPolicy'
-            ValueType = 'Dword'
-        }
-        Registry "18.8.21.2 - (L1) Ensure Configure registry policy processing Do not apply during periodic background processing is set to Enabled FALSE (2)" {
-            Ensure = 'Present'
-            Key = 'HKLM:\Software\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}'
-            ValueData = 0
-            ValueName = 'NoGPOListChanges'
             ValueType = 'Dword'
         }
     }
