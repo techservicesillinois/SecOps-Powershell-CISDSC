@@ -24,10 +24,10 @@ Class DSCConfigurationParameter{
 
         #These specific parameters do not have an appropriate default as these are organization specific settings. This check avoids the need to remove the default from the CIS GPOs manually after generation.
         [string[]]$NoDefaultValueExceptions = @(
-            ('${0}AccountsRenameadministratoraccount' -f $script:AccountsRenameadministratoraccountNum),
-            ('${0}AccountsRenameguestaccount' -f $script:AccountsRenameguestaccountNum),
-            ('${0}LegalNoticeText' -f $script:LegalNoticeTextNum),
-            ('${0}LegalNoticeCaption' -f $script:LegalNoticeCaptionNum)
+            ('${0}AccountsRenameadministratoraccount' -f $script:AccountsRenameadministratoraccountNum.replace('.','')),
+            ('${0}AccountsRenameguestaccount' -f $script:AccountsRenameguestaccountNum.replace('.','')),
+            ('${0}LegalNoticeText' -f $script:LegalNoticeTextNum.replace('.','')),
+            ('${0}LegalNoticeCaption' -f $script:LegalNoticeCaptionNum.replace('.',''))
         )
 
         if($This.Name -notin $NoDefaultValueExceptions){
