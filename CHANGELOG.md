@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Updated Windows 10 Enterprise 1809, 1909, and 2004 to use the new CISService resource. This means users will no longer have to explicitly exclude absent services from their configurations to avoid errors. This is not a breaking a change.
 ### Removed
-- Removed duplicate entry for HKLM:\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}:NoGPOListChanges
+- Removed duplicate entry for HKLM:\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}:NoGPOListChanges in Windows 10 Enterprise 1809
 
 ## [1.0.2] - 2020-09-30
 ### Added
