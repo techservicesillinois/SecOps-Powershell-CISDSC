@@ -122,6 +122,14 @@ function ConvertTo-DSC {
                 'DSCScaffolding' = (($FoundRecommendations | Sort-Object -Property 'RecommendationVersioned').DSCTextBlock -join "`n")
                 'DocumentationPropertyTable' = ($DocumentationPropertyBlock -join "`n")
                 'DocumentationSyntax' = ($DocumentationSyntaxBlock -join "`n")
+                'AccountsRenameadministratoraccountNum' = $script:AccountsRenameadministratoraccountNum
+                'AccountsRenameadministratoraccountNumNoDots' = $script:AccountsRenameadministratoraccountNum.replace('.','')
+                'AccountsRenameguestaccountNum' = $script:AccountsRenameguestaccountNum
+                'AccountsRenameguestaccountNumNoDots' = $script:AccountsRenameguestaccountNum.replace('.','')
+                'LegalNoticeTextNum' = $script:LegalNoticeTextNum
+                'LegalNoticeTextNumNoDots' = $script:LegalNoticeTextNum.replace('.','')
+                'LegalNoticeCaptionNum' = $script:LegalNoticeCaptionNum
+                'LegalNoticeCaptionNumNoDots' = $script:LegalNoticeCaptionNum.replace('.','')
             }
             Invoke-Plaster @PlasterSplat | Out-Null
 

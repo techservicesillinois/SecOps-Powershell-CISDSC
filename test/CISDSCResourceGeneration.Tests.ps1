@@ -117,11 +117,15 @@ Describe 'Helper: Import-CISBenchmarkData' {
             $script:BenchmarkRecommendations.Values[0] -is [Recommendation]
         }
 
-        It 'Updates the unique section values' {
+        It 'Updates the special case section and recommendation values' {
             Import-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
 
             $script:ServiceSection | Should -Be 5
             $script:UserSection | Should -Be 19
+            $script:AccountsRenameadministratoraccountNum | Should -Be "2.3.1.5"
+            $script:AccountsRenameguestaccountNum | Should -Be "2.3.1.6"
+            $script:LegalNoticeTextNum | Should -Be "2.3.7.5"
+            $script:LegalNoticeCaptionNum | Should -Be "2.3.7.6"
         }
     }
 }

@@ -43,6 +43,38 @@
                    type='text'
                    prompt='Syntax for the documentation'/>
 
+        <parameter name='AccountsRenameadministratoraccountNum'
+                   type='text'
+                   prompt='Recommendation Id for renaming the admin account'/>
+
+        <parameter name='AccountsRenameguestaccountNum'
+                   type='text'
+                   prompt='Recommendation Id for renaming the guest account'/>
+
+        <parameter name='LegalNoticeTextNum'
+                   type='text'
+                   prompt='Recommendation Id for setting the legal notice'/>
+
+        <parameter name='LegalNoticeCaptionNum'
+                   type='text'
+                   prompt='Recommendation Id for setting the legal caption'/>
+
+        <parameter name='AccountsRenameadministratoraccountNumNoDots'
+                   type='text'
+                   prompt='Recommendation Id for renaming the admin account with no periods'/>
+
+        <parameter name='AccountsRenameguestaccountNumNoDots'
+                   type='text'
+                   prompt='Recommendation Id for renaming the guest account with no periods'/>
+
+        <parameter name='LegalNoticeTextNumNoDots'
+                   type='text'
+                   prompt='Recommendation Id for setting the legal notice with no periods'/>
+
+        <parameter name='LegalNoticeCaptionNumNoDots'
+                   type='text'
+                   prompt='Recommendation Id for setting the legal caption with no periods'/>
+
   </parameters>
 
   <content>

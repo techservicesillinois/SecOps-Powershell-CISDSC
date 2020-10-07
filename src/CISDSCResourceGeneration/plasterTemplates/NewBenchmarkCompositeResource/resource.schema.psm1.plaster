@@ -10,17 +10,17 @@ Configuration CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>
     Import-DSCResource -ModuleName 'AuditPolicyDSC' -ModuleVersion '1.4.0.0'
     Import-DSCResource -ModuleName 'SecurityPolicyDSC' -ModuleVersion '2.10.0.0'
 
-    if($ExcludeList -notcontains '2.3.1.5' -and $PSBoundParameters.Keys -notcontains '2315AccountsRenameadministratoraccount'){
-        throw 'Please add "2.3.1.5" to the ExcludeList or provide a value for "2315AccountsRenameadministratoraccount"'
+    if($ExcludeList -notcontains '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNum%>' -and $PSBoundParameters.Keys -notcontains '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount'){
+        throw 'Please add "<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNum%>" to the ExcludeList or provide a value for "<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount"'
     }
-    if($ExcludeList -notcontains '2.3.1.6' -and $PSBoundParameters.Keys -notcontains '2316AccountsRenameguestaccount'){
-        throw 'Please add "2.3.1.6" to the ExcludeList or provide a value for "2316AccountsRenameguestaccount"'
+    if($ExcludeList -notcontains '<%=$PLASTER_PARAM_AccountsRenameguestaccountNum%>' -and $PSBoundParameters.Keys -notcontains '<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount'){
+        throw 'Please add "<%=$PLASTER_PARAM_AccountsRenameguestaccountNum%>" to the ExcludeList or provide a value for "<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount"'
     }
-    if($ExcludeList -notcontains '2.3.7.5' -and $PSBoundParameters.Keys -notcontains '2375LegalNoticeText'){
-        throw 'Please add "2.3.7.5" to the ExcludeList or provide a value for "2375LegalNoticeText"'
+    if($ExcludeList -notcontains '<%=$PLASTER_PARAM_LegalNoticeTextNum%>' -and $PSBoundParameters.Keys -notcontains '<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText'){
+        throw 'Please add "<%=$PLASTER_PARAM_LegalNoticeTextNum%>" to the ExcludeList or provide a value for "<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText"'
     }
-    if($ExcludeList -notcontains '2.3.7.6' -and $PSBoundParameters.Keys -notcontains '2376LegalNoticeCaption'){
-        throw 'Please add "2.3.7.6" to the ExcludeList or provide a value for "2376LegalNoticeCaption"'
+    if($ExcludeList -notcontains '<%=$PLASTER_PARAM_LegalNoticeCaptionNum%>' -and $PSBoundParameters.Keys -notcontains '<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption'){
+        throw 'Please add "<%=$PLASTER_PARAM_LegalNoticeCaptionNum%>" to the ExcludeList or provide a value for "<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption"'
     }
 
 <%=$PLASTER_PARAM_DSCScaffolding%>
