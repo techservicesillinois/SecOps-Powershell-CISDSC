@@ -49,6 +49,9 @@ function ConvertTo-DSC {
         [ValidateScript({Test-FilePathParameter -Path $_ })]
         [string]$ParameterValidationsPath,
 
+        [ValidateScript({Test-FilePathParameter -Path $_ })]
+        [string]$ParameterOverridesPath,
+
         [string]$OutputPath = (Join-Path -Path $PWD -ChildPath 'Output'),
 
         [Parameter(Mandatory=$true)]
@@ -81,6 +84,10 @@ function ConvertTo-DSC {
 
         if($ParameterValidationsPath){
             Import-ParameterValidations -Path $ParameterValidationsPath
+        }
+
+        if($ParameterOverridesPath){
+            Import-ParameterOverrides -Path $ParameterOverridesPath
         }
 
         if(!(Test-Path -Path $OutputPath)){
