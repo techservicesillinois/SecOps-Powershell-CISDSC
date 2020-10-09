@@ -28,6 +28,7 @@ function Import-RegistryPol {
 
     process {
         Get-ChildItem -Path $GPOPath -Filter 'registry.pol' -Recurse | ForEach-Object -Process {
+            Write-Verbose -Message "Importing $($_.FullName)"
             $PolicyData = Parse-PolFile -Path $_.FullName
 
             Foreach($Policy in $PolicyData){

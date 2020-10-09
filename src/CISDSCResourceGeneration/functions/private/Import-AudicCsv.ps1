@@ -26,6 +26,7 @@ function Import-AudicCsv {
 
     process {
         Get-ChildItem -Path $GPOPath -Filter 'Audit.csv' -Recurse | ForEach-Object -Process {
+            Write-Verbose -Message "Importing $($_.FullName)"
             $CSV = Import-CSV -Path $_.FullName
 
             foreach($Row in $CSV){
