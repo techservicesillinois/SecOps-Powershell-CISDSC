@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed
 
+## 2.2.0
+### Added
+- Added support for overriding parameters that are generated
+
 ## 2.1.2
 ### Added
 - Added support for dynamic setting on recommendation IDs on the special case recommendations (legal notice and account renames)
