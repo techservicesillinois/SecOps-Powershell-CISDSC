@@ -18,3 +18,6 @@
 
 ## Can these be overridden?
 - Yes, ConvertTo-DSC accepts a ParameterOverridesPath which is a CSV that lets you enable/disable a parameter for a given recommendation ID. Examples of these files can be found in the [parameter_overrides](../parameter_overrides) directory.
+
+## How can I add validation blocks?
+- Parameter validation is required to ensure IT pros don't customize themselves out of the baseline. After researching the settings supported values a standard powershell validation block should be crafted. Examples of how to specify and format these can be found in the [parameter_validations](../parameter_validations) directory.

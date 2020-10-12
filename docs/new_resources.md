@@ -54,7 +54,7 @@ Successfully generated resources will be placed into the generated composite res
 
 4) Resolve errors identified in the previous step. Potential causes and resolutions are outlined in the [static corrections](./static_corrections.md) documentation.
 
-5) Verify the appropriate validation for generated parameters via MS documentation or otherwise and add it to the [parameter validation](../parameter_validations) directory.
+5) Verify the appropriate validation for generated parameters via MS documentation or otherwise and implement them according to the [parameter documentation](./resource_parameters.md#How-can-I-add-validation-blocks?)
 
 6) If applicable specify any [parameter overrides](./resource_parameters.md#Can-these-be-overridden?) to add/remove any parameters.
 
