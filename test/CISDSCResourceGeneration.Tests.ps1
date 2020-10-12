@@ -53,6 +53,22 @@ Describe 'Class: Recommendation' {
             $ExcelExample.Title = $Title
             ([Recommendation]::New($ExcelExample)).DSCTitle | Should -Be $Expectation
         }
+
+        It 'Respects parameter overrides'{
+            Import-ParameterOverrides -Path "$($PSScriptRoot)\example_files\parameter_overrides.csv"
+
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+                Where-Object -FilterScript {$_.'Recommendation #' -eq '1.1.1'})
+            $Recommendation = [Recommendation]::New($ExcelExample)
+            $Recommendation.UpdateForDSCParameter()
+            $Recommendation.NeedsParameter | Should -Be $False
+
+            $ExcelExample2 = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'Level 1 (L1) - Corporate_Enter' |
+                Where-Object -FilterScript {$_.'Recommendation #' -eq '1.1.2'})
+            $Recommendation2 = [Recommendation]::New($ExcelExample2)
+            $Recommendation2.UpdateForDSCParameter()
+            $Recommendation2.NeedsParameter | Should -Be $True
+        }
     }
 }
 
@@ -135,6 +151,17 @@ Describe 'Helper: Import-StaticCorrections' {
         It 'Populates the hashtable of static corrections' {
             Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
             $script:StaticCorrections | Should -Not -BeNullOrEmpty
+        }
+    }
+}
+
+Describe 'Helper: Import-ParameterOverrides' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Populates the hashtable of static corrections' {
+            Import-ParameterOverrides -Path "$($PSScriptRoot)\example_files\parameter_overrides.csv"
+            $script:ParameterOverrides | Should -Not -BeNullOrEmpty
+            $script:ParameterOverrides["1.1.1"] | Should -Be $False
+            $script:ParameterOverrides["1.1.2"] | Should -Be $True
         }
     }
 }

@@ -102,6 +102,7 @@ Class Recommendation{
     [System.Collections.Hashtable[]]$ResourceParameters
     [string]$DSCTextBlock
     [DSCConfigurationParameter]$DSCConfigParameter
+    [Boolean]$NeedsParameter
 
 
     Recommendation([Object]$ExcelRow){
@@ -152,19 +153,24 @@ Class Recommendation{
     }
 
     UpdateForDSCParameter(){
-        [boolean]$NeedsParam = switch($This.Title){
-            {$_ -like "*or more*"}{$True}
-            {$_ -like "*or fewer*"}{$True}
-            {$_ -like "*or greater*"}{$True}
-            {$_ -like "*or less*"}{$True}
-            {$_ -eq "(L1) Configure 'Interactive logon: Message text for users attempting to log on'"}{$True}
-            {$_ -eq "(L1) Configure 'Interactive logon: Message title for users attempting to log on'"}{$True}
-            {$_ -eq "(L1) Configure 'Accounts: Rename administrator account'"}{$True}
-            {$_ -eq "(L1) Configure 'Accounts: Rename guest account'"}{$True}
-            default {$False}
+        if($script:ParameterOverrides.keys -contains $This.RecommendationNum){
+            $This.NeedsParameter = $script:ParameterOverrides["$($This.RecommendationNum)"]
+        }
+        else{
+            $This.NeedsParameter = switch($This.Title){
+                {$_ -like "*or more*"}{$True}
+                {$_ -like "*or fewer*"}{$True}
+                {$_ -like "*or greater*"}{$True}
+                {$_ -like "*or less*"}{$True}
+                {$_ -eq "(L1) Configure 'Interactive logon: Message text for users attempting to log on'"}{$True}
+                {$_ -eq "(L1) Configure 'Interactive logon: Message title for users attempting to log on'"}{$True}
+                {$_ -eq "(L1) Configure 'Accounts: Rename administrator account'"}{$True}
+                {$_ -eq "(L1) Configure 'Accounts: Rename guest account'"}{$True}
+                default {$False}
+            }
         }
 
-        if($NeedsParam){
+        if($This.NeedsParameter){
             [int[]]$NumbersInTitle = [int[]]($This.Title.Substring(5) -replace '[^0-9 ]' -split ' ').where({$_}) | Sort-Object -Descending
 
             #Recommendations can have many associated settings but typically only one of these is configurable.
@@ -231,6 +237,7 @@ Class Recommendation{
 $script:BenchmarkRecommendations = @{}
 $script:StaticCorrections = @{}
 $script:ParameterValidations = @{}
+$script:ParameterOverrides = @{}
 [int]$script:ServiceSection = 0
 [int]$script:UserSection = 0
 [string]$script:AccountsRenameadministratoraccountNum = [string]::Empty

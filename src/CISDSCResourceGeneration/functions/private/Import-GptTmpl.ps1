@@ -24,6 +24,7 @@ function Import-GptTmpl {
 
     process {
         Get-ChildItem -Path $GPOPath -Filter 'GptTmpl.inf' -Recurse | Foreach-Object -Process {
+            Write-Verbose -Message "Importing $($_.FullName)"
             $ini = Get-IniContent -Path $_.fullname
 
             foreach($key in $ini.Keys){
