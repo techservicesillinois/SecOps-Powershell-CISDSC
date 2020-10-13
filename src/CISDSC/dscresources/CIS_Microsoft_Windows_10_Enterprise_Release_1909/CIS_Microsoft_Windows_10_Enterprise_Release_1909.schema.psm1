@@ -21,8 +21,8 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1909
         [int32]$1825PasswordLength = 15,
         [ValidateRange(30,365)]
         [int32]$1826PasswordAgeDays = 30,
-        [ValidateRange(0,5)]
-        [int32]$18410ScreenSaverGracePeriod = 0,
+        [ValidateSet('0','1','2','3','4','5')]
+        [string]$18410ScreenSaverGracePeriod = '0',
         [ValidateRange(0,90)]
         [int32]$18413WarningLevel = 90,
         [ValidateRange(180,365)]
@@ -1924,7 +1924,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1909
             Key = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
             ValueData = $18410ScreenSaverGracePeriod
             ValueName = 'ScreenSaverGracePeriod'
-            ValueType = 'Dword'
+            ValueType = 'String'
         }
     }
     if($ExcludeList -notcontains '18.4.11' -and $LevelTwo){

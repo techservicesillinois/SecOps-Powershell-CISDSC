@@ -28,7 +28,7 @@ CIS_Microsoft_Windows_10_Enterprise_Release_2004 [string] #ResourceName
     [ 123Resetaccountlockoutcounterafter = [Int32] { 15-99999 } ]
     [ 1825PasswordLength = [int32] { 15-64 } ]
     [ 1826PasswordAgeDays = [int32] { 30-365 } ]
-    [ 18410ScreenSaverGracePeriod = [int32] { 0-5 } ]
+    [ 18410ScreenSaverGracePeriod = [string] { '0' | '1' | '2' | '3' | '4' | '5' } ]
     [ 18413WarningLevel = [int32] { 0-90 } ]
     [ 18910212DeferFeatureUpdatesPeriodInDays = [int32] { 180-365 } ]
     [ 1892612MaxSize = [int32] { 32768-2147483647 } ]
@@ -78,7 +78,7 @@ CIS_Microsoft_Windows_10_Enterprise_Release_2004 [string] #ResourceName
 |123Resetaccountlockoutcounterafter |15 |1.2.3 |(L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)' |
 |1825PasswordLength |15 |18.2.5 |(L1) Ensure 'Password Settings: Password Length' is set to 'Enabled: 15 or more' |
 |1826PasswordAgeDays |30 |18.2.6 |(L1) Ensure 'Password Settings: Password Age (Days)' is set to 'Enabled: 30 or fewer' |
-|18410ScreenSaverGracePeriod |0 |18.4.10 |(L1) Ensure 'MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' is set to 'Enabled: 5 or fewer seconds' |
+|18410ScreenSaverGracePeriod |'0' |18.4.10 |(L1) Ensure 'MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' is set to 'Enabled: 5 or fewer seconds' |
 |18413WarningLevel |90 |18.4.13 |(L1) Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled: 90% or less' |
 |18910212DeferFeatureUpdatesPeriodInDays |180 |18.9.102.1.2 |(L1) Ensure 'Select when Preview Builds and Feature Updates are received' is set to 'Enabled: Semi-Annual Channel, 180 or more days' |
 |1892612MaxSize |32768 |18.9.26.1.2 |(L1) Ensure 'Application: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
