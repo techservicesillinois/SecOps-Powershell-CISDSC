@@ -1,11 +1,11 @@
-name: Pester Tests
+name: CISDSCResourceGeneration Pester Tests
 
 on:
   pull_request:
     branches:
     - main
     paths:
-    - 'src/**'
+    - 'src/CISDSCResourceGeneration/**'
 
 jobs:
   build:
@@ -21,5 +21,5 @@ jobs:
       run: Install-Module -Name 'PSDepend' -Force -SkipPublisherCheck; Invoke-PSDepend -Force
       shell: powershell
     - name: Run tests PowerShell 5
-      run: Invoke-Pester -Path '.\test\' -CI -Output Detailed
+      run: Invoke-Pester -Path '.\test\CISDSCResourceGeneration.Tests.ps1' -CI -Output Detailed
       shell: powershell
