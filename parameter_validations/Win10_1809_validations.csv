@@ -6,7 +6,7 @@
 "1.2.3","[ValidateRange(15,99999)]"
 "18.2.5","[ValidateRange(15,64)]"
 "18.2.6","[ValidateRange(30,365)]"
-"18.4.10","[ValidateRange(0,5)]"
+"18.4.10","[ValidateSet('0','1','2','3','4','5')]"
 "18.4.13","[ValidateRange(0,90)]"
 "18.9.102.1.2","[ValidateRange(180,365)]"
 "18.9.26.1.2","[ValidateRange(32768,2147483647)]"
