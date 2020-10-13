@@ -9,23 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed
 
+## 2.2.1
+### Added
+- Added resource example files to the Plaster template [Issue 133](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/133)
+
 ## 2.2.0
 ### Added
-- Added support for overriding parameters that are generated
+- Added support for overriding parameters that are generated [Issue 71](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/71)
 
 ## 2.1.2
 ### Added
-- Added support for dynamic setting on recommendation IDs on the special case recommendations (legal notice and account renames)
+- Added support for dynamic setting on recommendation IDs on the special case recommendations (legal notice and account renames) [Issue 129](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/129)
 
 ## 2.1.1
 ### Added
 ### Changed
-- Changed service logic to use the CISService resource
+- Changed service logic to use the CISService resource [Issue 121](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/121)
 ### Removed
 
 ## 2.1 - 9/30/20
 ### Added
-- Functionality to generate resource documentation along side the DSC resources
+- Functionality to generate resource documentation along side the DSC resources [Issue 114](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/114)
 
 ## [2.0.0]
 - Start of changelog
