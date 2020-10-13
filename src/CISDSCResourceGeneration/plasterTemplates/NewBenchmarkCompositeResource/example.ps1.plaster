@@ -14,10 +14,10 @@ Configuration <%=$PLASTER_PARAM_OS%>_<%=$PLASTER_PARAM_OSBuild%>_CIS_L1
     {
         CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CIS Benchmarks'
         {
-            '2315AccountsRenameadministratoraccount' = 'CISAdmin'
-            '2316AccountsRenameguestaccount' = 'CISGuest'
-            '2376LegalNoticeCaption' = 'Legal Notice'
-            '2375LegalNoticeText' = @"
+            '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount' = 'CISAdmin'
+            '<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount' = 'CISGuest'
+            '<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption' = 'Legal Notice'
+            '<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText' = @"
 This is a super secure device that we don't want bad people using.
 I'm even making sure to put this as a literal string so that I can cleanly
 use multiple lines to tell you how super secure it is.
