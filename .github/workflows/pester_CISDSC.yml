@@ -1,0 +1,25 @@
+name: CISDSC Pester Tests
+
+on:
+  pull_request:
+    branches:
+    - main
+    paths:
+    - 'src/CISDSC/CISDSC.psm1'
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: Install-Module -Name 'PSDepend' -Force -SkipPublisherCheck; Invoke-PSDepend -Force
+      shell: powershell
+    - name: Run tests PowerShell 5
+      run: Invoke-Pester -Path '.\test\CISDSC.Tests.ps1' -CI -Output Detailed
+      shell: powershell
