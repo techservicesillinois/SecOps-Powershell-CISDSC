@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2.2.1
 ### Added
 - Added resource example files to the Plaster template [Issue 133](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/133)
+### Changed
+- Corrected special case for HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\ScreenSaverGracePeriod incorrectly setting to DWORD instead of string [Issue 136](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/136)
 
 ## 2.2.0
 ### Added
