@@ -1,4 +1,5 @@
-![Pester Tests](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/workflows/Pester%20Tests/badge.svg)
+![CISDSC Pester Tests](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/workflows/CISDSCResourceGeneration%20Pester%20Tests/badge.svg)
+![CISDSCResourceGeneration Pester Tests](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/workflows/CISDSC%20Pester%20Tests/badge.svg)
 ![ScriptAnalyzer](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/workflows/ScriptAnalyzer/badge.svg)
 
 # What is This?
