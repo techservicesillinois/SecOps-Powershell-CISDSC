@@ -26,9 +26,10 @@ Function Resolve-RegistryValueSpecialCases
         }
 
         'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\ScreenSaverGracePeriod'{
-            #This comes through as a string for some reason but should be a DWORD per https://getadmx.com/?Category=SecurityBaseline&Policy=Microsoft.Policies.MSS::Pol_MSS_ScreenSaverGracePeriod
-            $regHash.ValueData = 0
-            $regHash.ValueType = 'Dword'
+            #There is conflicting documentation on this keys value type but more sources say string and that's what CIS-CAT looks for as well.
+            #The buildkit sets this to 5 but the title recommends 0 so the value is overridden.
+            $regHash.ValueData = '0'
+            $regHash.ValueType = 'String'
         }
 
         'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeText'{
