@@ -1,0 +1,30 @@
+#Requires -module CISDSC
+
+<#
+    .DESCRIPTION
+    Applies CIS Level one benchmarks for <%=$PLASTER_PARAM_OS%> build <%=$PLASTER_PARAM_OSBuild%> the no exclusions.
+    Exclusion documentation can be found in the docs folder of this module.
+#>
+
+Configuration <%=$PLASTER_PARAM_OS%>_<%=$PLASTER_PARAM_OSBuild%>_CIS_L1
+{
+    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>'
+
+    node 'localhost'
+    {
+        CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CIS Benchmarks'
+        {
+            '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount' = 'CISAdmin'
+            '<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount' = 'CISGuest'
+            '<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption' = 'Legal Notice'
+            '<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText' = @"
+This is a super secure device that we don't want bad people using.
+I'm even making sure to put this as a literal string so that I can cleanly
+use multiple lines to tell you how super secure it is.
+"@
+        }
+    }
+}
+
+<%=$PLASTER_PARAM_OS%>_<%=$PLASTER_PARAM_OSBuild%>_CIS_L1
+Start-DscConfiguration -Path '.\<%=$PLASTER_PARAM_OS%>_<%=$PLASTER_PARAM_OSBuild%>_CIS_L1' -Verbose -Wait
