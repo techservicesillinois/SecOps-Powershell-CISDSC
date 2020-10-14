@@ -45,7 +45,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1909
         [int32]$2365MaximumPasswordAge = 30,
         [ValidateRange(1,10)]
         [int32]$2373MaxDevicePasswordFailedAttempts = 10,
-        [ValidateLength(1,900)]
+        [ValidateRange(1,900)]
         [int32]$2374InactivityTimeoutSecs = 900,
         [ValidateLength(1,2048)]
         [string]$2375LegalNoticeText,

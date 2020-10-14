@@ -18,7 +18,7 @@
 "2.3.1.6","[ValidateLength(1,256)]"
 "2.3.6.5","[ValidateRange(1,30)]"
 "2.3.7.3","[ValidateRange(1,10)]"
-"2.3.7.4","[ValidateLength(1,900)]"
+"2.3.7.4","[ValidateRange(1,900)]"
 "2.3.7.5","[ValidateLength(1,2048)]"
 "2.3.7.6","[ValidateLength(1,512)]"
 "2.3.7.7","[ValidateSet('0','1','2','3','4')]"
