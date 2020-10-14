@@ -88,6 +88,13 @@
 
         <templateFile source='resource.documentation.md'
                       destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.md'/>
+
+        <templateFile source='example.ps1.plaster'
+                      destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.ps1'/>
+
+        <templateFile source='example_With_LAPS.ps1.plaster'
+                      destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}_With_LAPS.ps1'/>
+
         <message>
 
 Your new PowerShell DSC resource has been created.
