@@ -117,8 +117,8 @@ Configuration MyConfiguration
     {
         '2315AccountsRenameadministratoraccount' = 'CISAdmin'
         '2316AccountsRenameguestaccount' = 'CISGuest'
-        '2376LegalNoticeCaption' = 'Legal Notice'
-        '2375LegalNoticeText' = @"
+        '2375LegalNoticeCaption' = 'Legal Notice'
+        '2374LegalNoticeText' = @"
 This is a super secure device that we don't want bad people using.
 I'm even making sure to put this as a literal string so that I can cleanly
 use multiple lines to tell you how super secure it is.
@@ -137,8 +137,8 @@ Configuration MyConfiguration
     CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809 'CISBenchmarks'
     {
         'ExcludeList' = @(
-            '2.3.7.5', # LegalNoticeText
-            '2.3.7.6', # LegalNoticeCaption
+            '2.3.7.4', # LegalNoticeText
+            '2.3.7.5', # LegalNoticeCaption
             '5.6' # IIS Admin Service (IISADMIN)
         )
         '2315AccountsRenameadministratoraccount' = 'CISAdmin'
@@ -165,8 +165,8 @@ Configuration MyConfiguration
         CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809 'CISBenchmarks'
         {
             'ExcludeList' = @(
-                '2.3.7.5', # LegalNoticeText
-                '2.3.7.6', # LegalNoticeCaption
+                '2.3.7.4', # LegalNoticeText
+                '2.3.7.5', # LegalNoticeCaption
                 '5.6' # IIS Admin Service (IISADMIN)
             )
             '2315AccountsRenameadministratoraccount' = 'CISAdmin'
