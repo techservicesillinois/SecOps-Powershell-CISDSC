@@ -13,10 +13,10 @@ mechanism to apply CIS benchmarks on a target node running <%=$PLASTER_PARAM_OS%
 ## Syntax
 
 ```Syntax
-CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> [string] #ResourceName
+CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> [String] #ResourceName
 {
 <%=$PLASTER_PARAM_DocumentationSyntax%>
-    [ DependsOn = [string[]] ]
+    [ DependsOn = [String[]] ]
     [ PsDscRunAsCredential = [PSCredential] ]
 }
 ```
