@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Added CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809 resource
 ### Changed
 - Corrected ScreenSaverGracePeriod registry key to apply as a string instead of a Dword in Windows 10 Enterprise 1809, 1909, and 2004. [Issue 136](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/136)
 - Correct the parameter validation 2374InactivityTimeoutSecs to be a ValidateRange not ValidateLength in Windows 10 Enterprise 1809, 1909, and 2004. [Issue 135](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/135)
