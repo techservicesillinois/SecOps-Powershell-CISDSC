@@ -11,19 +11,19 @@ function Get-DSCParameterTextBlocks {
 
     process {
         [System.Collections.ArrayList]$DSCConfigurationParameters = @()
-        $DSCConfigurationParameters += '        [string[]]$ExcludeList = @()'
+        $DSCConfigurationParameters += '        [String[]]$ExcludeList = @()'
 
         if($Levels -contains 'LevelOne'){
-            $DSCConfigurationParameters += '        [boolean]$LevelOne = $true'
+            $DSCConfigurationParameters += '        [Boolean]$LevelOne = $true'
         }
         if($Levels -contains 'LevelTwo'){
-            $DSCConfigurationParameters += '        [boolean]$LevelTwo = $false'
+            $DSCConfigurationParameters += '        [Boolean]$LevelTwo = $false'
         }
         if($Levels -contains 'BitLocker'){
-            $DSCConfigurationParameters += '        [boolean]$BitLocker = $false'
+            $DSCConfigurationParameters += '        [Boolean]$BitLocker = $false'
         }
         if($Levels -contains 'NextGenerationWindowsSecurity'){
-            $DSCConfigurationParameters += '        [boolean]$NextGenerationWindowsSecurity = $false'
+            $DSCConfigurationParameters += '        [Boolean]$NextGenerationWindowsSecurity = $false'
         }
 
         $DSCConfigurationParameters += (($Recommendations).DSCConfigParameter | Sort-Object -Property 'Name').TextBlock
