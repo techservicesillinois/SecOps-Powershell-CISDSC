@@ -56,8 +56,8 @@ CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809 [String] #ResourceN
 > The following parameters are mandatory if not added to the ExclusionList. This is because these values will always be organization specific so a default value is not appropriate.
 > `2315AccountsRenameadministratoraccount`,
 > `2316AccountsRenameguestaccount`,
-> `2376LegalNoticeCaption`,
-> `2375LegalNoticeText`
+> `2375LegalNoticeCaption`,
+> `2374LegalNoticeText`
 ## Properties
 
 |Property |DefaultValue | Recommendation ID|Recommendation
