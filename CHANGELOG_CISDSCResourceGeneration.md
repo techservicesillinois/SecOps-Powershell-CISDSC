@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed
 
+## 2.2.2
+### Changed
+- Standardized casing for typing on resource parameters [Issue 143](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/143)
+- Corrected plaster template for resource documentation to use the dynamic recommendation IDs from [Issue 129](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/129)
+
 ## 2.2.1
 ### Added
 - Added resource example files to the Plaster template [Issue 133](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/133)

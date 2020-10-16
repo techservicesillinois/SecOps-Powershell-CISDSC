@@ -13,10 +13,10 @@ mechanism to apply CIS benchmarks on a target node running <%=$PLASTER_PARAM_OS%
 ## Syntax
 
 ```Syntax
-CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> [string] #ResourceName
+CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> [String] #ResourceName
 {
 <%=$PLASTER_PARAM_DocumentationSyntax%>
-    [ DependsOn = [string[]] ]
+    [ DependsOn = [String[]] ]
     [ PsDscRunAsCredential = [PSCredential] ]
 }
 ```
@@ -25,10 +25,10 @@ CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> [string] #Resourc
 
 > [!NOTE]
 > The following parameters are mandatory if not added to the ExclusionList. This is because these values will always be organization specific so a default value is not appropriate.
-> `2315AccountsRenameadministratoraccount`,
-> `2316AccountsRenameguestaccount`,
-> `2376LegalNoticeCaption`,
-> `2375LegalNoticeText`
+> `<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount`,
+> `<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount`,
+> `<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption`,
+> `<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText`
 ## Properties
 
 |Property |DefaultValue | Recommendation ID|Recommendation
@@ -57,10 +57,10 @@ Configuration MyConfiguration
 
     CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
     {
-        '2315AccountsRenameadministratoraccount' = 'CISAdmin'
-        '2316AccountsRenameguestaccount' = 'CISGuest'
-        '2376LegalNoticeCaption' = 'Legal Notice'
-        '2375LegalNoticeText' = @"
+        '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount' = 'CISAdmin'
+        '<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount' = 'CISGuest'
+        '<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption' = 'Legal Notice'
+        '<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText' = @"
 This is a super secure device that we don't want bad people using.
 I'm even making sure to put this as a literal string so that I can cleanly
 use multiple lines to tell you how super secure it is.
@@ -79,12 +79,12 @@ Configuration MyConfiguration
     CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
     {
         'ExcludeList' = @(
-            '2.3.7.5', # LegalNoticeText
-            '2.3.7.6', # LegalNoticeCaption
+            '<%=$PLASTER_PARAM_LegalNoticeTextNum%>', # LegalNoticeText
+            '<%=$PLASTER_PARAM_LegalNoticeCaptionNum%>', # LegalNoticeCaption
             '5.6' # IIS Admin Service (IISADMIN)
         )
-        '2315AccountsRenameadministratoraccount' = 'CISAdmin'
-        '2316AccountsRenameguestaccount' = 'CISGuest'
+        '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount' = 'CISAdmin'
+        '<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount' = 'CISGuest'
     }
 }
 ```
@@ -107,12 +107,12 @@ Configuration MyConfiguration
         CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
         {
             'ExcludeList' = @(
-                '2.3.7.5', # LegalNoticeText
-                '2.3.7.6', # LegalNoticeCaption
+                '<%=$PLASTER_PARAM_LegalNoticeTextNum%>', # LegalNoticeText
+                '<%=$PLASTER_PARAM_LegalNoticeCaptionNum%>', # LegalNoticeCaption
                 '5.6' # IIS Admin Service (IISADMIN)
             )
-            '2315AccountsRenameadministratoraccount' = 'CISAdmin'
-            '2316AccountsRenameguestaccount' = 'CISGuest'
+            '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount' = 'CISAdmin'
+            '<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount' = 'CISGuest'
             'DependsOn' = '[Package]InstallLAPS'
         }
     }

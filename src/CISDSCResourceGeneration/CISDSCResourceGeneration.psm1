@@ -181,9 +181,9 @@ Class Recommendation{
                         switch($Hash['ResourceType']){
                             'Registry'{
                                 [string]$DataType = switch($Hash['ValueType']){
-                                    "'String'" {'[string]'}
-                                    "'MultiString'" {'[string[]]'}
-                                    "'Dword'" {'[int32]'}
+                                    "'String'" {'[String]'}
+                                    "'MultiString'" {'[String[]]'}
+                                    "'Dword'" {'[Int32]'}
                                 }
                                 $This.DSCConfigParameter = [DSCConfigurationParameter]::new($This.RecommendationNum,$Hash['ValueName'],$DataType,$Hash['ValueData'])
                                 $Hash['ValueData'] = $This.DSCConfigParameter.Name
