@@ -2,11 +2,11 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
 {
     param
     (
-        [string[]]$ExcludeList = @(),
-        [boolean]$LevelOne = $true,
-        [boolean]$LevelTwo = $false,
-        [boolean]$BitLocker = $false,
-        [boolean]$NextGenerationWindowsSecurity = $false,
+        [String[]]$ExcludeList = @(),
+        [Boolean]$LevelOne = $true,
+        [Boolean]$LevelTwo = $false,
+        [Boolean]$BitLocker = $false,
+        [Boolean]$NextGenerationWindowsSecurity = $false,
         [ValidateRange(60,999)]
         [Int32]$112MaximumPasswordAge = 60,
         [ValidateRange(1,998)]
@@ -20,49 +20,49 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         [ValidateRange(15,99999)]
         [Int32]$123Resetaccountlockoutcounterafter = 15,
         [ValidateRange(15,64)]
-        [int32]$1825PasswordLength = 15,
+        [Int32]$1825PasswordLength = 15,
         [ValidateRange(30,365)]
-        [int32]$1826PasswordAgeDays = 30,
+        [Int32]$1826PasswordAgeDays = 30,
         [ValidateSet('0','1','2','3','4','5')]
-        [string]$18410ScreenSaverGracePeriod = '0',
+        [String]$18410ScreenSaverGracePeriod = '0',
         [ValidateRange(0,90)]
-        [int32]$18413WarningLevel = 90,
+        [Int32]$18413WarningLevel = 90,
         [ValidateRange(180,365)]
-        [int32]$18910212DeferFeatureUpdatesPeriodInDays = 180,
+        [Int32]$18910212DeferFeatureUpdatesPeriodInDays = 180,
         [ValidateRange(32768,2147483647)]
-        [int32]$1892612MaxSize = 32768,
+        [Int32]$1892612MaxSize = 32768,
         [ValidateRange(196608,2147483647)]
-        [int32]$1892622MaxSize = 196608,
+        [Int32]$1892622MaxSize = 196608,
         [ValidateRange(32768,2147483647)]
-        [int32]$1892632MaxSize = 32768,
+        [Int32]$1892632MaxSize = 32768,
         [ValidateRange(32768,2147483647)]
-        [int32]$1892642MaxSize = 32768,
+        [Int32]$1892642MaxSize = 32768,
         [ValidateRange(60000,900000)]
-        [int32]$189623101MaxIdleTime = 900000,
+        [Int32]$189623101MaxIdleTime = 900000,
         [ValidateLength(1,256)]
         [String]$2315AccountsRenameadministratoraccount,
         [ValidateLength(1,256)]
         [String]$2316AccountsRenameguestaccount,
         [ValidateRange(1,30)]
-        [int32]$2365MaximumPasswordAge = 30,
+        [Int32]$2365MaximumPasswordAge = 30,
         [ValidateRange(1,10)]
-        [int32]$2373MaxDevicePasswordFailedAttempts = 10,
+        [Int32]$2373MaxDevicePasswordFailedAttempts = 10,
         [ValidateRange(1,900)]
-        [int32]$2374InactivityTimeoutSecs = 900,
+        [Int32]$2374InactivityTimeoutSecs = 900,
         [ValidateLength(1,2048)]
-        [string]$2375LegalNoticeText,
+        [String]$2375LegalNoticeText,
         [ValidateLength(1,512)]
-        [string]$2376LegalNoticeCaption,
+        [String]$2376LegalNoticeCaption,
         [ValidateSet('0','1','2','3','4')]
-        [string]$2377CachedLogonsCount = '4',
+        [String]$2377CachedLogonsCount = '4',
         [ValidateLength(1,15)]
-        [int32]$2391AutoDisconnect = 15,
+        [Int32]$2391AutoDisconnect = 15,
         [ValidateRange(16384,2147483647)]
-        [int32]$916LogFileSize = 16384,
+        [Int32]$916LogFileSize = 16384,
         [ValidateRange(16384,2147483647)]
-        [int32]$926LogFileSize = 16384,
+        [Int32]$926LogFileSize = 16384,
         [ValidateRange(16384,2147483647)]
-        [int32]$938LogFileSize = 16384
+        [Int32]$938LogFileSize = 16384
     )
 
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
