@@ -3,42 +3,35 @@
 class CISService
 {
     [DscProperty(Key)]
-    [string]
-    $Name
+    [String]$Name
 
     [DscProperty(NotConfigurable)]
-    [string]
-    $StartType
+    [String]$StartType
 
     [DscProperty(NotConfigurable)]
-    [string]
-    $Status
+    [String]$Status
 
-    [CISService]Get()
-    {
+    [CISService]Get(){
         $Service = $This.GetService()
         $This.StartType = $Service.StartType
         $This.Status = $Service.Status
         return $This
     }
 
-    [bool]Test()
-    {
+    [Boolean]Test(){
         $Service = $This.GetService()
         # Is the service absent or disabled? Eiher of these are desired state.
         $Test = ($null -eq $Service -or ($Service.StartType -eq 'Disabled' -and $Service.Status -eq 'Stopped'))
         return $Test
     }
 
-    [void]Set()
-    {
+    [Void]Set(){
         Stop-Service -Name $This.Name -Force
         Get-Service -Name $This.Name | Set-Service -StartupType 'Disabled'
     }
 
-    [Object]GetService()
-    {
-        if($Service = Get-Service -Name $This.Name -ErrorAction SilentlyContinue){
+    [Object]GetService(){
+        if($Service = Get-Service -Name $This.Name -ErrorAction 'SilentlyContinue'){
             $result = $Service
         }
         else{
