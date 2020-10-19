@@ -13,10 +13,10 @@ mechanism to configure services based on CIS guidelines. This differs from the d
 ## Syntax
 
 ```Syntax
-CISService [string] #ResourceName
+CISService [String] #ResourceName
 {
-    Name = [string]
-    [ DependsOn = [string[]] ]
+    Name = [String]
+    [ DependsOn = [String[]] ]
     [ PsDscRunAsCredential = [PSCredential] ]
 }
 ```
