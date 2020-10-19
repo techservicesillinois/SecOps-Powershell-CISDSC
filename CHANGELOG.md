@@ -4,14 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## Unreleased
 ### Added
-- Added CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809 resource
-- Added CIS_Microsoft_Windows_Server_2016_Member_Server_Release_1607 resource
+### Changed
+### Removed
+
+## [2.0.0] - 2020-10-19
+### Added
+- Added resource for Windows Server 2019 Release 1809 [Issue 7](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/7)
+- Added resource for Windows Server 2016 Release 1607 [Issue 6](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/6)
 ### Changed
 - Corrected ScreenSaverGracePeriod registry key to apply as a string instead of a Dword in Windows 10 Enterprise 1809, 1909, and 2004. [Issue 136](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/136)
 - Correct the parameter validation 2374InactivityTimeoutSecs to be a ValidateRange not ValidateLength in Windows 10 Enterprise 1809, 1909, and 2004. [Issue 135](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/135)
-### Removed
 
 ## [1.1.0] - 2020-10-05
 ### Added
