@@ -6,13 +6,17 @@
     Will install required modules from the PSGallery and packages from chocolatey.
 #>
 
+#Fix for older versions of Windows since the PSGallery dropped support for TLS1
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Install-Module -Name 'PowerShellGet' -Scope 'AllUsers' -Force
+
 Set-ExecutionPolicy -ExecutionPolicy 'Unrestricted' -Scope 'LocalMachine' -Force
 Set-PSRepository -Name 'PSGallery' -InstallationPolicy 'Trusted'
 Install-Module -Name 'cChoco' -Scope 'AllUsers' -Force
 Install-Module -Name 'AuditPolicyDSC' -RequiredVersion '1.4.0.0' -Scope 'AllUsers' -Force
 Install-Module -Name 'SecurityPolicyDSC' -RequiredVersion '2.10.0.0' -Scope 'AllUsers' -Force
 
-Enable-PSRemoting –Force
+Enable-PSRemoting -Force
 Set-Item -Path 'WSMan:\localhost\MaxEnvelopeSizeKb' -Value 8192
 
 [DSCLocalConfigurationManager()]
