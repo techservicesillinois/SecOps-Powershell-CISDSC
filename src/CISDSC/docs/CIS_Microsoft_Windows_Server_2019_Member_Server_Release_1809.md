@@ -156,7 +156,8 @@ Configuration MyConfiguration
 
     node 'localhost'
     {
-        Package 'InstallLAPS' {
+        Package 'InstallLAPS'
+        {
             Name  = 'Local Administrator Password Solution'
             Path = 'https://download.microsoft.com/download/C/7/A/C7AAD914-A8A6-4904-88A1-29E657445D03/LAPS.x64.msi'
             ProductId = 'EA8CB806-C109-4700-96B4-F1F268E5036C'
