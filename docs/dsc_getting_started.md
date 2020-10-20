@@ -37,3 +37,7 @@ LCMConfig
 Set-DscLocalConfigurationManager -Path '.\LCMConfig'
 Remove-Item -Path '.\LCMConfig' -Recurse -Force
 ```
+
+## Running a configuration
+- At this point your system is able to run DSC configurations. After installing the CIDSC module from the [PSGallery](https://www.powershellgallery.com/packages/CISDSC) you can use any of the packaged [examples](/src/CISDSC/Examples) and [customize](./customization.md) them to your liking
+- If you'd like to try these configurations out in an audit capacity additional steps to do so can be found in the [auditing document](./auditing.md)
