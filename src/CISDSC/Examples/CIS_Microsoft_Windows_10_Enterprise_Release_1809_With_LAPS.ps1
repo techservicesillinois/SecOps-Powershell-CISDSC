@@ -1,4 +1,5 @@
 #Requires -module CISDSC
+#Requires -RunAsAdministrator
 
 <#
     .DESCRIPTION
