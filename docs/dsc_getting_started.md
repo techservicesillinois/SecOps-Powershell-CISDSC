@@ -1,4 +1,5 @@
 # What setup is needed to run a configuration?
+- As is this document is written for using DSC standalone. If using these resources in another product such as Ansible or Puppet consult the vendor's documentation.
 - Preparing a system to take DSC configurations requires configuration of WinRm (Windows Remote Management) and the LCM (Local Configuration Manager)
 - Settings should be applied in the order this document is written to avoid potential issues
 
