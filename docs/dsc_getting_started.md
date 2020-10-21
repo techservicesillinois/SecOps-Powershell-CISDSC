@@ -6,7 +6,7 @@
 ## WinRm
 
 ### Enabling
-- WinRM will need to be enabled on the machine for the LCM to do it's job. This is due to it leveraging "implicit remoting". Documentation for WinRM can be found [here](https://docs.microsoft.com/en-us/windows/win32/winrm/installation-and-configuration-for-windows-remote-management) or you can use the quick setups with either of the following commands to enable with default configuration. These commands will not work if any network adapter is set to use the public network profile. It is possible to bypass this but not recommended for security reasons, recommended solution is to set them to domain or private. This includes virtual adapters such as ones created by VPNs or Hypver-V.
+- WinRM will need to be enabled on the machine for the LCM to do its job. This is due to it leveraging "implicit remoting". Documentation for WinRM can be found [here](https://docs.microsoft.com/en-us/windows/win32/winrm/installation-and-configuration-for-windows-remote-management), or you can use the quick setups with either of the following commands to enable it with a default configuration. These commands will not work if any network adapter is set to use the _Public_ network profile. If any network adapter does not have the "Public" network profile, the recommended solution is to set it to _Domain_ or _Private_. This includes virtual adapters such as ones created by VPNs or Hypver-V.
 
 ```powershell
 # -Force can be omitted if doing this manually but is required to suppress prompts when running in an automated fashion
