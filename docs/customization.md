@@ -1,6 +1,6 @@
 # How do I exclude recommendations?
 It is not uncommon for a recommendation to need to be excluded from configurations or slightly adjusted. These resources have built-in support for these situations.
-Every resource contains an 'ExcludeList' property that allows you to exclude settings based on their recommendation ID. These IDs can be found in the CIS documentation available from [CIS](src/../cis_documentation.md). Using these documents you should be able to identify your setting in question and locate its ID number. Enabling exclusions will look similar to the below example.
+Every resource contains an 'ExcludeList' property that allows you to exclude settings based on their recommendation ID. These IDs can be found in the CIS documentation available from [CIS](./cis.md). Using these documents you should be able to identify your setting in question and locate its ID number. Enabling exclusions will look similar to the below example.
 
 ```powershell
 Configuration Win10_1909_L1
