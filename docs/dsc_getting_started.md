@@ -20,7 +20,7 @@ Set-Item -Path 'WSMan:\localhost\MaxEnvelopeSizeKb' -Value 8192
 ```
 
 ## LCM
-- The LCM is what executes DSC tasks on Windows and has been pre-installed since Windows 7. LCM configuration will be subject to your specific environment and needs. Below is an example of configuring it to act in an ad-hoc execution only mode disabling any routine consistency checks or [pull server](https://docs.microsoft.com/en-us/powershell/scripting/dsc/pull-server/pullserver?view=powershell-7) check ins. Advanced configuration options can be found [here](https://docs.microsoft.com/en-us/powershell/scripting/dsc/managing-nodes/metaconfig?view=powershell-7).
+- The LCM is what executes DSC tasks on Windows and has been pre-installed since Windows 7. LCM configuration will be subject to your specific environment and needs. Below is an example of configuring it to act in an ad-hoc execution only mode disabling any routine consistency checks or [pull server](https://docs.microsoft.com/en-us/powershell/scripting/dsc/pull-server/pullserver?view=powershell-7) check ins. Advanced configuration options can be found [here](https://docs.microsoft.com/en-us/powershell/scripting/dsc/managing-nodes/metaconfig?view=powershell-7). Configuring the LCM takes place in two steps like a normal DSC configuration. A configuration is declared then called to generate a .MOF file. Then the .MOF file can be used by any number of machines to configure their LCM accordingly. There is no dependency on the file existing after configuration so it can be safely deleted. The below example applies the configuration locally but advanced options such as remote or batch operations for multiple machines can be found in the [official documentation](https://docs.microsoft.com/en-us/powershell/module/psdesiredstateconfiguration/set-dsclocalconfigurationmanager?view=powershell-5.1).
 
 ```powershell
 [DSCLocalConfigurationManager()]
@@ -32,10 +32,11 @@ configuration LCMConfig {
         }
     }
 }
-
 LCMConfig
+```
+
+```powershell
 Set-DscLocalConfigurationManager -Path '.\LCMConfig'
-Remove-Item -Path '.\LCMConfig' -Recurse -Force
 ```
 
 ## Running a configuration
