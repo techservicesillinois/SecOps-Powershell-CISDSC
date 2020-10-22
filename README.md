@@ -30,7 +30,7 @@ More detailed information can be found in the [getting started with DSC document
 
 # How do I install it?
 The actual DSC resources should be installed via the CISDSC module's [PSGallery page](https://www.powershellgallery.com/packages/CISDSC).
-```
+```powershell
 # This will install on the local machine
 Install-Module -Name 'CISDSC'
 
