@@ -60,7 +60,7 @@ Successfully generated resources will be placed into the generated composite res
 
 7) Regenerate your resource after completing the previous two steps.
 
-8) Verify your results with the [CIS-CAT](https://workbench.cisecurity.org/files/2151) assessment tool available from the [CIS workbench](https://workbench.cisecurity.org/). A HTML report from the tool will be required later for pull request approval. Documentation for the tool can be found [here](https://ccpa-docs.readthedocs.io/en/latest/User%20Guide%20for%20CLI/).
+8) Verify your results with the [CIS-CAT](https://workbench.cisecurity.org/files/2151) assessment tool available from the [CIS workbench](https://workbench.cisecurity.org/). A HTML report from the tool will be required later for pull request approval. Documentation for the tool can be found [here](https://ccpa-docs.readthedocs.io/en/latest/User%20Guide%20for%20CLI/). A setup script for test machines can be found [here](/test_machine_setup.ps1).
 
 
 # How do I add or update them within the module?
