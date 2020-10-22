@@ -2,7 +2,7 @@
 
 <#
     .DESCRIPTION
-    Script for setting up a new machine to be used for testing new resources.
+    Script for setting up a new machine to be used for testing new CIS resources. Per the new_resources.md doc in the DOCs folder.
     Will install required modules from the PSGallery and packages from chocolatey.
 #>
 
