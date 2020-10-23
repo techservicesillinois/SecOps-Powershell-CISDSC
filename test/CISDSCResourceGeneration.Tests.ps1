@@ -134,8 +134,6 @@ Describe 'Helper: Import-CISBenchmarkData' {
         }
 
         It 'Updates the special case section and recommendation values' {
-            Import-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
-
             $script:ServiceSection | Should -Be 5
             $script:UserSection | Should -Be 19
             $script:AccountsRenameadministratoraccountNum | Should -Be "2.3.1.5"
@@ -167,6 +165,7 @@ Describe 'Helper: Import-ParameterOverrides' {
 }
 
 Describe 'Helper: Get-RecommendationFromGPOHash' {
+    #This test must take place after Helper: Import-CISBenchmarkData
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
         It 'Finds exactly one result under normal circumstances' -TestCases @(
             @{'Type' = 'AuditPolicy'; 'GPOHash' = @{'Subcategory' = 'Audit Security Group Management'; 'InclusionSetting' = 'Success'}},
@@ -175,17 +174,14 @@ Describe 'Helper: Get-RecommendationFromGPOHash' {
             @{'Type' = 'SystemAccess'; 'GPOHash' = @{'Name' = 'Accounts_Administrator_account_status'}},
             @{'Type' = 'Registry'; 'GPOHash' = @{'Key' = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'; 'ValueName' = 'NoConnectedUser'}}
         ){
-            Import-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
             (Get-RecommendationFromGPOHash -GPOHash $GPOHash -Type $Type | Measure-Object).count | Should -Be 1
         }
 
         It 'Writes a warning for zero recommendations returned' {
-            Import-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
             Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'NotReal'} -Type 'Service' 3>&1 | Should -Be 'Failed to find a recommendation for Service NotReal.'
         }
 
         It 'Writes a warning for multiple recommendations returned' {
-            Import-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
             Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'a'} -Type 'Service' 3>&1 | Should -Be 'Found multiple recommendation matches for Service a.'
         }
 
@@ -200,7 +196,7 @@ Describe 'Helper: Get-RecommendationFromGPOHash' {
 
 Describe 'Helper: Conversion functions' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
-        Import-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
+        #This test must take place after Helper: Import-CISBenchmarkData
 
         It 'ConvertFrom-AuditPolicySubcategoryRawGPO returns valid objects' {
             ConvertFrom-AuditPolicySubcategoryRawGPO -SubcategoryGUID '{0cce9248-69ae-11d9-bed3-505054503030}' -Subcategory 'Audit PNP Activity' -InclusionSetting 'Success'
@@ -289,7 +285,7 @@ Describe 'Helper: Import-ParameterValidations' {
 
 Describe 'Helper: Text block generation' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
-        Import-CISBenchmarkData -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -OS 'Microsoft Windows 10 Enterprise'
+        #This test must take place after Helper: Import-CISBenchmarkData
         Import-GptTmpl -GPOPath "$($PSScriptRoot)\example_files"
         Import-AudicCsv -GPOPath "$($PSScriptRoot)\example_files"
         Import-RegistryPol -GPOPath "$($PSScriptRoot)\example_files"
