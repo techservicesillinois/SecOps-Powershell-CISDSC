@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added RunAsAdministrator requirement to packaged examples
 ### Changed
+- Updated Windows 10 Enterprise 2004 to v1.9.1 of the benchmark
 ### Removed
 
 ## [2.0.0] - 2020-10-19
