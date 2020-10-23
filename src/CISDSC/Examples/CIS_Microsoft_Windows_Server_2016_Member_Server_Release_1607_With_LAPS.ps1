@@ -3,7 +3,7 @@
 
 <#
     .DESCRIPTION
-    Applies CIS Level one benchmarks for Microsoft_Windows_Server_2016_Member_Server build 1607 the no exclusions.
+    Applies CIS Level one benchmarks for Microsoft_Windows_Server_2016_Member_Server build 1607 with no exclusions.
     Exclusion documentation can be found in the docs folder of this module.
     This will also install LAPS (Local Administrator Password Solution) from the internet via download.microsoft.com unless the URL is changed to a network accesible path for your envrionment.
 #>

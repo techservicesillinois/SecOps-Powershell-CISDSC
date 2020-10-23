@@ -3,7 +3,7 @@
 
 <#
     .DESCRIPTION
-    Applies CIS Level one benchmarks for Microsoft_Windows_Server_2019_Member_Server build 1809 the no exclusions.
+    Applies CIS Level one benchmarks for Microsoft_Windows_Server_2019_Member_Server build 1809 with no exclusions.
     Exclusion documentation can be found in the docs folder of this module.
 #>
 

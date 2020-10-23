@@ -3,7 +3,7 @@
 
 <#
     .DESCRIPTION
-    Applies CIS Level one benchmarks for Windows 10 build 1809 the no exclusions.
+    Applies CIS Level one benchmarks for Windows 10 build 1809 with no exclusions.
     Exclusion documentation can be found in the docs folder of this module.
 #>
 

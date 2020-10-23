@@ -3,7 +3,7 @@
 
 <#
     .DESCRIPTION
-    Applies CIS Level one benchmarks for Microsoft_Windows_10_Enterprise build 2004 the no exclusions.
+    Applies CIS Level one benchmarks for Microsoft_Windows_10_Enterprise build 2004 with no exclusions.
     Exclusion documentation can be found in the docs folder of this module.
     This will also install LAPS (Local Administrator Password Solution) from the internet via download.microsoft.com unless the URL is changed to a network accesible path for your envrionment.
 #>
