@@ -210,7 +210,7 @@ Describe 'Helper: Conversion functions' {
             ($script:BenchmarkRecommendations['2.2.12'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
             $script:BenchmarkRecommendations['2.2.12'].ResourceParameters[0].keys | Where-Object -FilterScript {$_ -notin ('Policy','Identity','Force','ResourceType')} | Should -Be $null
         }
-<#
+
         It 'ConvertFrom-RegistryPolGPORaw returns valid objects for creates' {
             ConvertFrom-RegistryPolGPORaw -KeyName 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging' -ValueName 'LogFileSize' -ValueType 'REG_DWORD' -ValueData '16384'
             ($script:BenchmarkRecommendations['9.3.8'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
@@ -222,7 +222,7 @@ Describe 'Helper: Conversion functions' {
             ($script:BenchmarkRecommendations['18.8.21.5'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
             $script:BenchmarkRecommendations['18.8.21.5'].ResourceParameters[0].keys | Where-Object -FilterScript {$_ -notin ('ValueName','Key','Ensure','ResourceType')} | Should -Be $null
         }
-#>
+
         It 'ConvertFrom-RegistryValueRawGPO returns valid objects' {
             ConvertFrom-RegistryValueRawGPO -Key 'MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\PasswordExpiryWarning' -ValueData '4,14'
             ($script:BenchmarkRecommendations['2.3.7.8'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
@@ -286,9 +286,9 @@ Describe 'Helper: Import-ParameterValidations' {
 Describe 'Helper: Text block generation' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
         #This test must take place after Helper: Import-CISBenchmarkData
-        Import-GptTmpl -GPOPath "$($PSScriptRoot)\example_files"
-        Import-AudicCsv -GPOPath "$($PSScriptRoot)\example_files"
-        Import-RegistryPol -GPOPath "$($PSScriptRoot)\example_files"
+        Import-GptTmpl -GPOPath "$($PSScriptRoot)\example_files" -WarningAction SilentlyContinue
+        Import-AudicCsv -GPOPath "$($PSScriptRoot)\example_files" -WarningAction SilentlyContinue
+        Import-RegistryPol -GPOPath "$($PSScriptRoot)\example_files" -WarningAction SilentlyContinue
 
         It 'Lists the appropriate levels' {
             (Get-ApplicableLevels -Recommendations ($script:BenchmarkRecommendations).Values | Measure-Object).Count | Should -be 4
@@ -319,7 +319,7 @@ Describe 'Helper: Text block generation' {
         }
     }
 }
-<#
+
 Describe 'ConvertTo-DSC' {
     It 'Exports files' {
         $Splat = @{
@@ -345,4 +345,3 @@ Describe 'ConvertTo-DSC' {
 
     #ToDo find a way to actually test the composite resource can be used in a configuration successfully.
 }
-#>
