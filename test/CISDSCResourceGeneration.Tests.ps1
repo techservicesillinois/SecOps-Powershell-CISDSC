@@ -210,7 +210,7 @@ Describe 'Helper: Conversion functions' {
             ($script:BenchmarkRecommendations['2.2.12'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
             $script:BenchmarkRecommendations['2.2.12'].ResourceParameters[0].keys | Where-Object -FilterScript {$_ -notin ('Policy','Identity','Force','ResourceType')} | Should -Be $null
         }
-
+<#
         It 'ConvertFrom-RegistryPolGPORaw returns valid objects for creates' {
             ConvertFrom-RegistryPolGPORaw -KeyName 'SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging' -ValueName 'LogFileSize' -ValueType 'REG_DWORD' -ValueData '16384'
             ($script:BenchmarkRecommendations['9.3.8'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
@@ -222,7 +222,7 @@ Describe 'Helper: Conversion functions' {
             ($script:BenchmarkRecommendations['18.8.21.5'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
             $script:BenchmarkRecommendations['18.8.21.5'].ResourceParameters[0].keys | Where-Object -FilterScript {$_ -notin ('ValueName','Key','Ensure','ResourceType')} | Should -Be $null
         }
-
+#>
         It 'ConvertFrom-RegistryValueRawGPO returns valid objects' {
             ConvertFrom-RegistryValueRawGPO -Key 'MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\PasswordExpiryWarning' -ValueData '4,14'
             ($script:BenchmarkRecommendations['2.3.7.8'].ResourceParameters | Measure-Object).Count | Should -Not -Be 0
