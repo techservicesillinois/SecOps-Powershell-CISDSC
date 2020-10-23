@@ -27,19 +27,19 @@ function Get-DSCDocumentationSyntax {
 
     process {
         [string[]]$Documentation = @()
-        $Documentation += '    [ ExclusionList = [string[]] ]'
+        $Documentation += '    [ ExclusionList = [String[]] ]'
 
         if($Levels -contains 'LevelOne'){
-            $Documentation += '    [ LevelOne = [boolean] ]'
+            $Documentation += '    [ LevelOne = [Boolean] ]'
         }
         if($Levels -contains 'LevelTwo'){
-            $Documentation += '    [ LevelTwo = [boolean] ]'
+            $Documentation += '    [ LevelTwo = [Boolean] ]'
         }
         if($Levels -contains 'BitLocker'){
-            $Documentation += '    [ BitLocker = [boolean] ]'
+            $Documentation += '    [ BitLocker = [Boolean] ]'
         }
         if($Levels -contains 'NextGenerationWindowsSecurity'){
-            $Documentation += '    [ NextGenerationWindowsSecurity = [boolean] ]'
+            $Documentation += '    [ NextGenerationWindowsSecurity = [Boolean] ]'
         }
 
         $Documentation += (($Recommendations).DSCConfigParameter | Sort-Object -Property 'Name').DocumentationSyntaxBlock
