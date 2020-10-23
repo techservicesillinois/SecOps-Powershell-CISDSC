@@ -24,6 +24,7 @@ PowerShell DSC resources like the ones offered here can be utilized within other
 - [Ansible](https://docs.ansible.com/ansible/latest/modules/win_dsc_module.html)</br>
 - [Chef](https://docs.chef.io/resources/dsc_resource/)</br>
 - [Puppet](https://puppet.com/blog/managing-powershell-dsc-puppet/)</br>
+- [SaltStack](https://docs.saltstack.com/en/master/ref/modules/all/salt.modules.win_dsc.html)</br>
 - [Manually](https://docs.microsoft.com/en-us/powershell/scripting/dsc/configurations/write-compile-apply-configuration?view=powershell-7#compile-the-configuration)
 
 More detailed information can be found in the [getting started with DSC document](docs/dsc_getting_started.md)
