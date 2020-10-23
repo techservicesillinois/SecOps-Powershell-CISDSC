@@ -3,25 +3,27 @@
 
 <#
     .DESCRIPTION
-    Applies CIS Level one benchmarks for Windows 10 build 2004 with no exclusions.
+    Applies CIS Level one benchmarks for Microsoft_Windows_10_Enterprise build 2004 the no exclusions.
     Exclusion documentation can be found in the docs folder of this module.
     This will also install LAPS (Local Administrator Password Solution) from the internet via download.microsoft.com unless the URL is changed to a network accesible path for your envrionment.
 #>
 
-Configuration Win10_2004_L1_With_LAPS
+Configuration Microsoft_Windows_10_Enterprise_2004_CIS_L1_with_LAPS
 {
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
     Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_10_Enterprise_Release_2004'
 
     node 'localhost'
     {
-        Package 'InstallLAPS' {
+        Package 'InstallLAPS'
+        {
             Name  = 'Local Administrator Password Solution'
             Path = 'https://download.microsoft.com/download/C/7/A/C7AAD914-A8A6-4904-88A1-29E657445D03/LAPS.x64.msi'
             ProductId = 'EA8CB806-C109-4700-96B4-F1F268E5036C'
         }
 
-        CIS_Microsoft_Windows_10_Enterprise_Release_2004 'CIS Benchmarks' {
+        CIS_Microsoft_Windows_10_Enterprise_Release_2004 'CIS Benchmarks'
+        {
             '2315AccountsRenameadministratoraccount' = 'CISAdmin'
             '2316AccountsRenameguestaccount' = 'CISGuest'
             '2376LegalNoticeCaption' = 'Legal Notice'
@@ -35,5 +37,5 @@ use multiple lines to tell you how super secure it is.
     }
 }
 
-Win10_2004_L1_With_LAPS
-Start-DscConfiguration -Path '.\Win10_2004_L1_With_LAPS'-Verbose -Wait
+Microsoft_Windows_10_Enterprise_2004_CIS_L1_with_LAPS
+Start-DscConfiguration -Path '.\Microsoft_Windows_10_Enterprise_2004_CIS_L1_with_LAPS' -Verbose -Wait
