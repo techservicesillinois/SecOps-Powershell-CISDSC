@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed
 
+## 2.2.3
+### Changed
+- Fixed a few missed casing fixes for [Issue 143](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/143)
+
 ## 2.2.2
 ### Changed
 - Standardized casing for typing on resource parameters [Issue 143](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/143)
