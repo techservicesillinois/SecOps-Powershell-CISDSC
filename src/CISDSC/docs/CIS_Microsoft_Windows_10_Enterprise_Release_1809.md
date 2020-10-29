@@ -8,7 +8,7 @@ title: CIS_Microsoft_Windows_10_Enterprise_Release_1809
 > Applies To: Windows PowerShell 5.1 and higher
 
 The **CIS_Microsoft_Windows_10_Enterprise_Release_1809** resource in Windows PowerShell Desired State Configuration (DSC) provides a
-mechanism to apply CIS benchmarks on a target node running Microsoft_Windows_10_Enterprise release 1809.
+mechanism to apply CIS benchmarks on a target node running Microsoft Windows 10 Enterprise release 1809.
 
 ## Syntax
 

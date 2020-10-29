@@ -3,7 +3,7 @@
 
 <#
     .DESCRIPTION
-    Applies CIS Level one benchmarks for Microsoft_Windows_Server_2016_Member_Server build 1607 with no exclusions.
+    Applies CIS Level one benchmarks for Microsoft Windows Server 2016 Member Server build 1607 with no exclusions.
     Exclusion documentation can be found in the docs folder of this module.
 #>
 
