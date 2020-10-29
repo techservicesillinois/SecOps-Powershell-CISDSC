@@ -4,13 +4,13 @@
 RootModule = 'CIS_Microsoft_Windows_10_Enterprise_Release_2004.schema.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.9.0.5'
+ModuleVersion = '1.9.1'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
 
 # ID used to uniquely identify this module
-GUID = 'efb8b61b-de76-448b-8ee1-0dfd0ececc12'
+GUID = '35977882-da35-4a48-9d27-c1d24e4f43c5'
 
 # Author of this module
 # Author = ''

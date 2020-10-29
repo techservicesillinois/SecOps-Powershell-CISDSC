@@ -3,11 +3,11 @@
 
 <#
     .DESCRIPTION
-    Applies CIS Level one benchmarks for Windows 10 build 2004 with no exclusions.
+    Applies CIS Level one benchmarks for Microsoft_Windows_10_Enterprise build 2004 with no exclusions.
     Exclusion documentation can be found in the docs folder of this module.
 #>
 
-Configuration Win10_2004_L1
+Configuration Microsoft_Windows_10_Enterprise_2004_CIS_L1
 {
     Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_10_Enterprise_Release_2004'
 
@@ -27,5 +27,5 @@ use multiple lines to tell you how super secure it is.
     }
 }
 
-Win10_2004_L1
-Start-DscConfiguration -Path '.\Win10_2004_L1'-Verbose -Wait
+Microsoft_Windows_10_Enterprise_2004_CIS_L1
+Start-DscConfiguration -Path '.\Microsoft_Windows_10_Enterprise_2004_CIS_L1' -Verbose -Wait
