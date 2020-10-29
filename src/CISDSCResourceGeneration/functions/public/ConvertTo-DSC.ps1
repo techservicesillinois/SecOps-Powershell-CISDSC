@@ -122,7 +122,8 @@ function ConvertTo-DSC {
                 'TemplatePath' = (Join-Path -Path $script:PlasterTemplatePath -ChildPath 'NewBenchmarkCompositeResource')
                 'DestinationPath' = $ResourcePath
                 'NoLogo' = $true
-                'OS' = $OS.replace(' ','_')
+                'OS' = $OS
+                'OSWithUnderscores' = $OS.replace(' ','_')
                 'OSBuild' = $OSBuild
                 'BenchmarkVersion' = $BenchmarkVersion.ToString()
                 'DSCParameters' = ($DSCConfigurationParameters -join ",`n")

@@ -8,10 +8,10 @@
     This will also install LAPS (Local Administrator Password Solution) from the internet via download.microsoft.com unless the URL is changed to a network accesible path for your envrionment.
 #>
 
-Configuration <%=$PLASTER_PARAM_OS%>_<%=$PLASTER_PARAM_OSBuild%>_CIS_L1_with_LAPS
+Configuration <%=$PLASTER_PARAM_OSWithUnderscores%>_<%=$PLASTER_PARAM_OSBuild%>_CIS_L1_with_LAPS
 {
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
-    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>'
+    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%>'
 
     node 'localhost'
     {
@@ -22,7 +22,7 @@ Configuration <%=$PLASTER_PARAM_OS%>_<%=$PLASTER_PARAM_OSBuild%>_CIS_L1_with_LAP
             ProductId = 'EA8CB806-C109-4700-96B4-F1F268E5036C'
         }
 
-        CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CIS Benchmarks'
+        CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CIS Benchmarks'
         {
             '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount' = 'CISAdmin'
             '<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount' = 'CISGuest'
@@ -37,5 +37,5 @@ use multiple lines to tell you how super secure it is.
     }
 }
 
-<%=$PLASTER_PARAM_OS%>_<%=$PLASTER_PARAM_OSBuild%>_CIS_L1_with_LAPS
-Start-DscConfiguration -Path '.\<%=$PLASTER_PARAM_OS%>_<%=$PLASTER_PARAM_OSBuild%>_CIS_L1_with_LAPS' -Verbose -Wait
+<%=$PLASTER_PARAM_OSWithUnderscores%>_<%=$PLASTER_PARAM_OSBuild%>_CIS_L1_with_LAPS
+Start-DscConfiguration -Path '.\<%=$PLASTER_PARAM_OSWithUnderscores%>_<%=$PLASTER_PARAM_OSBuild%>_CIS_L1_with_LAPS' -Verbose -Wait

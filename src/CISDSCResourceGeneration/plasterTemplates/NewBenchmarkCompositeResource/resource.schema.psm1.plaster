@@ -1,4 +1,4 @@
-Configuration CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>
+Configuration CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%>
 {
     param
     (

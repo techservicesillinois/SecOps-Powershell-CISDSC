@@ -14,9 +14,11 @@
   <parameters>
         <parameter name='OS'
                    type='text'
-                   prompt='Select OS'>
+                   prompt='Select OS'/>
 
-        </parameter>
+        <parameter name='OSWithUnderscores'
+                   type='text'
+                   prompt='Select OS'/>
 
         <parameter name='BenchmarkVersion'
                    type='text'
