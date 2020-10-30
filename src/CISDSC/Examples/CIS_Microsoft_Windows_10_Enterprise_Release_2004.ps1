@@ -3,7 +3,7 @@
 
 <#
     .DESCRIPTION
-    Applies CIS Level one benchmarks for Microsoft_Windows_10_Enterprise build 2004 with no exclusions.
+    Applies CIS Level one benchmarks for Microsoft Windows 10 Enterprise build 2004 with no exclusions.
     Exclusion documentation can be found in the docs folder of this module.
 #>
 

@@ -8,7 +8,7 @@ title: CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809
 > Applies To: Windows PowerShell 5.1 and higher
 
 The **CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809** resource in Windows PowerShell Desired State Configuration (DSC) provides a
-mechanism to apply CIS benchmarks on a target node running Microsoft_Windows_Server_2019_Member_Server release 1809.
+mechanism to apply CIS benchmarks on a target node running Microsoft Windows Server 2019 Member Server release 1809.
 
 ## Syntax
 
