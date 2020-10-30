@@ -14,9 +14,11 @@
   <parameters>
         <parameter name='OS'
                    type='text'
-                   prompt='Select OS'>
+                   prompt='Select OS'/>
 
-        </parameter>
+        <parameter name='OSWithUnderscores'
+                   type='text'
+                   prompt='Select OS'/>
 
         <parameter name='BenchmarkVersion'
                    type='text'
@@ -81,19 +83,19 @@
         <message>&#10;&#10;Scaffolding your DSC resource...&#10;&#10;&#10;</message>
 
         <templateFile source='manifest.psd1.plaster'
-                      destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.psd1'/>
+                      destination='CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}.psd1'/>
 
         <templateFile source='resource.schema.psm1.plaster'
-                      destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.schema.psm1'/>
+                      destination='CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}.schema.psm1'/>
 
         <templateFile source='resource.documentation.md'
-                      destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.md'/>
+                      destination='CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}.md'/>
 
         <templateFile source='example.ps1.plaster'
-                      destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}.ps1'/>
+                      destination='CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}.ps1'/>
 
         <templateFile source='example_With_LAPS.ps1.plaster'
-                      destination='CIS_${PLASTER_PARAM_OS}_Release_${PLASTER_PARAM_OSBuild}_With_LAPS.ps1'/>
+                      destination='CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}_With_LAPS.ps1'/>
 
         <message>
 

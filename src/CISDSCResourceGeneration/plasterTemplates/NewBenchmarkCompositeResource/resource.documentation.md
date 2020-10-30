@@ -1,19 +1,19 @@
 ---
 date: <%=$PLASTER_Date%>
 keywords: dsc,powershell,configuration,setup,cis,security,<%=$PLASTER_PARAM_OSBuild%>
-title: CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>
+title: CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%>
 ---
-# DSC CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> Resource
+# DSC CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> Resource
 
 > Applies To: Windows PowerShell 5.1 and higher
 
-The **CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>** resource in Windows PowerShell Desired State Configuration (DSC) provides a
+The **CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%>** resource in Windows PowerShell Desired State Configuration (DSC) provides a
 mechanism to apply CIS benchmarks on a target node running <%=$PLASTER_PARAM_OS%> release <%=$PLASTER_PARAM_OSBuild%>.
 
 ## Syntax
 
 ```Syntax
-CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> [String] #ResourceName
+CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> [String] #ResourceName
 {
 <%=$PLASTER_PARAM_DocumentationSyntax%>
     [ DependsOn = [String[]] ]
@@ -53,9 +53,9 @@ CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> [String] #Resourc
 ```powershell
 Configuration MyConfiguration
 {
-    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>'
+    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%>'
 
-    CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
+    CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
     {
         '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount' = 'CISAdmin'
         '<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount' = 'CISGuest'
@@ -74,9 +74,9 @@ use multiple lines to tell you how super secure it is.
 ```powershell
 Configuration MyConfiguration
 {
-    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>'
+    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%>'
 
-    CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
+    CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
     {
         'ExcludeList' = @(
             '<%=$PLASTER_PARAM_LegalNoticeTextNum%>', # LegalNoticeText
@@ -94,7 +94,7 @@ Configuration MyConfiguration
 Configuration MyConfiguration
 {
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
-    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%>'
+    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%>'
 
     node 'localhost'
     {
@@ -105,7 +105,7 @@ Configuration MyConfiguration
             ProductId = 'EA8CB806-C109-4700-96B4-F1F268E5036C'
         }
 
-        CIS_<%=$PLASTER_PARAM_OS%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
+        CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
         {
             'ExcludeList' = @(
                 '<%=$PLASTER_PARAM_LegalNoticeTextNum%>', # LegalNoticeText

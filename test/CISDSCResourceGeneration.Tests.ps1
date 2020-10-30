@@ -333,14 +333,11 @@ Describe 'ConvertTo-DSC' {
         }
         ConvertTo-DSC @Splat
 
-        [string[]]$Paths = (
-            '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.psd1',
-            '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.schema.psm1',
-            '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.md',
-            '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.ps1',
-            '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909_With_LAPS.ps1'
-        )
-        Test-Path -Path $Paths | Select-Object -Unique | Should -Be $True
+        Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.psd1' | Should -Be $True
+        Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.schema.psm1' | Should -Be $True
+        Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.md' | Should -Be $True
+        Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.ps1' | Should -Be $True
+        Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909_With_LAPS.ps1' | Should -Be $True
     }
 
     #ToDo find a way to actually test the composite resource can be used in a configuration successfully.
