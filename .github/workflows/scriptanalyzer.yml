@@ -16,7 +16,7 @@ jobs:
         os: [windows-latest]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Install dependencies
       run: Install-Module -Name 'PSScriptAnalyzer' -Force -SkipPublisherCheck
       shell: pwsh
