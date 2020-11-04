@@ -6,9 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 ### Added
+### Changed
+### Removed
+
+## [2.0.1] - 2020-10-30
+### Added
 - Added RunAsAdministrator requirement to packaged examples
 ### Changed
-- Updated Windows 10 Enterprise 2004 to v1.9.1 of the benchmark
+- Updated Windows 10 Enterprise 2004 to v1.9.1 of the benchmark [Issue 146](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/146)
+- Various standardization and grammar adjustments in examples and documentation
 ### Removed
 
 ## [2.0.0] - 2020-10-19
