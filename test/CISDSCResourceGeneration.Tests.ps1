@@ -342,3 +342,5 @@ Describe 'ConvertTo-DSC' {
 
     #ToDo find a way to actually test the composite resource can be used in a configuration successfully.
 }
+
+
