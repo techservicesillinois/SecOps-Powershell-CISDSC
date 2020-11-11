@@ -41,8 +41,8 @@ use multiple lines to tell you how super secure it is.
 
 Microsoft_Windows_Server_2019_Member_Server_1809_CIS_L1
 $Report = Test-DscConfiguration -Path '.\Microsoft_Windows_Server_2019_Member_Server_1809_CIS_L1' -Verbose
-$Report.ResourcesInDesiredState | Select-Object -Property 'ResourceId','InDesiredState' | Export-CSV -Path '.\ResourcesInDesiredState.csv'
-$Report.ResourcesNotInDesiredState | Select-Object -Property 'ResourceId','InDesiredState' | Export-CSV -Path '.\ResourcesNotInDesiredState.csv'
+$Report.ResourcesInDesiredState | Select-Object -Property 'ResourceId','InDesiredState' | Export-CSV -Path '.\ResourcesInDesiredState.csv' -NoTypeInformation
+$Report.ResourcesNotInDesiredState | Select-Object -Property 'ResourceId','InDesiredState' | Export-CSV -Path '.\ResourcesNotInDesiredState.csv' -NoTypeInformation
 ```
 
 You will now have two CSV files at your shell's working directory.
