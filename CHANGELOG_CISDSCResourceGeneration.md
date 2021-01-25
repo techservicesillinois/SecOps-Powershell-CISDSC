@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed
 
+## 2.2.5
+### Added
+### Changed
+- Updated all references to parameter names to be prefixed with an "a" per [Issue 169](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/169)
+- Corrected several instance of ExclusionList to ExcludeList
+### Removed
+
 ## 2.2.4
 ### Changed
 - Updated the Plaster template to take the OS name with and without underscores. [Issue 159](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/159)
