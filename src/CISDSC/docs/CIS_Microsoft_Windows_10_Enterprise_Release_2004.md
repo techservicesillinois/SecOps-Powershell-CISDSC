@@ -15,7 +15,7 @@ mechanism to apply CIS benchmarks on a target node running Microsoft Windows 10 
 ```Syntax
 CIS_Microsoft_Windows_10_Enterprise_Release_2004 [String] #ResourceName
 {
-    [ ExclusionList = [String[]] ]
+    [ ExcludeList = [String[]] ]
     [ LevelOne = [Boolean] ]
     [ LevelTwo = [Boolean] ]
     [ BitLocker = [Boolean] ]
@@ -56,7 +56,7 @@ CIS_Microsoft_Windows_10_Enterprise_Release_2004 [String] #ResourceName
 > `[String]` parameters with a number range specifies valid lengths.
 
 > [!NOTE]
-> The following parameters are mandatory if not added to the ExclusionList. This is because these values will always be organization specific so a default value is not appropriate.
+> The following parameters are mandatory if not added to the ExcludeList. This is because these values will always be organization specific so a default value is not appropriate.
 > `a2315AccountsRenameadministratoraccount`,
 > `a2316AccountsRenameguestaccount`,
 > `a2376LegalNoticeCaption`,
@@ -121,10 +121,10 @@ Configuration MyConfiguration
 
     CIS_Microsoft_Windows_10_Enterprise_Release_2004 'CISBenchmarks'
     {
-        'a2315AccountsRenameadministratoraccount' = 'CISAdmin'
-        'a2316AccountsRenameguestaccount' = 'CISGuest'
-        'a2376LegalNoticeCaption' = 'Legal Notice'
-        'a2375LegalNoticeText' = @"
+        a2315AccountsRenameadministratoraccount = 'CISAdmin'
+        a2316AccountsRenameguestaccount = 'CISGuest'
+        a2376LegalNoticeCaption = 'Legal Notice'
+        a2375LegalNoticeText = @"
 This is a super secure device that we don't want bad people using.
 I'm even making sure to put this as a literal string so that I can cleanly
 use multiple lines to tell you how super secure it is.
@@ -142,13 +142,13 @@ Configuration MyConfiguration
 
     CIS_Microsoft_Windows_10_Enterprise_Release_2004 'CISBenchmarks'
     {
-        'ExcludeList' = @(
+        ExcludeList = @(
             '2.3.7.5', # LegalNoticeText
             '2.3.7.6', # LegalNoticeCaption
             '5.6' # IIS Admin Service (IISADMIN)
         )
-        'a2315AccountsRenameadministratoraccount' = 'CISAdmin'
-        'a2316AccountsRenameguestaccount' = 'CISGuest'
+        a2315AccountsRenameadministratoraccount = 'CISAdmin'
+        a2316AccountsRenameguestaccount = 'CISGuest'
     }
 }
 ```
@@ -171,14 +171,14 @@ Configuration MyConfiguration
 
         CIS_Microsoft_Windows_10_Enterprise_Release_2004 'CISBenchmarks'
         {
-            'ExcludeList' = @(
+            ExcludeList = @(
                 '2.3.7.5', # LegalNoticeText
                 '2.3.7.6', # LegalNoticeCaption
                 '5.6' # IIS Admin Service (IISADMIN)
             )
-            'a2315AccountsRenameadministratoraccount' = 'CISAdmin'
-            'a2316AccountsRenameguestaccount' = 'CISGuest'
-            'DependsOn' = '[Package]InstallLAPS'
+            a2315AccountsRenameadministratoraccount = 'CISAdmin'
+            a2316AccountsRenameguestaccount = 'CISGuest'
+            DependsOn = '[Package]InstallLAPS'
         }
     }
 }
