@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Added
 ### Changed
+- All parameter names with a lead numeric character (those associated with recommendations) have been prefixed with an "a". This is to allign with standard naming conventions for DSC resources and to resolve issues with platforms such as Azure Automation and AWX. THIS IS A BREAKING CHANGE FOR EXISTING CONFIGURATIONS.
 ### Removed
 
 ## [2.0.1] - 2020-10-30
