@@ -24,7 +24,7 @@ CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> [S
 > `[String]` parameters with a number range specifies valid lengths.
 
 > [!NOTE]
-> The following parameters are mandatory if not added to the ExclusionList. This is because these values will always be organization specific so a default value is not appropriate.
+> The following parameters are mandatory if not added to the ExcludeList. This is because these values will always be organization specific so a default value is not appropriate.
 > `<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount`,
 > `<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount`,
 > `<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption`,
@@ -57,10 +57,10 @@ Configuration MyConfiguration
 
     CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
     {
-        '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount' = 'CISAdmin'
-        '<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount' = 'CISGuest'
-        '<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption' = 'Legal Notice'
-        '<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText' = @"
+        a<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
+        a<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
+        a<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption = 'Legal Notice'
+        a<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText = @"
 This is a super secure device that we don't want bad people using.
 I'm even making sure to put this as a literal string so that I can cleanly
 use multiple lines to tell you how super secure it is.
@@ -78,13 +78,13 @@ Configuration MyConfiguration
 
     CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
     {
-        'ExcludeList' = @(
+        ExcludeList = @(
             '<%=$PLASTER_PARAM_LegalNoticeTextNum%>', # LegalNoticeText
             '<%=$PLASTER_PARAM_LegalNoticeCaptionNum%>', # LegalNoticeCaption
             '5.6' # IIS Admin Service (IISADMIN)
         )
-        '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount' = 'CISAdmin'
-        '<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount' = 'CISGuest'
+        a<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
+        a<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
     }
 }
 ```
@@ -107,14 +107,14 @@ Configuration MyConfiguration
 
         CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
         {
-            'ExcludeList' = @(
+            ExcludeList = @(
                 '<%=$PLASTER_PARAM_LegalNoticeTextNum%>', # LegalNoticeText
                 '<%=$PLASTER_PARAM_LegalNoticeCaptionNum%>', # LegalNoticeCaption
                 '5.6' # IIS Admin Service (IISADMIN)
             )
-            '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount' = 'CISAdmin'
-            '<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount' = 'CISGuest'
-            'DependsOn' = '[Package]InstallLAPS'
+            a<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
+            a<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
+            DependsOn = '[Package]InstallLAPS'
         }
     }
 }
