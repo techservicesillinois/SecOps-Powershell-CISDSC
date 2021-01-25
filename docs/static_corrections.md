@@ -31,7 +31,7 @@ https://getadmx.com/ is an amazing resource for finding the GPO admx setting nam
 Once you find the GetADMX.com page for the setting it's easy to correlate to the documentation. In the below example we see the ADMX title is "Prevent the computer from joining a homegroup" doing a CTRL+F on the documentation for that text finds "18.9.35.1 (L1) Ensure 'Prevent the computer from joining a homegroup' is set to 'Enabled'" which is our correction.</br>![Example](screenshots/getadmx_example.PNG)
 
 ## Other info
-1) Entries in [static_corrections.csv](../static_corrections.csv) will always overwrite a match in the Excel documentation by 'ConvertTo-DSC'
+1) Entries in the appropriate [static_corrections.csv](/csvs/static_corrections) will always overwrite a match in the Excel documentation by 'ConvertTo-DSC'
 
 2) If your correction is related to documentation errors that should be corrected consider opening a ticket with CIS with the process outlined [here](cis_documentation.md#How-do-I-open-tickets-for-feedback?).
 

@@ -13,7 +13,7 @@ This document aims to outline the requirements for the various forms of contribu
 
 ## Resource Corrections
 - Cited documentation on why the existing setting was incorrect
-- If applicable create an entry in the appropriate [static corrections](/static_corrections) file so that this change isn't lost in the event the resource is re-generated
+- If applicable create an entry in the appropriate [static corrections](/csvs/static_corrections) file so that this change isn't lost in the event the resource is re-generated
 - Increment the revision (4th) section of the resources version.
 - Update the "Unreleased" section of the [changelog](/CHANGELOG.md) to reflect the change
 - Documentation must be updated if applicable in the [module's docs folder](/src/CISDSC/docs)
