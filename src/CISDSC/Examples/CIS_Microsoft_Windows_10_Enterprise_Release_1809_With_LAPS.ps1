@@ -22,10 +22,10 @@ Configuration Win10_1809_L1_With_LAPS
         }
 
         CIS_Microsoft_Windows_10_Enterprise_Release_1809 'CIS Benchmarks' {
-            '2315AccountsRenameadministratoraccount' = 'CISAdmin'
-            '2316AccountsRenameguestaccount' = 'CISGuest'
-            '2376LegalNoticeCaption' = 'Legal Notice'
-            '2375LegalNoticeText' = @"
+            'a2315AccountsRenameadministratoraccount' = 'CISAdmin'
+            'a2316AccountsRenameguestaccount' = 'CISGuest'
+            'a2376LegalNoticeCaption' = 'Legal Notice'
+            'a2375LegalNoticeText' = @"
 This is a super secure device that we don't want bad people using.
 I'm even making sure to put this as a literal string so that I can cleanly
 use multiple lines to tell you how super secure it is.

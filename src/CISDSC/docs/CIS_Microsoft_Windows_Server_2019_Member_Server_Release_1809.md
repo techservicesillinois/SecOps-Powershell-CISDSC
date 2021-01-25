@@ -19,32 +19,32 @@ CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809 [String] #ResourceN
     [ LevelOne = [Boolean] ]
     [ LevelTwo = [Boolean] ]
     [ NextGenerationWindowsSecurity = [Boolean] ]
-    [ 112MaximumPasswordAge = [Int32] { 60-999 } ]
-    [ 113MinimumPasswordAge = [Int32] { 1-998 } ]
-    [ 121Accountlockoutduration = [Int32] { 15-99999 } ]
-    [ 122Accountlockoutthreshold = [Int32] { 10-999 } ]
-    [ 123Resetaccountlockoutcounterafter = [Int32] { 15-99999 } ]
-    [ 1825PasswordLength = [Int32] { 15-64 } ]
-    [ 1826PasswordAgeDays = [Int32] { 30-365 } ]
-    [ 18412WarningLevel = [Int32] { 0-90 } ]
-    [ 1849ScreenSaverGracePeriod = [String] { '0' | '1' | '2' | '3' | '4' | '5' } ]
-    [ 18910212DeferFeatureUpdatesPeriodInDays = [Int32] { 180-365 } ]
-    [ 1892612MaxSize = [Int32] { 32768-2147483647 } ]
-    [ 1892622MaxSize = [Int32] { 196608-2147483647 } ]
-    [ 1892632MaxSize = [Int32] { 32768-2147483647 } ]
-    [ 1892642MaxSize = [Int32] { 32768-2147483647 } ]
-    [ 189593101MaxIdleTime = [Int32] { 60000-900000 } ]
-    [ 2315AccountsRenameadministratoraccount = [String] { 1-256 } ]
-    [ 2316AccountsRenameguestaccount = [String] { 1-256 } ]
-    [ 2365MaximumPasswordAge = [Int32] { 1-30 } ]
-    [ 2373InactivityTimeoutSecs = [Int32] { 1-900 } ]
-    [ 2374LegalNoticeText = [String] { 1-2048 } ]
-    [ 2375LegalNoticeCaption = [String] { 1-512 } ]
-    [ 2376CachedLogonsCount = [String] { '0' | '1' | '2' | '3' | '4' } ]
-    [ 2391AutoDisconnect = [Int32] { 1-15 } ]
-    [ 916LogFileSize = [Int32] { 16384-2147483647 } ]
-    [ 926LogFileSize = [Int32] { 16384-2147483647 } ]
-    [ 938LogFileSize = [Int32] { 16384-2147483647 } ]
+    [ a112MaximumPasswordAge = [Int32] { 60-999 } ]
+    [ a113MinimumPasswordAge = [Int32] { 1-998 } ]
+    [ a121Accountlockoutduration = [Int32] { 15-99999 } ]
+    [ a122Accountlockoutthreshold = [Int32] { 10-999 } ]
+    [ a123Resetaccountlockoutcounterafter = [Int32] { 15-99999 } ]
+    [ a1825PasswordLength = [Int32] { 15-64 } ]
+    [ a1826PasswordAgeDays = [Int32] { 30-365 } ]
+    [ a18412WarningLevel = [Int32] { 0-90 } ]
+    [ a1849ScreenSaverGracePeriod = [String] { '0' | '1' | '2' | '3' | '4' | '5' } ]
+    [ a18910212DeferFeatureUpdatesPeriodInDays = [Int32] { 180-365 } ]
+    [ a1892612MaxSize = [Int32] { 32768-2147483647 } ]
+    [ a1892622MaxSize = [Int32] { 196608-2147483647 } ]
+    [ a1892632MaxSize = [Int32] { 32768-2147483647 } ]
+    [ a1892642MaxSize = [Int32] { 32768-2147483647 } ]
+    [ a189593101MaxIdleTime = [Int32] { 60000-900000 } ]
+    [ a2315AccountsRenameadministratoraccount = [String] { 1-256 } ]
+    [ a2316AccountsRenameguestaccount = [String] { 1-256 } ]
+    [ a2365MaximumPasswordAge = [Int32] { 1-30 } ]
+    [ a2373InactivityTimeoutSecs = [Int32] { 1-900 } ]
+    [ a2374LegalNoticeText = [String] { 1-2048 } ]
+    [ a2375LegalNoticeCaption = [String] { 1-512 } ]
+    [ a2376CachedLogonsCount = [String] { '0' | '1' | '2' | '3' | '4' } ]
+    [ a2391AutoDisconnect = [Int32] { 1-15 } ]
+    [ a916LogFileSize = [Int32] { 16384-2147483647 } ]
+    [ a926LogFileSize = [Int32] { 16384-2147483647 } ]
+    [ a938LogFileSize = [Int32] { 16384-2147483647 } ]
     [ DependsOn = [String[]] ]
     [ PsDscRunAsCredential = [PSCredential] ]
 }
@@ -54,10 +54,10 @@ CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809 [String] #ResourceN
 
 > [!NOTE]
 > The following parameters are mandatory if not added to the ExclusionList. This is because these values will always be organization specific so a default value is not appropriate.
-> `2315AccountsRenameadministratoraccount`,
-> `2316AccountsRenameguestaccount`,
-> `2375LegalNoticeCaption`,
-> `2374LegalNoticeText`
+> `a2315AccountsRenameadministratoraccount`,
+> `a2316AccountsRenameguestaccount`,
+> `a2375LegalNoticeCaption`,
+> `a2374LegalNoticeText`
 ## Properties
 
 |Property |DefaultValue | Recommendation ID|Recommendation
@@ -66,32 +66,32 @@ CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809 [String] #ResourceN
 |LevelOne |`$true` | |Applies level one recommendations |
 |LevelTwo |`$false` | |Applies level two recommendations. Does not include level one, both must be set to `$true`. |
 |NextGenerationWindowsSecurity |`$false` | |Applies Next Generation Windows Security recommendations |
-|112MaximumPasswordAge |60 |1.1.2 |(L1) Ensure 'Maximum password age' is set to '60 or fewer days, but not 0' |
-|113MinimumPasswordAge |30 |1.1.3 |(L1) Ensure 'Minimum password age' is set to '1 or more day(s)' |
-|121Accountlockoutduration |15 |1.2.1 |(L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)' |
-|122Accountlockoutthreshold |10 |1.2.2 |(L1) Ensure 'Account lockout threshold' is set to '10 or fewer invalid logon attempt(s), but not 0' |
-|123Resetaccountlockoutcounterafter |15 |1.2.3 |(L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)' |
-|1825PasswordLength |15 |18.2.5 |(L1) Ensure 'Password Settings: Password Length' is set to 'Enabled: 15 or more' (MS only) |
-|1826PasswordAgeDays |30 |18.2.6 |(L1) Ensure 'Password Settings: Password Age (Days)' is set to 'Enabled: 30 or fewer' (MS only) |
-|18412WarningLevel |90 |18.4.12 |(L1) Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled: 90% or less' |
-|1849ScreenSaverGracePeriod |'0' |18.4.9 |(L1) Ensure 'MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' is set to 'Enabled: 5 or fewer seconds' |
-|18910212DeferFeatureUpdatesPeriodInDays |180 |18.9.102.1.2 |(L1) Ensure 'Select when Preview Builds and Feature Updates are received' is set to 'Enabled: Semi-Annual Channel, 180 or more days' |
-|1892612MaxSize |32768 |18.9.26.1.2 |(L1) Ensure 'Application: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
-|1892622MaxSize |196608 |18.9.26.2.2 |(L1) Ensure 'Security: Specify the maximum log file size (KB)' is set to 'Enabled: 196,608 or greater' |
-|1892632MaxSize |32768 |18.9.26.3.2 |(L1) Ensure 'Setup: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
-|1892642MaxSize |32768 |18.9.26.4.2 |(L1) Ensure 'System: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
-|189593101MaxIdleTime |900000 |18.9.59.3.10.1 |(L2) Ensure 'Set time limit for active but idle Remote Desktop Services sessions' is set to 'Enabled: 15 minutes or less' |
-|2315AccountsRenameadministratoraccount | |2.3.1.5 |(L1) Configure 'Accounts: Rename administrator account' |
-|2316AccountsRenameguestaccount | |2.3.1.6 |(L1) Configure 'Accounts: Rename guest account' |
-|2365MaximumPasswordAge |30 |2.3.6.5 |(L1) Ensure 'Domain member: Maximum machine account password age' is set to '30 or fewer days, but not 0' |
-|2373InactivityTimeoutSecs |900 |2.3.7.3 |(L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0' |
-|2374LegalNoticeText | |2.3.7.4 |(L1) Configure 'Interactive logon: Message text for users attempting to log on' |
-|2375LegalNoticeCaption | |2.3.7.5 |(L1) Configure 'Interactive logon: Message title for users attempting to log on' |
-|2376CachedLogonsCount |'4' |2.3.7.6 |(L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only) |
-|2391AutoDisconnect |15 |2.3.9.1 |(L1) Ensure 'Microsoft network server: Amount of idle time required before suspending session' is set to '15 or fewer minute(s)' |
-|916LogFileSize |16384 |9.1.6 |(L1) Ensure 'Windows Firewall: Domain: Logging: Size limit (KB)' is set to '16,384 KB or greater' |
-|926LogFileSize |16384 |9.2.6 |(L1) Ensure 'Windows Firewall: Private: Logging: Size limit (KB)' is set to '16,384 KB or greater' |
-|938LogFileSize |16384 |9.3.8 |(L1) Ensure 'Windows Firewall: Public: Logging: Size limit (KB)' is set to '16,384 KB or greater' |
+|a112MaximumPasswordAge |60 |1.1.2 |(L1) Ensure 'Maximum password age' is set to '60 or fewer days, but not 0' |
+|a113MinimumPasswordAge |30 |1.1.3 |(L1) Ensure 'Minimum password age' is set to '1 or more day(s)' |
+|a121Accountlockoutduration |15 |1.2.1 |(L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)' |
+|a122Accountlockoutthreshold |10 |1.2.2 |(L1) Ensure 'Account lockout threshold' is set to '10 or fewer invalid logon attempt(s), but not 0' |
+|a123Resetaccountlockoutcounterafter |15 |1.2.3 |(L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)' |
+|a1825PasswordLength |15 |18.2.5 |(L1) Ensure 'Password Settings: Password Length' is set to 'Enabled: 15 or more' (MS only) |
+|a1826PasswordAgeDays |30 |18.2.6 |(L1) Ensure 'Password Settings: Password Age (Days)' is set to 'Enabled: 30 or fewer' (MS only) |
+|a18412WarningLevel |90 |18.4.12 |(L1) Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled: 90% or less' |
+|a1849ScreenSaverGracePeriod |'0' |18.4.9 |(L1) Ensure 'MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' is set to 'Enabled: 5 or fewer seconds' |
+|a18910212DeferFeatureUpdatesPeriodInDays |180 |18.9.102.1.2 |(L1) Ensure 'Select when Preview Builds and Feature Updates are received' is set to 'Enabled: Semi-Annual Channel, 180 or more days' |
+|a1892612MaxSize |32768 |18.9.26.1.2 |(L1) Ensure 'Application: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
+|a1892622MaxSize |196608 |18.9.26.2.2 |(L1) Ensure 'Security: Specify the maximum log file size (KB)' is set to 'Enabled: 196,608 or greater' |
+|a1892632MaxSize |32768 |18.9.26.3.2 |(L1) Ensure 'Setup: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
+|a1892642MaxSize |32768 |18.9.26.4.2 |(L1) Ensure 'System: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
+|a189593101MaxIdleTime |900000 |18.9.59.3.10.1 |(L2) Ensure 'Set time limit for active but idle Remote Desktop Services sessions' is set to 'Enabled: 15 minutes or less' |
+|a2315AccountsRenameadministratoraccount | |2.3.1.5 |(L1) Configure 'Accounts: Rename administrator account' |
+|a2316AccountsRenameguestaccount | |2.3.1.6 |(L1) Configure 'Accounts: Rename guest account' |
+|a2365MaximumPasswordAge |30 |2.3.6.5 |(L1) Ensure 'Domain member: Maximum machine account password age' is set to '30 or fewer days, but not 0' |
+|a2373InactivityTimeoutSecs |900 |2.3.7.3 |(L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0' |
+|a2374LegalNoticeText | |2.3.7.4 |(L1) Configure 'Interactive logon: Message text for users attempting to log on' |
+|a2375LegalNoticeCaption | |2.3.7.5 |(L1) Configure 'Interactive logon: Message title for users attempting to log on' |
+|a2376CachedLogonsCount |'4' |2.3.7.6 |(L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only) |
+|a2391AutoDisconnect |15 |2.3.9.1 |(L1) Ensure 'Microsoft network server: Amount of idle time required before suspending session' is set to '15 or fewer minute(s)' |
+|a916LogFileSize |16384 |9.1.6 |(L1) Ensure 'Windows Firewall: Domain: Logging: Size limit (KB)' is set to '16,384 KB or greater' |
+|a926LogFileSize |16384 |9.2.6 |(L1) Ensure 'Windows Firewall: Private: Logging: Size limit (KB)' is set to '16,384 KB or greater' |
+|a938LogFileSize |16384 |9.3.8 |(L1) Ensure 'Windows Firewall: Public: Logging: Size limit (KB)' is set to '16,384 KB or greater' |
 
 ## Common properties
 
@@ -115,10 +115,10 @@ Configuration MyConfiguration
 
     CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809 'CISBenchmarks'
     {
-        '2315AccountsRenameadministratoraccount' = 'CISAdmin'
-        '2316AccountsRenameguestaccount' = 'CISGuest'
-        '2375LegalNoticeCaption' = 'Legal Notice'
-        '2374LegalNoticeText' = @"
+        'a2315AccountsRenameadministratoraccount' = 'CISAdmin'
+        'a2316AccountsRenameguestaccount' = 'CISGuest'
+        'a2375LegalNoticeCaption' = 'Legal Notice'
+        'a2374LegalNoticeText' = @"
 This is a super secure device that we don't want bad people using.
 I'm even making sure to put this as a literal string so that I can cleanly
 use multiple lines to tell you how super secure it is.
@@ -141,8 +141,8 @@ Configuration MyConfiguration
             '2.3.7.5', # LegalNoticeCaption
             '5.6' # IIS Admin Service (IISADMIN)
         )
-        '2315AccountsRenameadministratoraccount' = 'CISAdmin'
-        '2316AccountsRenameguestaccount' = 'CISGuest'
+        'a2315AccountsRenameadministratoraccount' = 'CISAdmin'
+        'a2316AccountsRenameguestaccount' = 'CISGuest'
     }
 }
 ```
@@ -170,8 +170,8 @@ Configuration MyConfiguration
                 '2.3.7.5', # LegalNoticeCaption
                 '5.6' # IIS Admin Service (IISADMIN)
             )
-            '2315AccountsRenameadministratoraccount' = 'CISAdmin'
-            '2316AccountsRenameguestaccount' = 'CISGuest'
+            'a2315AccountsRenameadministratoraccount' = 'CISAdmin'
+            'a2316AccountsRenameguestaccount' = 'CISGuest'
             'DependsOn' = '[Package]InstallLAPS'
         }
     }
