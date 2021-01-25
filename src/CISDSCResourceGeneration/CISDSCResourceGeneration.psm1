@@ -19,15 +19,16 @@ Class DSCConfigurationParameter{
         [string]$SanitizedName = $Name -replace "[^a-zA-Z0-9]",""
         [string]$SanitizedRecommendationNum = $RecommendationNum.Replace('.','')
 
-        $This.Name = '${0}{1}' -f $SanitizedRecommendationNum,$SanitizedName
+        # an "a" is prefixed to the paramater names since a leading non-alpha character breaks under many circumstances. Most notably Azure Automation and Ansible
+        $This.Name = '$a{0}{1}' -f $SanitizedRecommendationNum,$SanitizedName
         $This.DataType = $DataType
 
         #These specific parameters do not have an appropriate default as these are organization specific settings. This check avoids the need to remove the default from the CIS GPOs manually after generation.
         [string[]]$NoDefaultValueExceptions = @(
-            ('${0}AccountsRenameadministratoraccount' -f $script:AccountsRenameadministratoraccountNum.replace('.','')),
-            ('${0}AccountsRenameguestaccount' -f $script:AccountsRenameguestaccountNum.replace('.','')),
-            ('${0}LegalNoticeText' -f $script:LegalNoticeTextNum.replace('.','')),
-            ('${0}LegalNoticeCaption' -f $script:LegalNoticeCaptionNum.replace('.',''))
+            ('$a{0}AccountsRenameadministratoraccount' -f $script:AccountsRenameadministratoraccountNum.replace('.','')),
+            ('$a{0}AccountsRenameguestaccount' -f $script:AccountsRenameguestaccountNum.replace('.','')),
+            ('$a{0}LegalNoticeText' -f $script:LegalNoticeTextNum.replace('.','')),
+            ('$a{0}LegalNoticeCaption' -f $script:LegalNoticeCaptionNum.replace('.',''))
         )
 
         if($This.Name -notin $NoDefaultValueExceptions){
@@ -39,7 +40,7 @@ Class DSCConfigurationParameter{
 
         <# Example of formated definition
             [ValidateRange(60,999)]
-            [Int32]$112MaximumPasswordAge = 60
+            [Int32]$a112MaximumPasswordAge = 60
         #>
         if($script:ParameterValidations["$RecommendationNum"]){
             $This.TextBlock = "        $($script:ParameterValidations["$RecommendationNum"])`n"
@@ -77,10 +78,10 @@ Class DSCConfigurationParameter{
             #Empty string at the end is to ensure there is a trailing ' |' which is required for the markdown
             ''
         )
-        # |112MaximumPasswordAge |60 |1.1.2 |(L1) Ensure 'Maximum password age' is set to '60 or fewer days, but not 0' |
+        # |a112MaximumPasswordAge |60 |1.1.2 |(L1) Ensure 'Maximum password age' is set to '60 or fewer days, but not 0' |
         $This.DocumentationPropertyBlock = $DocumentationPropertyBlockValues -join ' |'
 
-        # [ 112MaximumPasswordAge = [Int32] { 60-999 } ]
+        # [ a112MaximumPasswordAge = [Int32] { 60-999 } ]
         $This.DocumentationSyntaxBlock = "    [ $($This.Name.TrimStart('$')) = $($DataType) $($DocumentationSyntaxValues)]"
     }
 }
