@@ -4,7 +4,7 @@
 RootModule = 'CIS_Microsoft_Windows_10_Enterprise_Release_2004.schema.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.9.1'
+ModuleVersion = '1.9.2'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
