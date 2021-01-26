@@ -313,7 +313,7 @@ Describe 'Helper: Text block generation' {
         It 'Generates parameter syntax documentation correction' {
             [string[]]$Levels = @()
             $Levels += Get-ApplicableLevels -Recommendations ($script:BenchmarkRecommendations).Values
-            (Get-DSCDocumentationSyntax -Recommendations $Nothing -Levels $Levels)[0] | Should -Be '    [ ExclusionList = [string[]] ]'
+            (Get-DSCDocumentationSyntax -Recommendations $Nothing -Levels $Levels)[0] | Should -Be '    [ ExcludeList = [string[]] ]'
             (Get-DSCDocumentationSyntax -Recommendations ($script:BenchmarkRecommendations).Values -Levels $Levels) | Should -Contain '    [ LevelOne = [boolean] ]'
             (Get-DSCDocumentationSyntax -Recommendations ($script:BenchmarkRecommendations).Values -Levels $Levels) | Should -Contain '    [ LevelTwo = [boolean] ]'
         }

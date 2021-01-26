@@ -27,7 +27,7 @@ function Get-DSCDocumentationSyntax {
 
     process {
         [string[]]$Documentation = @()
-        $Documentation += '    [ ExclusionList = [String[]] ]'
+        $Documentation += '    [ ExcludeList = [String[]] ]'
 
         if($Levels -contains 'LevelOne'){
             $Documentation += '    [ LevelOne = [Boolean] ]'
