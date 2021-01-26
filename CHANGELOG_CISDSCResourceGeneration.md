@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2.2.5
 ### Added
 ### Changed
-- Updated all references to parameter names to be prefixed with an "a" per [Issue 169](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/169)
+- Updated all references to parameter names to be prefixed with an "cis" per [Issue 169](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/169)
 - Corrected several instance of ExclusionList to ExcludeList
 ### Removed
 
