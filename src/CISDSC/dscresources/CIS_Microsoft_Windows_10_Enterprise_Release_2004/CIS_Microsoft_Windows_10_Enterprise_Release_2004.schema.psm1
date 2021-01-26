@@ -8,61 +8,61 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         [Boolean]$BitLocker = $false,
         [Boolean]$NextGenerationWindowsSecurity = $false,
         [ValidateRange(60,999)]
-        [Int32]$a112MaximumPasswordAge = 60,
+        [Int32]$cis112MaximumPasswordAge = 60,
         [ValidateRange(1,998)]
-        [Int32]$a113MinimumPasswordAge = 1,
+        [Int32]$cis113MinimumPasswordAge = 1,
         [ValidateRange(14,128)]
         [Int32]$a114MinimumPasswordLength = 14,
         [ValidateRange(15,99999)]
-        [Int32]$a121Accountlockoutduration = 15,
+        [Int32]$cis121Accountlockoutduration = 15,
         [ValidateRange(10,999)]
-        [Int32]$a122Accountlockoutthreshold = 10,
+        [Int32]$cis122Accountlockoutthreshold = 10,
         [ValidateRange(15,99999)]
-        [Int32]$a123Resetaccountlockoutcounterafter = 15,
+        [Int32]$cis123Resetaccountlockoutcounterafter = 15,
         [ValidateRange(15,64)]
-        [Int32]$a1825PasswordLength = 15,
+        [Int32]$cis1825PasswordLength = 15,
         [ValidateRange(30,365)]
-        [Int32]$a1826PasswordAgeDays = 30,
+        [Int32]$cis1826PasswordAgeDays = 30,
         [ValidateSet('0','1','2','3','4','5')]
-        [String]$a18410ScreenSaverGracePeriod = '0',
+        [String]$cis18410ScreenSaverGracePeriod = '0',
         [ValidateRange(0,90)]
-        [Int32]$a18413WarningLevel = 90,
+        [Int32]$cis18413WarningLevel = 90,
         [ValidateRange(180,365)]
-        [Int32]$a18910212DeferFeatureUpdatesPeriodInDays = 180,
+        [Int32]$cis18910212DeferFeatureUpdatesPeriodInDays = 180,
         [ValidateRange(32768,2147483647)]
-        [Int32]$a1892612MaxSize = 32768,
+        [Int32]$cis1892612MaxSize = 32768,
         [ValidateRange(196608,2147483647)]
-        [Int32]$a1892622MaxSize = 196608,
+        [Int32]$cis1892622MaxSize = 196608,
         [ValidateRange(32768,2147483647)]
-        [Int32]$a1892632MaxSize = 32768,
+        [Int32]$cis1892632MaxSize = 32768,
         [ValidateRange(32768,2147483647)]
-        [Int32]$a1892642MaxSize = 32768,
+        [Int32]$cis1892642MaxSize = 32768,
         [ValidateRange(60000,900000)]
         [Int32]$a189623101MaxIdleTime = 900000,
         [ValidateLength(1,256)]
-        [String]$a2315AccountsRenameadministratoraccount,
+        [String]$cis2315AccountsRenameadministratoraccount,
         [ValidateLength(1,256)]
-        [String]$a2316AccountsRenameguestaccount,
+        [String]$cis2316AccountsRenameguestaccount,
         [ValidateRange(1,30)]
-        [Int32]$a2365MaximumPasswordAge = 30,
+        [Int32]$cis2365MaximumPasswordAge = 30,
         [ValidateRange(1,10)]
-        [Int32]$a2373MaxDevicePasswordFailedAttempts = 10,
+        [Int32]$cis2373MaxDevicePasswordFailedAttempts = 10,
         [ValidateRange(1,900)]
-        [Int32]$a2374InactivityTimeoutSecs = 900,
+        [Int32]$cis2374InactivityTimeoutSecs = 900,
         [ValidateLength(1,2048)]
-        [String]$a2375LegalNoticeText,
+        [String]$cis2375LegalNoticeText,
         [ValidateLength(1,512)]
-        [String]$a2376LegalNoticeCaption,
+        [String]$cis2376LegalNoticeCaption,
         [ValidateSet('0','1','2','3','4')]
-        [String]$a2377CachedLogonsCount = '4',
+        [String]$cis2377CachedLogonsCount = '4',
         [ValidateLength(1,15)]
-        [Int32]$a2391AutoDisconnect = 15,
+        [Int32]$cis2391AutoDisconnect = 15,
         [ValidateRange(16384,2147483647)]
-        [Int32]$a916LogFileSize = 16384,
+        [Int32]$cis916LogFileSize = 16384,
         [ValidateRange(16384,2147483647)]
-        [Int32]$a926LogFileSize = 16384,
+        [Int32]$cis926LogFileSize = 16384,
         [ValidateRange(16384,2147483647)]
-        [Int32]$a938LogFileSize = 16384
+        [Int32]$cis938LogFileSize = 16384
     )
 
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
@@ -70,17 +70,17 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     Import-DSCResource -ModuleName 'AuditPolicyDSC' -ModuleVersion '1.4.0.0'
     Import-DSCResource -ModuleName 'SecurityPolicyDSC' -ModuleVersion '2.10.0.0'
 
-    if($ExcludeList -notcontains '2.3.1.5' -and $PSBoundParameters.Keys -notcontains 'a2315AccountsRenameadministratoraccount'){
-        throw 'Please add "2.3.1.5" to the ExcludeList or provide a value for "a2315AccountsRenameadministratoraccount"'
+    if($ExcludeList -notcontains '2.3.1.5' -and $PSBoundParameters.Keys -notcontains 'cis2315AccountsRenameadministratoraccount'){
+        throw 'Please add "2.3.1.5" to the ExcludeList or provide a value for "cis2315AccountsRenameadministratoraccount"'
     }
-    if($ExcludeList -notcontains '2.3.1.6' -and $PSBoundParameters.Keys -notcontains 'a2316AccountsRenameguestaccount'){
-        throw 'Please add "2.3.1.6" to the ExcludeList or provide a value for "a2316AccountsRenameguestaccount"'
+    if($ExcludeList -notcontains '2.3.1.6' -and $PSBoundParameters.Keys -notcontains 'cis2316AccountsRenameguestaccount'){
+        throw 'Please add "2.3.1.6" to the ExcludeList or provide a value for "cis2316AccountsRenameguestaccount"'
     }
-    if($ExcludeList -notcontains '2.3.7.5' -and $PSBoundParameters.Keys -notcontains 'a2375LegalNoticeText'){
-        throw 'Please add "2.3.7.5" to the ExcludeList or provide a value for "a2375LegalNoticeText"'
+    if($ExcludeList -notcontains '2.3.7.5' -and $PSBoundParameters.Keys -notcontains 'cis2375LegalNoticeText'){
+        throw 'Please add "2.3.7.5" to the ExcludeList or provide a value for "cis2375LegalNoticeText"'
     }
-    if($ExcludeList -notcontains '2.3.7.6' -and $PSBoundParameters.Keys -notcontains 'a2376LegalNoticeCaption'){
-        throw 'Please add "2.3.7.6" to the ExcludeList or provide a value for "a2376LegalNoticeCaption"'
+    if($ExcludeList -notcontains '2.3.7.6' -and $PSBoundParameters.Keys -notcontains 'cis2376LegalNoticeCaption'){
+        throw 'Please add "2.3.7.6" to the ExcludeList or provide a value for "cis2376LegalNoticeCaption"'
     }
 
     if($ExcludeList -notcontains '1.1.1' -and $LevelOne){
@@ -91,13 +91,13 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     }
     if($ExcludeList -notcontains '1.1.2' -and $LevelOne){
         AccountPolicy "1.1.2 - (L1) Ensure Maximum password age is set to 60 or fewer days but not 0" {
-            Maximum_Password_Age = $a112MaximumPasswordAge
+            Maximum_Password_Age = $cis112MaximumPasswordAge
             Name = 'Maximum_Password_Age'
         }
     }
     if($ExcludeList -notcontains '1.1.3' -and $LevelOne){
         AccountPolicy "1.1.3 - (L1) Ensure Minimum password age is set to 1 or more day(s)" {
-            Minimum_Password_Age = $a113MinimumPasswordAge
+            Minimum_Password_Age = $cis113MinimumPasswordAge
             Name = 'Minimum_Password_Age'
         }
     }
@@ -129,20 +129,20 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     }
     if($ExcludeList -notcontains '1.2.1' -and $LevelOne){
         AccountPolicy "1.2.1 - (L1) Ensure Account lockout duration is set to 15 or more minute(s)" {
-            Account_lockout_duration = $a121Accountlockoutduration
+            Account_lockout_duration = $cis121Accountlockoutduration
             Name = 'Account_lockout_duration'
         }
     }
     if($ExcludeList -notcontains '1.2.2' -and $LevelOne){
         AccountPolicy "1.2.2 - (L1) Ensure Account lockout threshold is set to 10 or fewer invalid logon attempt(s) but not 0" {
-            Account_lockout_threshold = $a122Accountlockoutthreshold
+            Account_lockout_threshold = $cis122Accountlockoutthreshold
             Name = 'Account_lockout_threshold'
         }
     }
     if($ExcludeList -notcontains '1.2.3' -and $LevelOne){
         AccountPolicy "1.2.3 - (L1) Ensure Reset account lockout counter after is set to 15 or more minute(s)" {
             Name = 'Reset_account_lockout_counter_after'
-            Reset_account_lockout_counter_after = $a123Resetaccountlockoutcounterafter
+            Reset_account_lockout_counter_after = $cis123Resetaccountlockoutcounterafter
         }
     }
     if($ExcludeList -notcontains '2.2.1' -and $LevelOne){
@@ -448,13 +448,13 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     }
     if($ExcludeList -notcontains '2.3.1.5' -and $LevelOne){
         SecurityOption "2.3.1.5 - (L1) Configure Accounts Rename administrator account" {
-            Accounts_Rename_administrator_account = $a2315AccountsRenameadministratoraccount
+            Accounts_Rename_administrator_account = $cis2315AccountsRenameadministratoraccount
             Name = 'Accounts_Rename_administrator_account'
         }
     }
     if($ExcludeList -notcontains '2.3.1.6' -and $LevelOne){
         SecurityOption "2.3.1.6 - (L1) Configure Accounts Rename guest account" {
-            Accounts_Rename_guest_account = $a2316AccountsRenameguestaccount
+            Accounts_Rename_guest_account = $cis2316AccountsRenameguestaccount
             Name = 'Accounts_Rename_guest_account'
         }
     }
@@ -525,7 +525,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     if($ExcludeList -notcontains '2.3.6.5' -and $LevelOne){
         Registry "2.3.6.5 - (L1) Ensure Domain member Maximum machine account password age is set to 30 or fewer days but not 0" {
             Key = 'HKLM:\System\CurrentControlSet\Services\Netlogon\Parameters'
-            ValueData = $a2365MaximumPasswordAge
+            ValueData = $cis2365MaximumPasswordAge
             ValueName = 'MaximumPasswordAge'
             ValueType = 'Dword'
         }
@@ -557,7 +557,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     if($ExcludeList -notcontains '2.3.7.3' -and $BitLocker){
         Registry "2.3.7.3 - (BL) Ensure Interactive logon Machine account lockout threshold is set to 10 or fewer invalid logon attempts but not 0" {
             Key = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
-            ValueData = $a2373MaxDevicePasswordFailedAttempts
+            ValueData = $cis2373MaxDevicePasswordFailedAttempts
             ValueName = 'MaxDevicePasswordFailedAttempts'
             ValueType = 'Dword'
         }
@@ -565,7 +565,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     if($ExcludeList -notcontains '2.3.7.4' -and $LevelOne){
         Registry "2.3.7.4 - (L1) Ensure Interactive logon Machine inactivity limit is set to 900 or fewer second(s) but not 0" {
             Key = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
-            ValueData = $a2374InactivityTimeoutSecs
+            ValueData = $cis2374InactivityTimeoutSecs
             ValueName = 'InactivityTimeoutSecs'
             ValueType = 'Dword'
         }
@@ -573,7 +573,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     if($ExcludeList -notcontains '2.3.7.5' -and $LevelOne){
         Registry "2.3.7.5 - (L1) Configure Interactive logon Message text for users attempting to log on" {
             Key = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
-            ValueData = $a2375LegalNoticeText
+            ValueData = $cis2375LegalNoticeText
             ValueName = 'LegalNoticeText'
             ValueType = 'String'
         }
@@ -581,7 +581,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     if($ExcludeList -notcontains '2.3.7.6' -and $LevelOne){
         Registry "2.3.7.6 - (L1) Configure Interactive logon Message title for users attempting to log on" {
             Key = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
-            ValueData = $a2376LegalNoticeCaption
+            ValueData = $cis2376LegalNoticeCaption
             ValueName = 'LegalNoticeCaption'
             ValueType = 'String'
         }
@@ -589,7 +589,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     if($ExcludeList -notcontains '2.3.7.7' -and $LevelTwo){
         Registry "2.3.7.7 - (L2) Ensure Interactive logon Number of previous logons to cache (in case domain controller is not available) is set to 4 or fewer logon(s)" {
             Key = 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon'
-            ValueData = $a2377CachedLogonsCount
+            ValueData = $cis2377CachedLogonsCount
             ValueName = 'CachedLogonsCount'
             ValueType = 'String'
         }
@@ -637,7 +637,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     if($ExcludeList -notcontains '2.3.9.1' -and $LevelOne){
         Registry "2.3.9.1 - (L1) Ensure Microsoft network server Amount of idle time required before suspending session is set to 15 or fewer minute(s)" {
             Key = 'HKLM:\System\CurrentControlSet\Services\LanManServer\Parameters'
-            ValueData = $a2391AutoDisconnect
+            ValueData = $cis2391AutoDisconnect
             ValueName = 'AutoDisconnect'
             ValueType = 'Dword'
         }
@@ -1203,7 +1203,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "9.1.6 - (L1) Ensure Windows Firewall Domain Logging Size limit (KB) is set to 16384 KB or greater" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging'
-            ValueData = $a916LogFileSize
+            ValueData = $cis916LogFileSize
             ValueName = 'LogFileSize'
             ValueType = 'Dword'
         }
@@ -1275,7 +1275,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "9.2.6 - (L1) Ensure Windows Firewall Private Logging Size limit (KB) is set to 16384 KB or greater" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging'
-            ValueData = $a926LogFileSize
+            ValueData = $cis926LogFileSize
             ValueName = 'LogFileSize'
             ValueType = 'Dword'
         }
@@ -1365,7 +1365,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "9.3.8 - (L1) Ensure Windows Firewall Public Logging Size limit (KB) is set to 16384 KB or greater" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging'
-            ValueData = $a938LogFileSize
+            ValueData = $cis938LogFileSize
             ValueName = 'LogFileSize'
             ValueType = 'Dword'
         }
@@ -1779,7 +1779,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "18.2.5 - (L1) Ensure Password Settings Password Length is set to Enabled 15 or more" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft Services\AdmPwd'
-            ValueData = $a1825PasswordLength
+            ValueData = $cis1825PasswordLength
             ValueName = 'PasswordLength'
             ValueType = 'Dword'
         }
@@ -1788,7 +1788,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "18.2.6 - (L1) Ensure Password Settings Password Age (Days) is set to Enabled 30 or fewer" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft Services\AdmPwd'
-            ValueData = $a1826PasswordAgeDays
+            ValueData = $cis1826PasswordAgeDays
             ValueName = 'PasswordAgeDays'
             ValueType = 'Dword'
         }
@@ -1932,7 +1932,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "18.4.10 - (L1) Ensure MSS (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended) is set to Enabled 5 or fewer seconds" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
-            ValueData = $a18410ScreenSaverGracePeriod
+            ValueData = $cis18410ScreenSaverGracePeriod
             ValueName = 'ScreenSaverGracePeriod'
             ValueType = 'String'
         }
@@ -1959,7 +1959,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "18.4.13 - (L1) Ensure MSS (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning is set to Enabled 90 or less" {
             Ensure = 'Present'
             Key = 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Security'
-            ValueData = $a18413WarningLevel
+            ValueData = $cis18413WarningLevel
             ValueName = 'WarningLevel'
             ValueType = 'Dword'
         }
@@ -3570,7 +3570,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "18.9.26.1.2 - (L1) Ensure Application Specify the maximum log file size (KB) is set to Enabled 32768 or greater" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Application'
-            ValueData = $a1892612MaxSize
+            ValueData = $cis1892612MaxSize
             ValueName = 'MaxSize'
             ValueType = 'Dword'
         }
@@ -3588,7 +3588,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "18.9.26.2.2 - (L1) Ensure Security Specify the maximum log file size (KB) is set to Enabled 196608 or greater" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Security'
-            ValueData = $a1892622MaxSize
+            ValueData = $cis1892622MaxSize
             ValueName = 'MaxSize'
             ValueType = 'Dword'
         }
@@ -3606,7 +3606,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "18.9.26.3.2 - (L1) Ensure Setup Specify the maximum log file size (KB) is set to Enabled 32768 or greater" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Setup'
-            ValueData = $a1892632MaxSize
+            ValueData = $cis1892632MaxSize
             ValueName = 'MaxSize'
             ValueType = 'Dword'
         }
@@ -3624,7 +3624,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "18.9.26.4.2 - (L1) Ensure System Specify the maximum log file size (KB) is set to Enabled 32768 or greater" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\System'
-            ValueData = $a1892642MaxSize
+            ValueData = $cis1892642MaxSize
             ValueName = 'MaxSize'
             ValueType = 'Dword'
         }
@@ -4642,7 +4642,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "18.9.102.1.2 - (L1) Ensure Select when Preview Builds and Feature Updates are received is set to Enabled Semi-Annual Channel 180 or more days (3)" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate'
-            ValueData = $a18910212DeferFeatureUpdatesPeriodInDays
+            ValueData = $cis18910212DeferFeatureUpdatesPeriodInDays
             ValueName = 'DeferFeatureUpdatesPeriodInDays'
             ValueType = 'Dword'
         }
