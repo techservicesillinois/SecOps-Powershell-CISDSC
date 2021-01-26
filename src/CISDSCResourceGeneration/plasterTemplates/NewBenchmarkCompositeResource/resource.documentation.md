@@ -57,10 +57,10 @@ Configuration MyConfiguration
 
     CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
     {
-        a<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
-        a<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
-        a<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption = 'Legal Notice'
-        a<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText = @"
+        cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextAccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
+        cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextAccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
+        cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextLegalNoticeCaptionNumNoDots%>LegalNoticeCaption = 'Legal Notice'
+        cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextLegalNoticeTextNumNoDots%>LegalNoticeText = @"
 This is a super secure device that we don't want bad people using.
 I'm even making sure to put this as a literal string so that I can cleanly
 use multiple lines to tell you how super secure it is.
@@ -83,8 +83,8 @@ Configuration MyConfiguration
             '<%=$PLASTER_PARAM_LegalNoticeCaptionNum%>', # LegalNoticeCaption
             '5.6' # IIS Admin Service (IISADMIN)
         )
-        a<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
-        a<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
+        cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextAccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
+        cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextAccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
     }
 }
 ```
@@ -112,8 +112,8 @@ Configuration MyConfiguration
                 '<%=$PLASTER_PARAM_LegalNoticeCaptionNum%>', # LegalNoticeCaption
                 '5.6' # IIS Admin Service (IISADMIN)
             )
-            a<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
-            a<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
+            cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextAccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
+            cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextAccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
             DependsOn = '[Package]InstallLAPS'
         }
     }
