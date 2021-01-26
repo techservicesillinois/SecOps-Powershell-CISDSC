@@ -22,7 +22,7 @@ CIS_Microsoft_Windows_10_Enterprise_Release_1909 [String] #ResourceName
     [ NextGenerationWindowsSecurity = [Boolean] ]
     [ cis112MaximumPasswordAge = [Int32] { 60-999 } ]
     [ cis113MinimumPasswordAge = [Int32] { 1-998 } ]
-    [ a114MinimumPasswordLength = [Int32] ]
+    [ cis114MinimumPasswordLength = [Int32] ]
     [ cis121Accountlockoutduration = [Int32] { 15-99999 } ]
     [ cis122Accountlockoutthreshold = [Int32] { 10-999 } ]
     [ cis123Resetaccountlockoutcounterafter = [Int32] { 15-99999 } ]
@@ -72,7 +72,7 @@ CIS_Microsoft_Windows_10_Enterprise_Release_1909 [String] #ResourceName
 |NextGenerationWindowsSecurity |`$false` | |Applies Next Generation Windows Security recommendations |
 |cis112MaximumPasswordAge |60 |1.1.2 |(L1) Ensure 'Maximum password age' is set to '60 or fewer days, but not 0' |
 |cis113MinimumPasswordAge |1 |1.1.3 |(L1) Ensure 'Minimum password age' is set to '1 or more day(s)' |
-|a114MinimumPasswordLength |14 |1.1.4 |(L1) Ensure 'Minimum password length' is set to '14 or more character(s)' |
+|cis114MinimumPasswordLength |14 |1.1.4 |(L1) Ensure 'Minimum password length' is set to '14 or more character(s)' |
 |cis121Accountlockoutduration |15 |1.2.1 |(L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)' |
 |cis122Accountlockoutthreshold |10 |1.2.2 |(L1) Ensure 'Account lockout threshold' is set to '10 or fewer invalid logon attempt(s), but not 0' |
 |cis123Resetaccountlockoutcounterafter |15 |1.2.3 |(L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)' |

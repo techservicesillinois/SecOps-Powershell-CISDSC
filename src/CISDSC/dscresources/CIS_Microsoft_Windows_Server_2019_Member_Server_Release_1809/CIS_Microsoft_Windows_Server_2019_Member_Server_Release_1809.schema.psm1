@@ -21,9 +21,9 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809
         [ValidateRange(30,365)]
         [Int32]$cis1826PasswordAgeDays = 30,
         [ValidateRange(0,90)]
-        [Int32]$a18412WarningLevel = 90,
+        [Int32]$cis18412WarningLevel = 90,
         [ValidateSet('0','1','2','3','4','5')]
-        [String]$a1849ScreenSaverGracePeriod = '0',
+        [String]$cis1849ScreenSaverGracePeriod = '0',
         [ValidateRange(180,365)]
         [Int32]$cis18910212DeferFeatureUpdatesPeriodInDays = 180,
         [ValidateRange(32768,2147483647)]
@@ -43,13 +43,13 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809
         [ValidateRange(1,30)]
         [Int32]$cis2365MaximumPasswordAge = 30,
         [ValidateRange(1,900)]
-        [Int32]$a2373InactivityTimeoutSecs = 900,
+        [Int32]$cis2373InactivityTimeoutSecs = 900,
         [ValidateLength(1,2048)]
-        [String]$a2374LegalNoticeText,
+        [String]$cis2374LegalNoticeText,
         [ValidateLength(1,512)]
-        [String]$a2375LegalNoticeCaption,
+        [String]$cis2375LegalNoticeCaption,
         [ValidateSet('0','1','2','3','4')]
-        [String]$a2376CachedLogonsCount = '4',
+        [String]$cis2376CachedLogonsCount = '4',
         [ValidateLength(1,15)]
         [Int32]$cis2391AutoDisconnect = 15,
         [ValidateRange(16384,2147483647)]
@@ -71,11 +71,11 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809
     if($ExcludeList -notcontains '2.3.1.6' -and $PSBoundParameters.Keys -notcontains 'cis2316AccountsRenameguestaccount'){
         throw 'Please add "2.3.1.6" to the ExcludeList or provide a value for "cis2316AccountsRenameguestaccount"'
     }
-    if($ExcludeList -notcontains '2.3.7.4' -and $PSBoundParameters.Keys -notcontains 'a2374LegalNoticeText'){
-        throw 'Please add "2.3.7.4" to the ExcludeList or provide a value for "a2374LegalNoticeText"'
+    if($ExcludeList -notcontains '2.3.7.4' -and $PSBoundParameters.Keys -notcontains 'cis2374LegalNoticeText'){
+        throw 'Please add "2.3.7.4" to the ExcludeList or provide a value for "cis2374LegalNoticeText"'
     }
-    if($ExcludeList -notcontains '2.3.7.5' -and $PSBoundParameters.Keys -notcontains 'a2375LegalNoticeCaption'){
-        throw 'Please add "2.3.7.5" to the ExcludeList or provide a value for "a2375LegalNoticeCaption"'
+    if($ExcludeList -notcontains '2.3.7.5' -and $PSBoundParameters.Keys -notcontains 'cis2375LegalNoticeCaption'){
+        throw 'Please add "2.3.7.5" to the ExcludeList or provide a value for "cis2375LegalNoticeCaption"'
     }
 
     if($ExcludeList -notcontains '1.1.1' -and $LevelOne){
@@ -530,7 +530,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809
     if($ExcludeList -notcontains '2.3.7.3' -and $LevelOne){
         Registry "2.3.7.3 - (L1) Ensure Interactive logon Machine inactivity limit is set to 900 or fewer second(s) but not 0" {
             Key = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
-            ValueData = $a2373InactivityTimeoutSecs
+            ValueData = $cis2373InactivityTimeoutSecs
             ValueName = 'InactivityTimeoutSecs'
             ValueType = 'Dword'
         }
@@ -538,7 +538,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809
     if($ExcludeList -notcontains '2.3.7.4' -and $LevelOne){
         Registry "2.3.7.4 - (L1) Configure Interactive logon Message text for users attempting to log on" {
             Key = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
-            ValueData = $a2374LegalNoticeText
+            ValueData = $cis2374LegalNoticeText
             ValueName = 'LegalNoticeText'
             ValueType = 'String'
         }
@@ -546,7 +546,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809
     if($ExcludeList -notcontains '2.3.7.5' -and $LevelOne){
         Registry "2.3.7.5 - (L1) Configure Interactive logon Message title for users attempting to log on" {
             Key = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System'
-            ValueData = $a2375LegalNoticeCaption
+            ValueData = $cis2375LegalNoticeCaption
             ValueName = 'LegalNoticeCaption'
             ValueType = 'String'
         }
@@ -554,7 +554,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809
     if($ExcludeList -notcontains '2.3.7.6' -and $LevelTwo){
         Registry "2.3.7.6 - (L2) Ensure Interactive logon Number of previous logons to cache (in case domain controller is not available) is set to 4 or fewer logon(s) (MS only)" {
             Key = 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon'
-            ValueData = $a2376CachedLogonsCount
+            ValueData = $cis2376CachedLogonsCount
             ValueName = 'CachedLogonsCount'
             ValueType = 'String'
         }
@@ -1676,7 +1676,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809
         Registry "18.4.9 - (L1) Ensure MSS (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended) is set to Enabled 5 or fewer seconds" {
             Ensure = 'Present'
             Key = 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon'
-            ValueData = $a1849ScreenSaverGracePeriod
+            ValueData = $cis1849ScreenSaverGracePeriod
             ValueName = 'ScreenSaverGracePeriod'
             ValueType = 'String'
         }
@@ -1703,7 +1703,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809
         Registry "18.4.12 - (L1) Ensure MSS (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning is set to Enabled 90 or less" {
             Ensure = 'Present'
             Key = 'HKLM:\SYSTEM\CurrentControlSet\Services\Eventlog\Security'
-            ValueData = $a18412WarningLevel
+            ValueData = $cis18412WarningLevel
             ValueName = 'WarningLevel'
             ValueType = 'Dword'
         }

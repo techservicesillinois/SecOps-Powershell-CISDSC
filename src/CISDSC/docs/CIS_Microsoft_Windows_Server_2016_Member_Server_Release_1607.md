@@ -26,8 +26,8 @@ CIS_Microsoft_Windows_Server_2016_Member_Server_Release_1607 [String] #ResourceN
     [ cis123Resetaccountlockoutcounterafter = [Int32] { 15-99999 } ]
     [ cis1825PasswordLength = [Int32] { 15-64 } ]
     [ cis1826PasswordAgeDays = [Int32] { 30-365 } ]
-    [ a18412WarningLevel = [Int32] { 0-90 } ]
-    [ a1849ScreenSaverGracePeriod = [String] { '0' | '1' | '2' | '3' | '4' | '5' } ]
+    [ cis18412WarningLevel = [Int32] { 0-90 } ]
+    [ cis1849ScreenSaverGracePeriod = [String] { '0' | '1' | '2' | '3' | '4' | '5' } ]
     [ cis18910212DeferFeatureUpdatesPeriodInDays = [Int32] { 180-365 } ]
     [ cis1892612MaxSize = [Int32] { 32768-2147483647 } ]
     [ cis1892622MaxSize = [Int32] { 196608-2147483647 } ]
@@ -37,10 +37,10 @@ CIS_Microsoft_Windows_Server_2016_Member_Server_Release_1607 [String] #ResourceN
     [ cis2315AccountsRenameadministratoraccount = [String] { 1-256 } ]
     [ cis2316AccountsRenameguestaccount = [String] { 1-256 } ]
     [ cis2365MaximumPasswordAge = [Int32] { 1-30 } ]
-    [ a2373InactivityTimeoutSecs = [Int32] { 1-900 } ]
-    [ a2374LegalNoticeText = [String] { 1-2048 } ]
-    [ a2375LegalNoticeCaption = [String] { 1-512 } ]
-    [ a2376CachedLogonsCount = [String] { '0' | '1' | '2' | '3' | '4' } ]
+    [ cis2373InactivityTimeoutSecs = [Int32] { 1-900 } ]
+    [ cis2374LegalNoticeText = [String] { 1-2048 } ]
+    [ cis2375LegalNoticeCaption = [String] { 1-512 } ]
+    [ cis2376CachedLogonsCount = [String] { '0' | '1' | '2' | '3' | '4' } ]
     [ cis2391AutoDisconnect = [Int32] { 1-15 } ]
     [ cis916LogFileSize = [Int32] { 16384-2147483647 } ]
     [ cis926LogFileSize = [Int32] { 16384-2147483647 } ]
@@ -73,8 +73,8 @@ CIS_Microsoft_Windows_Server_2016_Member_Server_Release_1607 [String] #ResourceN
 |cis123Resetaccountlockoutcounterafter |15 |1.2.3 |(L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)' |
 |cis1825PasswordLength |15 |18.2.5 |(L1) Ensure 'Password Settings: Password Length' is set to 'Enabled: 15 or more' (MS only) |
 |cis1826PasswordAgeDays |30 |18.2.6 |(L1) Ensure 'Password Settings: Password Age (Days)' is set to 'Enabled: 30 or fewer' (MS only) |
-|a18412WarningLevel |90 |18.4.12 |(L1) Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled: 90% or less' |
-|a1849ScreenSaverGracePeriod |'0' |18.4.9 |(L1) Ensure 'MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' is set to 'Enabled: 5 or fewer seconds' |
+|cis18412WarningLevel |90 |18.4.12 |(L1) Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled: 90% or less' |
+|cis1849ScreenSaverGracePeriod |'0' |18.4.9 |(L1) Ensure 'MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' is set to 'Enabled: 5 or fewer seconds' |
 |cis18910212DeferFeatureUpdatesPeriodInDays |180 |18.9.102.1.2 |(L1) Ensure 'Select when Preview Builds and Feature Updates are received' is set to 'Enabled: Semi-Annual Channel, 180 or more days' |
 |cis1892612MaxSize |32768 |18.9.26.1.2 |(L1) Ensure 'Application: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
 |cis1892622MaxSize |196608 |18.9.26.2.2 |(L1) Ensure 'Security: Specify the maximum log file size (KB)' is set to 'Enabled: 196,608 or greater' |
@@ -84,10 +84,10 @@ CIS_Microsoft_Windows_Server_2016_Member_Server_Release_1607 [String] #ResourceN
 |cis2315AccountsRenameadministratoraccount | |2.3.1.5 |(L1) Configure 'Accounts: Rename administrator account' |
 |cis2316AccountsRenameguestaccount | |2.3.1.6 |(L1) Configure 'Accounts: Rename guest account' |
 |cis2365MaximumPasswordAge |30 |2.3.6.5 |(L1) Ensure 'Domain member: Maximum machine account password age' is set to '30 or fewer days, but not 0' |
-|a2373InactivityTimeoutSecs |900 |2.3.7.3 |(L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0' |
-|a2374LegalNoticeText | |2.3.7.4 |(L1) Configure 'Interactive logon: Message text for users attempting to log on' |
-|a2375LegalNoticeCaption | |2.3.7.5 |(L1) Configure 'Interactive logon: Message title for users attempting to log on' |
-|a2376CachedLogonsCount |'4' |2.3.7.6 |(L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only) |
+|cis2373InactivityTimeoutSecs |900 |2.3.7.3 |(L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0' |
+|cis2374LegalNoticeText | |2.3.7.4 |(L1) Configure 'Interactive logon: Message text for users attempting to log on' |
+|cis2375LegalNoticeCaption | |2.3.7.5 |(L1) Configure 'Interactive logon: Message title for users attempting to log on' |
+|cis2376CachedLogonsCount |'4' |2.3.7.6 |(L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only) |
 |cis2391AutoDisconnect |15 |2.3.9.1 |(L1) Ensure 'Microsoft network server: Amount of idle time required before suspending session' is set to '15 or fewer minute(s)' |
 |cis916LogFileSize |16384 |9.1.6 |(L1) Ensure 'Windows Firewall: Domain: Logging: Size limit (KB)' is set to '16,384 KB or greater' |
 |cis926LogFileSize |16384 |9.2.6 |(L1) Ensure 'Windows Firewall: Private: Logging: Size limit (KB)' is set to '16,384 KB or greater' |

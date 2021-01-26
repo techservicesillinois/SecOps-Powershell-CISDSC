@@ -22,7 +22,7 @@ CIS_Microsoft_Windows_10_Enterprise_Release_2004 [String] #ResourceName
     [ NextGenerationWindowsSecurity = [Boolean] ]
     [ cis112MaximumPasswordAge = [Int32] { 60-999 } ]
     [ cis113MinimumPasswordAge = [Int32] { 1-998 } ]
-    [ a114MinimumPasswordLength = [Int32] { 14-128 } ]
+    [ cis114MinimumPasswordLength = [Int32] { 14-128 } ]
     [ cis121Accountlockoutduration = [Int32] { 15-99999 } ]
     [ cis122Accountlockoutthreshold = [Int32] { 10-999 } ]
     [ cis123Resetaccountlockoutcounterafter = [Int32] { 15-99999 } ]
@@ -35,7 +35,7 @@ CIS_Microsoft_Windows_10_Enterprise_Release_2004 [String] #ResourceName
     [ cis1892622MaxSize = [Int32] { 196608-2147483647 } ]
     [ cis1892632MaxSize = [Int32] { 32768-2147483647 } ]
     [ cis1892642MaxSize = [Int32] { 32768-2147483647 } ]
-    [ a189623101MaxIdleTime = [Int32] { 60000-900000 } ]
+    [ cis189623101MaxIdleTime = [Int32] { 60000-900000 } ]
     [ cis2315AccountsRenameadministratoraccount = [String] { 1-256 } ]
     [ cis2316AccountsRenameguestaccount = [String] { 1-256 } ]
     [ cis2365MaximumPasswordAge = [Int32] { 1-30 } ]
@@ -72,7 +72,7 @@ CIS_Microsoft_Windows_10_Enterprise_Release_2004 [String] #ResourceName
 |NextGenerationWindowsSecurity |`$false` | |Applies Next Generation Windows Security recommendations |
 |cis112MaximumPasswordAge |60 |1.1.2 |(L1) Ensure 'Maximum password age' is set to '60 or fewer days, but not 0' |
 |cis113MinimumPasswordAge |1 |1.1.3 |(L1) Ensure 'Minimum password age' is set to '1 or more day(s)' |
-|a114MinimumPasswordLength |14 |1.1.4 |(L1) Ensure 'Minimum password length' is set to '14 or more character(s)' |
+|cis114MinimumPasswordLength |14 |1.1.4 |(L1) Ensure 'Minimum password length' is set to '14 or more character(s)' |
 |cis121Accountlockoutduration |15 |1.2.1 |(L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)' |
 |cis122Accountlockoutthreshold |10 |1.2.2 |(L1) Ensure 'Account lockout threshold' is set to '10 or fewer invalid logon attempt(s), but not 0' |
 |cis123Resetaccountlockoutcounterafter |15 |1.2.3 |(L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)' |
@@ -85,7 +85,7 @@ CIS_Microsoft_Windows_10_Enterprise_Release_2004 [String] #ResourceName
 |cis1892622MaxSize |196608 |18.9.26.2.2 |(L1) Ensure 'Security: Specify the maximum log file size (KB)' is set to 'Enabled: 196,608 or greater' |
 |cis1892632MaxSize |32768 |18.9.26.3.2 |(L1) Ensure 'Setup: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
 |cis1892642MaxSize |32768 |18.9.26.4.2 |(L1) Ensure 'System: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
-|a189623101MaxIdleTime |900000 |18.9.62.3.10.1 |(L2) Ensure 'Set time limit for active but idle Remote Desktop Services sessions' is set to 'Enabled: 15 minutes or less' |
+|cis189623101MaxIdleTime |900000 |18.9.62.3.10.1 |(L2) Ensure 'Set time limit for active but idle Remote Desktop Services sessions' is set to 'Enabled: 15 minutes or less' |
 |cis2315AccountsRenameadministratoraccount | |2.3.1.5 |(L1) Configure 'Accounts: Rename administrator account' |
 |cis2316AccountsRenameguestaccount | |2.3.1.6 |(L1) Configure 'Accounts: Rename guest account' |
 |cis2365MaximumPasswordAge |30 |2.3.6.5 |(L1) Ensure 'Domain member: Maximum machine account password age' is set to '30 or fewer days, but not 0' |

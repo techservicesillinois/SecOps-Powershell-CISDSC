@@ -12,7 +12,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         [ValidateRange(1,998)]
         [Int32]$cis113MinimumPasswordAge = 1,
         [ValidateRange(14,128)]
-        [Int32]$a114MinimumPasswordLength = 14,
+        [Int32]$cis114MinimumPasswordLength = 14,
         [ValidateRange(15,99999)]
         [Int32]$cis121Accountlockoutduration = 15,
         [ValidateRange(10,999)]
@@ -38,7 +38,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         [ValidateRange(32768,2147483647)]
         [Int32]$cis1892642MaxSize = 32768,
         [ValidateRange(60000,900000)]
-        [Int32]$a189623101MaxIdleTime = 900000,
+        [Int32]$cis189623101MaxIdleTime = 900000,
         [ValidateLength(1,256)]
         [String]$cis2315AccountsRenameadministratoraccount,
         [ValidateLength(1,256)]
@@ -103,7 +103,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
     }
     if($ExcludeList -notcontains '1.1.4' -and $LevelOne){
         AccountPolicy "1.1.4 - (L1) Ensure Minimum password length is set to 14 or more character(s)" {
-            Minimum_Password_Length = $a114MinimumPasswordLength
+            Minimum_Password_Length = $cis114MinimumPasswordLength
             Name = 'Minimum_Password_Length'
         }
     }
@@ -4169,7 +4169,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_2004
         Registry "18.9.62.3.10.1 - (L2) Ensure Set time limit for active but idle Remote Desktop Services sessions is set to Enabled 15 minutes or less" {
             Ensure = 'Present'
             Key = 'HKLM:\Software\Policies\Microsoft\Windows NT\Terminal Services'
-            ValueData = $a189623101MaxIdleTime
+            ValueData = $cis189623101MaxIdleTime
             ValueName = 'MaxIdleTime'
             ValueType = 'Dword'
         }
