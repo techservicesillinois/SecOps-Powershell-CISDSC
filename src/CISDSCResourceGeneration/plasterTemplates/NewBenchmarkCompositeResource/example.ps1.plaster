@@ -15,10 +15,10 @@ Configuration <%=$PLASTER_PARAM_OSWithUnderscores%>_<%=$PLASTER_PARAM_OSBuild%>_
     {
         CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CIS Benchmarks'
         {
-            cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextAccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
-            cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextAccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
-            cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextLegalNoticeCaptionNumNoDots%>LegalNoticeCaption = 'Legal Notice'
-            cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextLegalNoticeTextNumNoDots%>LegalNoticeText = @"
+            cis<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
+            cis<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
+            cis<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption = 'Legal Notice'
+            cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText = @"
 This is a super secure device that we don't want bad people using.
 I'm even making sure to put this as a literal string so that I can cleanly
 use multiple lines to tell you how super secure it is.
