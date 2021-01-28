@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2.2.6
 ### Added
 ### Changed
-- Corrected issues with the plaster tempalte variables introduced in 2.2.5
+- Corrected issues with the plaster template variables introduced in 2.2.5
 ### Removed
 
 ## 2.2.5
