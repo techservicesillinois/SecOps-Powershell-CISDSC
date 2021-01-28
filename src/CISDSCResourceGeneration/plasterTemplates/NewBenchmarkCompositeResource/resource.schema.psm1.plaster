@@ -10,17 +10,17 @@ Configuration CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARA
     Import-DSCResource -ModuleName 'AuditPolicyDSC' -ModuleVersion '1.4.0.0'
     Import-DSCResource -ModuleName 'SecurityPolicyDSC' -ModuleVersion '2.10.0.0'
 
-    if($ExcludeList -notcontains '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNum%>' -and $PSBoundParameters.Keys -notcontains 'cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextAccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount'){
-        throw 'Please add "<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNum%>" to the ExcludeList or provide a value for "cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextAccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount"'
+    if($ExcludeList -notcontains '<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNum%>' -and $PSBoundParameters.Keys -notcontains 'cis<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount'){
+        throw 'Please add "<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNum%>" to the ExcludeList or provide a value for "cis<%=$PLASTER_PARAM_AccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount"'
     }
-    if($ExcludeList -notcontains '<%=$PLASTER_PARAM_AccountsRenameguestaccountNum%>' -and $PSBoundParameters.Keys -notcontains 'cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextAccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount'){
-        throw 'Please add "<%=$PLASTER_PARAM_AccountsRenameguestaccountNum%>" to the ExcludeList or provide a value for "cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextAccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount"'
+    if($ExcludeList -notcontains '<%=$PLASTER_PARAM_AccountsRenameguestaccountNum%>' -and $PSBoundParameters.Keys -notcontains 'cis<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount'){
+        throw 'Please add "<%=$PLASTER_PARAM_AccountsRenameguestaccountNum%>" to the ExcludeList or provide a value for "cis<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount"'
     }
-    if($ExcludeList -notcontains '<%=$PLASTER_PARAM_LegalNoticeTextNum%>' -and $PSBoundParameters.Keys -notcontains 'cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextLegalNoticeTextNumNoDots%>LegalNoticeText'){
-        throw 'Please add "<%=$PLASTER_PARAM_LegalNoticeTextNum%>" to the ExcludeList or provide a value for "cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextLegalNoticeTextNumNoDots%>LegalNoticeText"'
+    if($ExcludeList -notcontains '<%=$PLASTER_PARAM_LegalNoticeTextNum%>' -and $PSBoundParameters.Keys -notcontains 'cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText'){
+        throw 'Please add "<%=$PLASTER_PARAM_LegalNoticeTextNum%>" to the ExcludeList or provide a value for "cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText"'
     }
-    if($ExcludeList -notcontains '<%=$PLASTER_PARAM_LegalNoticeCaptionNum%>' -and $PSBoundParameters.Keys -notcontains 'cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextLegalNoticeCaptionNumNoDots%>LegalNoticeCaption'){
-        throw 'Please add "<%=$PLASTER_PARAM_LegalNoticeCaptionNum%>" to the ExcludeList or provide a value for "cis<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeTextLegalNoticeCaptionNumNoDots%>LegalNoticeCaption"'
+    if($ExcludeList -notcontains '<%=$PLASTER_PARAM_LegalNoticeCaptionNum%>' -and $PSBoundParameters.Keys -notcontains 'cis<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption'){
+        throw 'Please add "<%=$PLASTER_PARAM_LegalNoticeCaptionNum%>" to the ExcludeList or provide a value for "cis<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption"'
     }
 
 <%=$PLASTER_PARAM_DSCScaffolding%>
