@@ -169,7 +169,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_20H2
     if($ExcludeList -notcontains '2.2.4' -and $LevelOne){
         UserRightsAssignment "2.2.4 - (L1) Ensure Adjust memory quotas for a process is set to Administrators LOCAL SERVICE NETWORK SERVICE" {
             Force = $true
-            Identity = @('*S-1-5-32-544','*S-1-5-19','*S-1-5-20')
+            Identity = @('*S-1-5-19','*S-1-5-20','*S-1-5-32-544')
             Policy = 'Adjust_memory_quotas_for_a_process'
         }
     }
@@ -197,14 +197,14 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_20H2
     if($ExcludeList -notcontains '2.2.8' -and $LevelOne){
         UserRightsAssignment "2.2.8 - (L1) Ensure Change the system time is set to Administrators LOCAL SERVICE" {
             Force = $true
-            Identity = @('*S-1-5-32-544','*S-1-5-19')
+            Identity = @('*S-1-5-19','*S-1-5-32-544')
             Policy = 'Change_the_system_time'
         }
     }
     if($ExcludeList -notcontains '2.2.9' -and $LevelOne){
         UserRightsAssignment "2.2.9 - (L1) Ensure Change the time zone is set to Administrators LOCAL SERVICE Users" {
             Force = $true
-            Identity = @('*S-1-5-32-544','*S-1-5-19','*S-1-5-32-545')
+            Identity = @('*S-1-5-19','*S-1-5-32-544','*S-1-5-32-545')
             Policy = 'Change_the_time_zone'
         }
     }
@@ -225,7 +225,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_20H2
     if($ExcludeList -notcontains '2.2.12' -and $LevelOne){
         UserRightsAssignment "2.2.12 - (L1) Ensure Create global objects is set to Administrators LOCAL SERVICE NETWORK SERVICE SERVICE" {
             Force = $true
-            Identity = @('*S-1-5-32-544','*S-1-5-19','*S-1-5-20','*S-1-5-6')
+            Identity = @('*S-1-5-19','*S-1-5-20','*S-1-5-32-544','*S-1-5-6')
             Policy = 'Create_global_objects'
         }
     }
@@ -253,7 +253,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_20H2
     if($ExcludeList -notcontains '2.2.16' -and $LevelOne){
         UserRightsAssignment "2.2.16 - (L1) Ensure Deny access to this computer from the network to include Guests Local account" {
             Force = $true
-            Identity = @('*S-1-5-32-546','*S-1-5-113')
+            Identity = @('*S-1-5-113','*S-1-5-32-546')
             Policy = 'Deny_access_to_this_computer_from_the_network'
         }
     }
@@ -281,7 +281,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_20H2
     if($ExcludeList -notcontains '2.2.20' -and $LevelOne){
         UserRightsAssignment "2.2.20 - (L1) Ensure Deny log on through Remote Desktop Services to include Guests Local account" {
             Force = $true
-            Identity = @('*S-1-5-32-546','*S-1-5-113')
+            Identity = @('*S-1-5-113','*S-1-5-32-546')
             Policy = 'Deny_log_on_through_Remote_Desktop_Services'
         }
     }
@@ -309,7 +309,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_20H2
     if($ExcludeList -notcontains '2.2.24' -and $LevelOne){
         UserRightsAssignment "2.2.24 - (L1) Ensure Impersonate a client after authentication is set to Administrators LOCAL SERVICE NETWORK SERVICE SERVICE" {
             Force = $true
-            Identity = @('*S-1-5-32-544','*S-1-5-19','*S-1-5-20','*S-1-5-6')
+            Identity = @('*S-1-5-19','*S-1-5-20','*S-1-5-32-544','*S-1-5-6')
             Policy = 'Impersonate_a_client_after_authentication'
         }
     }
@@ -386,14 +386,14 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_20H2
     if($ExcludeList -notcontains '2.2.35' -and $LevelOne){
         UserRightsAssignment "2.2.35 - (L1) Ensure Profile system performance is set to Administrators NT SERVICEWdiServiceHost" {
             Force = $true
-            Identity = @('*S-1-5-80-3139157870-2983391045-3678747466-658725712-1809340420','*S-1-5-32-544')
+            Identity = @('*S-1-5-32-544','*S-1-5-80-3139157870-2983391045-3678747466-658725712-1809340420')
             Policy = 'Profile_system_performance'
         }
     }
     if($ExcludeList -notcontains '2.2.36' -and $LevelOne){
         UserRightsAssignment "2.2.36 - (L1) Ensure Replace a process level token is set to LOCAL SERVICE NETWORK SERVICE" {
             Force = $true
-            Identity = @('*S-1-5-20','*S-1-5-19')
+            Identity = @('*S-1-5-19','*S-1-5-20')
             Policy = 'Replace_a_process_level_token'
         }
     }
@@ -407,7 +407,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_20H2
     if($ExcludeList -notcontains '2.2.38' -and $LevelOne){
         UserRightsAssignment "2.2.38 - (L1) Ensure Shut down the system is set to Administrators Users" {
             Force = $true
-            Identity = @('*S-1-5-32-545','*S-1-5-32-544')
+            Identity = @('*S-1-5-32-544','*S-1-5-32-545')
             Policy = 'Shut_down_the_system'
         }
     }
