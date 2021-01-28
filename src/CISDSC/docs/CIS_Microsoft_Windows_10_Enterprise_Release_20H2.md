@@ -1,5 +1,5 @@
 ---
-date: 1/27/2021
+date: 1/28/2021
 keywords: dsc,powershell,configuration,setup,cis,security,20H2
 title: CIS_Microsoft_Windows_10_Enterprise_Release_20H2
 ---
@@ -121,10 +121,10 @@ Configuration MyConfiguration
 
     CIS_Microsoft_Windows_10_Enterprise_Release_20H2 'CISBenchmarks'
     {
-        cis2375LegalNoticeTextAccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
-        cis2375LegalNoticeTextAccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
-        cis2375LegalNoticeTextLegalNoticeCaptionNumNoDots%>LegalNoticeCaption = 'Legal Notice'
-        cis2375LegalNoticeTextLegalNoticeTextNumNoDots%>LegalNoticeText = @"
+        cis2315AccountsRenameadministratoraccount = 'CISAdmin'
+        cis2316AccountsRenameguestaccount = 'CISGuest'
+        cis2376LegalNoticeCaption = 'Legal Notice'
+        cis2375LegalNoticeText = @"
 This is a super secure device that we don't want bad people using.
 I'm even making sure to put this as a literal string so that I can cleanly
 use multiple lines to tell you how super secure it is.
@@ -147,8 +147,8 @@ Configuration MyConfiguration
             '2.3.7.6', # LegalNoticeCaption
             '5.6' # IIS Admin Service (IISADMIN)
         )
-        cis2375LegalNoticeTextAccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
-        cis2375LegalNoticeTextAccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
+        cis2315AccountsRenameadministratoraccount = 'CISAdmin'
+        cis2316AccountsRenameguestaccount = 'CISGuest'
     }
 }
 ```
@@ -176,8 +176,8 @@ Configuration MyConfiguration
                 '2.3.7.6', # LegalNoticeCaption
                 '5.6' # IIS Admin Service (IISADMIN)
             )
-            cis2375LegalNoticeTextAccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount = 'CISAdmin'
-            cis2375LegalNoticeTextAccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount = 'CISGuest'
+            cis2315AccountsRenameadministratoraccount = 'CISAdmin'
+            cis2316AccountsRenameguestaccount = 'CISGuest'
             DependsOn = '[Package]InstallLAPS'
         }
     }

@@ -70,17 +70,17 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_20H2
     Import-DSCResource -ModuleName 'AuditPolicyDSC' -ModuleVersion '1.4.0.0'
     Import-DSCResource -ModuleName 'SecurityPolicyDSC' -ModuleVersion '2.10.0.0'
 
-    if($ExcludeList -notcontains '2.3.1.5' -and $PSBoundParameters.Keys -notcontains 'cis2375LegalNoticeTextAccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount'){
-        throw 'Please add "2.3.1.5" to the ExcludeList or provide a value for "cis2375LegalNoticeTextAccountsRenameadministratoraccountNumNoDots%>AccountsRenameadministratoraccount"'
+    if($ExcludeList -notcontains '2.3.1.5' -and $PSBoundParameters.Keys -notcontains 'cis2315AccountsRenameadministratoraccount'){
+        throw 'Please add "2.3.1.5" to the ExcludeList or provide a value for "cis2315AccountsRenameadministratoraccount"'
     }
-    if($ExcludeList -notcontains '2.3.1.6' -and $PSBoundParameters.Keys -notcontains 'cis2375LegalNoticeTextAccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount'){
-        throw 'Please add "2.3.1.6" to the ExcludeList or provide a value for "cis2375LegalNoticeTextAccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount"'
+    if($ExcludeList -notcontains '2.3.1.6' -and $PSBoundParameters.Keys -notcontains 'cis2316AccountsRenameguestaccount'){
+        throw 'Please add "2.3.1.6" to the ExcludeList or provide a value for "cis2316AccountsRenameguestaccount"'
     }
-    if($ExcludeList -notcontains '2.3.7.5' -and $PSBoundParameters.Keys -notcontains 'cis2375LegalNoticeTextLegalNoticeTextNumNoDots%>LegalNoticeText'){
-        throw 'Please add "2.3.7.5" to the ExcludeList or provide a value for "cis2375LegalNoticeTextLegalNoticeTextNumNoDots%>LegalNoticeText"'
+    if($ExcludeList -notcontains '2.3.7.5' -and $PSBoundParameters.Keys -notcontains 'cis2375LegalNoticeText'){
+        throw 'Please add "2.3.7.5" to the ExcludeList or provide a value for "cis2375LegalNoticeText"'
     }
-    if($ExcludeList -notcontains '2.3.7.6' -and $PSBoundParameters.Keys -notcontains 'cis2375LegalNoticeTextLegalNoticeCaptionNumNoDots%>LegalNoticeCaption'){
-        throw 'Please add "2.3.7.6" to the ExcludeList or provide a value for "cis2375LegalNoticeTextLegalNoticeCaptionNumNoDots%>LegalNoticeCaption"'
+    if($ExcludeList -notcontains '2.3.7.6' -and $PSBoundParameters.Keys -notcontains 'cis2376LegalNoticeCaption'){
+        throw 'Please add "2.3.7.6" to the ExcludeList or provide a value for "cis2376LegalNoticeCaption"'
     }
 
     if($ExcludeList -notcontains '1.1.1' -and $LevelOne){
