@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed
 
+## 2.2.7
+### Added
+### Changed
+- UserRightsAssignment's 'Identities' property will now be sorted so that SIDs will be consistently ordered between resources. [Issue 175](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/175)
+### Removed
+
 ## 2.2.6
 ### Added
 ### Changed
