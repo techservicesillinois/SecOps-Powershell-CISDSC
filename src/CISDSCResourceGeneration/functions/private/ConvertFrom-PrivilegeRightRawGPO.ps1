@@ -15,9 +15,11 @@ function ConvertFrom-PrivilegeRightRawGPO {
     }
 
     process {
+        [string[]]$SortedIdentity = ($Identity -split ',') | Sort-Object
         $privilegeHash = @{
             'Policy' = $script:UserRights[$Policy]
-            'Identity' = ($Identity -split ',')
+            # The sort-object ensures consistent ordering of SIDs for the same settings accross resources to make comparisons easier.
+            'Identity' = $SortedIdentity
             'Force' = '$true'
             'ResourceType' = 'UserRightsAssignment'
         }
