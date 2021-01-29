@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 ### Added
+- Added new DSC resource for Windows 10 enterprise 20H2. CIS_Microsoft_Windows_10_Enterprise_Release_20H2 [Issue 166](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/166)
 ### Changed
 ### Removed
 
