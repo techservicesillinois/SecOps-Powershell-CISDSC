@@ -44,3 +44,7 @@
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription:OutputDirectory","18.9.95.2","These are unmentioned keys impacted by the remediation steps",""
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WinRM\Service:IPv4Filter","18.9.97.2.2","These are unmentioned keys impacted by the remediation steps",""
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WinRM\Service:IPv6Filter","18.9.97.2.2","These are unmentioned keys impacted by the remediation steps",""
+"RasMan","ignore","this appears in the remediation kit but not the benchmark",""
+"HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses:","ignore","group policy seems to need this for 18.8.7.1.5 but its n/a for DSC",""
+"HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceIDs:","ignore","group policy seems to need this for 18.8.7.1.5 but its n/a for DSC",""
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall:PolicyVersion","ignore","there is no documentation for what this key does and CIS has no idea what its in the remediation kit but its an unmentioned change with some firewall recommendation",""
