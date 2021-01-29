@@ -48,8 +48,13 @@ function Get-RecommendationFromGPOHash {
         }
 
         if($script:StaticCorrections[$CorrectionKey]){
-            $Recommendation = $script:BenchmarkRecommendations.Values |
-                Where-Object -FilterScript {$_.RecommendationNum -eq $script:StaticCorrections[$CorrectionKey]}
+            if($script:StaticCorrections[$CorrectionKey] -eq 'ignore'){
+                $Recommendation = $script:StaticCorrections[$CorrectionKey]
+            }
+            else{
+                $Recommendation = $script:BenchmarkRecommendations.Values |
+                    Where-Object -FilterScript {$_.RecommendationNum -eq $script:StaticCorrections[$CorrectionKey]}
+            }
         }
         else{
             $Recommendation = $script:BenchmarkRecommendations.Values |
@@ -67,6 +72,9 @@ function Get-RecommendationFromGPOHash {
             Write-Warning -Message "Found multiple recommendation matches for $($Type) $($CorrectionKey)."
             $GPOHash.add('Error',"Found multiple recommendations $(($Recommendation).RecommendationNum -join ', ')")
             $script:RecommendationErrors += $GPOHash
+        }
+        elseif($Recommendation -eq 'ignore'){
+            Write-Warning -Message "Ignoring recommendation error for $($Type) $($CorrectionKey) due to static correction."
         }
         else{
             return $Recommendation.RecommendationNum
