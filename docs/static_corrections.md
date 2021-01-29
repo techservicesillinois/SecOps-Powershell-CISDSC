@@ -25,6 +25,9 @@ Occasionally there are will be some discrepancies between the build kit (GPOs) a
 
 5) SystemAccess: Is the name replacing '_' with '\*'. Ex: 'Accounts_Administrator_account_status' -> 'Accounts\*Administrator\*account\*status'
 
+## How do I ignore a recommendation error?
+There are some rare circumstances where a recommendation error needs ignored. Such as actions specific to GPO that are not applicable to DSC such as deleting keys before settings them or just human error on CIS's end making the rememediation kit. This follows the same above process for adding a correction except you will specify 'ignore' for the recommendation Id.
+
 ## How do I know what to correct it to?
 https://getadmx.com/ is an amazing resource for finding the GPO admx setting name that uses a given registry key. You can use the banner at the top to browse through keys graphically or there is usually a lot of luck in just googling the key and having it's getadmx.com link show up first.
 
