@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed
 
+## 2.2.9
+### Changed
+- Converted expected warning messages to debug within Import-GptTmpl and Import-RegistryPol per [Issue 182](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/182)
+
 ## 2.2.8
 ### Added
 - Added support for ignoring settings within static corrections per [Issue 178](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/178). Details can be found in the [static corrections doc](docs/static_corrections.md#How-do-I-ignore-a-recommendation-error?)
