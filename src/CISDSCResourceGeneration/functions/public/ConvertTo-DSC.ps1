@@ -35,26 +35,26 @@
 function ConvertTo-DSC {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory=$true)]
-        [ValidateScript({Test-FilePathParameter -Path $_ })]
+        [Parameter(Mandatory = $true)]
+        [ValidateScript( { Test-FilePathParameter -Path $_ })]
         [string]$BenchmarkPath,
 
-        [Parameter(Mandatory=$true)]
-        [ValidateScript({Test-FilePathParameter -Path $_ })]
+        [Parameter(Mandatory = $true)]
+        [ValidateScript( { Test-FilePathParameter -Path $_ })]
         [string]$GPOPath,
 
-        [ValidateScript({Test-FilePathParameter -Path $_ })]
+        [ValidateScript( { Test-FilePathParameter -Path $_ })]
         [string]$StaticCorrectionsPath,
 
-        [ValidateScript({Test-FilePathParameter -Path $_ })]
+        [ValidateScript( { Test-FilePathParameter -Path $_ })]
         [string]$ParameterValidationsPath,
 
-        [ValidateScript({Test-FilePathParameter -Path $_ })]
+        [ValidateScript( { Test-FilePathParameter -Path $_ })]
         [string]$ParameterOverridesPath,
 
         [string]$OutputPath = (Join-Path -Path $PWD -ChildPath 'Output'),
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [ValidateSet(
             'Microsoft Windows 10 Enterprise',
             'Microsoft Windows Server 2016 Member Server',
@@ -64,10 +64,10 @@ function ConvertTo-DSC {
         )]
         [string]$OS,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$OSBuild,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [version]$BenchmarkVersion
     )
 
@@ -78,19 +78,19 @@ function ConvertTo-DSC {
     process {
         Import-CISBenchmarkData -Path $BenchmarkPath -OS $OS
 
-        if($StaticCorrectionsPath){
+        if ($StaticCorrectionsPath) {
             Import-StaticCorrections -Path $StaticCorrectionsPath
         }
 
-        if($ParameterValidationsPath){
+        if ($ParameterValidationsPath) {
             Import-ParameterValidations -Path $ParameterValidationsPath
         }
 
-        if($ParameterOverridesPath){
+        if ($ParameterOverridesPath) {
             Import-ParameterOverrides -Path $ParameterOverridesPath
         }
 
-        if(!(Test-Path -Path $OutputPath)){
+        if (!(Test-Path -Path $OutputPath)) {
             New-Item -Path $OutputPath -ItemType Directory | Out-Null
         }
 
@@ -100,12 +100,12 @@ function ConvertTo-DSC {
 
         Export-RecommendationErrors -OutputPath $OutputPath
         Export-MissingRecommendations -OutputPath $OutputPath
-        $FoundRecommendations = ($script:BenchmarkRecommendations).Values | Where-Object -FilterScript {$_.ResourceParameters}
+        $FoundRecommendations = ($script:BenchmarkRecommendations).Values | Where-Object -FilterScript { $_.ResourceParameters }
         $FoundRecommendations | ForEach-Object -Process {
             $_.GenerateTextBlock()
         }
 
-        if($FoundRecommendations){
+        if ($FoundRecommendations) {
             [string]$ResourceName = "CIS_$($OS.replace(' ','_'))_Release_$($OSBuild)"
             [string]$ResourcePath = Join-Path -Path $OutputPath -ChildPath $ResourceName
             [string]$ScaffoldingPath = Join-Path -Path $ResourcePath -ChildPath "$($ResourceName).schema.psm1"
@@ -119,25 +119,25 @@ function ConvertTo-DSC {
             $DocumentationSyntaxBlock = Get-DSCDocumentationSyntax -Recommendations $FoundRecommendations -Levels $Levels
 
             $PlasterSplat = @{
-                'TemplatePath' = (Join-Path -Path $script:PlasterTemplatePath -ChildPath 'NewBenchmarkCompositeResource')
-                'DestinationPath' = $ResourcePath
-                'NoLogo' = $true
-                'OS' = $OS
-                'OSWithUnderscores' = $OS.replace(' ','_')
-                'OSBuild' = $OSBuild
-                'BenchmarkVersion' = $BenchmarkVersion.ToString()
-                'DSCParameters' = ($DSCConfigurationParameters -join ",`n")
-                'DSCScaffolding' = (($FoundRecommendations | Sort-Object -Property 'RecommendationVersioned').DSCTextBlock -join "`n")
-                'DocumentationPropertyTable' = ($DocumentationPropertyBlock -join "`n")
-                'DocumentationSyntax' = ($DocumentationSyntaxBlock -join "`n")
-                'AccountsRenameadministratoraccountNum' = $script:AccountsRenameadministratoraccountNum
-                'AccountsRenameadministratoraccountNumNoDots' = $script:AccountsRenameadministratoraccountNum.replace('.','')
-                'AccountsRenameguestaccountNum' = $script:AccountsRenameguestaccountNum
-                'AccountsRenameguestaccountNumNoDots' = $script:AccountsRenameguestaccountNum.replace('.','')
-                'LegalNoticeTextNum' = $script:LegalNoticeTextNum
-                'LegalNoticeTextNumNoDots' = $script:LegalNoticeTextNum.replace('.','')
-                'LegalNoticeCaptionNum' = $script:LegalNoticeCaptionNum
-                'LegalNoticeCaptionNumNoDots' = $script:LegalNoticeCaptionNum.replace('.','')
+                'TemplatePath'                                = (Join-Path -Path $script:PlasterTemplatePath -ChildPath 'NewOSBenchmarkCompositeResource')
+                'DestinationPath'                             = $ResourcePath
+                'NoLogo'                                      = $true
+                'OS'                                          = $OS
+                'OSWithUnderscores'                           = $OS.replace(' ', '_')
+                'OSBuild'                                     = $OSBuild
+                'BenchmarkVersion'                            = $BenchmarkVersion.ToString()
+                'DSCParameters'                               = ($DSCConfigurationParameters -join ",`n")
+                'DSCScaffolding'                              = (($FoundRecommendations | Sort-Object -Property 'RecommendationVersioned').DSCTextBlock -join "`n")
+                'DocumentationPropertyTable'                  = ($DocumentationPropertyBlock -join "`n")
+                'DocumentationSyntax'                         = ($DocumentationSyntaxBlock -join "`n")
+                'AccountsRenameadministratoraccountNum'       = $script:AccountsRenameadministratoraccountNum
+                'AccountsRenameadministratoraccountNumNoDots' = $script:AccountsRenameadministratoraccountNum.replace('.', '')
+                'AccountsRenameguestaccountNum'               = $script:AccountsRenameguestaccountNum
+                'AccountsRenameguestaccountNumNoDots'         = $script:AccountsRenameguestaccountNum.replace('.', '')
+                'LegalNoticeTextNum'                          = $script:LegalNoticeTextNum
+                'LegalNoticeTextNumNoDots'                    = $script:LegalNoticeTextNum.replace('.', '')
+                'LegalNoticeCaptionNum'                       = $script:LegalNoticeCaptionNum
+                'LegalNoticeCaptionNumNoDots'                 = $script:LegalNoticeCaptionNum.replace('.', '')
             }
             Invoke-Plaster @PlasterSplat | Out-Null
 
