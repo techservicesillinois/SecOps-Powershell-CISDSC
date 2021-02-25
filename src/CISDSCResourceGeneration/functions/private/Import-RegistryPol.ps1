@@ -18,7 +18,7 @@
 function Import-RegistryPol {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$GPOPath
     )
 
@@ -31,11 +31,11 @@ function Import-RegistryPol {
             Write-Verbose -Message "Importing $($_.FullName)"
             $PolicyData = Parse-PolFile -Path $_.FullName
 
-            Foreach($Policy in $PolicyData){
-                switch($_.Directory.BaseName){
-                    'Machine' {ConvertFrom-RegistryPolGPORaw -KeyName $Policy.KeyName -ValueName $Policy.ValueName -ValueData $Policy.ValueData -ValueType $Policy.ValueType}
-                    'User' {Write-Warning -Message "Registry POL: User hive is not currently supported"}
-                    Default {Write-Warning -Message "Registry POL: Unknown Registry hive $($_)."}
+            Foreach ($Policy in $PolicyData) {
+                switch ($_.Directory.BaseName) {
+                    'Machine' { ConvertFrom-RegistryPolGPORaw -KeyName $Policy.KeyName -ValueName $Policy.ValueName -ValueData $Policy.ValueData -ValueType $Policy.ValueType }
+                    'User' { Write-Debug -Message 'Registry POL: Skipping user hive.' }
+                    Default { Write-Warning -Message "Registry POL: Unknown Registry hive $($_)." }
                 }
             }
         }
