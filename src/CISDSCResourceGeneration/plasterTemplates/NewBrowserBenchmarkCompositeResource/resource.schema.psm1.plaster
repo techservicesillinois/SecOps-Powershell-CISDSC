@@ -1,0 +1,11 @@
+Configuration CIS_<%=$PLASTER_PARAM_BrowserWithUnderscores%>_Windows
+{
+    param
+    (
+<%=$PLASTER_PARAM_DSCParameters%>
+    )
+
+    Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
+
+<%=$PLASTER_PARAM_DSCScaffolding%>
+}
