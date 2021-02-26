@@ -21,7 +21,7 @@ function Import-CISBenchmarkData {
 
         [Parameter(Mandatory=$True)]
         [ValidateNotNullOrEmpty()]
-        [string]$OS
+        [string]$System
     )
 
     begin {
@@ -29,7 +29,7 @@ function Import-CISBenchmarkData {
     }
 
     process {
-        Get-CISBenchmarkValidWorksheets -Path $Path -OS $OS | ForEach-Object -Process {
+        Get-CISBenchmarkValidWorksheets -Path $Path -System $System | ForEach-Object -Process {
             Import-Excel -Path $Path -DataOnly -WorksheetName $_.Name | ForEach-Object -Process {
                 try{
                     if($_.'recommendation #'){

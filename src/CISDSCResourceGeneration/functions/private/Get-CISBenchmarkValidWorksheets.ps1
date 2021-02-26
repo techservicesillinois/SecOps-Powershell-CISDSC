@@ -21,7 +21,7 @@ function Get-CISBenchmarkValidWorksheets {
 
         [Parameter(Mandatory=$True)]
         [ValidateNotNullOrEmpty()]
-        [string]$OS
+        [string]$System
     )
 
     begin {
@@ -29,7 +29,7 @@ function Get-CISBenchmarkValidWorksheets {
     }
 
     process {
-        switch($OS){
+        switch($System){
             {$_ -like '*Member Server'}{
                 $FilterScript = {$_.Name -ne 'License' -and $_.Name -notlike "*Domain Controller"}
             }

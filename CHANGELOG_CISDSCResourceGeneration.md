@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 - Renamed the 'NewBenchmarkCompositeResource' plaster template to 'NewOSBenchmarkCompositeResource'. This will help facilitate non-OS benchmark support in the future. [Issue 184](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/184)
+- Renamed 'OS' parameter on shared functions to 'System', this included 'Get-CISBenchmarkValidWorksheets' and 'Import-CISBenchmarkData'. [Issue 184](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/184)
 ### Removed
 
 ## [2.3.0] - 2021-02-25

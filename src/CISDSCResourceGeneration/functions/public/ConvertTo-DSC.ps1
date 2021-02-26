@@ -76,7 +76,7 @@ function ConvertTo-DSC {
     }
 
     process {
-        Import-CISBenchmarkData -Path $BenchmarkPath -OS $OS
+        Import-CISBenchmarkData -Path $BenchmarkPath -System $OS
 
         if($StaticCorrectionsPath){
             Import-StaticCorrections -Path $StaticCorrectionsPath
