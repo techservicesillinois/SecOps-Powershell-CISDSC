@@ -1,8 +1,8 @@
 <#
 .Synopsis
-   Converts provided CIS benchmark materials and converts them to a DSC composite resource.
+    Converts provided CIS benchmark materials and converts them to a DSC composite resource.
 .DESCRIPTION
-   Converts provided CIS benchmark materials and converts them to a DSC composite resource.
+    Converts provided CIS benchmark materials and converts them to a DSC composite resource.
 .PARAMETER BenchmarkPath
     Path to the excel document from CIS for the benchmark documentation.
 .PARAMETER GPOPath
@@ -119,7 +119,7 @@ function ConvertTo-DSC {
             $DocumentationSyntaxBlock = Get-DSCDocumentationSyntax -Recommendations $FoundRecommendations -Levels $Levels
 
             $PlasterSplat = @{
-                'TemplatePath' = (Join-Path -Path $script:PlasterTemplatePath -ChildPath 'NewBenchmarkCompositeResource')
+                'TemplatePath' = (Join-Path -Path $script:PlasterTemplatePath -ChildPath 'NewOSBenchmarkCompositeResource')
                 'DestinationPath' = $ResourcePath
                 'NoLogo' = $true
                 'OS' = $OS
