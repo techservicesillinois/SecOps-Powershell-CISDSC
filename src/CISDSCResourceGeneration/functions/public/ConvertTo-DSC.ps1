@@ -35,11 +35,11 @@
 function ConvertTo-DSC {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [ValidateScript({Test-FilePathParameter -Path $_ })]
         [string]$BenchmarkPath,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [ValidateScript({Test-FilePathParameter -Path $_ })]
         [string]$GPOPath,
 
@@ -54,7 +54,8 @@ function ConvertTo-DSC {
 
         [string]$OutputPath = (Join-Path -Path $PWD -ChildPath 'Output'),
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true,
+            ParameterSetName = 'OS')]
         [ValidateSet(
             'Microsoft Windows 10 Enterprise',
             'Microsoft Windows Server 2016 Member Server',
@@ -64,10 +65,20 @@ function ConvertTo-DSC {
         )]
         [string]$OS,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true,
+            ParameterSetName = 'OS')]
         [string]$OSBuild,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true,
+            ParameterSetName = 'Browser')]
+        [ValidateSet(
+            'Microsoft Edge',
+            'Google Chrome',
+            'Mozilla FireFox'
+        )]
+        [string]$Browser,
+
+        [Parameter(Mandatory = $true)]
         [version]$BenchmarkVersion
     )
 
@@ -91,7 +102,7 @@ function ConvertTo-DSC {
         }
 
         if(!(Test-Path -Path $OutputPath)){
-            New-Item -Path $OutputPath -ItemType Directory | Out-Null
+            New-Item -Path $OutputPath -ItemType 'Directory' | Out-Null
         }
 
         Import-GptTmpl -GPOPath $GPOPath
@@ -101,44 +112,63 @@ function ConvertTo-DSC {
         Export-RecommendationErrors -OutputPath $OutputPath
         Export-MissingRecommendations -OutputPath $OutputPath
         $FoundRecommendations = ($script:BenchmarkRecommendations).Values | Where-Object -FilterScript {$_.ResourceParameters}
-        $FoundRecommendations | ForEach-Object -Process {
-            $_.GenerateTextBlock()
-        }
 
         if($FoundRecommendations){
-            [string]$ResourceName = "CIS_$($OS.replace(' ','_'))_Release_$($OSBuild)"
-            [string]$ResourcePath = Join-Path -Path $OutputPath -ChildPath $ResourceName
-            [string]$ScaffoldingPath = Join-Path -Path $ResourcePath -ChildPath "$($ResourceName).schema.psm1"
-            New-Item -Path $ResourcePath -ItemType Directory | Out-Null
+            $FoundRecommendations | ForEach-Object -Process {
+                $_.GenerateTextBlock()
+            }
+
             #Setting this inside the splat loses data. I assume because script scope variables cannot be read by invoke-plaster.
             [string[]]$Levels = @()
             $Levels += Get-ApplicableLevels -Recommendations $FoundRecommendations
-
             $DSCConfigurationParameters = Get-DSCParameterTextBlocks -Recommendations $FoundRecommendations -Levels $Levels
             $DocumentationPropertyBlock = Get-DSCDocumentationPropertyTable -Recommendations $FoundRecommendations -Levels $Levels
             $DocumentationSyntaxBlock = Get-DSCDocumentationSyntax -Recommendations $FoundRecommendations -Levels $Levels
 
-            $PlasterSplat = @{
-                'TemplatePath' = (Join-Path -Path $script:PlasterTemplatePath -ChildPath 'NewOSBenchmarkCompositeResource')
-                'DestinationPath' = $ResourcePath
-                'NoLogo' = $true
-                'OS' = $OS
-                'OSWithUnderscores' = $OS.replace(' ','_')
-                'OSBuild' = $OSBuild
-                'BenchmarkVersion' = $BenchmarkVersion.ToString()
-                'DSCParameters' = ($DSCConfigurationParameters -join ",`n")
-                'DSCScaffolding' = (($FoundRecommendations | Sort-Object -Property 'RecommendationVersioned').DSCTextBlock -join "`n")
-                'DocumentationPropertyTable' = ($DocumentationPropertyBlock -join "`n")
-                'DocumentationSyntax' = ($DocumentationSyntaxBlock -join "`n")
-                'AccountsRenameadministratoraccountNum' = $script:AccountsRenameadministratoraccountNum
-                'AccountsRenameadministratoraccountNumNoDots' = $script:AccountsRenameadministratoraccountNum.replace('.','')
-                'AccountsRenameguestaccountNum' = $script:AccountsRenameguestaccountNum
-                'AccountsRenameguestaccountNumNoDots' = $script:AccountsRenameguestaccountNum.replace('.','')
-                'LegalNoticeTextNum' = $script:LegalNoticeTextNum
-                'LegalNoticeTextNumNoDots' = $script:LegalNoticeTextNum.replace('.','')
-                'LegalNoticeCaptionNum' = $script:LegalNoticeCaptionNum
-                'LegalNoticeCaptionNumNoDots' = $script:LegalNoticeCaptionNum.replace('.','')
+            switch ($PSCmdlet.ParameterSetName) {
+                'OS' {
+                    [string]$ResourceName = "CIS_$($OS.replace(' ','_'))_Release_$($OSBuild)"
+                    [string]$Template = 'NewOSBenchmarkCompositeResource'
+
+                    $PlasterSplat = @{
+                        'OS' = $OS
+                        'OSWithUnderscores' = $OS.replace(' ','_')
+                        'OSBuild' = $OSBuild
+                        'AccountsRenameadministratoraccountNum' = $script:AccountsRenameadministratoraccountNum
+                        'AccountsRenameadministratoraccountNumNoDots' = $script:AccountsRenameadministratoraccountNum.replace('.','')
+                        'AccountsRenameguestaccountNum' = $script:AccountsRenameguestaccountNum
+                        'AccountsRenameguestaccountNumNoDots' = $script:AccountsRenameguestaccountNum.replace('.','')
+                        'LegalNoticeTextNum' = $script:LegalNoticeTextNum
+                        'LegalNoticeTextNumNoDots' = $script:LegalNoticeTextNum.replace('.','')
+                        'LegalNoticeCaptionNum' = $script:LegalNoticeCaptionNum
+                        'LegalNoticeCaptionNumNoDots' = $script:LegalNoticeCaptionNum.replace('.','')
+                    }
+                }
+                'Browser' {
+                    [string]$ResourceName = "CIS_$($Browser.replace(' ','_'))_Windows"
+                    [string]$Template = 'NewBrowserBenchmarkCompositeResource'
+
+                    $PlasterSplat = @{
+                        'Browser' = $Browser
+                        'BrowserWithUnderscores' = $Browser.replace(' ','_')
+                    }
+                }
+                Default { 'How did you get here?' }
             }
+
+            [string]$ResourcePath = Join-Path -Path $OutputPath -ChildPath $ResourceName
+            [string]$ScaffoldingPath = Join-Path -Path $ResourcePath -ChildPath "$($ResourceName).schema.psm1"
+            New-Item -Path $ResourcePath -ItemType 'Directory' | Out-Null
+
+            # Common plaster template parameters. These should be present on every template.
+            $PlasterSplat.Add('NoLogo', $true)
+            $PlasterSplat.Add('DestinationPath', $ResourcePath)
+            $PlasterSplat.Add('BenchmarkVersion', $BenchmarkVersion.ToString())
+            $PlasterSplat.Add('TemplatePath', (Join-Path -Path $script:PlasterTemplatePath -ChildPath $Template))
+            $PlasterSplat.Add('DSCParameters', ($DSCConfigurationParameters -join ",`n"))
+            $PlasterSplat.Add('DSCScaffolding', (($FoundRecommendations | Sort-Object -Property 'RecommendationVersioned').DSCTextBlock -join "`n"))
+            $PlasterSplat.Add('DocumentationPropertyTable', ($DocumentationPropertyBlock -join "`n"))
+            $PlasterSplat.Add('DocumentationSyntax', ($DocumentationSyntaxBlock -join "`n"))
             Invoke-Plaster @PlasterSplat | Out-Null
 
             Write-Verbose -Message "Generated scaffolding can be found at '$($ScaffoldingPath)'."
