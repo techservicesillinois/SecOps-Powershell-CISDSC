@@ -1,106 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<plasterManifest schemaVersion="1.1"
-                 templateType="Project"
-                 xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
-  <metadata>
-    <name>NewBenchmarkCompositeResource</name>
-    <id>51451f4f-5199-46f3-95ea-1b834807befa</id>
-    <version>1.0.0</version>
-    <title>New Benchmark Composite Resource</title>
-    <description>Creates files for a new CIS benchmark DSC composite resource.</description>
-    <author>Mike Kletz</author>
-    <tags>Module, ScriptModule, ModuleManifest, DSC, CIS</tags>
-  </metadata>
-  <parameters>
-        <parameter name='OS'
-                   type='text'
-                   prompt='Select OS'/>
-
-        <parameter name='OSWithUnderscores'
-                   type='text'
-                   prompt='Select OS'/>
-
-        <parameter name='BenchmarkVersion'
-                   type='text'
-                   prompt='Enter the version number of benchmark'
-                   default='1.0.0'/>
-
-        <parameter name='OSBuild'
-                   type='text'
-                   prompt='Enter the build of the OS. Ex: 1607, 1909, etc.'/>
-
-        <parameter name='DSCParameters'
-                   type='text'
-                   prompt='Parameters for the DSC configuration'/>
-
-        <parameter name='DSCScaffolding'
-                   type='text'
-                   prompt='The resulting DSC'/>
-
-        <parameter name='DocumentationPropertyTable'
-                   type='text'
-                   prompt='Property table for the documentation'/>
-
-        <parameter name='DocumentationSyntax'
-                   type='text'
-                   prompt='Syntax for the documentation'/>
-
-        <parameter name='AccountsRenameadministratoraccountNum'
-                   type='text'
-                   prompt='Recommendation Id for renaming the admin account'/>
-
-        <parameter name='AccountsRenameguestaccountNum'
-                   type='text'
-                   prompt='Recommendation Id for renaming the guest account'/>
-
-        <parameter name='LegalNoticeTextNum'
-                   type='text'
-                   prompt='Recommendation Id for setting the legal notice'/>
-
-        <parameter name='LegalNoticeCaptionNum'
-                   type='text'
-                   prompt='Recommendation Id for setting the legal caption'/>
-
-        <parameter name='AccountsRenameadministratoraccountNumNoDots'
-                   type='text'
-                   prompt='Recommendation Id for renaming the admin account with no periods'/>
-
-        <parameter name='AccountsRenameguestaccountNumNoDots'
-                   type='text'
-                   prompt='Recommendation Id for renaming the guest account with no periods'/>
-
-        <parameter name='LegalNoticeTextNumNoDots'
-                   type='text'
-                   prompt='Recommendation Id for setting the legal notice with no periods'/>
-
-        <parameter name='LegalNoticeCaptionNumNoDots'
-                   type='text'
-                   prompt='Recommendation Id for setting the legal caption with no periods'/>
-
-  </parameters>
-
-  <content>
-        <message>&#10;&#10;Scaffolding your DSC resource...&#10;&#10;&#10;</message>
-
-        <templateFile source='manifest.psd1.plaster'
-                      destination='CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}.psd1'/>
-
-        <templateFile source='resource.schema.psm1.plaster'
-                      destination='CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}.schema.psm1'/>
-
-        <templateFile source='resource.documentation.md'
-                      destination='CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}.md'/>
-
-        <templateFile source='example.ps1.plaster'
-                      destination='CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}.ps1'/>
-
-        <templateFile source='example_With_LAPS.ps1.plaster'
-                      destination='CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}_With_LAPS.ps1'/>
-
-        <message>
-
-Your new PowerShell DSC resource has been created.
-
-        </message>
-  </content>
+<plasterManifest schemaVersion="1.1" templateType="Project" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+	<metadata>
+		<name>
+			NewOSBenchmarkCompositeResource
+		</name>
+		<id>
+			51451f4f-5199-46f3-95ea-1b834807befa
+		</id>
+		<version>
+			1.0.0
+		</version>
+		<title>
+			New OS Benchmark Composite Resource
+		</title>
+		<description>
+			Creates files for a new CIS OS benchmark DSC composite resource.
+		</description>
+		<author>
+			Mike Kletz
+		</author>
+		<tags>
+			Module, ScriptModule, ModuleManifest, DSC, CIS
+		</tags>
+	</metadata>
+	<parameters>
+		<parameter name="OS" type="text" prompt="Select OS" />
+		<parameter name="OSWithUnderscores" type="text" prompt="Select OS" />
+		<parameter name="BenchmarkVersion" type="text" prompt="Enter the version number of benchmark" default="1.0.0" />
+		<parameter name="OSBuild" type="text" prompt="Enter the build of the OS. Ex: 1607, 1909, etc." />
+		<parameter name="DSCParameters" type="text" prompt="Parameters for the DSC configuration" />
+		<parameter name="DSCScaffolding" type="text" prompt="The resulting DSC" />
+		<parameter name="DocumentationPropertyTable" type="text" prompt="Property table for the documentation" />
+		<parameter name="DocumentationSyntax" type="text" prompt="Syntax for the documentation" />
+		<parameter name="AccountsRenameadministratoraccountNum" type="text" prompt="Recommendation Id for renaming the admin account" />
+		<parameter name="AccountsRenameguestaccountNum" type="text" prompt="Recommendation Id for renaming the guest account" />
+		<parameter name="LegalNoticeTextNum" type="text" prompt="Recommendation Id for setting the legal notice" />
+		<parameter name="LegalNoticeCaptionNum" type="text" prompt="Recommendation Id for setting the legal caption" />
+		<parameter name="AccountsRenameadministratoraccountNumNoDots" type="text" prompt="Recommendation Id for renaming the admin account with no periods" />
+		<parameter name="AccountsRenameguestaccountNumNoDots" type="text" prompt="Recommendation Id for renaming the guest account with no periods" />
+		<parameter name="LegalNoticeTextNumNoDots" type="text" prompt="Recommendation Id for setting the legal notice with no periods" />
+		<parameter name="LegalNoticeCaptionNumNoDots" type="text" prompt="Recommendation Id for setting the legal caption with no periods" />
+	</parameters>
+	<content>
+		<message>
+			&#10;&#10;Scaffolding your DSC resource...&#10;&#10;&#10;
+		</message>
+		<templateFile source="manifest.psd1.plaster" destination="CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}.psd1" />
+		<templateFile source="resource.schema.psm1.plaster" destination="CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}.schema.psm1" />
+		<templateFile source="resource.documentation.md" destination="CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}.md" />
+		<templateFile source="example.ps1.plaster" destination="CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}.ps1" />
+		<templateFile source="example_With_LAPS.ps1.plaster" destination="CIS_${PLASTER_PARAM_OSWithUnderscores}_Release_${PLASTER_PARAM_OSBuild}_With_LAPS.ps1" />
+		<message>
+			Your new PowerShell DSC resource has been created.
+		</message>
+	</content>
 </plasterManifest>
