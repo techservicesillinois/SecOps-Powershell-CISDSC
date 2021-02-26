@@ -155,7 +155,6 @@ function ConvertTo-DSC {
                         'BrowserWithUnderscores' = $Browser.replace(' ','_')
                     }
                 }
-                Default { 'How did you get here?' }
             }
 
             [string]$ResourcePath = Join-Path -Path $OutputPath -ChildPath $ResourceName
