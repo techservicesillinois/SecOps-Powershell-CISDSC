@@ -4,13 +4,13 @@
    These are settings defined by admx templates that result in registry settings. They differ from a GptTmpl.inf registry values
    because they are not explictly configured within group policy as registry keys.
 
-   This function relies on the GPRegistryPolicyParser module by MicroSoft.
+   This function relies on the GPRegistryPolicyParser module by MicroSoft. https://github.com/PowerShell/GPRegistryPolicyParser
 .DESCRIPTION
    Recursively finds all 'registry.pol' files in the provided directory that contain abstracted registry settings.
    These are settings defined by admx templates that result in registry settings. They differ from a GptTmpl.inf registry values
    because they are not explictly configured within group policy as registry keys.
 
-   This function relies on the GPRegistryPolicyParser module by MicroSoft.
+   This function relies on the GPRegistryPolicyParser module by MicroSoft. https://github.com/PowerShell/GPRegistryPolicyParser
 .PARAMETER GPOPath
     Path to the GPO files (build kit) from CIS containing the benchmarks settings.
 .EXAMPLE
@@ -29,7 +29,7 @@ function Import-RegistryPol {
     process {
         Get-ChildItem -Path $GPOPath -Filter 'registry.pol' -Recurse | ForEach-Object -Process {
             Write-Verbose -Message "Importing $($_.FullName)"
-            $PolicyData = Parse-PolFile -Path $_.FullName
+            $PolicyData = Read-PolFile -Path $_.FullName
 
             Foreach ($Policy in $PolicyData) {
                 switch ($_.Directory.BaseName) {

@@ -26,7 +26,7 @@ Configuration MyWorkstation
 # How do I create new ones?
 1) Acquire the GPOs and Excel documentation from [CIS](./static_corrections.md).
 
-2) Set up your development environment with the following PowerShell. This will clone this repository and install the dependencies specified in [install_dependencies](/tools/install_dependencies.ps1). Due to the dependency on [GPRegistryPolicyParser](https://www.powershellgallery.com/packages/GPRegistryPolicyParser) you will need to do this in Windows PowerShell 5.1.
+2) Set up your development environment with the following PowerShell. This will clone this repository and install the dependencies specified in [install_dependencies](/tools/install_dependencies.ps1).
 ```powershell
 git clone https://github.com/techservicesillinois/SecOps-Powershell-CISDSC
 Set-Location -Path '.\SecOps-Powershell-CISDSC'

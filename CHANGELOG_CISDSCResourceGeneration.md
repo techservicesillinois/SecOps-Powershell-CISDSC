@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Removed
 
+## 2.3.0
+### Changed
+- Updated the module to work with the latest release of GPRegistryPolicyParser and increased the minimum version to 7.
+- Resolved the unapproved verb warning at import this was fixed along side PS 7 support in the latest version of GPRegistryPolicyParser.
+
 ## 2.2.9
 ### Changed
 - Converted expected warning messages to debug within Import-GptTmpl and Import-RegistryPol per [Issue 182](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/182)

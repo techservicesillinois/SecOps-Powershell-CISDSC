@@ -3,24 +3,26 @@ name: CISDSC Pester Tests
 on:
   pull_request:
     branches:
-    - main
+      - main
     paths:
-    - 'src/CISDSC/CISDSC.psm1'
-    - 'test/CISDSC.Tests.ps1'
+      - "src/CISDSC/CISDSC.psm1"
+      - "test/CISDSC.Tests.ps1"
 
 jobs:
   build:
-
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [windows-latest]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: tools\install_dependencies.ps1
-      shell: powershell
-    - name: Run tests PowerShell 5
-      run: Invoke-Pester -Path '.\test\CISDSC.Tests.ps1' -CI -Output Detailed
-      shell: powershell
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: tools\install_dependencies.ps1
+        shell: powershell
+      - name: Run tests PowerShell 5
+        run: Invoke-Pester -Path '.\test\CISDSC.Tests.ps1' -CI -Output Detailed
+        shell: powershell
+      - name: Run tests PowerShell 7
+        run: Invoke-Pester -Path '.\test\CISDSC.Tests.ps1' -CI -Output Detailed
+        shell: pwsh

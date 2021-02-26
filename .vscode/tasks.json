@@ -13,7 +13,7 @@
 
     // Start PowerShell
     "windows": {
-        "command": "${SystemRoot}/system32/WindowsPowerShell/v1.0/powershell.exe",
+        "command": "${SystemRoot}/Program Files/PowerShell/7/pwsh.exe",
         "args": [ "-NoProfile", "-ExecutionPolicy", "Bypass" ]
     },
     "linux": {
