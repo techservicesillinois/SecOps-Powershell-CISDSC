@@ -7,11 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Added
 ### Changed
+- Renamed 'NewBenchmarkCompositeResource' plaster template to 'NewOSBenchmarkCompositeResource' to prepare for adding browser benchmark support. [Issue 184](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/184)
 ### Removed
 
-## 2.3.0
+## [2.3.0] - 2021-02-25
 ### Changed
-- Updated the module to work with the latest release of GPRegistryPolicyParser and increased the minimum version to 7.
+- Updated the module to work with the latest release of GPRegistryPolicyParser and increased the minimum version to 7. [Issue 128](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/128)
 - Resolved the unapproved verb warning at import this was fixed along side PS 7 support in the latest version of GPRegistryPolicyParser.
 
 ## 2.2.9
