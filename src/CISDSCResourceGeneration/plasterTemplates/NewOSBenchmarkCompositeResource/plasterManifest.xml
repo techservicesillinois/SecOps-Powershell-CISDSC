@@ -3,11 +3,11 @@
                  templateType="Project"
                  xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
   <metadata>
-    <name>NewBenchmarkCompositeResource</name>
+    <name>NewOSBenchmarkCompositeResource</name>
     <id>51451f4f-5199-46f3-95ea-1b834807befa</id>
     <version>1.0.0</version>
-    <title>New Benchmark Composite Resource</title>
-    <description>Creates files for a new CIS benchmark DSC composite resource.</description>
+    <title>New OS Benchmark Composite Resource</title>
+    <description>Creates files for a new CIS OS benchmark DSC composite resource.</description>
     <author>Mike Kletz</author>
     <tags>Module, ScriptModule, ModuleManifest, DSC, CIS</tags>
   </metadata>
