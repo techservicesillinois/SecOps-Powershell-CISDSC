@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<plasterManifest schemaVersion="1.1"
+                 templateType="Project"
+                 xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  <metadata>
+    <name>NewBrowserBenchmarkCompositeResource</name>
+    <id>7109dc50-eb58-4f6d-97b3-6af018c4ab1f</id>
+    <version>1.0.0</version>
+    <title>New browser Benchmark Composite Resource</title>
+    <description>Creates files for a new CIS browser benchmark DSC composite resource.</description>
+    <author>Mike Kletz</author>
+    <tags>Module, ScriptModule, ModuleManifest, DSC, CIS</tags>
+  </metadata>
+  <parameters>
+        <parameter name='Browser'
+                   type='text'
+                   prompt='Select Browser'/>
+
+        <parameter name='BrowserWithUnderscores'
+                   type='text'
+                   prompt='Select Browser'/>
+
+        <parameter name='BenchmarkVersion'
+                   type='text'
+                   prompt='Enter the version number of benchmark'
+                   default='1.0.0'/>
+
+        <parameter name='DSCParameters'
+                   type='text'
+                   prompt='Parameters for the DSC configuration'/>
+
+        <parameter name='DSCScaffolding'
+                   type='text'
+                   prompt='The resulting DSC'/>
+
+        <parameter name='DocumentationPropertyTable'
+                   type='text'
+                   prompt='Property table for the documentation'/>
+
+        <parameter name='DocumentationSyntax'
+                   type='text'
+                   prompt='Syntax for the documentation'/>
+
+  </parameters>
+
+  <content>
+        <message>&#10;&#10;Scaffolding your DSC resource...&#10;&#10;&#10;</message>
+
+        <templateFile source='manifest.psd1.plaster'
+                      destination='CIS_${PLASTER_PARAM_BrowserWithUnderscores}_Windows.psd1'/>
+
+        <templateFile source='resource.schema.psm1.plaster'
+                      destination='CIS_${PLASTER_PARAM_BrowserWithUnderscores}_Windows.schema.psm1'/>
+
+        <templateFile source='resource.documentation.md'
+                      destination='CIS_${PLASTER_PARAM_BrowserWithUnderscores}_Windows.md'/>
+
+        <templateFile source='example.ps1.plaster'
+                      destination='CIS_${PLASTER_PARAM_BrowserWithUnderscores}_Windows.ps1'/>
+
+        <templateFile source='example_With_OS.ps1.plaster'
+                      destination='CIS_${PLASTER_PARAM_BrowserWithUnderscores}_Windows_With_OS.ps1'/>
+
+        <message>
+
+Your new PowerShell DSC resource has been created.
+
+        </message>
+  </content>
+</plasterManifest>
