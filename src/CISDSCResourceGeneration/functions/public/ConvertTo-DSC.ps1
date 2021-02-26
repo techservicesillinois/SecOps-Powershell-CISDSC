@@ -87,7 +87,9 @@ function ConvertTo-DSC {
     }
 
     process {
-        Import-CISBenchmarkData -Path $BenchmarkPath -System $OS
+        #The use of get-variable here is a little hack to avoid needing a switch statement.
+        #It assumes the value we care about is stored in a variable of the same name as the parameter set.
+        Import-CISBenchmarkData -Path $BenchmarkPath -System (Get-Variable -Name $PSCmdlet.ParameterSetName).Value
 
         if($StaticCorrectionsPath){
             Import-StaticCorrections -Path $StaticCorrectionsPath
