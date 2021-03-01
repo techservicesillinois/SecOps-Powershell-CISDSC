@@ -1,0 +1,25 @@
+#Requires -module CISDSC
+#Requires -RunAsAdministrator
+
+<#
+    .DESCRIPTION
+    Applies CIS Level one benchmarks for <%=$PLASTER_PARAM_Browser%> with no exclusions on Windows.
+    Exclusion documentation can be found in the docs folder of this module.
+#>
+
+Configuration <%=$PLASTER_PARAM_BrowserWithUnderscores%>_CIS_L1
+{
+    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_<%=$PLASTER_PARAM_BrowserWithUnderscores%>_Windows'
+
+    node 'localhost'
+    {
+        Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_<%=$PLASTER_PARAM_BrowserWithUnderscores%>_Windows'
+
+        CIS_<%=$PLASTER_PARAM_BrowserWithUnderscores%>_Windows '<%=$PLASTER_PARAM_Browser%> CISBenchmarks'
+        {
+        }
+    }
+}
+
+<%=$PLASTER_PARAM_BrowserWithUnderscores%>_CIS_L1
+Start-DscConfiguration -Path '.\<%=$PLASTER_PARAM_BrowserWithUnderscores%>_CIS_L1' -Verbose -Wait

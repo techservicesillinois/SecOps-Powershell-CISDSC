@@ -1,31 +1,31 @@
 @{
 
     # Script module or binary module file associated with this manifest.
-    RootModule        = 'CISDSCResourceGeneration.psm1'
+    RootModule = 'CIS_<%=$PLASTER_PARAM_BrowserWithUnderscores%>_Windows.schema.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '2.4.0'
+    ModuleVersion = '<%=$PLASTER_PARAM_BenchmarkVersion%>'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
 
     # ID used to uniquely identify this module
-    GUID              = '637244a2-9e19-4e9d-8e66-babf20e63cff'
+    GUID = '<%=$PLASTER_Guid1%>'
 
     # Author of this module
-    Author            = 'Cybersecurity Engineering'
+    # Author = ''
 
     # Company or vendor of this module
-    CompanyName       = 'The University of Illinois'
+    # CompanyName = ''
 
     # Copyright statement for this module
-    Copyright         = 'The University of Illinois Board of Trustees'
+    # Copyright = ''
 
     # Description of the functionality provided by this module
-    Description       = 'Used to generate DSC composite resources for CISDSC'
+    Description = 'Applies CIS benchmarks for <%=$PLASTER_PARAM_Browser%> on Windows.'
 
     # Minimum version of the PowerShell engine required by this module
-    PowerShellVersion = '7.0'
+    # PowerShellVersion = ''
 
     # Name of the PowerShell host required by this module
     # PowerShellHostName = ''
@@ -43,7 +43,7 @@
     # ProcessorArchitecture = ''
 
     # Modules that must be imported into the global environment prior to importing this module
-    RequiredModules   = @('ImportExcel', 'GPRegistryPolicyParser', 'Plaster')
+    # RequiredModules = @()
 
     # Assemblies that must be loaded prior to importing this module
     # RequiredAssemblies = @()
@@ -61,7 +61,7 @@
     # NestedModules = @()
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = ('ConvertTo-DSC')
+    FunctionsToExport = 'CIS_<%=$PLASTER_PARAM_BrowserWithUnderscores%>_Windows'
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     # CmdletsToExport = '*'
@@ -82,7 +82,7 @@
     # FileList = @()
 
     # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
-    PrivateData       = @{
+    PrivateData = @{
 
         PSData = @{
 
@@ -90,16 +90,16 @@
             # Tags = @()
 
             # A URL to the license for this module.
-            LicenseUri   = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/main/LICENSE'
+            # LicenseUri = ''
 
             # A URL to the main website for this project.
-            ProjectUri   = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC'
+            # ProjectUri = ''
 
             # A URL to an icon representing this module.
             # IconUri = ''
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/main/CHANGELOG_CISDSCResourceGeneration.md'
+            # ReleaseNotes = ''
 
             # Prerelease string of this module
             # Prerelease = ''

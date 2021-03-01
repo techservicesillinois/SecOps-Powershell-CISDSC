@@ -26,7 +26,8 @@ function Get-DSCParameterTextBlocks {
             $DSCConfigurationParameters += '        [Boolean]$NextGenerationWindowsSecurity = $false'
         }
 
-        $DSCConfigurationParameters += (($Recommendations).DSCConfigParameter | Sort-Object -Property 'Name').TextBlock
+        #Something somewhere causes a blank line to make it's way in here and the Where-Object filters it out.
+        $DSCConfigurationParameters += (($Recommendations).DSCConfigParameter | Sort-Object -Property 'Name').TextBlock | Where-Object -FilterScript { $_ }
 
         Return $DSCConfigurationParameters
     }

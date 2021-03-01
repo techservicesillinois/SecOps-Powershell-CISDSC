@@ -322,7 +322,7 @@ Describe 'Helper: Text block generation' {
 }
 
 Describe 'ConvertTo-DSC' {
-    It 'Exports files' {
+    It 'Exports OS files' {
         $Splat = @{
             BenchmarkPath = "$($PSScriptRoot)\example_files\desktop_examples.xlsx"
             BenchmarkVersion = '1.8.1'
@@ -339,6 +339,24 @@ Describe 'ConvertTo-DSC' {
         Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.md' | Should -Be $True
         Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909.ps1' | Should -Be $True
         Test-Path -Path '.\Output\CIS_Microsoft_Windows_10_Enterprise_Release_1909\CIS_Microsoft_Windows_10_Enterprise_Release_1909_With_LAPS.ps1' | Should -Be $True
+    }
+
+    It 'Exports Browser files' {
+        $Splat = @{
+            BenchmarkPath = "$($PSScriptRoot)\example_files\browser_examples.xlsx"
+            BenchmarkVersion = '1.0.0'
+            GPOPath = "$($PSScriptRoot)\example_files\browser_gpos"
+            OutputPath = '.\Output'
+            Browser = 'Microsoft Edge'
+            WarningAction = 'SilentlyContinue'
+        }
+        ConvertTo-DSC @Splat
+
+        Test-Path -Path '.\Output\CIS_Microsoft_Edge_Windows\CIS_Microsoft_Edge_Windows.psd1' | Should -Be $True
+        Test-Path -Path '.\Output\CIS_Microsoft_Edge_Windows\CIS_Microsoft_Edge_Windows.schema.psm1' | Should -Be $True
+        Test-Path -Path '.\Output\CIS_Microsoft_Edge_Windows\CIS_Microsoft_Edge_Windows.md' | Should -Be $True
+        Test-Path -Path '.\Output\CIS_Microsoft_Edge_Windows\CIS_Microsoft_Edge_Windows.ps1' | Should -Be $True
+        Test-Path -Path '.\Output\CIS_Microsoft_Edge_Windows\CIS_Microsoft_Edge_Windows.ps1' | Should -Be $True
     }
 
     #ToDo find a way to actually test the composite resource can be used in a configuration successfully.
