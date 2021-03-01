@@ -1,0 +1,6 @@
+"Key","Recommendation","Reason","CISTicket"
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge\WebRtcLocalIpsAllowedUrls:","1.1.65","Incorrect key in audit","12343"
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge\HSTSPolicyBypassList:","1.1.34","Incorrect key in audit"
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge:ExperimentationAndConfigurationServiceControl","1.1.38","Incorrect key in audit"
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge\SyncTypesListDisabled:","ignore","this tries to delete before setting"
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge\EnableDeprecatedWebPlatformFeatures:","ignore","this setting no longer exist in recent edge builds"
