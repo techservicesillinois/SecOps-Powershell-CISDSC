@@ -13,8 +13,6 @@ Configuration <%=$PLASTER_PARAM_BrowserWithUnderscores%>_CIS_L1
 
     node 'localhost'
     {
-        Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_<%=$PLASTER_PARAM_BrowserWithUnderscores%>_Windows'
-
         CIS_<%=$PLASTER_PARAM_BrowserWithUnderscores%>_Windows '<%=$PLASTER_PARAM_Browser%> CISBenchmarks'
         {
         }
