@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 ### Added
-- Added CIS_Microsoft_Edge_Windows resource for applying benchmarks for Edge on Windows
+- Added CIS_Microsoft_Edge_Windows resource for applying benchmarks for Edge on Windows [Issue 185](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/185)
 ### Changed
 ### Removed
 
