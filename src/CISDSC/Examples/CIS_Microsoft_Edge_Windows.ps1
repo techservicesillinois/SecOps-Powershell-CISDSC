@@ -13,8 +13,6 @@ Configuration Microsoft_Edge_CIS_L1
 
     node 'localhost'
     {
-        Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Edge_Windows'
-
         CIS_Microsoft_Edge_Windows 'Microsoft Edge CISBenchmarks'
         {
         }
