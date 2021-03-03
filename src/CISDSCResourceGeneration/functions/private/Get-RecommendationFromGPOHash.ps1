@@ -74,7 +74,7 @@ function Get-RecommendationFromGPOHash {
             $script:RecommendationErrors += $GPOHash
         }
         elseif($Recommendation -eq 'ignore'){
-            Write-Warning -Message "Ignoring recommendation error for $($Type) $($CorrectionKey) due to static correction."
+            Write-Debug -Message "Ignoring recommendation error for $($Type) $($CorrectionKey) due to static correction."
         }
         else{
             return $Recommendation.RecommendationNum
