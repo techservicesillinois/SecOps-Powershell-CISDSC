@@ -190,7 +190,7 @@ Describe 'Helper: Get-RecommendationFromGPOHash' {
             Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' 3>&1 | Should -Be 'Failed to find a recommendation for AuditPolicy Audit Logoff.'
             Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
             Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' | Should -Be '17.5.3'
-            Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'RasMan'} -Type 'Service' 3>&1 | Should -Be 'Ignoring recommendation error for Service RasMan due to static correction.'
+            Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'RasMan'} -Type 'Service' -Debug 5>&1 | Should -Be 'Ignoring recommendation error for Service RasMan due to static correction.'
         }
     }
 }
