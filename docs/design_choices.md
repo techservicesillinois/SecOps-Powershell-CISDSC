@@ -13,8 +13,8 @@ This is due to the fact CIS reserves the right to change recommendation IDs whic
 ## Legal notice and local account renames have no default values
 These are by nature incredibly specific to the envrionment a given host exists in so a reasonable default value does not exist.
 
-## Why was BaselineManagement forked and not just marked as a dependency?
+## BaselineManagement forked and not just marked as a dependency
 There were several bugs within BaselineManagement combined with our very specific use case for its functionality so it was heavily modified and baked into CISDSCResourceGeneration instead.
 
-## Why aren't user based settings from the benchmarks supported?
+## User based settings are not supported
 While technically possible through DSC we made a decision at the start not to support these. Because popular opinion is these are best managed via group policy and the situations in which it's even possible to use DSC are rare which didn't make it worth while.
