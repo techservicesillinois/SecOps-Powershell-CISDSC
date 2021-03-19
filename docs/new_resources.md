@@ -34,6 +34,7 @@ Set-Location -Path '.\SecOps-Powershell-CISDSC'
 ```
 
 3) The following examples will generate a new DSC composite resource for OS and a browser respectively. You will need to edit the parameters accordingly.
+## Operating System
 ```powershell
 Import-Module '.\src\CISDSCResourceGeneration\CISDSCResourceGeneration.psd1' -Force
 $Splat = @{
@@ -50,6 +51,7 @@ $Splat = @{
 ConvertTo-DSC @Splat
 ```
 
+## Web Browser
 ```powershell
 Import-Module '.\src\CISDSCResourceGeneration\CISDSCResourceGeneration.psd1' -Force
 $Splat = @{
@@ -67,15 +69,15 @@ ConvertTo-DSC @Splat
 
 Successfully generated resources will be placed into the generated composite resource however some settings have been known to link between the GPOs and Excel document cleanly.
 
-4) Resolve errors identified in the previous step. Potential causes and resolutions are outlined in the [static corrections](./static_corrections.md) documentation.
+1) Resolve errors identified in the previous step. Potential causes and resolutions are outlined in the [static corrections](./static_corrections.md) documentation.
 
-5) Verify the appropriate validation for generated parameters via MS documentation or otherwise and implement them according to the [parameter documentation](./resource_parameters.md#How-can-I-add-validation-blocks?)
+2) Verify the appropriate validation for generated parameters via MS documentation or otherwise and implement them according to the [parameter documentation](./resource_parameters.md#How-can-I-add-validation-blocks?)
 
-6) If applicable specify any [parameter overrides](./resource_parameters.md#Can-these-be-overridden?) to add/remove any parameters.
+3) If applicable specify any [parameter overrides](./resource_parameters.md#Can-these-be-overridden?) to add/remove any parameters.
 
-7) Regenerate your resource after completing the previous two steps.
+4) Regenerate your resource after completing the previous two steps.
 
-8) Verify your results with the [CIS-CAT](https://workbench.cisecurity.org/files/2151) assessment tool available from the [CIS workbench](https://workbench.cisecurity.org/). A HTML report from the tool will be required later for pull request approval. Documentation for the tool can be found [here](https://ccpa-docs.readthedocs.io/en/latest/User%20Guide%20for%20CLI/). A setup script for test machines can be found [here](/tools/test_machine_setup.ps1).
+5) Verify your results with the [CIS-CAT](https://workbench.cisecurity.org/files/2151) assessment tool available from the [CIS workbench](https://workbench.cisecurity.org/). A HTML report from the tool will be required later for pull request approval. Documentation for the tool can be found [here](https://ccpa-docs.readthedocs.io/en/latest/User%20Guide%20for%20CLI/). A setup script for test machines can be found [here](/tools/test_machine_setup.ps1).
 
 
 # How do I add or update them within the module?
