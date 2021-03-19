@@ -20,7 +20,7 @@ PowerShell DSC is a configuration management framework built into Windows 7+ pow
   </br>Credit to "Eye on Tech" for the great explanation video
 </p>
 
-PowerShell DSC resources like the ones offered here can be utilized within other configuration management platforms as well. Making this an easy solution regardless of your platform of choice.</br>
+PowerShell DSC resources like the ones offered here can be utilized within other configuration management platforms as well. Making this an easy solution regardless of your platform of choice. However the majority of these platforms do not currently support composite resources so generic PowerShell script options may be required vs native DSC support. This is an issue with the PSDesiredStateConfiguration module that is not currently open source.</br>
 - [Ansible](https://docs.ansible.com/ansible/latest/modules/win_dsc_module.html)</br>
 - [Chef](https://docs.chef.io/resources/dsc_resource/)</br>
 - [Puppet](https://puppet.com/blog/managing-powershell-dsc-puppet/)</br>
@@ -45,3 +45,8 @@ The process of customizing these resources for your environment is outlined in [
 
 # How can I contribute?
 Contribution information can be found in the [contributions documentation](docs/contribution.md).
+
+# What is the support lifecycle for resources?
+- Resources will be updated whenever CIS publishes a new draft of a given resource.
+- Bugs will be addressed on resources as long as their associated product is still in support from the vendor.
+- At this time there is no plans to age old resources out of the module.
