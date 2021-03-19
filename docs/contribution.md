@@ -3,7 +3,7 @@ This document aims to outline the requirements for the various forms of contribu
 
 **ALL** contributions are subject to review via pull request
 
-If you find anything odd take a look at the [design choices](/src/CISDSC/docs/design_choices.md) document as it might answer your question.
+If you find anything odd take a look at the [design choices](/docs/design_choices.md) document as it might answer your question.
 
 ## New Resources
 - Pull requests must contain an attached CIS-CAT scan result for at least "Level One"
