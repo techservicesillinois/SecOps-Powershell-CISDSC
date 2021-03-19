@@ -17,4 +17,4 @@ These are by nature incredibly specific to the envrionment a given host exists i
 There were several bugs within BaselineManagement combined with our very specific use case for its functionality so it was heavily modified and baked into CISDSCResourceGeneration instead.
 
 ## Why aren't user based settings from the benchmarks supported?
-While technically possible through DSC we made a decision at the start not to support these. Because popular opinion is these are best managed via group policy and the situations in which it's even possible to use DSC here didn't make it worth while.
+While technically possible through DSC we made a decision at the start not to support these. Because popular opinion is these are best managed via group policy and the situations in which it's even possible to use DSC are rare which didn't make it worth while.
