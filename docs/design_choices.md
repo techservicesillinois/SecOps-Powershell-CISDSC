@@ -2,10 +2,10 @@
 This document outlines justifications for design choices through out this project that may not be obvious at first.
 
 ## Parameter name prefixes
-Parameter names have all been prefixed with "cis" as a result of #169. This was causing PSScriptAnalyzer heart burn as well as various other quirks.
+Parameter names have all been prefixed with "cis" as a result of [#169](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/169). This was causing PSScriptAnalyzer heart burn as well as various other quirks.
 
 ## CISService over Service
-This class based resource was introdcued due to #121. The actual CIS recommendation was that a given service was absent or disabled. The native service resource from PSDesiredStateConfiguration did not achieve this and also required that absent services be known ahead of time and added to the excludelist. This approach was both a quality of life improvement and more in line with the benchmark itself.
+This class based resource was introdcued due to [#121](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/121). The actual CIS recommendation was that a given service was absent or disabled. The native service resource from PSDesiredStateConfiguration did not achieve this and also required that absent services be known ahead of time and added to the excludelist. This approach was both a quality of life improvement and more in line with the benchmark itself.
 
 ## Build specific CSVs
 This is due to the fact CIS reserves the right to change recommendation IDs which are used in these corrections. A specific recommendation may carry over to the next build of the OS but have a different ID. There is also different IDs for the same recommendations between server and workstation in many cases.
