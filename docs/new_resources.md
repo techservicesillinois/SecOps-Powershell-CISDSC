@@ -33,7 +33,7 @@ Set-Location -Path '.\SecOps-Powershell-CISDSC'
 .\tools\install_dependencies.ps1
 ```
 
-3) The following example will generate a new DSC composite resource. You will need to edit the parameters accordingly.
+3) The following examples will generate a new DSC composite resource for OS and a browser respectively. You will need to edit the parameters accordingly.
 ```powershell
 Import-Module '.\src\CISDSCResourceGeneration\CISDSCResourceGeneration.psd1' -Force
 $Splat = @{
@@ -49,6 +49,22 @@ $Splat = @{
 }
 ConvertTo-DSC @Splat
 ```
+
+```powershell
+Import-Module '.\src\CISDSCResourceGeneration\CISDSCResourceGeneration.psd1' -Force
+$Splat = @{
+    BenchmarkPath = 'C:\CIS_Microsoft_Edge_Benchmark_v1.0.0_Certification.xlsx'
+    BenchmarkVersion = '1.0.0'
+    GPOPath = 'C:\MicrosoftEdgeV1.0.0'
+    OutputPath = '.\src\CISDSC\dscresources'
+    StaticCorrectionsPath = '.\static_corrections.csv'
+    ParameterValidationsPath = '.\parameter_validations.csv'
+    ParameterOverridesPath = '.\parameter_overrides.csv'
+    Browser = 'Microsoft Edge'
+}
+ConvertTo-DSC @Splat
+```
+
 Successfully generated resources will be placed into the generated composite resource however some settings have been known to link between the GPOs and Excel document cleanly.
 
 4) Resolve errors identified in the previous step. Potential causes and resolutions are outlined in the [static corrections](./static_corrections.md) documentation.
