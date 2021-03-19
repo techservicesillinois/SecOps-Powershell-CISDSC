@@ -47,4 +47,6 @@ The process of customizing these resources for your environment is outlined in [
 Contribution information can be found in the [contributions documentation](docs/contribution.md).
 
 # What is the support lifecycle for resources?
-Resources will be updated whenever CIS publishes a new draft of a given resource. Bugs will be addressed on resources as long as their associated product is still in support from the vendor. At this time there is no plans to age old resources out of the module.
+- Resources will be updated whenever CIS publishes a new draft of a given resource.
+- Bugs will be addressed on resources as long as their associated product is still in support from the vendor.
+- At this time there is no plans to age old resources out of the module.
