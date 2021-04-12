@@ -34,7 +34,7 @@ function Get-CISBenchmarkValidWorksheets {
             }
 
             {$_ -like '*Domain Controller'}{
-                $FilterScript = {$_.Name -like"*Member Server"}
+                $FilterScript = {$_.Name -like"*Domain Controller"}
             }
 
             Default{
