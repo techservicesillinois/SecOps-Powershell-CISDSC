@@ -117,7 +117,7 @@ Describe 'Helper: Get-CISBenchmarkValidWorksheets' {
         It 'Returns the correctly filtered workseets' -TestCases @(
             @{Workbook = 'desktop_examples.xlsx'; System = 'Microsoft Windows 10 Enterprise'; Expectation = ('Level 1 (L1) - Corporate_Enter','BitLocker (BL) - Level 1 (L1)','Next Generation - Level 1 (L1)','BitLocker (BL) 1 - Level 1 (L1)','Level 2 (L2) - High Security_S','BitLocker (BL) - Level 2 (L2)','Next Generation - Level 2 (L2)','BitLocker (BL) 1 - Level 2 (L2)','BitLocker (BL) - optional add','Next Generation Windows Securi')},
             @{Workbook = 'server_examples.xlsx'; System = 'Microsoft Windows Server 2019 Member Server'; Expectation = ('Level 1 - Member Server','Level 2 - Member Server','NGWS - Member Server')},
-            @{Workbook = 'server_examples.xlsx'; System = 'Microsoft Windows Server 2019 Domain Controller'; Expectation = ('Level 1 - Domain Controller','Level 2 - Domain Controller','NGWS -Domain Controller')}
+            @{Workbook = 'server_examples.xlsx'; System = 'Microsoft Windows Server 2019 Domain Controller'; Expectation = ('Level 1 - Domain Controller','Level 2 - Domain Controller','NGWS - Domain Controller')}
         ){
             [string]$Path = "$($PSScriptRoot)\example_files\$($Workbook)"
             Get-CISBenchmarkValidWorksheets -Path $Path -System $System | Where-Object -FilterScript {$_.Name -notin $Expectation} | Should -Be $Null
