@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 - Changed ignored correction from warning to debug since it's intentional behavior. [Issue 182](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/182)
+- Updated Get-CISBenchmarkValidWorksheets logic for the new excel sheet format from CIS.
 ### Removed
 
 ## [2.4.0] - 2021-02-26
