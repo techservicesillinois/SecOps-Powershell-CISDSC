@@ -44,9 +44,8 @@ You can be notified of new releases by following the [notifications documentatio
 The process of customizing these resources for your environment is outlined in [customization](docs/customization.md).
 
 # How can I contribute?
-Contribution information can be found in the [contributions documentation](docs/contribution.md).
+Contribution information can be found in the [contributions documentation](CONTRIBUTING.md).
+Any community engagement is subject to the [code of conduct](CODE_OF_CONDUCT.md).
 
-# What is the support lifecycle for resources?
-- Resources will be updated whenever CIS publishes a new draft of a given resource.
-- Bugs will be addressed on resources as long as their associated product is still in support from the vendor.
-- At this time there is no plans to age old resources out of the module.
+# Found a bug or a vulnerability?
+Disclosure details can be found in the [security documentation](SECURITY.md).
