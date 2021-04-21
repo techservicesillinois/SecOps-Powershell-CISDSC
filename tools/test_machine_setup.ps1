@@ -54,8 +54,8 @@ Configuration TestSetup {
             DependsOn = '[cChocoInstaller]installChoco'
         }
         #Needed for CIS-CAT Assessor
-        cChocoPackageInstaller 'InstallJRE8' {
-            Name = 'jre8'
+        cChocoPackageInstaller 'adoptopenjdk16jre' {
+            Name = 'adoptopenjdk16jre'
             Ensure = 'Present'
             DependsOn = '[cChocoInstaller]installChoco'
         }
