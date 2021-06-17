@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [2.4.0] - 2021-06-17
 ### Added
 - Added CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2 for Server 2019 20H2 [Issue 181](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/181). This is not being released until CIS resolves the issue about missing settings in the build kit. https://workbench.cisecurity.org/tickets/12685
 ### Changed
