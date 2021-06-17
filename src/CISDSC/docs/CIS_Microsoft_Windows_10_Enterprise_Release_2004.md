@@ -20,7 +20,7 @@ CIS_Microsoft_Windows_10_Enterprise_Release_2004 [String] #ResourceName
     [ LevelTwo = [Boolean] ]
     [ BitLocker = [Boolean] ]
     [ NextGenerationWindowsSecurity = [Boolean] ]
-    [ cis112MaximumPasswordAge = [Int32] { 1-999 } ]
+    [ cis112MaximumPasswordAge = [Int32] { 1-60 } ]
     [ cis113MinimumPasswordAge = [Int32] { 1-998 } ]
     [ cis114MinimumPasswordLength = [Int32] { 14-128 } ]
     [ cis121Accountlockoutduration = [Int32] { 15-99999 } ]
