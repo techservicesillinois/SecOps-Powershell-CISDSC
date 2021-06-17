@@ -19,7 +19,7 @@ CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2 [String] #ResourceN
     [ LevelOne = [Boolean] ]
     [ LevelTwo = [Boolean] ]
     [ NextGenerationWindowsSecurity = [Boolean] ]
-    [ cis112MaximumPasswordAge = [Int32] { 60-999 } ]
+    [ cis112MaximumPasswordAge = [Int32] { 1-60 } ]
     [ cis113MinimumPasswordAge = [Int32] { 1-998 } ]
     [ cis121Accountlockoutduration = [Int32] { 15-99999 } ]
     [ cis122Accountlockoutthreshold = [Int32] { 10-999 } ]

@@ -7,7 +7,7 @@ Configuration CIS_Microsoft_Windows_10_Enterprise_Release_1809
         [Boolean]$LevelTwo = $false,
         [Boolean]$BitLocker = $false,
         [Boolean]$NextGenerationWindowsSecurity = $false,
-        [ValidateRange(60,999)]
+        [ValidateRange(1,60)]
         [Int32]$cis112MaximumPasswordAge = 60,
         [ValidateRange(1,998)]
         [Int32]$cis113MinimumPasswordAge = 1,

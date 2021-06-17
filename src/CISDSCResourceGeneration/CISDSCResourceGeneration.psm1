@@ -39,13 +39,13 @@ Class DSCConfigurationParameter{
         }
 
         <# Example of formated definition
-            [ValidateRange(60,999)]
+            [ValidateRange(1,60)]
             [Int32]$cis112MaximumPasswordAge = 60
         #>
         if($script:ParameterValidations["$RecommendationNum"]){
             $This.TextBlock = "        $($script:ParameterValidations["$RecommendationNum"])`n"
 
-            # Regex to get the values in parentheses and replace with curly braces. [ValidateRange(60,999)] -> { 60,999 }
+            # Regex to get the values in parentheses and replace with curly braces. [ValidateRange(1,60)] -> { 60,999 }
             [regex]$ValuesRegex = "\((.*?)\)"
             $DocumentationSyntaxValues = $ValuesRegex.Match($script:ParameterValidations["$RecommendationNum"]).Value
             $DocumentationSyntaxValues = $DocumentationSyntaxValues.Replace('(','{ ')
@@ -81,7 +81,7 @@ Class DSCConfigurationParameter{
         # |cis112MaximumPasswordAge |60 |1.1.2 |(L1) Ensure 'Maximum password age' is set to '60 or fewer days, but not 0' |
         $This.DocumentationPropertyBlock = $DocumentationPropertyBlockValues -join ' |'
 
-        # [ cis112MaximumPasswordAge = [Int32] { 60-999 } ]
+        # [ cis112MaximumPasswordAge = [Int32] { 1-60 } ]
         $This.DocumentationSyntaxBlock = "    [ $($This.Name.TrimStart('$')) = $($DataType) $($DocumentationSyntaxValues)]"
     }
 }

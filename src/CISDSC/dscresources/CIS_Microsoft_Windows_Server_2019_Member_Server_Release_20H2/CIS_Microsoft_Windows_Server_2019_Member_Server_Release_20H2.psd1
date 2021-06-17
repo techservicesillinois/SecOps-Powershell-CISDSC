@@ -4,7 +4,7 @@
 RootModule = 'CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2.schema.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.2.0'
+ModuleVersion = '1.2.0.1'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()

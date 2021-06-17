@@ -1,5 +1,5 @@
 "Recommendation","ValidationString"
-"1.1.2","[ValidateRange(60,999)]"
+"1.1.2","[ValidateRange(1,60)]"
 "1.1.3","[ValidateRange(1,998)]"
 "1.1.4","[ValidateRange(14,128)]"
 "1.2.1","[ValidateRange(15,99999)]"

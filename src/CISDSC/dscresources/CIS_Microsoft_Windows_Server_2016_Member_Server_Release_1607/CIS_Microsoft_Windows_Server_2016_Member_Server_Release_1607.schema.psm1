@@ -6,7 +6,7 @@ Configuration CIS_Microsoft_Windows_Server_2016_Member_Server_Release_1607
         [boolean]$LevelOne = $true,
         [boolean]$LevelTwo = $false,
         [boolean]$NextGenerationWindowsSecurity = $false,
-        [ValidateRange(60,999)]
+        [ValidateRange(1,60)]
         [Int32]$cis112MaximumPasswordAge = 60,
         [ValidateRange(1,998)]
         [Int32]$cis113MinimumPasswordAge = 1,
