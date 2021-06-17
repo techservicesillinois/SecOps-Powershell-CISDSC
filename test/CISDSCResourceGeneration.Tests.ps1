@@ -90,7 +90,7 @@ Describe 'Class: DSCConfigurationParameter' {
             $DataType = "'[Int32]'"
             $DefaultValue = "60"
             $Param = [DSCConfigurationParameter]::New($RecommendationNum,$Name,$DataType,$DefaultValue)
-            $Param.Textblock -like "*[ValidateRange(60,999)]*" | Should -Be $True
+            $Param.Textblock -like "*[ValidateRange(1,999)]*" | Should -Be $True
         }
     }
 }
