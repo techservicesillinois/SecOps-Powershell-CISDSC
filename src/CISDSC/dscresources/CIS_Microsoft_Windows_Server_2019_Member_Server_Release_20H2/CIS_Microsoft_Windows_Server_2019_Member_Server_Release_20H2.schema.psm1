@@ -6,7 +6,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
         [Boolean]$LevelOne = $true,
         [Boolean]$LevelTwo = $false,
         [Boolean]$NextGenerationWindowsSecurity = $false,
-        [ValidateRange(60,999)]
+        [ValidateRange(1,999)]
         [Int32]$cis112MaximumPasswordAge = 60,
         [ValidateRange(1,998)]
         [Int32]$cis113MinimumPasswordAge = 30,
