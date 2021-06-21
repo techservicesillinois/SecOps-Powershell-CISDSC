@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 ### Changed
-- Updated Windows 10 Enterprise 20H2 to v10.0.1 of the benchmark. No functional changes.
+- Updated Windows 10 Enterprise 20H2 to v10.0.1 of the benchmark. No functional changes so just increase in version number.
 
 ## [2.4.0] - 2021-06-17
 ### Added
