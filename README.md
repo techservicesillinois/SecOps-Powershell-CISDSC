@@ -3,7 +3,7 @@
 ![ScriptAnalyzer](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/workflows/ScriptAnalyzer/badge.svg)
 
 # What is This?
-This project is designed to deliver [CIS](https://www.cisecurity.org/) security benchmarks in PowerShell DSC via the included [CISDSC](src/CISDSC) module.
+This project is designed to deliver [CIS](https://www.cisecurity.org/) security benchmarks in PowerShell DSC via the included [CISDSC](src/CISDSC) module. Note that CIS benchmarks are designed for domain joined machines meaning stand-alone/workgroup machines are not supported. If applied to a stand-alone machine any remoting capabilities will break without proper exclusions and may have other unknown side effects.
 
 It also contains a module to assist in the creation of these resources via [CISDSCResourceGeneration](src/CISDSCResourceGeneration) which is a heavily modified fork of [Microsoft's BaselineManagement](https://github.com/microsoft/BaselineManagement) module.
 
