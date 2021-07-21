@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Changed
 - Updated Windows 10 Enterprise 20H2 to v10.0.1 of the benchmark. No functional changes so just increase in version number.
+### Added
+- Added new DSC resource for Windows 10 enterprise 21H1. CIS_Microsoft_Windows_10_Enterprise_Release_21H1 [Issue 208](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/208)
 
 ## [2.4.0] - 2021-06-17
 ### Added
