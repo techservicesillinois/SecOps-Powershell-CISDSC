@@ -6,12 +6,12 @@ This document aims to outline the requirements for the various forms of contribu
 If you find anything odd take a look at the [design choices](/docs/design_choices.md) document as it might answer your question.
 
 ## New Resources
-- Pull requests must contain an attached CIS-CAT scan result for at least "Level One"
 - Update the "Unreleased" section of the [changelog](/CHANGELOG.md) to reflect it was added
 - Do not increment the CISDSC version number as this will be done when a release is staged
 - Resources are expected to have a version number matching the benchmark version they are based on
 - All parameters are expected to have validation blocks with entries tracked in a [parameter validation](/parameter_validation) file
 - Documentation must be placed in the [module's docs folder](/src/CISDSC/docs)
+- [CIS-CAT scans](/docs/design_choices.md#No-longer-requiring-CIS-CAT-reports-for-new-resources)
 
 ## Resource Corrections
 - Cited documentation on why the existing setting was incorrect
