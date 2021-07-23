@@ -18,3 +18,9 @@ There were several bugs within BaselineManagement combined with our very specifi
 
 ## User based settings are not supported
 While technically possible through DSC we made a decision at the start not to support these. Because popular opinion is these are best managed via group policy and the situations in which it's even possible to use DSC are rare which didn't make it worth while.
+
+## Not supporting legacy formatting of the CIS documents
+CIS benchmarks evolve with every revision and the same goes for the document format. It would be difficult to guarantee every difference between documentation generations is accounted for so while older generations will likely work with minimum modification to the document (primarily worksheet names) we will only explicitly support/test the latest generation.
+
+## No longer requiring CIS-CAT reports for new resources
+CIS-CAT scans had a lot of value early in the project when bugs where being discovered and squashed however it's value has diminished rapidly as the code base has matured. This is combined with the facts that this is often the longest phase of developing a resource and causes the biggest delays due to CIS-CAT lagging in support of new benchmarks for weeks or months in some cases. We have opted to commit to a "sanity check" with CIS-CAT every other build when it becomes available but not make it a requirement for release.
