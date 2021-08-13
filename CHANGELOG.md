@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Changed
 - Fixed casing on CISDSC examples directory. [Issue 216](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/216)
+- Added IconURI to CISDSC manifest
 
 ## [2.5.0] - 2021-07-22
 ### Changed
