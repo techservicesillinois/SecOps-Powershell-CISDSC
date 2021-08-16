@@ -1,3 +1,6 @@
+# Ensure that CIS documentation and group policy objects are not commited outside the example_files directory
+!/test/example_files/*
+!/test/example_files/*/*
 *.xlsx
 *.docx
 *.cmtx
@@ -9,10 +12,14 @@ manifest.xml
 Backup.xml
 bkupInfo.xml
 gpreport.xml
-!/test/example_files/*
-!/test/example_files/*/*
+
+# Exports from CISDSCResourceGeneration
 MissingRecommendations.csv
 RecommendationErrors.txt
+
+# Exports from Pester
 coverage.xml
 testResults.xml
+
+# Exports from Plaster
 *.bak*

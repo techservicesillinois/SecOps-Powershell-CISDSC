@@ -83,10 +83,10 @@ DscResourcesToExport = @(
     'CIS_Microsoft_Windows_10_Enterprise_Release_1909',
     'CIS_Microsoft_Windows_10_Enterprise_Release_2004',
     'CIS_Microsoft_Windows_10_Enterprise_Release_20H2',
+    'CIS_Microsoft_Windows_10_Enterprise_Release_21H1',
     'CIS_Microsoft_Windows_Server_2016_Member_Server_Release_1607',
     'CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809',
-    'CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2',
-    'CIS_Microsoft_Windows_10_Enterprise_Release_21H1'
+    'CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2'
 )
 
 # List of all modules packaged with this module
@@ -110,7 +110,7 @@ PrivateData = @{
         ProjectUri = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC'
 
         # A URL to an icon representing this module.
-        # IconUri = ''
+        IconUri = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/main/icon.png'
 
         # ReleaseNotes of this module
         ReleaseNotes = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/main/CHANGELOG.md'
