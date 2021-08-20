@@ -110,7 +110,7 @@ PrivateData = @{
         ProjectUri = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC'
 
         # A URL to an icon representing this module.
-        IconUri = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/main/icon.png'
+        IconUri = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/main/icon.png?raw=true'
 
         # ReleaseNotes of this module
         ReleaseNotes = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/main/CHANGELOG.md'
