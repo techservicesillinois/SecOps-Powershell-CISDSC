@@ -77,7 +77,10 @@ Successfully generated resources will be placed into the generated composite res
 
 4) Regenerate your resource after completing the previous two steps.
 
-5) Verify your results with the [CIS-CAT](https://workbench.cisecurity.org/files/2151) assessment tool available from the [CIS workbench](https://workbench.cisecurity.org/). A HTML report from the tool will be required later for pull request approval. Documentation for the tool can be found [here](https://ccpa-docs.readthedocs.io/en/latest/User%20Guide%20for%20CLI/). A setup script for test machines can be found [here](/tools/test_machine_setup.ps1).
+5) Verify your results with the [CIS-CAT](https://workbench.cisecurity.org/files/2151) assessment tool available from the [CIS workbench](https://workbench.cisecurity.org/). A HTML report from the tool will be required later for pull request approval. Documentation for the tool can be found [here](https://ccpa-docs.readthedocs.io/en/latest/Configuration%20Guide/). A setup script for test machines can be found [here](/tools/test_machine_setup.ps1). At the time of writing the CIS-CAT commands we typically use are below, you will need to provide the numerical ID of the OS you are testing. Actual CMD is recommended instead of a PowerShell as it seems a little buggy as far as output.
+```cmd
+Assessor-CLI.bat -i -html
+```
 
 
 # How do I add or update them within the module?
