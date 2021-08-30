@@ -8,7 +8,7 @@
 #>
 function Export-RecommendationErrors {
     [CmdletBinding()]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns',
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '',
             Justification = 'This always deals with multiples')]
     param (
         [Parameter(Mandatory = $true)]

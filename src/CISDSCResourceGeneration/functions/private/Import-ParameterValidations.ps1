@@ -10,7 +10,7 @@
 #>
 function Import-ParameterValidations {
     [CmdletBinding()]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns',
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '',
             Justification = 'This always deals with multiples')]
     param (
         [ValidateScript({Test-FilePathParameter -Path $_ })]

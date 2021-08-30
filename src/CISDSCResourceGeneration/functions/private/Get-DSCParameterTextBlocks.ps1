@@ -10,7 +10,7 @@
 #>
 function Get-DSCParameterTextBlocks {
     [CmdletBinding()]
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns',
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '',
             Justification = 'This always deals with multiples')]
     [OutputType('System.String')]
     param (
