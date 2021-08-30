@@ -1,5 +1,17 @@
+<#
+.Synopsis
+    Returns the paramblock enteries for the generated DSC resource. Applicable default parameters such as levels are checked for relevance and the rest are imported from generated code blocks.
+.DESCRIPTION
+    Returns the paramblock enteries for the generated DSC resource. Applicable default parameters such as levels are checked for relevance and the rest are imported from generated code blocks.
+.PARAMETER Recommendations
+    Recommendation objects.
+.PARAMETER Levels
+    Relevant benchmark levels
+#>
 function Get-DSCParameterTextBlocks {
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns',
+            Justification = 'This always deals with multiples')]
     [OutputType('System.String')]
     param (
         [Recommendation[]]$Recommendations,

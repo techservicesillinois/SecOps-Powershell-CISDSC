@@ -1,16 +1,17 @@
 <#
 .Synopsis
-   Exports a list of imported recommendations that did not have a setting identified in the provided GPOs.
-   The user section of the benchmark and 18.2.1 (L1) Ensure LAPS AdmPwd GPO Extension / CSE is installed are ignored by this check.
+    Exports a list of imported recommendations that did not have a setting identified in the provided GPOs.
+    The user section of the benchmark and 18.2.1 (L1) Ensure LAPS AdmPwd GPO Extension / CSE is installed are ignored by this check.
 .DESCRIPTION
-   Exports a list of imported recommendations that did not have a setting identified in the provided GPOs.
-   The user section of the benchmark and 18.2.1 (L1) Ensure LAPS AdmPwd GPO Extension / CSE is installed are ignored by this check.
+    Exports a list of imported recommendations that did not have a setting identified in the provided GPOs.
+    The user section of the benchmark and 18.2.1 (L1) Ensure LAPS AdmPwd GPO Extension / CSE is installed are ignored by this check.
 .PARAMETER OutputPath
     Output directory for the files generated.
-.EXAMPLE
 #>
 function Export-MissingRecommendations {
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns',
+            Justification = 'This always deals with multiples')]
     param (
         [Parameter(Mandatory=$true)]
         [string]$OutputPath

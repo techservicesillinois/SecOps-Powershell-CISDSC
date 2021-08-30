@@ -1,5 +1,15 @@
+<#
+.Synopsis
+    Exports a list of imported GPO settings that failed to find a match in the documentation.
+.DESCRIPTION
+    Exports a list of imported GPO settings that failed to find a match in the documentation.
+.PARAMETER OutputPath
+    Output directory for the files generated.
+#>
 function Export-RecommendationErrors {
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns',
+            Justification = 'This always deals with multiples')]
     param (
         [Parameter(Mandatory = $true)]
         [string]$OutputPath
