@@ -4,13 +4,13 @@
 RootModule = 'CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2.schema.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.2.0.1'
+ModuleVersion = '1.2.1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
 
 # ID used to uniquely identify this module
-GUID = '7af63cc1-6c9c-4c03-bba5-2852eecae0d0'
+GUID = 'a1955386-05eb-4107-a000-9ad226c0479c'
 
 # Author of this module
 # Author = ''

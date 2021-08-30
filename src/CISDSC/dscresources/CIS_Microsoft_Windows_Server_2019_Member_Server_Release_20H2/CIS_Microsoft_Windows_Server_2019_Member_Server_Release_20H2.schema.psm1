@@ -1966,14 +1966,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
         }
     }
     if($ExcludeList -notcontains '18.8.5.1' -and $NextGenerationWindowsSecurity){
-        Registry "18.8.5.1 - (NG) Ensure Turn On Virtualization Based Security is set to Enabled (1)" {
-            Ensure = 'Present'
-            Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-            ValueData = 1
-            ValueName = 'EnableVirtualizationBasedSecurity'
-            ValueType = 'Dword'
-        }
-        Registry "18.8.5.1 - (NG) Ensure Turn On Virtualization Based Security is set to Enabled (2)" {
+        Registry "18.8.5.1 - (NG) Ensure Turn On Virtualization Based Security is set to Enabled" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
             ValueData = 1
@@ -1982,14 +1975,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
         }
     }
     if($ExcludeList -notcontains '18.8.5.2' -and $NextGenerationWindowsSecurity){
-        Registry "18.8.5.2 - (NG) Ensure Turn On Virtualization Based Security Select Platform Security Level is set to Secure Boot and DMA Protection (1)" {
-            Ensure = 'Present'
-            Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-            ValueData = 3
-            ValueName = 'RequirePlatformSecurityFeatures'
-            ValueType = 'Dword'
-        }
-        Registry "18.8.5.2 - (NG) Ensure Turn On Virtualization Based Security Select Platform Security Level is set to Secure Boot and DMA Protection (2)" {
+        Registry "18.8.5.2 - (NG) Ensure Turn On Virtualization Based Security Select Platform Security Level is set to Secure Boot and DMA Protection" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
             ValueData = 3
@@ -1998,14 +1984,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
         }
     }
     if($ExcludeList -notcontains '18.8.5.3' -and $NextGenerationWindowsSecurity){
-        Registry "18.8.5.3 - (NG) Ensure Turn On Virtualization Based Security Virtualization Based Protection of Code Integrity is set to Enabled with UEFI lock (1)" {
-            Ensure = 'Present'
-            Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-            ValueData = 1
-            ValueName = 'HypervisorEnforcedCodeIntegrity'
-            ValueType = 'Dword'
-        }
-        Registry "18.8.5.3 - (NG) Ensure Turn On Virtualization Based Security Virtualization Based Protection of Code Integrity is set to Enabled with UEFI lock (2)" {
+        Registry "18.8.5.3 - (NG) Ensure Turn On Virtualization Based Security Virtualization Based Protection of Code Integrity is set to Enabled with UEFI lock" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
             ValueData = 1
@@ -2014,14 +1993,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
         }
     }
     if($ExcludeList -notcontains '18.8.5.4' -and $NextGenerationWindowsSecurity){
-        Registry "18.8.5.4 - (NG) Ensure Turn On Virtualization Based Security Require UEFI Memory Attributes Table is set to True (checked) (1)" {
-            Ensure = 'Present'
-            Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-            ValueData = 1
-            ValueName = 'HVCIMATRequired'
-            ValueType = 'Dword'
-        }
-        Registry "18.8.5.4 - (NG) Ensure Turn On Virtualization Based Security Require UEFI Memory Attributes Table is set to True (checked) (2)" {
+        Registry "18.8.5.4 - (NG) Ensure Turn On Virtualization Based Security Require UEFI Memory Attributes Table is set to True (checked)" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
             ValueData = 1
@@ -2030,14 +2002,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
         }
     }
     if($ExcludeList -notcontains '18.8.5.5' -and $NextGenerationWindowsSecurity){
-        Registry "18.8.5.5 - (NG) Ensure Turn On Virtualization Based Security Credential Guard Configuration is set to Enabled with UEFI lock (MS Only) (1)" {
-            Ensure = 'Present'
-            Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-            ValueData = 0
-            ValueName = 'LsaCfgFlags'
-            ValueType = 'Dword'
-        }
-        Registry "18.8.5.5 - (NG) Ensure Turn On Virtualization Based Security Credential Guard Configuration is set to Enabled with UEFI lock (MS Only) (2)" {
+        Registry "18.8.5.5 - (NG) Ensure Turn On Virtualization Based Security Credential Guard Configuration is set to Enabled with UEFI lock (MS Only)" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
             ValueData = 1
@@ -2046,14 +2011,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
         }
     }
     if($ExcludeList -notcontains '18.8.5.7' -and $NextGenerationWindowsSecurity){
-        Registry "18.8.5.7 - (NG) Ensure Turn On Virtualization Based Security Secure Launch Configuration is set to Enabled (1)" {
-            Ensure = 'Present'
-            Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-            ValueData = 1
-            ValueName = 'ConfigureSystemGuardLaunch'
-            ValueType = 'Dword'
-        }
-        Registry "18.8.5.7 - (NG) Ensure Turn On Virtualization Based Security Secure Launch Configuration is set to Enabled (2)" {
+        Registry "18.8.5.7 - (NG) Ensure Turn On Virtualization Based Security Secure Launch Configuration is set to Enabled" {
             Ensure = 'Present'
             Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
             ValueData = 1
@@ -2553,6 +2511,15 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
             ValueType = 'Dword'
         }
     }
+    if($ExcludeList -notcontains '18.9.13.1' -and $LevelTwo){
+        Registry "18.9.13.1 - (L2) Ensure Turn off cloud optimized content is set to Enabled" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent'
+            ValueData = 1
+            ValueName = 'DisableCloudOptimizedContent'
+            ValueType = 'Dword'
+        }
+    }
     if($ExcludeList -notcontains '18.9.13.2' -and $LevelOne){
         Registry "18.9.13.2 - (L1) Ensure Turn off Microsoft consumer experiences is set to Enabled" {
             Ensure = 'Present'
@@ -2787,6 +2754,33 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
             ValueType = 'Dword'
         }
     }
+    if($ExcludeList -notcontains '18.9.45.5.1' -and $LevelTwo){
+        Registry "18.9.45.5.1 - (L2) Ensure Enable file hash computation feature is set to Enabled" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\Windows Defender\MpEngine'
+            ValueData = 1
+            ValueName = 'EnableFileHashComputation'
+            ValueType = 'Dword'
+        }
+    }
+    if($ExcludeList -notcontains '18.9.45.8.1' -and $LevelOne){
+        Registry "18.9.45.8.1 - (L1) Ensure Scan all downloaded files and attachments is set to Enabled" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\Windows Defender\Real-Time Protection'
+            ValueData = 0
+            ValueName = 'DisableIOAVProtection'
+            ValueType = 'Dword'
+        }
+    }
+    if($ExcludeList -notcontains '18.9.45.8.2' -and $LevelOne){
+        Registry "18.9.45.8.2 - (L1) Ensure Turn off real-time protection is set to Disabled" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\Windows Defender\Real-Time Protection'
+            ValueData = 0
+            ValueName = 'DisableRealtimeMonitoring'
+            ValueType = 'Dword'
+        }
+    }
     if($ExcludeList -notcontains '18.9.45.8.3' -and $LevelOne){
         Registry "18.9.45.8.3 - (L1) Ensure Turn on behavior monitoring is set to Enabled" {
             Ensure = 'Present'
@@ -2908,6 +2902,13 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
             Key = 'HKLM:\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules'
             ValueData = '1'
             ValueName = 'd4f940ab-401b-4efc-aadc-ad5f3c50688a'
+            ValueType = 'String'
+        }
+        Registry "18.9.45.4.1.2 - (L1) Ensure Configure Attack Surface Reduction rules Set the state for each ASR rule is configured (12)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules'
+            ValueData = '1'
+            ValueName = 'e6db77e5-3df2-4cf1-b95a-636979351e5b'
             ValueType = 'String'
         }
     }
