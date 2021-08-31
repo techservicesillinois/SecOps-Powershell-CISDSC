@@ -8,10 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Fixed casing on CISDSC examples directory. [Issue 216](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/216)
 - Added IconURI to CISDSC manifest
+- CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2 updated to latest benchmark release.[Issue 222](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/222).
 ### Removed
 - Duplicate keys for next generation windows security in CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2 [Issue 222](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/222).
-### Added
-- CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2 updated to latest benchmark release.[Issue 222](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/222).
 
 ## [2.5.0] - 2021-07-22
 ### Changed
