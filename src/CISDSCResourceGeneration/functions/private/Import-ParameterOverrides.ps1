@@ -1,8 +1,8 @@
 <#
 .Synopsis
-   Imports parameter overrides from the provided CSV. Expects the headers "Recommendation" & "HasParameter". HasParameter is a "0" or "1" value specifying if it should (1) or should not (0) be given a parameter.
+    Imports parameter overrides from the provided CSV. Expects the headers "Recommendation" & "HasParameter". HasParameter is a "0" or "1" value specifying if it should (1) or should not (0) be given a parameter.
 .DESCRIPTION
-   Imports parameter overrides from the provided CSV. Expects the headers "Recommendation" & "HasParameter". HasParameter is a "0" or "1" value specifying if it should (1) or should not (0) be given a parameter.
+    Imports parameter overrides from the provided CSV. Expects the headers "Recommendation" & "HasParameter". HasParameter is a "0" or "1" value specifying if it should (1) or should not (0) be given a parameter.
 .PARAMETER Path
     Path to the CSV file.
 .EXAMPLE
@@ -10,6 +10,8 @@
 #>
 function Import-ParameterOverrides {
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '',
+            Justification = 'This always deals with multiples')]
     param (
         [ValidateScript({Test-FilePathParameter -Path $_ })]
         [string]$Path

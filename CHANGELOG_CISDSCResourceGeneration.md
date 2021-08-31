@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 ### Added
+- Added script analyzer exceptions for plural nouns
+- Added missing comment based help
 ### Changed
 - Changed ignored correction from warning to debug since it's intentional behavior. [Issue 182](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/182)
 - Updated Get-CISBenchmarkValidWorksheets logic for the new excel sheet format from CIS.

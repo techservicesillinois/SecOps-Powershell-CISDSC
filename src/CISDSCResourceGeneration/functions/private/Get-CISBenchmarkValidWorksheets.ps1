@@ -14,6 +14,8 @@
 #>
 function Get-CISBenchmarkValidWorksheets {
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '',
+            Justification = 'This always deals with multiples')]
     param (
         [Parameter(Mandatory=$True)]
         [ValidateNotNullOrEmpty()]

@@ -1,8 +1,8 @@
 <#
 .Synopsis
-   Imports static corrections from the provided CSV. Expects the headers "Key" & "Recommendation" key syntax varies based on resource type and is documented in the static_corrections.md file of the repository.
+    Imports static corrections from the provided CSV. Expects the headers "Key" & "Recommendation" key syntax varies based on resource type and is documented in the static_corrections.md file of the repository.
 .DESCRIPTION
-   Imports static corrections from the provided CSV. Expects the headers "Key" & "Recommendation" key syntax varies based on resource type and is documented in the static_corrections.md file of the repository.
+    Imports static corrections from the provided CSV. Expects the headers "Key" & "Recommendation" key syntax varies based on resource type and is documented in the static_corrections.md file of the repository.
 .PARAMETER Path
     Path to the CSV file.
 .EXAMPLE
@@ -10,6 +10,8 @@
 #>
 function Import-StaticCorrections {
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '',
+            Justification = 'This always deals with multiples')]
     param (
         [ValidateScript({Test-FilePathParameter -Path $_ })]
         [string]$Path

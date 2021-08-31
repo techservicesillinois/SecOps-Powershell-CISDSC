@@ -1,8 +1,8 @@
 <#
 .Synopsis
-   Imports parameter validations from the provided CSV. Expects the headers "Recommendation" & "ValidationString" with an example row of "1.2.1","[ValidateRange(15,99999)]"
+    Imports parameter validations from the provided CSV. Expects the headers "Recommendation" & "ValidationString" with an example row of "1.2.1","[ValidateRange(15,99999)]"
 .DESCRIPTION
-   Imports parameter validations from the provided CSV. Expects the headers "Recommendation" & "ValidationString" with an example row of "1.2.1","[ValidateRange(15,99999)]"
+    Imports parameter validations from the provided CSV. Expects the headers "Recommendation" & "ValidationString" with an example row of "1.2.1","[ValidateRange(15,99999)]"
 .PARAMETER Path
     Path to the CSV file.
 .EXAMPLE
@@ -10,6 +10,8 @@
 #>
 function Import-ParameterValidations {
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '',
+            Justification = 'This always deals with multiples')]
     param (
         [ValidateScript({Test-FilePathParameter -Path $_ })]
         [string]$Path
