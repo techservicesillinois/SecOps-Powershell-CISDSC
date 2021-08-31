@@ -5,12 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
+
+## [2.4.1] - 2021-08-31
 ### Added
 - Added script analyzer exceptions for plural nouns
 - Added missing comment based help
 ### Changed
 - Changed ignored correction from warning to debug since it's intentional behavior. [Issue 182](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/182)
 - Updated Get-CISBenchmarkValidWorksheets logic for the new excel sheet format from CIS.
+- Fix for "Get-RecommendationFromGPOHash fails to find DC AuditPolicy settings" [Issue 225](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/225)
 ### Removed
 
 ## [2.4.0] - 2021-02-26
