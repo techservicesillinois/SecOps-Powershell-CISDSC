@@ -1,5 +1,5 @@
 ---
-date: 4/20/2021
+date: 8/30/2021
 keywords: dsc,powershell,configuration,setup,cis,security,20H2
 title: CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
 ---
