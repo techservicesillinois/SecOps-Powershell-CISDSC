@@ -17,7 +17,7 @@ function Get-RecommendationFromGPOHash {
         switch($Type){
             'AuditPolicy'{
                 [string]$CorrectionKey = $GPOHash['Subcategory']
-                [string]$SearchString = $SearchString = "*Ensure '$($GPOHash['Subcategory'])'*'$($GPOHash['InclusionSetting'])'"
+                [string]$SearchString = "*Ensure '$($GPOHash['Subcategory'])'*'$($GPOHash['InclusionSetting'])'*"
                 [scriptblock]$FilterScript = {$_.title -like $SearchString}
             }
 
