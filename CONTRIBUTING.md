@@ -5,6 +5,12 @@ This document aims to outline the requirements for the various forms of contribu
 
 If you find anything odd take a look at the [design choices](/docs/design_choices.md) document as it might answer your question.
 
+## Branch names
+- Branches should adhere to the following nameing convention.
+    - bug fixes: "bug/issue#" Ex: "bug/144"
+    - documentation/enhancements: "feature/issue#"or "feature/short description"
+    - release staging: "release/version" Ex: "release/v.2.5.3"
+
 ## New Resources
 - Update the "Unreleased" section of the [changelog](/CHANGELOG.md) to reflect it was added
 - Do not increment the CISDSC version number as this will be done when a release is staged
