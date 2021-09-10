@@ -25,4 +25,4 @@ It is important to get the most recent version of these items. All versions are 
 5) Once you've entered your benchmark specific page you can drill down to the specific recommendation with the issue and open a ticket for the correction.
 
 # CISCAT
-This application is referenced throughout this projects documentation. It is an assessment tool maintained by CIS. It can generate reports comparing your system state to a given benchmark. It is available for [download](https://workbench.cisecurity.org/files/2151) from CIS workbench and its documentation can be found [here](https://ccpa-docs.readthedocs.io/en/latest/Configuration%20Guide/). It is best to use CMD instead of PowerShell ro run the batch file.
+This application is referenced throughout this project's documentation. It is an assessment tool maintained by CIS. It can generate reports comparing your system state to a given benchmark. It is available for [download](https://workbench.cisecurity.org/files/2151) from CIS workbench and its documentation can be found [here](https://ccpa-docs.readthedocs.io/en/latest/Configuration%20Guide/). It is best to use CMD instead of PowerShell ro run the batch file.
