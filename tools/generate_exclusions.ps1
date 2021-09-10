@@ -36,11 +36,10 @@ $Headers = (
     'State',
     'Ignore7'
 )
-$Report = Import-Csv -Path $Path -Header $Headers
 
 [string[]]$Exclusions = @()
 # Section 19 is the out of scope user registry settings. So they are ignored.
-$Report | Where-Object -FilterScript {$_.state -eq 'fail' -and $_.recommendation -notlike "19.*"} | ForEach-Object -Process {
+Import-Csv -Path $Path -Header $Headers | Where-Object -FilterScript {$_.state -eq 'fail' -and $_.recommendation -notlike "19.*"} | ForEach-Object -Process {
     $Exclusions += "'$($_.recommendation)', # $($_.title)"
 }
 
