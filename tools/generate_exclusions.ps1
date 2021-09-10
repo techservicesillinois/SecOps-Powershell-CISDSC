@@ -18,6 +18,7 @@ param (
     [string]$OutPath
 )
 
+# The CSV exported by CISCAT does not have headers so they have to be explictly set here.
 $Headers = (
     'Date',
     'ComputerName',
