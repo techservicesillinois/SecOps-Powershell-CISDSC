@@ -7,7 +7,7 @@ If you find anything odd take a look at the [design choices](/docs/design_choice
 
 ## Branch names
 - Branches should adhere to the following nameing convention.
-    - bug fixes: "bug/issue#" Ex: "bug/144"
+    - fixes: "fix/issue#" Ex: "fix/144"
     - documentation/enhancements: "feature/issue#"or "feature/short description"
     - release staging: "release/version" Ex: "release/v.2.5.3"
 
