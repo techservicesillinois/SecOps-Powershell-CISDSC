@@ -36,7 +36,7 @@ Once you find the GetADMX.com page for the setting it's easy to correlate to the
 ## Other info
 1) Entries in the appropriate [static_corrections.csv](/csvs/static_corrections) will always overwrite a match in the Excel documentation by 'ConvertTo-DSC'
 
-2) If your correction is related to documentation errors that should be corrected consider opening a ticket with CIS with the process outlined [here](cis_documentation.md#How-do-I-open-tickets-for-feedback?).
+2) If your correction is related to documentation errors that should be corrected consider opening a ticket with CIS with the process outlined [here](cis.md#How-do-I-open-tickets-for-feedback?).
 
 ## How do I test a correction?
 1) You will need to generate the resource again and verify the resulting 'RecommendationErrors.txt'. Instructions for doing so are located in the [new resources](new_resources.md#How-do-I-create-new-ones?) documentation.
