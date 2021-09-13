@@ -7,7 +7,7 @@
     This is created by using the "-csv" option when running CISCAT. The resulting output file can be copy/pasted into the exclusion list of your configuration.
 .PARAMETER Path
     Path to the CISDSC csv.
-.PARAMETER GPOPath
+.PARAMETER OutPath
     Path to export a text file of the exclusions.
 #>
 
