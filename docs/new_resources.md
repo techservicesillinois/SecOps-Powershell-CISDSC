@@ -33,7 +33,7 @@ Set-Location -Path '.\SecOps-Powershell-CISDSC'
 .\tools\install_dependencies.ps1
 ```
 
-1) The following examples will generate a new DSC composite resource for OS and a browser respectively. You will need to edit the parameters accordingly. These are also available in [generate_resources.ps1](/tools/generate_resources.ps1). After they are generated you will need to copy the output files to their appropriate location inside the CISDSC directory.
+3) The following examples will generate a new DSC composite resource for OS and a browser respectively. You will need to edit the parameters accordingly. These are also available in [generate_resources.ps1](/tools/generate_resources.ps1). After they are generated you will need to copy the output files to their appropriate location inside the CISDSC directory.
 ## Operating System
 ```powershell
 Import-Module '.\src\CISDSCResourceGeneration\CISDSCResourceGeneration.psd1' -Force
