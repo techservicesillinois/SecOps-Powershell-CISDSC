@@ -34,6 +34,7 @@ Configuration CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
         [Int32]$cis1892632MaxSize = 32768,
         [ValidateRange(32768,2147483647)]
         [Int32]$cis1892642MaxSize = 32768,
+        [ValidateRange(60000,900000)]
         [Int32]$cis189623101MaxIdleTime = 900000,
         [ValidateLength(1,256)]
         [String]$cis2315AccountsRenameadministratoraccount,
