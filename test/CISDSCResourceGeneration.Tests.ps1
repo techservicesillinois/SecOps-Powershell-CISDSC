@@ -75,14 +75,6 @@ Describe 'Class: Recommendation' {
 Describe 'Class: DSCConfigurationParameter' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
         It 'Constructs under normal circumstances' {
-            $RecommendationNum = '2.3.7.3'
-            $Name = 'MaxDevicePasswordFailedAttempts'
-            $DataType = "'[Int32]'"
-            $DefaultValue = "10"
-            {[DSCConfigurationParameter]::New($RecommendationNum,$Name,$DataType,$DefaultValue)} | Should -Not -Throw
-        }
-
-        It 'Adds a validation block if appropriate' {
             Import-ParameterValidations -Path "$($PSScriptRoot)\example_files\parameter_validations.csv"
 
             $RecommendationNum = '1.1.2'
@@ -91,6 +83,17 @@ Describe 'Class: DSCConfigurationParameter' {
             $DefaultValue = "60"
             $Param = [DSCConfigurationParameter]::New($RecommendationNum,$Name,$DataType,$DefaultValue)
             $Param.Textblock -like "*[ValidateRange(1,60)]*" | Should -Be $True
+        }
+
+        It 'Throws if missing a validation block' {
+            Import-ParameterValidations -Path "$($PSScriptRoot)\example_files\parameter_validations.csv"
+
+            $RecommendationNum = '1.1.2'
+            $script:ParameterValidations.remove($RecommendationNum)
+            $Name = 'MaximumPasswordAge'
+            $DataType = "'[Int32]'"
+            $DefaultValue = "60"
+            { [DSCConfigurationParameter]::New($RecommendationNum,$Name,$DataType,$DefaultValue) } | Should -Throw
         }
     }
 }
