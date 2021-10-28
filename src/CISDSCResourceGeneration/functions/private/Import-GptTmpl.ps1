@@ -1,12 +1,12 @@
 <#
 .Synopsis
-   Recursively finds all 'GptTmpl.inf' files in the provided directory that contain misc. settings.
-   Some information on these files can be found here: http://techgenix.com/group-policy-settings-part1/
-   Ex: Registry Values, Privilege Rights, System Access, and Service General Setting.
+    Recursively finds all 'GptTmpl.inf' files in the provided directory that contain misc. settings.
+    Some information on these files can be found here: http://techgenix.com/group-policy-settings-part1/
+    Ex: Registry Values, Privilege Rights, System Access, and Service General Setting.
 .DESCRIPTION
-   Recursively finds all 'GptTmpl.inf' files in the provided directory that contain misc. settings.
-   Some information on these files can be found here: http://techgenix.com/group-policy-settings-part1/
-   Ex: Registry Values, Privilege Rights, System Access, and Service General Setting.
+    Recursively finds all 'GptTmpl.inf' files in the provided directory that contain misc. settings.
+    Some information on these files can be found here: http://techgenix.com/group-policy-settings-part1/
+    Ex: Registry Values, Privilege Rights, System Access, and Service General Setting.
 .PARAMETER GPOPath
     Path to the GPO files (build kit) from CIS containing the benchmarks settings.
 .EXAMPLE
@@ -15,15 +15,18 @@ function Import-GptTmpl {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]
-        [string]$GPOPath
+        [string]$GPOPath,
+
+        [Parameter(Mandatory=$True)]
+        [ValidateNotNullOrEmpty()]
+        [string]$System
     )
 
     begin {
-
     }
 
     process {
-        Get-ChildItem -Path $GPOPath -Filter 'GptTmpl.inf' -Recurse | Foreach-Object -Process {
+        Get-ChildItem -Path $GPOPath -Filter 'GptTmpl.inf' -Recurse | Where-Object -FilterScript {$_.FullName -like (Get-CISValidBuildKitFoldersFilter -System $System)} | Foreach-Object -Process {
             Write-Verbose -Message "Importing $($_.FullName)"
             $ini = Get-IniContent -Path $_.fullname
 
@@ -46,6 +49,5 @@ function Import-GptTmpl {
     }
 
     end {
-
     }
 }

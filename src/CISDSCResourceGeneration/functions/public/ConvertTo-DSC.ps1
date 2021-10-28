@@ -89,7 +89,8 @@ function ConvertTo-DSC {
     process {
         #The use of get-variable here is a little hack to avoid needing a switch statement.
         #It assumes the value we care about is stored in a variable of the same name as the parameter set.
-        Import-CISBenchmarkData -Path $BenchmarkPath -System (Get-Variable -Name $PSCmdlet.ParameterSetName).Value
+        $System = (Get-Variable -Name $PSCmdlet.ParameterSetName).Value
+        Import-CISBenchmarkData -Path $BenchmarkPath -System $System
 
         if($StaticCorrectionsPath){
             Import-StaticCorrections -Path $StaticCorrectionsPath
@@ -107,9 +108,9 @@ function ConvertTo-DSC {
             New-Item -Path $OutputPath -ItemType 'Directory' | Out-Null
         }
 
-        Import-GptTmpl -GPOPath $GPOPath
-        Import-AudicCsv -GPOPath $GPOPath
-        Import-RegistryPol -GPOPath $GPOPath
+        Import-GptTmpl -GPOPath $GPOPath -System $System
+        Import-AudicCsv -GPOPath $GPOPath -System $System
+        Import-RegistryPol -GPOPath $GPOPath -System $System
 
         Export-RecommendationErrors -OutputPath $OutputPath
         Export-MissingRecommendations -OutputPath $OutputPath
