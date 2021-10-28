@@ -65,7 +65,7 @@ Class DSCConfigurationParameter{
             }
         }
         else{
-            $DocumentationSyntaxValues = [string]::Empty
+            throw "Missing parameter validation for recommendation $($RecommendationNum)"
         }
 
         $This.TextBlock += "        $($This.DataType)$($This.Name)$($This.DefaultValue)"
