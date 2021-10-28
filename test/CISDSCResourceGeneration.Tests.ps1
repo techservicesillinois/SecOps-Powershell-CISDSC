@@ -249,19 +249,25 @@ Describe 'Helper: Conversion functions' {
 
 Describe 'Helper: File import functions' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Get-CISValidBuildKitFoldersFilter correctly filters GPO folders' {
+            Get-CISValidBuildKitFoldersFilter -System "Member Server" | Should -Be "*MS-*"
+            Get-CISValidBuildKitFoldersFilter -System "Domain Controller" | Should -Be "*DC-*"
+            Get-CISValidBuildKitFoldersFilter -System "Workstation" | Should -Be "*"
+        }
+
         It 'Import-AudicCsv returns objects from a valid Audit.csv' {
             [string]$GPOPath = "$($PSScriptRoot)\example_files"
-            {Import-AudicCsv -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
+            {Import-AudicCsv -GPOPath $GPOPath -System "Workstation" -WarningAction SilentlyContinue} | Should -Not -Throw
         }
 
         It 'Import-GptTmpl returns objects from a valid GptTmpl.inf' {
             [string]$GPOPath = "$($PSScriptRoot)\example_files"
-            {Import-GptTmpl -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
+            {Import-GptTmpl -GPOPath $GPOPath -System "Workstation" -WarningAction SilentlyContinue} | Should -Not -Throw
         }
 
         It 'Import-RegistryPol returns objects from a valid registry.pol' {
             [string]$GPOPath = "$($PSScriptRoot)\example_files"
-            {Import-RegistryPol -GPOPath $GPOPath -WarningAction SilentlyContinue} | Should -Not -Throw
+            {Import-RegistryPol -GPOPath $GPOPath -System "Workstation" -WarningAction SilentlyContinue} | Should -Not -Throw
         }
     }
 }
@@ -290,9 +296,9 @@ Describe 'Helper: Import-ParameterValidations' {
 Describe 'Helper: Text block generation' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
         #This test must take place after Helper: Import-CISBenchmarkData
-        Import-GptTmpl -GPOPath "$($PSScriptRoot)\example_files" -WarningAction SilentlyContinue
-        Import-AudicCsv -GPOPath "$($PSScriptRoot)\example_files" -WarningAction SilentlyContinue
-        Import-RegistryPol -GPOPath "$($PSScriptRoot)\example_files" -WarningAction SilentlyContinue
+        Import-GptTmpl -GPOPath "$($PSScriptRoot)\example_files" -System 'Workstation' -WarningAction SilentlyContinue
+        Import-AudicCsv -GPOPath "$($PSScriptRoot)\example_files" -System 'Workstation' -WarningAction SilentlyContinue
+        Import-RegistryPol -GPOPath "$($PSScriptRoot)\example_files" -System 'Workstation' -WarningAction SilentlyContinue
 
         It 'Lists the appropriate levels' {
             (Get-ApplicableLevels -Recommendations ($script:BenchmarkRecommendations).Values | Measure-Object).Count | Should -be 4
