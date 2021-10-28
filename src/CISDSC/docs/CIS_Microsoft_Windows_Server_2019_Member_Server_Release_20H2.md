@@ -1,5 +1,5 @@
 ---
-date: 8/30/2021
+date: 10/27/2021
 keywords: dsc,powershell,configuration,setup,cis,security,20H2
 title: CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
 ---
@@ -33,7 +33,7 @@ CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2 [String] #ResourceN
     [ cis1892622MaxSize = [Int32] { 196608-2147483647 } ]
     [ cis1892632MaxSize = [Int32] { 32768-2147483647 } ]
     [ cis1892642MaxSize = [Int32] { 32768-2147483647 } ]
-    [ cis189623101MaxIdleTime = [Int32] ]
+    [ cis189623101MaxIdleTime = [Int32] { 60000-900000 } ]
     [ cis2315AccountsRenameadministratoraccount = [String] { 1-256 } ]
     [ cis2316AccountsRenameguestaccount = [String] { 1-256 } ]
     [ cis2365MaximumPasswordAge = [Int32] { 1-30 } ]
