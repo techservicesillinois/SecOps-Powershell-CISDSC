@@ -26,14 +26,16 @@ Configuration MyWorkstation
 # How do I create new ones?
 1) Acquire the GPOs and Excel documentation from [CIS](./static_corrections.md).
 
-2) Set up your development environment with the following PowerShell. This will clone this repository and install the dependencies specified in [install_dependencies](/tools/install_dependencies.ps1).
+2) Compare the new Excel document with the previously available using [find_changed_recommendations.ps1](/tools/find_changed_recommendations.ps1) to see if there is any drift in recommendation numbers that would impact the CSVs mentioned later in the process.
+
+3) Set up your development environment with the following PowerShell. This will clone this repository and install the dependencies specified in [install_dependencies](/tools/install_dependencies.ps1).
 ```powershell
 git clone https://github.com/techservicesillinois/SecOps-Powershell-CISDSC
 Set-Location -Path '.\SecOps-Powershell-CISDSC'
 .\tools\install_dependencies.ps1
 ```
 
-3) The following examples will generate a new DSC composite resource for OS and a browser respectively. You will need to edit the parameters accordingly. These are also available in [generate_resources.ps1](/tools/generate_resources.ps1). After they are generated you will need to copy the output files to their appropriate location inside the CISDSC directory.
+4) The following examples will generate a new DSC composite resource for OS and a browser respectively. You will need to edit the parameters accordingly. These are also available in [generate_resources.ps1](/tools/generate_resources.ps1). After they are generated you will need to copy the output files to their appropriate location inside the CISDSC directory.
 ## Operating System
 ```powershell
 Import-Module '.\src\CISDSCResourceGeneration\CISDSCResourceGeneration.psd1' -Force
