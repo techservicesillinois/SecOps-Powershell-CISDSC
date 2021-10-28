@@ -15,6 +15,8 @@
 #>
 function Import-AudicCsv {
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', 'System',
+        Justification = 'False positive as rule does not scan child scopes such as Where-Object FilterScript.')]
     param (
         [Parameter(Mandatory=$true)]
         [string]$GPOPath,
