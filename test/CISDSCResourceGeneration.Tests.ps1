@@ -255,9 +255,9 @@ Describe 'Helper: File import functions' {
             Get-CISValidBuildKitFoldersFilter -System "Workstation" | Should -Be "*"
         }
 
-        It 'Import-AudicCsv returns objects from a valid Audit.csv' {
+        It 'Import-AuditCsv returns objects from a valid Audit.csv' {
             [string]$GPOPath = "$($PSScriptRoot)\example_files"
-            {Import-AudicCsv -GPOPath $GPOPath -System "Workstation" -WarningAction SilentlyContinue} | Should -Not -Throw
+            {Import-AuditCsv -GPOPath $GPOPath -System "Workstation" -WarningAction SilentlyContinue} | Should -Not -Throw
         }
 
         It 'Import-GptTmpl returns objects from a valid GptTmpl.inf' {
@@ -297,7 +297,7 @@ Describe 'Helper: Text block generation' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
         #This test must take place after Helper: Import-CISBenchmarkData
         Import-GptTmpl -GPOPath "$($PSScriptRoot)\example_files" -System 'Workstation' -WarningAction SilentlyContinue
-        Import-AudicCsv -GPOPath "$($PSScriptRoot)\example_files" -System 'Workstation' -WarningAction SilentlyContinue
+        Import-AuditCsv -GPOPath "$($PSScriptRoot)\example_files" -System 'Workstation' -WarningAction SilentlyContinue
         Import-RegistryPol -GPOPath "$($PSScriptRoot)\example_files" -System 'Workstation' -WarningAction SilentlyContinue
 
         It 'Lists the appropriate levels' {

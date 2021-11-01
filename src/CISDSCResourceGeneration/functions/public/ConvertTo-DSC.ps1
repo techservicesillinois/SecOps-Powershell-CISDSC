@@ -109,7 +109,7 @@ function ConvertTo-DSC {
         }
 
         Import-GptTmpl -GPOPath $GPOPath -System $System
-        Import-AudicCsv -GPOPath $GPOPath -System $System
+        Import-AuditCsv -GPOPath $GPOPath -System $System
         Import-RegistryPol -GPOPath $GPOPath -System $System
 
         Export-RecommendationErrors -OutputPath $OutputPath

@@ -15,7 +15,7 @@
     The operating system or software the benchmark is written for. This will determine which worksheets are valid to import.
 .EXAMPLE
 #>
-function Import-AudicCsv {
+function Import-AuditCsv {
     [CmdletBinding()]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', 'System',
         Justification = 'False positive as rule does not scan child scopes such as Where-Object FilterScript.')]
