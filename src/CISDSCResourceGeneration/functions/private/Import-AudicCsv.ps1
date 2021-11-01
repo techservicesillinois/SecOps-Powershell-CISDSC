@@ -11,6 +11,8 @@
     ,System,Audit Credential Validation,{0cce923f-69ae-11d9-bed3-505054503030},Success and Failure,,3
 .PARAMETER GPOPath
     Path to the GPO files (build kit) from CIS containing the benchmarks settings.
+.PARAMETER System
+    The operating system or software the benchmark is written for. This will determine which worksheets are valid to import.
 .EXAMPLE
 #>
 function Import-AudicCsv {

@@ -9,6 +9,8 @@
     Ex: Registry Values, Privilege Rights, System Access, and Service General Setting.
 .PARAMETER GPOPath
     Path to the GPO files (build kit) from CIS containing the benchmarks settings.
+.PARAMETER System
+    The operating system or software the benchmark is written for. This will determine which worksheets are valid to import.
 .EXAMPLE
 #>
 function Import-GptTmpl {
