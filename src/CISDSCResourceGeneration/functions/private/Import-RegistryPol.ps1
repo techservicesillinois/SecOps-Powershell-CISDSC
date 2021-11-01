@@ -1,33 +1,40 @@
 <#
 .Synopsis
-   Recursively finds all 'registry.pol' files in the provided directory that contain abstracted registry settings.
-   These are settings defined by admx templates that result in registry settings. They differ from a GptTmpl.inf registry values
-   because they are not explictly configured within group policy as registry keys.
+    Recursively finds all 'registry.pol' files in the provided directory that contain abstracted registry settings.
+    These are settings defined by admx templates that result in registry settings. They differ from a GptTmpl.inf registry values
+    because they are not explictly configured within group policy as registry keys.
 
-   This function relies on the GPRegistryPolicyParser module by MicroSoft. https://github.com/PowerShell/GPRegistryPolicyParser
+    This function relies on the GPRegistryPolicyParser module by MicroSoft. https://github.com/PowerShell/GPRegistryPolicyParser
 .DESCRIPTION
-   Recursively finds all 'registry.pol' files in the provided directory that contain abstracted registry settings.
-   These are settings defined by admx templates that result in registry settings. They differ from a GptTmpl.inf registry values
-   because they are not explictly configured within group policy as registry keys.
+    Recursively finds all 'registry.pol' files in the provided directory that contain abstracted registry settings.
+    These are settings defined by admx templates that result in registry settings. They differ from a GptTmpl.inf registry values
+    because they are not explictly configured within group policy as registry keys.
 
-   This function relies on the GPRegistryPolicyParser module by MicroSoft. https://github.com/PowerShell/GPRegistryPolicyParser
+    This function relies on the GPRegistryPolicyParser module by MicroSoft. https://github.com/PowerShell/GPRegistryPolicyParser
 .PARAMETER GPOPath
     Path to the GPO files (build kit) from CIS containing the benchmarks settings.
+.PARAMETER System
+    The operating system or software the benchmark is written for. This will determine which worksheets are valid to import.
 .EXAMPLE
 #>
 function Import-RegistryPol {
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', 'System',
+        Justification = 'False positive as rule does not scan child scopes such as Where-Object FilterScript.')]
     param (
         [Parameter(Mandatory = $true)]
-        [string]$GPOPath
+        [string]$GPOPath,
+
+        [Parameter(Mandatory=$True)]
+        [ValidateNotNullOrEmpty()]
+        [string]$System
     )
 
     begin {
-
     }
 
     process {
-        Get-ChildItem -Path $GPOPath -Filter 'registry.pol' -Recurse | ForEach-Object -Process {
+        Get-ChildItem -Path $GPOPath -Filter 'registry.pol' -Recurse | Where-Object -FilterScript {$_.FullName -like (Get-CISValidBuildKitFoldersFilter -System $System)} | ForEach-Object -Process {
             Write-Verbose -Message "Importing $($_.FullName)"
             $PolicyData = Read-PolFile -Path $_.FullName
 
@@ -42,6 +49,5 @@ function Import-RegistryPol {
     }
 
     end {
-
     }
 }
