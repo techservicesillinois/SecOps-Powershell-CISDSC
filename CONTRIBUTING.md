@@ -12,6 +12,7 @@ If you find anything odd take a look at the [design choices](/docs/design_choice
     - release staging: "release/version" Ex: "release/v.2.5.3"
 
 ## New Resources
+- Development process is documented [here](/docs/new_resources.md)
 - Update the "Unreleased" section of the [changelog](/CHANGELOG.md) to reflect it was added
 - Do not increment the CISDSC version number as this will be done when a release is staged
 - Resources are expected to have a version number matching the benchmark version they are based on
