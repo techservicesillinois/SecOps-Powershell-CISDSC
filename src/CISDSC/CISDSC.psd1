@@ -104,7 +104,7 @@ PrivateData = @{
         Tags = @('DSC','CIS','benchmark','benchmarks','security')
 
         # A URL to the license for this module.
-        LicenseUri = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/main/LICENSE'
+        LicenseUri = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/main/LICENSE?raw=true'
 
         # A URL to the main website for this project.
         ProjectUri = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC'
@@ -113,7 +113,7 @@ PrivateData = @{
         IconUri = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/main/icon.png?raw=true'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/main/CHANGELOG.md'
+        ReleaseNotes = 'https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/blob/main/CHANGELOG.md?raw=true'
 
         # Prerelease string of this module
         # Prerelease = ''
