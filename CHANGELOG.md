@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 - Fixed missing validate range for cis189623101MaxIdleTime in benchmark CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
+- Corrected Changelog and License URIs in the manifest to be raw links
 
 ## [2.5.1] - 2021-08-31
 ### Changed
