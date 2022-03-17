@@ -4,11 +4,11 @@ This document outlines justifications for design choices through out this projec
 
 ## Recommendation title length
 
-Recommendation titles have been truncated to 256 characters as a result of [#248](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/248). This was causing PSScriptAnalyzer heart burn as well as various other quirks.
+Recommendation titles have been truncated to 256 characters as a result of [#248](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/248). This is a known limitation in Azure.
 
 ## Parameter name prefixes
 
-Parameter names have all been prefixed with "cis" as a result of [#169](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/169). This is a known limitation in Azure.
+Parameter names have all been prefixed with "cis" as a result of [#169](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/169). This was causing PSScriptAnalyzer heart burn as well as various other quirks.
 
 ## CISService over Service
 
