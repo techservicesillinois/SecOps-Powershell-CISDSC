@@ -113,6 +113,8 @@ Class Recommendation{
         $This.Title = $ExcelRow.Title.Replace('"',"'")
         #Most special characters are filtered out of the title for the DSC resource. This prevents various encoding issues. Recommendation number is added to the start to prevent duplicate titles between recommendations which does occur.
         $This.DSCTitle = "$($This.RecommendationNum) - $($This.Title)" -replace "[^a-zA-Z0-9-() .]",""
+        #DSCTitle needs to be truncated to 165 chars to avoid limitations in Azure
+        $This.DSCTitle = ($This.DSCTitle).Substring(0, [System.Math]::Min(165, $This.DSCTitle.length))
         $This.Description = $ExcelRow.Description
         $This.RemediationProcedure = $ExcelRow.'remediation procedure'
         $This.AuditProcedure = $ExcelRow.'audit procedure'

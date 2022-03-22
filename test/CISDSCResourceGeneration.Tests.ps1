@@ -69,6 +69,13 @@ Describe 'Class: Recommendation' {
             $Recommendation2.UpdateForDSCParameter()
             $Recommendation2.NeedsParameter | Should -Be $True
         }
+
+        It 'Truncates the DSCTitle to 165 characters'{
+            $ExcelExample = (Import-Excel -Path "$($PSScriptRoot)\example_files\desktop_examples.xlsx" -WorksheetName 'BitLocker (BL) - Level 2 (L2)' |
+                Where-Object -FilterScript {$_.'Recommendation #' -eq '18.8.7.1.5'})
+            $ExpectedLength = 166
+            ([Recommendation]::New($ExcelExample)).DSCTitle.length | Should -BeLessThan $ExpectedLength
+        }
     }
 }
 
