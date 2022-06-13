@@ -39,7 +39,7 @@
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\FVE:RDVEnforcePassphrase","18.9.11.3.14","These are unmentioned keys impacted by the remediation steps",
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\Network Protection:EnableNetworkProtection","18.9.45.4.3.1","Value is only in remediation steps",
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\AppHVSI:AppHVSIClipboardFileType","18.9.46.5","These are unmentioned keys impacted by the remediation steps",
-"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging:EnableScriptBlockInvocationLogging","18.9.95.1","Outdated key in benchmark, https://getadmx.com/?Category=Windows_10_2016&Policy=Microsoft.Policies.PowerShell::EnableScriptBlockLogging",
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging:EnableScriptBlockInvocationLogging","18.9.95.1","Outdated key in benchmark, https://admx.help/?Category=Windows_10_2016&Policy=Microsoft.Policies.PowerShell::EnableScriptBlockLogging",
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription:EnableInvocationHeader","18.9.95.2","These are unmentioned keys impacted by the remediation steps",
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription:OutputDirectory","18.9.95.2","These are unmentioned keys impacted by the remediation steps",
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WinRM\Service:IPv4Filter","18.9.97.2.2","These are unmentioned keys impacted by the remediation steps",

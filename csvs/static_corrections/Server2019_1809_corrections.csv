@@ -2,7 +2,7 @@
 "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters:MaximumPasswordAge","2.3.6.5","Registry key is missing from audit procedure cell of documentation"
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}:NoBackgroundPolicy","18.8.21.2","Benchmark has a typo. '\NoBackgroundPolicy' vs ':NoBackgroundPolicy'"
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}:NoGPOListChanges","18.8.21.3","Benchmark has a typo. '\NoGPOListChanges' vs ':NoGPOListChanges'"
-"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging:EnableScriptBlockInvocationLogging","18.9.95.1","Outdated key in benchmark, https://getadmx.com/?Category=Windows_10_2016&Policy=Microsoft.Policies.PowerShell::EnableScriptBlockLogging"
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging:EnableScriptBlockInvocationLogging","18.9.95.1","Outdated key in benchmark, https://admx.help/?Category=Windows_10_2016&Policy=Microsoft.Policies.PowerShell::EnableScriptBlockLogging"
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription:EnableInvocationHeader","18.9.95.2","These are unmentioned keys impacted by the remediation steps"
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription:OutputDirectory","18.9.95.2","These are unmentioned keys impacted by the remediation steps"
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate:PauseFeatureUpdatesStartTime","18.9.102.1.2","these keys have changed in 1703+ and the documentation is outdated. https://docs.microsoft.com/en-us/windows/deployment/update/waas-configure-wufb"
