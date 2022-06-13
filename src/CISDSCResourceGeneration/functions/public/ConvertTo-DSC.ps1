@@ -61,7 +61,9 @@ function ConvertTo-DSC {
             'Microsoft Windows Server 2016 Member Server',
             'Microsoft Windows Server 2016 Domain Controller',
             'Microsoft Windows Server 2019 Member Server',
-            'Microsoft Windows Server 2019 Domain Controller'
+            'Microsoft Windows Server 2019 Domain Controller',
+            'Microsoft Windows Server 2022 Member Server',
+            'Microsoft Windows Server 2022 Domain Controller'
         )]
         [string]$OS,
 
