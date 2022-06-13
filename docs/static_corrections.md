@@ -29,9 +29,9 @@ Occasionally there are will be some discrepancies between the build kit (GPOs) a
 There are some rare circumstances where a recommendation error needs ignored. Such as actions specific to GPO that are not applicable to DSC such as deleting keys before settings them or just human error on CIS's end making the rememediation kit. This follows the same above process for adding a correction except you will specify 'ignore' for the recommendation Id.
 
 ## How do I know what to correct it to?
-https://admx.help/ is an amazing resource for finding the GPO admx setting name that uses a given registry key. You can use the banner at the top to browse through keys graphically or there is usually a lot of luck in just googling the key and having it's getadmx.com link show up first.
+https://admx.help/ is an amazing resource for finding the GPO admx setting name that uses a given registry key. You can use the banner at the top to browse through keys graphically or there is usually a lot of luck in just googling the key and having it's admx.help link show up first.
 
-Once you find the GetADMX.com page for the setting it's easy to correlate to the documentation. In the below example we see the ADMX title is "Prevent the computer from joining a homegroup" doing a CTRL+F on the documentation for that text finds "18.9.35.1 (L1) Ensure 'Prevent the computer from joining a homegroup' is set to 'Enabled'" which is our correction.</br>![Example](screenshots/getadmx_example.PNG)
+Once you find the admx.help page for the setting it's easy to correlate to the documentation. In the below example we see the ADMX title is "Prevent the computer from joining a homegroup" doing a CTRL+F on the documentation for that text finds "18.9.35.1 (L1) Ensure 'Prevent the computer from joining a homegroup' is set to 'Enabled'" which is our correction.</br>![Example](screenshots/getadmx_example.PNG)
 
 ## Other info
 1) Entries in the appropriate [static_corrections.csv](/csvs/static_corrections) will always overwrite a match in the Excel documentation by 'ConvertTo-DSC'
