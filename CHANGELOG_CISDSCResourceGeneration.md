@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added an exception for when a parameter does not have a validation block assigned to it. [Issue 233](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/233)
 - Get-CISBenchmarkValidWorksheets was moved to be a public function to help with [Issue 237](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/237)
 - Added functionality to ignore GPO files for domain controllers when working on member servers and vice versa. [Issue 235](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/237)
+- Added Server 2022 to accepted OS names in ConvertTo-DSC [Issue 252](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/252)
 
 ## [2.4.1] - 2021-08-31
 ### Added
