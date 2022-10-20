@@ -46,7 +46,7 @@ You can be notified of new releases by following the [notifications documentatio
 
 The process of customizing these resources for your environment is outlined in [customization](docs/customization.md).
 
-# How do I use CISDSC to apply CIS benchmarks to a specific machine?
+# How do I use it?
 
 After installing the module and dependencies, find [example scripts](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/tree/main/src/CISDSC/examples) applicable to your build, modify as needed, and run. These scripts can also be run through system deployment tools like MECM.
 
