@@ -3,14 +3,14 @@
 ![ScriptAnalyzer](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/workflows/ScriptAnalyzer/badge.svg)
 
 # What is This?
+
 This project is designed to deliver [CIS](https://www.cisecurity.org/) security benchmarks in PowerShell DSC via the included [CISDSC](src/CISDSC) module. Note that CIS benchmarks are designed for domain joined machines meaning stand-alone/workgroup machines are not supported. If applied to a stand-alone machine any remoting capabilities will break without proper exclusions and may have other unknown side effects.
 
 It also contains a module to assist in the creation of these resources via [CISDSCResourceGeneration](src/CISDSCResourceGeneration) which is a heavily modified fork of [Microsoft's BaselineManagement](https://github.com/microsoft/BaselineManagement) module.
 
-
 # What is PowerShell DSC?
-PowerShell DSC is a configuration management framework built into Windows 7+ powered by PowerShell. The below video gives a high level explanation of the framework.
 
+PowerShell DSC is a configuration management framework built into Windows 7+ powered by PowerShell. The below video gives a high level explanation of the framework.
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=k_rXBIHu3xk">
@@ -21,6 +21,7 @@ PowerShell DSC is a configuration management framework built into Windows 7+ pow
 </p>
 
 PowerShell DSC resources like the ones offered here can be utilized within other configuration management platforms as well. Making this an easy solution regardless of your platform of choice. However the majority of these platforms do not currently support composite resources so generic PowerShell script options may be required vs native DSC support. This is an issue with the PSDesiredStateConfiguration module that is not currently open source.</br>
+
 - [Ansible](https://docs.ansible.com/ansible/latest/modules/win_dsc_module.html)</br>
 - [Chef](https://docs.chef.io/resources/dsc_resource/)</br>
 - [Puppet](https://puppet.com/blog/managing-powershell-dsc-puppet/)</br>
@@ -30,7 +31,9 @@ PowerShell DSC resources like the ones offered here can be utilized within other
 More detailed information can be found in the [getting started with DSC document](docs/dsc_getting_started.md)
 
 # How do I install it?
+
 The actual DSC resources should be installed via the CISDSC module's [PSGallery page](https://www.powershellgallery.com/packages/CISDSC).
+
 ```powershell
 # This will install on the local machine
 Install-Module -Name 'CISDSC'
@@ -43,9 +46,15 @@ You can be notified of new releases by following the [notifications documentatio
 
 The process of customizing these resources for your environment is outlined in [customization](docs/customization.md).
 
+# How do I use it?
+
+After installing the module and dependencies, find [example scripts](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/tree/main/src/CISDSC/examples) applicable to your build, modify as needed, and run. These scripts can also be run through system deployment tools like MECM.
+
 # How can I contribute?
+
 Contribution information can be found in the [contributions documentation](CONTRIBUTING.md).
 Any community engagement is subject to the [code of conduct](CODE_OF_CONDUCT.md).
 
 # Found a bug or a vulnerability?
+
 Disclosure details can be found in the [security documentation](SECURITY.md).
