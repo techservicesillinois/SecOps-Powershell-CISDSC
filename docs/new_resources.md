@@ -34,13 +34,15 @@ Configuration MyWorkstation
 ```powershell
 git clone https://github.com/techservicesillinois/SecOps-Powershell-CISDSC
 Set-Location -Path '.\SecOps-Powershell-CISDSC'
+# This command requires administrator privileges:
 .\tools\install_dependencies.ps1
 ```
 
 3) Compare the new Excel document with the previously available using [find_changed_recommendations.ps1](/tools/find_changed_recommendations.ps1) to see if there is any drift in recommendation numbers that would impact the CSVs mentioned later in the process.
 
 ```powershell
-./find_changed_recommendations foo bar
+Set-Location -Path '.\SecOps-Powershell-CISDSC\tools'
+.\find_changed_recommendations.ps1 -PreviousPath "C:\temp\cis\CIS_Microsoft_Windows_Server_2019_Benchmark_v1.3.0.xlsx" -NewPath "C:\temp\cis\CIS_Microsoft_Windows_Server_2022_Benchmark_v1.0.0.xlsx" -System "Member Server"
 ```
 
 4) The following examples will generate a new DSC composite resource for OS and a browser respectively. You will need to edit the parameters accordingly. These are also available in [generate_resources.ps1](/tools/generate_resources.ps1). After they are generated you will need to copy the output files to their appropriate location inside the CISDSC directory.
