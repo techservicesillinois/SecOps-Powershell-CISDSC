@@ -1,0 +1,29 @@
+"SectionNum","RecommendationNum","Title","DSCTitle","Description","RemediationProcedure","AuditProcedure","Level","RecommendationVersioned","SectionVersioned","TopLevelSection","ResourceParameters","DSCTextBlock","DSCConfigParameter","NeedsParameter"
+"18.3","18.3.5","(L1) Ensure 'Limits print driver installation to Administrators' is set to 'Enabled'","18.3.5 - (L1) Ensure Limits print driver installation to Administrators is set to Enabled","This policy setting controls whether users that aren't Administrators can install print drivers on the system.
+
+The recommended state for this setting is: `Enabled`.
+
+**Note:** On August 10, 2021, Microsoft announced a [Point and Print Default Behavior Change](https://msrc-blog.microsoft.com/2021/08/10/point-and-print-default-behavior-change/) which modifies the default Point and Print driver installation and update behavior to require Administrator privileges. This is documented in [KB5005652—Manage new Point and Print default driver installation behavior (CVE-2021-34481)](https://support.microsoft.com/en-gb/topic/kb5005652-manage-new-point-and-print-default-driver-installation-behavior-cve-2021-34481-873642bf-2634-49c5-a23b-6d8e9a302872).","To establish the recommended configuration via GP, set the following UI path to `Enabled`.
+
+```
+Computer Configuration\Policies\Administrative Templates\MS Security Guide\Limits print driver installation to Administrators
+```
+
+**Note:** This Group Policy path does not exist by default. An additional Group Policy template `SecGuide.admx/adml` is required - it is available from Microsoft at this [link](https://www.microsoft.com/en-us/download/details.aspx?id=55319).","Navigate to the UI Path articulated in the Remediation section and confirm it is set as prescribed. This group policy setting is backed by the following registry location:
+
+```
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:RestrictDriverInstallationToAdministrators 
+```","LevelOne","18.3.5","18.3","18",,,,"False"
+"18.9.64","18.9.64.1","(L2) Ensure 'Turn off Push To Install service' is set to 'Enabled'","18.9.64.1 - (L2) Ensure Turn off Push To Install service is set to Enabled","This policy setting controls whether users can push Apps to the device from the Microsoft Store App running on other devices or the web.
+
+The recommended state for this setting is: `Enabled`.","To establish the recommended configuration via GP, set the following UI path to `Enabled`:
+
+```
+Computer Configuration\Policies\Administrative Templates\Windows Components\Push to Install\Turn off Push To Install service
+```
+
+**Note:** This Group Policy path may not exist by default. It is provided by the Group Policy template `PushToInstall.admx/adml` that is included with the Microsoft Windows 10 Release 1709 Administrative Templates (or newer).","Navigate to the UI Path articulated in the Remediation section and confirm it is set as prescribed. This group policy setting is backed by the following registry location:
+
+```
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\PushToInstall:DisablePushToInstall
+```","LevelTwo","18.9.64.1","18.9.64","18",,,,"False"
