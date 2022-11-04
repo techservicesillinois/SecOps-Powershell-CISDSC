@@ -10,3 +10,6 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services:fAll
 HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WCN\Registrars:MaxWCNDeviceNumber,18.5.20.1,These are unmentioned keys impacted by the remediation steps,
 HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WCN\Registrars:HigherPrecedenceRegistrar,18.5.20.1,These are unmentioned keys impacted by the remediation steps,
 HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall:PolicyVersion,ignore,This is not present in the benchmark,
+HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging:EnableScriptBlockInvocationLogging,18.9.100.1,These are unmentioned keys impacted by the remediation steps,
+HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell\Transcription:OutputDirectory,18.9.100.2,These are unmentioned keys impacted by the remediation steps,
+HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell\Transcription:EnableInvocationHeader,18.9.100.2,These are unmentioned keys impacted by the remediation steps,
