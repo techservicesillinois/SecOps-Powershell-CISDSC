@@ -14,16 +14,3 @@ Computer Configuration\Policies\Administrative Templates\MS Security Guide\Limit
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:RestrictDriverInstallationToAdministrators 
 ```","LevelOne","18.3.5","18.3","18",,,,"False"
-"18.9.64","18.9.64.1","(L2) Ensure 'Turn off Push To Install service' is set to 'Enabled'","18.9.64.1 - (L2) Ensure Turn off Push To Install service is set to Enabled","This policy setting controls whether users can push Apps to the device from the Microsoft Store App running on other devices or the web.
-
-The recommended state for this setting is: `Enabled`.","To establish the recommended configuration via GP, set the following UI path to `Enabled`:
-
-```
-Computer Configuration\Policies\Administrative Templates\Windows Components\Push to Install\Turn off Push To Install service
-```
-
-**Note:** This Group Policy path may not exist by default. It is provided by the Group Policy template `PushToInstall.admx/adml` that is included with the Microsoft Windows 10 Release 1709 Administrative Templates (or newer).","Navigate to the UI Path articulated in the Remediation section and confirm it is set as prescribed. This group policy setting is backed by the following registry location:
-
-```
-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\PushToInstall:DisablePushToInstall
-```","LevelTwo","18.9.64.1","18.9.64","18",,,,"False"
