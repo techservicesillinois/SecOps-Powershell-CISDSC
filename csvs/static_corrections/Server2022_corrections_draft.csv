@@ -15,10 +15,10 @@ HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell\Transcription:
 HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell\Transcription:EnableInvocationHeader,18.9.100.2,These are unmentioned keys impacted by the remediation steps,
 HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate:ManagePreviewBuilds,18.9.108.4.1,ManagePreviewBuilds vs ManagePreview,
 HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint:RestrictDriverInstallationToAdministrators,18.3.5,SOFTWARE vs Software,
-HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint:Restricted,Ingore,This is not present in the benchmark,
+HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint:Restricted,Ignore,This is not present in the benchmark,
 HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint:TrustedServers,Ignore,This is not present in the benchmark,
-HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint:ServerList,Ignore,This is not present in the benchmark, # Let's discuss
-HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint:InForest,Ignore,This is not present in the benchmark, # https://admx.help/HKLM/Software/Policies/Microsoft/Windows%20NT/Printers/PointAndPrint
+HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint:ServerList,Ignore,This is not present in the benchmark,
+HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint:InForest,Ignore,This is not present in the benchmark,
 HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WinRM\Service:IPv6Filter,Ignore,This is not present in the benchmark,
 HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WinRM\Service:IPv4Filter,Ignore,This is not present in the benchmark,
 HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU:AllowMUUpdateService,18.9.108.2.1,These are unmentioned keys impacted by the remediation steps,
