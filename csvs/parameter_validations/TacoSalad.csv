@@ -1,1 +1,2 @@
 "Recommendation","ValidationString"
+"18.2.6","[ValidateRange(30,365)]"
