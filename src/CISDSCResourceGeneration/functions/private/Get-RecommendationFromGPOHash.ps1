@@ -41,9 +41,22 @@ function Get-RecommendationFromGPOHash {
             }
 
             'Registry'{
-                [string]$CorrectionKey = "$($GPOHash['Key'] -replace 'HKLM:','HKEY_LOCAL_MACHINE'):$($GPOHash['ValueName'])"
-                [string]$patternString = "(?i)^($($CorrectionKey))$".replace("\","\\").Replace('*','[*]')
-                [scriptblock]$FilterScript = {(($_.AuditProcedure -split "`n") -match $patternString) -or (($_.RemediationProcedure -split "`n") -match $patternString)}
+                if($GPOHash['ValueName'] -and ($GPOHash.Get_Item('ValueName') -ne ' ')){
+                    Write-Host "******************************"
+                    Write-Host [char[]]"$($GPOHash.Get_Item('ValueName'))"
+                    Write-Host "******************************"
+                    [string]$CorrectionKey = "$($GPOHash['Key'] -replace 'HKLM:','HKEY_LOCAL_MACHINE'):$($GPOHash['ValueName'])"
+                    [string]$patternString = "(?i)^($($CorrectionKey))$".replace("\","\\").Replace('*','[*]')
+                    [scriptblock]$FilterScript = {(($_.AuditProcedure -split "`n") -match $patternString) -or (($_.RemediationProcedure -split "`n") -match $patternString)}
+                }
+                else{
+                    Write-Host "------------------------------"
+                    Write-Host $GPOHash.Get_Item('ValueName')
+                    Write-Host "------------------------------"
+                    [string]$CorrectionKey = "$($GPOHash['Key'] -replace 'HKLM:','HKEY_LOCAL_MACHINE')"
+                    [string]$patternString = "(?i)^($($CorrectionKey))$".replace("\","\\").Replace('*','[*]')
+                    [scriptblock]$FilterScript = {(($_.AuditProcedure -split "`n") -match $patternString) -or (($_.RemediationProcedure -split "`n") -match $patternString)}
+                }
             }
         }
 
