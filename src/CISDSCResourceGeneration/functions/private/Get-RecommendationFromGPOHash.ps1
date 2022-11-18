@@ -41,6 +41,13 @@ function Get-RecommendationFromGPOHash {
             }
 
             'Registry'{
+                # Some values in the registry policy file have a vaule of the 'nul' unicode char.
+                # It must be cleaned in order to match the static corrections file.
+                # If ValueName contains the char 'nul', replace it with a space and trim it.
+                if($GPOHash.Get_Item('ValueName') -eq (0x00 -as [char])){
+                    $GPOHash['ValueName'] = $GPOHash['ValueName'].replace((0x00 -as [char]), ' ').trim()
+                }
+
                 [string]$CorrectionKey = "$($GPOHash['Key'] -replace 'HKLM:','HKEY_LOCAL_MACHINE'):$($GPOHash['ValueName'])"
                 [string]$patternString = "(?i)^($($CorrectionKey))$".replace("\","\\").Replace('*','[*]')
                 [scriptblock]$FilterScript = {(($_.AuditProcedure -split "`n") -match $patternString) -or (($_.RemediationProcedure -split "`n") -match $patternString)}
