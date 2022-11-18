@@ -6,8 +6,8 @@ $Splat = @{
     GPOPath = 'C:\temp\cis\Server2022v1.0.0'
     OutputPath = '.\src\CISDSC\dscresources'
     StaticCorrectionsPath = '.\csvs\static_corrections\Server2022_corrections_draft.csv'
-    ParameterValidationsPath = '.\csvs\parameter_validations\TacoSalad.csv'
-    ParameterOverridesPath = '.\csvs\parameter_overrides\TacoSalad.csv'
+    ParameterValidationsPath = '.\csvs\parameter_validations\Server2022_validations_draft.csv'
+    ParameterOverridesPath = '.\csvs\parameter_overrides\Server2022_overrides_draft.csv'
     OS = 'Microsoft Windows Server 2022 Member Server'
     OSBuild = 'TacoSalad'
 }
