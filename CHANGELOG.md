@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [2.5.3] - 2022-11-18
+
 - Fixed missing validate range for cis189623101MaxIdleTime in benchmark CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2
 - Corrected Changelog and License URIs in the manifest to be raw links
+- Fix for NUL character in registry policy file
 
 ## [2.5.2] - 2022-03-16
 
