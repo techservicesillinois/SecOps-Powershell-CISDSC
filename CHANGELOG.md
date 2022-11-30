@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- More details and reordering some steps in new_resources.md to reflect actual development process
 - Version number of CISDSCResourceGeneration module missed in last update
 
 ## [2.5.3] - 2022-11-18
