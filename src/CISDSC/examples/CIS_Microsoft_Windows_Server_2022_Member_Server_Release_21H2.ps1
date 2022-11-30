@@ -3,17 +3,17 @@
 
 <#
     .DESCRIPTION
-    Applies CIS Level one benchmarks for Microsoft Windows Server 2022 Member Server build TacoSalad with no exclusions.
+    Applies CIS Level one benchmarks for Microsoft Windows Server 2022 Member Server build 21H2 with no exclusions.
     Exclusion documentation can be found in the docs folder of this module.
 #>
 
-Configuration Microsoft_Windows_Server_2022_Member_Server_TacoSalad_CIS_L1
+Configuration Microsoft_Windows_Server_2022_Member_Server_21H2_CIS_L1
 {
-    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad'
+    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2'
 
     node 'localhost'
     {
-        CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad 'CIS Benchmarks'
+        CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2 'CIS Benchmarks'
         {
             cis2315AccountsRenameadministratoraccount = 'CISAdmin'
             cis2316AccountsRenameguestaccount = 'CISGuest'
@@ -27,5 +27,5 @@ use multiple lines to tell you how super secure it is.
     }
 }
 
-Microsoft_Windows_Server_2022_Member_Server_TacoSalad_CIS_L1
-Start-DscConfiguration -Path '.\Microsoft_Windows_Server_2022_Member_Server_TacoSalad_CIS_L1' -Verbose -Wait
+Microsoft_Windows_Server_2022_Member_Server_21H2_CIS_L1
+Start-DscConfiguration -Path '.\Microsoft_Windows_Server_2022_Member_Server_21H2_CIS_L1' -Verbose -Wait

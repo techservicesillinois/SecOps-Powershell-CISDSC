@@ -1,4 +1,4 @@
-Configuration CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad
+Configuration CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2
 {
     param
     (
@@ -3557,12 +3557,222 @@ Configuration CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad
     if($ExcludeList -notcontains '18.9.108.4.3' -and $LevelOne){
         Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (1)" {
             Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\ACRS\Certificates'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (2)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\ACRS\CRLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (3)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\ACRS\CTLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (4)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\CA\Certificates'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (5)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\CA\CRLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (6)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\CA\CTLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (7)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\Disallowed\Certificates'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (8)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\Disallowed\CRLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (9)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\Disallowed\CTLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (10)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\DPNGRA\Certificates'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (11)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\DPNGRA\CRLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (12)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\DPNGRA\CTLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (13)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\FVE\Certificates'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (14)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\FVE\CRLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (15)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\FVE\CTLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (16)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\FVE_NKP\Certificates'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (17)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\FVE_NKP\CRLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (18)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\FVE_NKP\CTLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (19)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\Root\Certificates'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (20)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\Root\CRLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (21)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\Root\CTLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (22)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\Trust\Certificates'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (23)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\Trust\CRLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (24)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\Trust\CTLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (25)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\TrustedPeople\Certificates'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (26)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\TrustedPeople\CRLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (27)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\TrustedPeople\CTLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (28)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\TrustedPublisher\Certificates'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (29)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\TrustedPublisher\CRLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (30)" {
+            Ensure = 'Present'
+            Key = 'HKLM:\Software\Policies\Microsoft\SystemCertificates\TrustedPublisher\CTLs'
+            ValueData = 
+            ValueName = ''
+            ValueType = 
+        }
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (31)" {
+            Ensure = 'Present'
             Key = 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate'
             ValueData = 1
             ValueName = 'DeferQualityUpdates'
             ValueType = 'Dword'
         }
-        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (2)" {
+        Registry "18.9.108.4.3 - (L1) Ensure Select when Quality Updates are received is set to Enabled 0 days (32)" {
             Ensure = 'Present'
             Key = 'HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate'
             ValueData = 0

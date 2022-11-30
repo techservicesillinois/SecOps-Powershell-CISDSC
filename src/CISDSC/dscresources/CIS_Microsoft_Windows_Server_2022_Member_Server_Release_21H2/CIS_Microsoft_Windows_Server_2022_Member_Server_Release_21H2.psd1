@@ -1,7 +1,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad.schema.psm1'
+RootModule = 'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2.schema.psm1'
 
 # Version number of this module.
 ModuleVersion = '1.0.0'
@@ -10,7 +10,7 @@ ModuleVersion = '1.0.0'
 # CompatiblePSEditions = @()
 
 # ID used to uniquely identify this module
-GUID = 'adac98be-d959-4717-aa61-a07d891d343e'
+GUID = '2e02e4b0-6851-4dc8-a4cb-4eb932e77543'
 
 # Author of this module
 # Author = ''
@@ -22,7 +22,7 @@ GUID = 'adac98be-d959-4717-aa61-a07d891d343e'
 # Copyright = ''
 
 # Description of the functionality provided by this module
-Description = 'Applies CIS benchmarks for Microsoft Windows Server 2022 Member Server release TacoSalad.'
+Description = 'Applies CIS benchmarks for Microsoft Windows Server 2022 Member Server release 21H2.'
 
 # Minimum version of the PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -61,7 +61,7 @@ Description = 'Applies CIS benchmarks for Microsoft Windows Server 2022 Member S
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad'
+FunctionsToExport = 'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 # CmdletsToExport = '*'

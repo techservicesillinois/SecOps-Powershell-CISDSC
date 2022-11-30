@@ -1,19 +1,19 @@
 ---
-date: 11/18/2022
-keywords: dsc,powershell,configuration,setup,cis,security,TacoSalad
-title: CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad
+date: 11/30/2022
+keywords: dsc,powershell,configuration,setup,cis,security,21H2
+title: CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2
 ---
-# DSC CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad Resource
+# DSC CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2 Resource
 
 > Applies To: Windows PowerShell 5.1 and higher
 
-The **CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad** resource in Windows PowerShell Desired State Configuration (DSC) provides a
-mechanism to apply CIS benchmarks on a target node running Microsoft Windows Server 2022 Member Server release TacoSalad.
+The **CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2** resource in Windows PowerShell Desired State Configuration (DSC) provides a
+mechanism to apply CIS benchmarks on a target node running Microsoft Windows Server 2022 Member Server release 21H2.
 
 ## Syntax
 
 ```Syntax
-CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad [String] #ResourceName
+CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2 [String] #ResourceName
 {
     [ ExcludeList = [String[]] ]
     [ LevelOne = [Boolean] ]
@@ -111,9 +111,9 @@ CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad [String] #Reso
 ```powershell
 Configuration MyConfiguration
 {
-    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad'
+    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2'
 
-    CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad 'CISBenchmarks'
+    CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2 'CISBenchmarks'
     {
         cis2315AccountsRenameadministratoraccount = 'CISAdmin'
         cis2316AccountsRenameguestaccount = 'CISGuest'
@@ -132,9 +132,9 @@ use multiple lines to tell you how super secure it is.
 ```powershell
 Configuration MyConfiguration
 {
-    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad'
+    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2'
 
-    CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad 'CISBenchmarks'
+    CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2 'CISBenchmarks'
     {
         ExcludeList = @(
             '2.3.7.4', # LegalNoticeText
@@ -152,7 +152,7 @@ Configuration MyConfiguration
 Configuration MyConfiguration
 {
     Import-DSCResource -ModuleName 'PSDesiredStateConfiguration'
-    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad'
+    Import-DSCResource -ModuleName 'CISDSC' -Name 'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2'
 
     node 'localhost'
     {
@@ -163,7 +163,7 @@ Configuration MyConfiguration
             ProductId = 'EA8CB806-C109-4700-96B4-F1F268E5036C'
         }
 
-        CIS_Microsoft_Windows_Server_2022_Member_Server_Release_TacoSalad 'CISBenchmarks'
+        CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2 'CISBenchmarks'
         {
             ExcludeList = @(
                 '2.3.7.4', # LegalNoticeText
