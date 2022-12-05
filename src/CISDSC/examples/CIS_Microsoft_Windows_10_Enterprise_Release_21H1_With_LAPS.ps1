@@ -19,7 +19,7 @@ Configuration Microsoft_Windows_10_Enterprise_21H1_CIS_L1_with_LAPS
         {
             Name  = 'Local Administrator Password Solution'
             Path = 'https://download.microsoft.com/download/C/7/A/C7AAD914-A8A6-4904-88A1-29E657445D03/LAPS.x64.msi'
-            ProductId = 'EA8CB806-C109-4700-96B4-F1F268E5036C'
+            ProductId = '97E2CA7B-B657-4FF7-A6DB-30ECC73E1E28'
         }
 
         CIS_Microsoft_Windows_10_Enterprise_Release_21H1 'CIS Benchmarks'
