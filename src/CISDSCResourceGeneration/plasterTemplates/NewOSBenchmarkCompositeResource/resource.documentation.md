@@ -3,11 +3,12 @@ date: <%=$PLASTER_Date%>
 keywords: dsc,powershell,configuration,setup,cis,security,<%=$PLASTER_PARAM_OSBuild%>
 title: CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%>
 ---
-# DSC CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> Resource
+
+# DSC CIS*<%=$PLASTER_PARAM_OSWithUnderscores%>\_Release*<%=$PLASTER_PARAM_OSBuild%> Resource
 
 > Applies To: Windows PowerShell 5.1 and higher
 
-The **CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%>** resource in Windows PowerShell Desired State Configuration (DSC) provides a
+The **CIS*<%=$PLASTER_PARAM_OSWithUnderscores%>\_Release*<%=$PLASTER_PARAM_OSBuild%>** resource in Windows PowerShell Desired State Configuration (DSC) provides a
 mechanism to apply CIS benchmarks on a target node running <%=$PLASTER_PARAM_OS%> release <%=$PLASTER_PARAM_OSBuild%>.
 
 ## Syntax
@@ -20,8 +21,8 @@ CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> [S
     [ PsDscRunAsCredential = [PSCredential] ]
 }
 ```
-> [!NOTE]
-> `[String]` parameters with a number range specifies valid lengths.
+
+> [!NOTE] > `[String]` parameters with a number range specifies valid lengths.
 
 > [!NOTE]
 > The following parameters are mandatory if not added to the ExcludeList. This is because these values will always be organization specific so a default value is not appropriate.
@@ -29,18 +30,20 @@ CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> [S
 > `<%=$PLASTER_PARAM_AccountsRenameguestaccountNumNoDots%>AccountsRenameguestaccount`,
 > `<%=$PLASTER_PARAM_LegalNoticeCaptionNumNoDots%>LegalNoticeCaption`,
 > `<%=$PLASTER_PARAM_LegalNoticeTextNumNoDots%>LegalNoticeText`
+
 ## Properties
 
-|Property |DefaultValue | Recommendation ID|Recommendation
-|---|---|---|---|
+| Property | DefaultValue | Recommendation ID | Recommendation |
+| -------- | ------------ | ----------------- | -------------- |
+
 <%=$PLASTER_PARAM_DocumentationPropertyTable%>
 
 ## Common properties
 
-|Property |Description |
-|---|---|
-|DependsOn |Indicates that the configuration of another resource must run before this resource is configured. For example, if the ID of the resource configuration script block that you want to run first is ResourceName and its type is ResourceType, the syntax for using this property is `DependsOn = "[ResourceType]ResourceName"`. |
-|PsDscRunAsCredential |Sets the credential for running the entire resource as. |
+| Property             | Description                                                                                                                                                                                                                                                                                                                    |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DependsOn            | Indicates that the configuration of another resource must run before this resource is configured. For example, if the ID of the resource configuration script block that you want to run first is ResourceName and its type is ResourceType, the syntax for using this property is `DependsOn = "[ResourceType]ResourceName"`. |
+| PsDscRunAsCredential | Sets the credential for running the entire resource as.                                                                                                                                                                                                                                                                        |
 
 > [!NOTE]
 > The **PsDscRunAsCredential** common property was added in WMF 5.0 to allow running any DSC
@@ -90,6 +93,7 @@ Configuration MyConfiguration
 ```
 
 ### Example 3: Apply benchmarks with a dependency on LAPS
+
 ```powershell
 Configuration MyConfiguration
 {
@@ -102,7 +106,7 @@ Configuration MyConfiguration
         {
             Name  = 'Local Administrator Password Solution'
             Path = 'https://download.microsoft.com/download/C/7/A/C7AAD914-A8A6-4904-88A1-29E657445D03/LAPS.x64.msi'
-            ProductId = 'EA8CB806-C109-4700-96B4-F1F268E5036C'
+            ProductId = '97E2CA7B-B657-4FF7-A6DB-30ECC73E1E28'
         }
 
         CIS_<%=$PLASTER_PARAM_OSWithUnderscores%>_Release_<%=$PLASTER_PARAM_OSBuild%> 'CISBenchmarks'
