@@ -1,5 +1,5 @@
 ---
-date: 1/23/2023
+date: 11/30/2022
 keywords: dsc,powershell,configuration,setup,cis,security,21H2
 title: CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2
 ---
@@ -62,39 +62,38 @@ CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2 [String] #ResourceN
 
 ## Properties
 
-| Property | DefaultValue | Recommendation ID | Recommendation |
-| -------- | ------------ | ----------------- | -------------- |
-
-|ExcludeList | | |Excludes the provided recommendation IDs from the configuration |
-|LevelOne |`$true` | |Applies level one recommendations |
-|LevelTwo |`$false` | |Applies level two recommendations. Does not include level one, both must be set to `$true`. |
-|NextGenerationWindowsSecurity |`$false` | |Applies Next Generation Windows Security recommendations |
-|cis112MaximumPasswordAge |365 |1.1.2 |(L1) Ensure 'Maximum password age' is set to '365 or fewer days, but not 0' |
-|cis113MinimumPasswordAge |1 |1.1.3 |(L1) Ensure 'Minimum password age' is set to '1 or more day(s)' |
-|cis121Accountlockoutduration |15 |1.2.1 |(L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)' |
-|cis122Accountlockoutthreshold |5 |1.2.2 |(L1) Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0' |
-|cis123Resetaccountlockoutcounterafter |15 |1.2.3 |(L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)' |
-|cis1825PasswordLength |15 |18.2.5 |(L1) Ensure 'Password Settings: Password Length' is set to 'Enabled: 15 or more' (MS only) |
-|cis1826PasswordAgeDays |30 |18.2.6 |(L1) Ensure 'Password Settings: Password Age (Days)' is set to 'Enabled: 30 or fewer' (MS only) |
-|cis18412WarningLevel |90 |18.4.12 |(L1) Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled: 90% or less' |
-|cis1849ScreenSaverGracePeriod |'0' |18.4.9 |(L1) Ensure 'MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' is set to 'Enabled: 5 or fewer seconds' |
-|cis18910842DeferFeatureUpdatesPeriodInDays |180 |18.9.108.4.2 |(L1) Ensure 'Select when Preview Builds and Feature Updates are received' is set to 'Enabled: 180 or more days' |
-|cis1892712MaxSize |32768 |18.9.27.1.2 |(L1) Ensure 'Application: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
-|cis1892722MaxSize |196608 |18.9.27.2.2 |(L1) Ensure 'Security: Specify the maximum log file size (KB)' is set to 'Enabled: 196,608 or greater' |
-|cis1892732MaxSize |32768 |18.9.27.3.2 |(L1) Ensure 'Setup: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
-|cis1892742MaxSize |32768 |18.9.27.4.2 |(L1) Ensure 'System: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' |
-|cis189653101MaxIdleTime |900000 |18.9.65.3.10.1 |(L2) Ensure 'Set time limit for active but idle Remote Desktop Services sessions' is set to 'Enabled: 15 minutes or less, but not Never (0)' |
-|cis2315AccountsRenameadministratoraccount | |2.3.1.5 |(L1) Configure 'Accounts: Rename administrator account' |
-|cis2316AccountsRenameguestaccount | |2.3.1.6 |(L1) Configure 'Accounts: Rename guest account' |
-|cis2365MaximumPasswordAge |30 |2.3.6.5 |(L1) Ensure 'Domain member: Maximum machine account password age' is set to '30 or fewer days, but not 0' |
-|cis2373InactivityTimeoutSecs |900 |2.3.7.3 |(L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0' |
-|cis2374LegalNoticeText | |2.3.7.4 |(L1) Configure 'Interactive logon: Message text for users attempting to log on' |
-|cis2375LegalNoticeCaption | |2.3.7.5 |(L1) Configure 'Interactive logon: Message title for users attempting to log on' |
-|cis2376CachedLogonsCount |'4' |2.3.7.6 |(L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only) |
-|cis2391AutoDisconnect |15 |2.3.9.1 |(L1) Ensure 'Microsoft network server: Amount of idle time required before suspending session' is set to '15 or fewer minute(s)' |
-|cis916LogFileSize |16384 |9.1.6 |(L1) Ensure 'Windows Firewall: Domain: Logging: Size limit (KB)' is set to '16,384 KB or greater' |
-|cis926LogFileSize |16384 |9.2.6 |(L1) Ensure 'Windows Firewall: Private: Logging: Size limit (KB)' is set to '16,384 KB or greater' |
-|cis938LogFileSize |16384 |9.3.8 |(L1) Ensure 'Windows Firewall: Public: Logging: Size limit (KB)' is set to '16,384 KB or greater' |
+| Property                                   | DefaultValue | Recommendation ID | Recommendation                                                                                                                                                       |
+| ------------------------------------------ | ------------ | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ExcludeList                                |              |                   | Excludes the provided recommendation IDs from the configuration                                                                                                      |
+| LevelOne                                   | `$true`      |                   | Applies level one recommendations                                                                                                                                    |
+| LevelTwo                                   | `$false`     |                   | Applies level two recommendations. Does not include level one, both must be set to `$true`.                                                                          |
+| NextGenerationWindowsSecurity              | `$false`     |                   | Applies Next Generation Windows Security recommendations                                                                                                             |
+| cis112MaximumPasswordAge                   | 365          | 1.1.2             | (L1) Ensure 'Maximum password age' is set to '365 or fewer days, but not 0'                                                                                          |
+| cis113MinimumPasswordAge                   | 1            | 1.1.3             | (L1) Ensure 'Minimum password age' is set to '1 or more day(s)'                                                                                                      |
+| cis121Accountlockoutduration               | 15           | 1.2.1             | (L1) Ensure 'Account lockout duration' is set to '15 or more minute(s)'                                                                                              |
+| cis122Accountlockoutthreshold              | 5            | 1.2.2             | (L1) Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0'                                                                   |
+| cis123Resetaccountlockoutcounterafter      | 15           | 1.2.3             | (L1) Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'                                                                                   |
+| cis1825PasswordLength                      | 15           | 18.2.5            | (L1) Ensure 'Password Settings: Password Length' is set to 'Enabled: 15 or more' (MS only)                                                                           |
+| cis1826PasswordAgeDays                     | 30           | 18.2.6            | (L1) Ensure 'Password Settings: Password Age (Days)' is set to 'Enabled: 30 or fewer' (MS only)                                                                      |
+| cis18412WarningLevel                       | 90           | 18.4.12           | (L1) Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled: 90% or less'       |
+| cis1849ScreenSaverGracePeriod              | '0'          | 18.4.9            | (L1) Ensure 'MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' is set to 'Enabled: 5 or fewer seconds' |
+| cis18910842DeferFeatureUpdatesPeriodInDays | 180          | 18.9.108.4.2      | (L1) Ensure 'Select when Preview Builds and Feature Updates are received' is set to 'Enabled: 180 or more days'                                                      |
+| cis1892712MaxSize                          | 32768        | 18.9.27.1.2       | (L1) Ensure 'Application: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'                                                             |
+| cis1892722MaxSize                          | 196608       | 18.9.27.2.2       | (L1) Ensure 'Security: Specify the maximum log file size (KB)' is set to 'Enabled: 196,608 or greater'                                                               |
+| cis1892732MaxSize                          | 32768        | 18.9.27.3.2       | (L1) Ensure 'Setup: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'                                                                   |
+| cis1892742MaxSize                          | 32768        | 18.9.27.4.2       | (L1) Ensure 'System: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater'                                                                  |
+| cis189653101MaxIdleTime                    | 900000       | 18.9.65.3.10.1    | (L2) Ensure 'Set time limit for active but idle Remote Desktop Services sessions' is set to 'Enabled: 15 minutes or less, but not Never (0)'                         |
+| cis2315AccountsRenameadministratoraccount  |              | 2.3.1.5           | (L1) Configure 'Accounts: Rename administrator account'                                                                                                              |
+| cis2316AccountsRenameguestaccount          |              | 2.3.1.6           | (L1) Configure 'Accounts: Rename guest account'                                                                                                                      |
+| cis2365MaximumPasswordAge                  | 30           | 2.3.6.5           | (L1) Ensure 'Domain member: Maximum machine account password age' is set to '30 or fewer days, but not 0'                                                            |
+| cis2373InactivityTimeoutSecs               | 900          | 2.3.7.3           | (L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0'                                                              |
+| cis2374LegalNoticeText                     |              | 2.3.7.4           | (L1) Configure 'Interactive logon: Message text for users attempting to log on'                                                                                      |
+| cis2375LegalNoticeCaption                  |              | 2.3.7.5           | (L1) Configure 'Interactive logon: Message title for users attempting to log on'                                                                                     |
+| cis2376CachedLogonsCount                   | '4'          | 2.3.7.6           | (L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only)           |
+| cis2391AutoDisconnect                      | 15           | 2.3.9.1           | (L1) Ensure 'Microsoft network server: Amount of idle time required before suspending session' is set to '15 or fewer minute(s)'                                     |
+| cis916LogFileSize                          | 16384        | 9.1.6             | (L1) Ensure 'Windows Firewall: Domain: Logging: Size limit (KB)' is set to '16,384 KB or greater'                                                                    |
+| cis926LogFileSize                          | 16384        | 9.2.6             | (L1) Ensure 'Windows Firewall: Private: Logging: Size limit (KB)' is set to '16,384 KB or greater'                                                                   |
+| cis938LogFileSize                          | 16384        | 9.3.8             | (L1) Ensure 'Windows Firewall: Public: Logging: Size limit (KB)' is set to '16,384 KB or greater'                                                                    |
 
 ## Common properties
 
