@@ -4,11 +4,11 @@ keywords: dsc,powershell,configuration,setup,cis,security,21H2
 title: CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2
 ---
 
-# DSC CIS*Microsoft_Windows_Server_2022_Member_Server\_Release*21H2 Resource
+# DSC CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2 Resource
 
 > Applies To: Windows PowerShell 5.1 and higher
 
-The **CIS*Microsoft_Windows_Server_2022_Member_Server\_Release*21H2** resource in Windows PowerShell Desired State Configuration (DSC) provides a
+The **CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2** resource in Windows PowerShell Desired State Configuration (DSC) provides a
 mechanism to apply CIS benchmarks on a target node running Microsoft Windows Server 2022 Member Server release 21H2.
 
 ## Syntax
@@ -181,4 +181,3 @@ Configuration MyConfiguration
     }
 }
 ```
-
