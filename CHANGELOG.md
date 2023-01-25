@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Static corrections for Server 2022 regarding recommendation #18.9.108.4.3 were set to ignore, then the resource was regenerated. Originally CIS gave us incorrect information about the nature of these registry keys and whether they are required to meet that recommendation. They are not required and artifacts of the GPO build kit.
+- Static corrections for Server 2022 regarding recommendation 18.9.108.4.3 were set to ignore, then the resource was regenerated. Originally CIS gave us incorrect information about the nature of these registry keys and whether they are required to meet that recommendation. They are not required and artifacts of the GPO build kit.
 
 ## [3.1.0] - 2022-12-05
 
