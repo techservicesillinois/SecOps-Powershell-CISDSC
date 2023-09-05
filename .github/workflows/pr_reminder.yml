@@ -2,15 +2,18 @@ name: PRs reviews reminder
 
 on:
   schedule:
-    # Every weekday every 2 hours during working hours (utc), send notification
-    - cron: "0 13-22/2 * * 1-5"
+    # Every weekday at 8:30a CST / 14:30 UTC and 1:30p CST / 19:30 UTC
+    - cron: '30 14,19 * * 1-5'
+
 jobs:
   pr-reviews-reminder:
     runs-on: ubuntu-latest
     steps:
-    - uses: DavideViolante/pr-reviews-reminder-action@v1.3.0
+    - uses: DavideViolante/pr-reviews-reminder-action@v2.7.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        webhook-url: ${{ secrets.WEBHOOK_URL }}
+        webhook-url: ${{ secrets.TEAMS_WEBHOOK }}
         provider: 'msteams'
+        github-provider-map: ${{ vars.MAP_USERNAMES_TEAMS }}
+      
