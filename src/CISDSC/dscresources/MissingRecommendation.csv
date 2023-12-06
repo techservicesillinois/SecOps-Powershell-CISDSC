@@ -8,29 +8,6 @@ The recommended state for this setting is: `Enabled`.
 ```
 Computer Configuration\Policies\Windows Settings\Security Settings\Account Policies\Account Lockout Policies\Allow Administrator account lockout
 ```","Navigate to the UI Path articulated in the Remediation section and confirm it is set as prescribed.","LevelOne","1.2.3","1.2","1",,,,"False"
-"18.9.5","18.9.5.7","(L1) Ensure 'Turn On Virtualization Based Security: Kernel-mode Hardware-enforced Stack Protection' is set to 'Enabled: Enabled in enforcement mode'","18.9.5.7 - (L1) Ensure Turn On Virtualization Based Security Kernel-mode Hardware-enforced Stack Protection is set to Enabled Enabled in enforcement mode","This policy setting enables Hardware-enforced Stack Protection for kernel-mode code. Kernel-mode data stacks are hardened with hardware-based shadow stacks, which store intended return address targets to ensure that program control flow is not tampered.
-
-The recommended state for this setting is: `Enabled: Enabled in enforcement mode`.
-
-**Note:** Virtualization Based Security (VBS) requires a 64-bit version of Windows with Secure Boot enabled, which in turn requires that Windows was installed with a UEFI BIOS configuration, not a Legacy BIOS configuration. In addition, if running Windows on a virtual machine, the hardware-assisted CPU virtualization feature (Intel VT-x or AMD-V) must be exposed by the host to the guest VM.
-
-More information on system requirements for this feature can be found at [Windows Defender Credential Guard Requirements (Windows 10) | Microsoft Docs](https://docs.microsoft.com/en-us/windows/security/identity-protection/credential-guard/credential-guard-requirements)
-
-**Note #2:** This specific security feature of VBS is only compatible with Windows 11 Release 22H2 (and newer).
-
-**Note #3:** Only Intel CPUs from Tiger Lake and beyond or AMD CPUs Zen3 and beyond (both were release in fall 2020) are compatible with this security feature. 
-
-**Note #4:** Credential Guard and Device Guard are not currently supported when using Azure IaaS VMs.","To establish the recommended configuration via GP, set the following UI path to `Enabled: Enabled in enforcement mode`
-
-```
-Computer Configuration\Policies\Administrative Templates\System\Device Guard\Turn On Virtualization Based Security: Kernel-mode Hardware-enforced Stack Protection
-```
-
-**Note:** This Group Policy path may not exist by default. It is provided by the Group Policy template `DeviceGuard.admx/adml` that is included with the Microsoft Windows 11 Release 22H2 Administrative Templates (and newer).","Navigate to the UI Path articulated in the Remediation section and confirm it is set as prescribed. This group policy setting is backed by the following registry location:
-
-```
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\DeviceGuard:ConfigureKernelShadowStacksLaunch
-```","LevelOne","18.9.5.7","18.9.5","18",,,,"False"
 "18.3","18.3.1","(L1) Ensure LAPS AdmPwd GPO Extension / CSE is installed","18.3.1 - (L1) Ensure LAPS AdmPwd GPO Extension  CSE is installed","In May 2015, Microsoft released the Local Administrator Password Solution (LAPS) tool, which is free and supported software that allows an organization to automatically set randomized and unique local Administrator account passwords on domain-attached workstations and Member Servers. The passwords are stored in a confidential attribute of the domain computer account and can be retrieved from Active Directory by approved Sysadmins when needed.
 
 The LAPS tool requires a small Active Directory Schema update in order to implement, as well as installation of a Group Policy Client Side Extension (CSE) on targeted computers. Please see the LAPS documentation for details.
@@ -61,6 +38,29 @@ Computer Configuration\Policies\Administrative Templates\System\Local Security A
 ```
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa:ConfigureLsaProtectedProcess
 ```","LevelOne","18.9.25.2","18.9.25","18",,,,"False"
+"18.9.5","18.9.5.7","(L1) Ensure 'Turn On Virtualization Based Security: Kernel-mode Hardware-enforced Stack Protection' is set to 'Enabled: Enabled in enforcement mode'","18.9.5.7 - (L1) Ensure Turn On Virtualization Based Security Kernel-mode Hardware-enforced Stack Protection is set to Enabled Enabled in enforcement mode","This policy setting enables Hardware-enforced Stack Protection for kernel-mode code. Kernel-mode data stacks are hardened with hardware-based shadow stacks, which store intended return address targets to ensure that program control flow is not tampered.
+
+The recommended state for this setting is: `Enabled: Enabled in enforcement mode`.
+
+**Note:** Virtualization Based Security (VBS) requires a 64-bit version of Windows with Secure Boot enabled, which in turn requires that Windows was installed with a UEFI BIOS configuration, not a Legacy BIOS configuration. In addition, if running Windows on a virtual machine, the hardware-assisted CPU virtualization feature (Intel VT-x or AMD-V) must be exposed by the host to the guest VM.
+
+More information on system requirements for this feature can be found at [Windows Defender Credential Guard Requirements (Windows 10) | Microsoft Docs](https://docs.microsoft.com/en-us/windows/security/identity-protection/credential-guard/credential-guard-requirements)
+
+**Note #2:** This specific security feature of VBS is only compatible with Windows 11 Release 22H2 (and newer).
+
+**Note #3:** Only Intel CPUs from Tiger Lake and beyond or AMD CPUs Zen3 and beyond (both were release in fall 2020) are compatible with this security feature. 
+
+**Note #4:** Credential Guard and Device Guard are not currently supported when using Azure IaaS VMs.","To establish the recommended configuration via GP, set the following UI path to `Enabled: Enabled in enforcement mode`
+
+```
+Computer Configuration\Policies\Administrative Templates\System\Device Guard\Turn On Virtualization Based Security: Kernel-mode Hardware-enforced Stack Protection
+```
+
+**Note:** This Group Policy path may not exist by default. It is provided by the Group Policy template `DeviceGuard.admx/adml` that is included with the Microsoft Windows 11 Release 22H2 Administrative Templates (and newer).","Navigate to the UI Path articulated in the Remediation section and confirm it is set as prescribed. This group policy setting is backed by the following registry location:
+
+```
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\DeviceGuard:ConfigureKernelShadowStacksLaunch
+```","LevelOne","18.9.5.7","18.9.5","18",,,,"False"
 "18.9.7.1","18.9.7.1.5","(BL) Ensure 'Prevent installation of devices using drivers that match these device setup classes: Prevent installation of devices using drivers for these device setup' is set to 'IEEE 1394 device setup classes'","18.9.7.1.5 - (BL) Ensure Prevent installation of devices using drivers that match these device setup classes Prevent installation of devices using drivers for these ","This policy setting allows you to specify a list of device setup class globally unique identifiers (GUIDs) for device drivers that Windows is prevented from installing. This policy setting takes precedence over any other policy setting that allows Windows to install a device.
 
 If you enable this policy setting, Windows is prevented from installing or updating device drivers whose device setup class GUIDs appear in the list you create. If you enable this policy setting on a remote desktop server, the policy setting affects redirection of the specified devices from a remote desktop client to the remote desktop server.
