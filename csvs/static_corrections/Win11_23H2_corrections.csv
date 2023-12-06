@@ -1,1 +1,2 @@
 "Key","Recommendation","Reason","CISTicket"
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE:FDVNoBitLockerToGoReader","18.10.9.1.1","These are unmentioned keys impacted by the remediation steps",""
