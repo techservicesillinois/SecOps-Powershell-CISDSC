@@ -54,18 +54,19 @@
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WCN\Registrars:HigherPrecedenceRegistrar","18.6.20.1","These are unmentioned keys impacted by the remediation steps",""
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WinRM\Service:IPv4Filter","18.10.89.2.2","These are unmentioned keys impacted by the remediation steps",""
 "HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WinRM\Service:IPv6Filter","18.10.89.2.2","These are unmentioned keys impacted by the remediation steps",""
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard:ConfigureKernelShadowStacksLaunch","18.9.5.7","These are unmentioned keys impacted by the remediation steps",""
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate:ManagePreviewBuilds","18.10.93.4.1","These are unmentioned keys impacted by the remediation steps",""
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:RestrictDriverInstallationToAdministrators","18.7.8","These are unmentioned keys impacted by the remediation steps",""
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:Restricted","Ignore","This is not present in the benchmark",""
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:TrustedServers","Ignore","This is not present in the benchmark",""
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:ServerList","Ignore","This is not present in the benchmark",""
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:InForest","Ignore","This is not present in the benchmark",""
+"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate:BranchReadinessLevel","18.10.93.4.2","These are unmentioned keys impacted by the remediation steps",""
+
+
 
 WARNING: Failed to find a recommendation for Registry HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\Main:NotifyDisableIEOptions.
-WARNING: Failed to find a recommendation for Registry HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard:ConfigureKernelShadowStacksLaunch.
 
-WARNING: Failed to find a recommendation for Registry HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate:ManagePreviewBuilds.
-WARNING: Failed to find a recommendation for Registry HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate:BranchReadinessLevel.
-
-WARNING: Failed to find a recommendation for Registry HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:RestrictDriverInstallationToAdministrators.
-WARNING: Failed to find a recommendation for Registry HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:Restricted.
-WARNING: Failed to find a recommendation for Registry HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:TrustedServers.
-WARNING: Failed to find a recommendation for Registry HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:ServerList.
-WARNING: Failed to find a recommendation for Registry HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:InForest.
 
 WARNING: Failed to find a recommendation for Registry HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa:RunAsPPL.
 
