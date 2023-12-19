@@ -62,11 +62,8 @@
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:ServerList","Ignore","This is not present in the benchmark",""
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint:InForest","Ignore","This is not present in the benchmark",""
 "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate:BranchReadinessLevel","18.10.93.4.2","These are unmentioned keys impacted by the remediation steps",""
-
+"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa:RunAsPPL","18.9.25.2","These are unmentioned keys impacted by the remediation steps",""
 
 
 WARNING: Failed to find a recommendation for Registry HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\Main:NotifyDisableIEOptions.
-
-
-WARNING: Failed to find a recommendation for Registry HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa:RunAsPPL.
 
