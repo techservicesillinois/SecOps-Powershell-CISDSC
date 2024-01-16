@@ -13,6 +13,9 @@ Backup.xml
 bkupInfo.xml
 gpreport.xml
 
+# Input files from CIS
+cis_files
+
 # Exports from CISDSCResourceGeneration
 MissingRecommendations.csv
 RecommendationErrors.txt
