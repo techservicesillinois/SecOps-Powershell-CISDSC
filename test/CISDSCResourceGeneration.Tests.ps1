@@ -165,6 +165,7 @@ Describe 'Helper: Import-StaticCorrections' {
             $expected = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\AppHVSI:AppHVSIClipboardFileType'
             $script:StaticCorrections.Keys | Should -Contain $expected
         }
+        # TODO: Add more regression tests to try to isolate why we get a warning about AppHVSI:Etc when we generate resources, even though it is in static corrrecionts.
     }
 }
 
