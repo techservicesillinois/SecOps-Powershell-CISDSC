@@ -10,3 +10,8 @@ linux_deps:
 # TODO: depends on 'deps'
 resource_changes:
 	pwsh ./tools/generate_resources_changes.ps1
+
+test_pester:
+	pwsh -CommandWithArgs "Invoke-Pester"
+test_debug:
+	invoke-pester -TagFilter Debug -Output Diagnostic
