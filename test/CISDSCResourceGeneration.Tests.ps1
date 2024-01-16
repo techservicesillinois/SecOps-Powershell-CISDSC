@@ -160,6 +160,10 @@ Describe 'Helper: Import-StaticCorrections' {
             Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
             $script:StaticCorrections | Should -Not -BeNullOrEmpty
         }
+        It 'Contains what we expect' -tag 'Debug' {
+            Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
+            $script:StaticCorrections | Should -Contain 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\AppHVSI:AppHVSIClipboardFileType'
+        }
     }
 }
 
