@@ -201,12 +201,16 @@ Describe 'Helper: Get-RecommendationFromGPOHash' {
             Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'a'} -Type 'Service' 3>&1 | Should -Be 'Found multiple recommendation matches for Service a.'
         }
 
-        It 'Applies static corrections' {
+        It 'Applies static corrections' -tag 'Debug' {
             $script:StaticCorrections.Clear()
             Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' 3>&1 | Should -Be 'Failed to find a recommendation for AuditPolicy Audit Logoff.'
             Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
             Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' | Should -Be '17.5.3'
             Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'RasMan'} -Type 'Service' -Debug 5>&1 | Should -Be 'Ignoring recommendation error for Service RasMan due to static correction.'
+            Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'AppHVSI:AppHVSIClipboardFileType'} -Type 'Service' -Debug 5>&1 | Should -Be 'angrypenguinIgnoring recommendation error for Service RasMan due to static correction.'
+
+        #Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
+        #$expected = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\AppHVSI:AppHVSIClipboardFileType'
         }
     }
 }
