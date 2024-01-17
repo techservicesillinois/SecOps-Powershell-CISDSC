@@ -203,11 +203,16 @@ Describe 'Helper: Get-RecommendationFromGPOHash' {
 
         It 'Applies static corrections' -tag 'Debug' {
             $script:StaticCorrections.Clear()
-            Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' 3>&1 | Should -Be 'Failed to find a recommendation for AuditPolicy Audit Logoff.'
             Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
-            Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' | Should -Be '17.5.3'
+            Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration'} -Type 'Registry' | Should -Be '18.8.22.1.5'
             Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'RasMan'} -Type 'Service' -Debug 5>&1 | Should -Be 'Ignoring recommendation error for Service RasMan due to static correction.'
-            Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'AppHVSI:AppHVSIClipboardFileType'} -Type 'Service' -Debug 5>&1 | Should -Be 'angrypenguinIgnoring recommendation error for Service RasMan due to static correction.'
+            Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration'} -Type 'Service' -Debug 5>&1 | Should -Be '18.8.22.1.5'
+            Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\AppHVSI:AppHVSIClipboardFileType'} -Type 'Service' -Debug 5>&1 | Should -Be '18.9.78.6'
+            Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' 3>&1 | Should -Be 'Failed to find a recommendation for AuditPolicy Audit Logoff.'
+            Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' | Should -Be '17.5.3'
+            #TODO: Get the test working for a registry key that is working. See logic Get-RecommendationFromGPOHash file
+
+
 
         #Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
         #$expected = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\AppHVSI:AppHVSIClipboardFileType'
