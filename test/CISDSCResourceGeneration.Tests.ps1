@@ -201,10 +201,19 @@ Describe 'Helper: Get-RecommendationFromGPOHash' {
             Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'a'} -Type 'Service' 3>&1 | Should -Be 'Found multiple recommendation matches for Service a.'
         }
 
+        It 'Translates Registry Keys' -tag 'WIP' {
+            $key = 'HKLM:\Software\Policies\Microsoft\Windows\Registration Wizard Control'
+            $valueName = 'NoRegistration'
+            $result = Get-RegKeyExpandHKLM -KeyName $key -ValueName $valueName
+            $result | Should -Be 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration'
+        }
+
         It 'Applies static corrections' -tag 'Debug' {
             $script:StaticCorrections.Clear()
             Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
-            Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration'} -Type 'Registry' | Should -Be '18.8.22.1.5'
+            $key = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control'
+            $valueName = 'NoRegistration'
+            Get-RecommendationFromGPOHash -GPOHash @{'Key' = $key; 'ValueName' = $valueName} -Type 'Registry' | Should -Be '18.8.22.1.5'
             Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'RasMan'} -Type 'Service' -Debug 5>&1 | Should -Be 'Ignoring recommendation error for Service RasMan due to static correction.'
             Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration'} -Type 'Service' -Debug 5>&1 | Should -Be '18.8.22.1.5'
             Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\AppHVSI:AppHVSIClipboardFileType'} -Type 'Service' -Debug 5>&1 | Should -Be '18.9.78.6'
