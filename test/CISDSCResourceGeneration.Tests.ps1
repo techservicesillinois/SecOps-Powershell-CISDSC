@@ -183,20 +183,30 @@ Describe 'Helper: Import-ParameterOverrides' {
 Describe 'Helper: Get-RegKeyExpandHKLM' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
 
-        It 'Translates Registry Keys' -tag 'WIP' {
+        It 'Translates Registry Keys' {
             $key = 'HKLM:\Software\Policies\Microsoft\Windows\Registration Wizard Control'
             $valueName = 'NoRegistration'
             $result = Get-RegKeyExpandHKLM -KeyName $key -ValueName $valueName
             $result | Should -Be 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration'
         }
 
-        It 'Leaves HKEY_LOCAL_MACHINE Keys unchanged' -tag 'WIP' {
+        It 'Leaves HKEY_LOCAL_MACHINE Keys unchanged' {
             $key = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control'
             $valueName = 'NoRegistration'
             $result = Get-RegKeyExpandHKLM -KeyName $key -ValueName $valueName
             $result | Should -Be 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration'
         }
 
+    }
+}
+
+Describe 'Helper: Get-RegPatternString' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+        It 'Builds the expected pattern string' -tag 'WIP' {
+            $key = 'HKLM:\Software\Policies\Microsoft\Windows\Registration Wizard Control'
+            $result = Get-RegPatternString -CorrectionKey $key
+            $result | Should -Be '(?i)^(HKLM:\\Software\\Policies\\Microsoft\\Windows\\Registration Wizard Control)$'
+        }
     }
 }
 

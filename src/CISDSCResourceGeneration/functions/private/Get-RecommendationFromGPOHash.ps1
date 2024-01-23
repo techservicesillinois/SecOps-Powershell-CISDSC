@@ -49,7 +49,7 @@ function Get-RecommendationFromGPOHash {
                 }
 
                 [string]$CorrectionKey = Get-RegKeyExpandHKLM -KeyName $GPOHash['Key'] -ValueName $GPOHash['ValueName']
-                [string]$patternString = "(?i)^($($CorrectionKey))$".replace("\","\\").Replace('*','[*]')
+                [string]$patternString = Get-RegPatternString -CorrectionKey $CorrectionKey
                 [scriptblock]$FilterScript = {(($_.AuditProcedure -split "`n") -match $patternString) -or (($_.RemediationProcedure -split "`n") -match $patternString)}
             }
         }
