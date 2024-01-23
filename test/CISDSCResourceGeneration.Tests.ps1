@@ -180,6 +180,26 @@ Describe 'Helper: Import-ParameterOverrides' {
     }
 }
 
+Describe 'Helper: Get-RegKeyExpandHKLM' {
+    InModuleScope -ModuleName 'CISDSCResourceGeneration' {
+
+        It 'Translates Registry Keys' -tag 'WIP' {
+            $key = 'HKLM:\Software\Policies\Microsoft\Windows\Registration Wizard Control'
+            $valueName = 'NoRegistration'
+            $result = Get-RegKeyExpandHKLM -KeyName $key -ValueName $valueName
+            $result | Should -Be 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration'
+        }
+
+        It 'Leaves HKEY_LOCAL_MACHINE Keys unchanged' -tag 'WIP' {
+            $key = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control'
+            $valueName = 'NoRegistration'
+            $result = Get-RegKeyExpandHKLM -KeyName $key -ValueName $valueName
+            $result | Should -Be 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration'
+        }
+
+    }
+}
+
 Describe 'Helper: Get-RecommendationFromGPOHash' {
     #This test must take place after Helper: Import-CISBenchmarkData
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
@@ -201,12 +221,6 @@ Describe 'Helper: Get-RecommendationFromGPOHash' {
             Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'a'} -Type 'Service' 3>&1 | Should -Be 'Found multiple recommendation matches for Service a.'
         }
 
-        It 'Translates Registry Keys' -tag 'WIP' {
-            $key = 'HKLM:\Software\Policies\Microsoft\Windows\Registration Wizard Control'
-            $valueName = 'NoRegistration'
-            $result = Get-RegKeyExpandHKLM -KeyName $key -ValueName $valueName
-            $result | Should -Be 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration'
-        }
 
         It 'Applies static corrections' -tag 'Debug' {
             $script:StaticCorrections.Clear()
