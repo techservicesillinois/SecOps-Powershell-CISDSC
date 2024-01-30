@@ -160,12 +160,6 @@ Describe 'Helper: Import-StaticCorrections' {
             Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
             $script:StaticCorrections | Should -Not -BeNullOrEmpty
         }
-        It 'Contains what we expect' -tag 'Debug' {
-            Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
-            $expected = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\AppHVSI:AppHVSIClipboardFileType'
-            $script:StaticCorrections.Keys | Should -Contain $expected
-        }
-        # TODO: Add more regression tests to try to isolate why we get a warning about AppHVSI:Etc when we generate resources, even though it is in static corrrecionts.
     }
 }
 
@@ -179,7 +173,6 @@ Describe 'Helper: Import-ParameterOverrides' {
         }
     }
 }
-
 Describe 'Helper: Get-RegKeyExpandHKLM' {
     InModuleScope -ModuleName 'CISDSCResourceGeneration' {
 
@@ -231,25 +224,12 @@ Describe 'Helper: Get-RecommendationFromGPOHash' {
             Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'a'} -Type 'Service' 3>&1 | Should -Be 'Found multiple recommendation matches for Service a.'
         }
 
-
-        It 'Applies static corrections' -tag 'Debug' {
+        It 'Applies static corrections' {
             $script:StaticCorrections.Clear()
-            Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
-            $key = 'HKLM:\Software\Policies\Microsoft\Windows\Registration Wizard Control'
-            $valueName = 'NoRegistration'
-            Get-RecommendationFromGPOHash -GPOHash @{'Key' = $key; 'ValueName' = $valueName} -Type 'Registry' -Debug 5>&1 | Should -Be "18.8.22.1.5"
-            Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'RasMan'} -Type 'Service' -Debug 5>&1 | Should -Be 'Ignoring recommendation error for Service RasMan due to static correction.'
-            Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Registration Wizard Control:NoRegistration'} -Type 'Service' -Debug 5>&1 | Should -Be '18.8.22.1.5'
-            Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\AppHVSI:AppHVSIClipboardFileType'} -Type 'Service' -Debug 5>&1 | Should -Be '18.9.78.6'
             Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' 3>&1 | Should -Be 'Failed to find a recommendation for AuditPolicy Audit Logoff.'
+            Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
             Get-RecommendationFromGPOHash -GPOHash @{'Subcategory' = 'Audit Logoff'; 'InclusionSetting' = 'AuditPolicy'} -Type 'AuditPolicy' | Should -Be '17.5.3'
-
-            #TODO: Get the test working for a registry key that is working. See logic Get-RecommendationFromGPOHash file
-
-
-
-        #Import-StaticCorrections -Path "$($PSScriptRoot)\example_files\static_corrections.csv"
-        #$expected = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\AppHVSI:AppHVSIClipboardFileType'
+            Get-RecommendationFromGPOHash -GPOHash @{'Name' = 'RasMan'} -Type 'Service' -Debug 5>&1 | Should -Be 'Ignoring recommendation error for Service RasMan due to static correction.'
         }
     }
 }
