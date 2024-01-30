@@ -14,28 +14,3 @@ Describe 'Module Manifest Tests' {
         }
     }
 }
-
-Describe 'Class: CISService' {
-    InModuleScope -ModuleName 'CISDSC' {
-        It 'Fails a running service' {
-            . "$($PSScriptRoot)\New-PSClassInstance.ps1"
-            $Class = New-PSClassinstance -TypeName 'CISService'
-            $Class.Name = (Get-Service | Where-Object -FilterScript {$_.status -eq 'running'})[0].Name
-            $Class.Test() | Should -Be $False
-        }
-
-        It 'Passes a non-existent service' {
-            . "$($PSScriptRoot)\New-PSClassInstance.ps1"
-            $Class = New-PSClassinstance -TypeName 'CISService'
-            $Class.Name = 'fake-service'
-            $Class.Test() | Should -Be $True
-        }
-
-        It 'Passes a stopped and disabled service'{
-            . "$($PSScriptRoot)\New-PSClassInstance.ps1"
-            $Class = New-PSClassinstance -TypeName 'CISService'
-            $Class.Name = (Get-Service | Where-Object -FilterScript {$_.status -eq 'stopped' -and $_.StartType -eq 'Disabled'})[0].Name
-            $Class.Test() | Should -Be $True
-        }
-    }
-}

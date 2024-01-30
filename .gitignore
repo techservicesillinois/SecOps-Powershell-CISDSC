@@ -23,6 +23,8 @@ RecommendationErrors.txt
 # Exports from Pester
 coverage.xml
 testResults.xml
+Output/
+
 
 # Exports from Plaster
 *.bak*

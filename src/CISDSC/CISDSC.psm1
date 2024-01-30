@@ -41,4 +41,3 @@ class CISService
         return $result
     }
 }
-#The "spirit???"
