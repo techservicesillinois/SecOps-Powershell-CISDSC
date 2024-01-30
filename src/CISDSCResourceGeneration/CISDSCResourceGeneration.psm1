@@ -322,6 +322,7 @@ $script:AccountPolicySettings = @{
     'LockoutDuration' = 'Account_lockout_duration'
     'LockoutBadCount' = 'Account_lockout_threshold'
     'ResetLockoutCount' = 'Reset_account_lockout_counter_after'
+    'AllowAdministratorLockout' = 'Allow_Administrator_account_lockout'
 }
 
 $script:SecuritySettingsWEnabledDisabled = @(
