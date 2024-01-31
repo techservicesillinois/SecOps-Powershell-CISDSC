@@ -18,7 +18,7 @@ $Splat = @{
     ParameterValidationsPath = "$repo_path\csvs\parameter_validations\Win11_23H2_validations.csv"
     ParameterOverridesPath   = "$repo_path\csvs\parameter_overrides\Win11_23H2_overrides.csv"
 
-    # uncomment which is applicable
+    # Uncomment which is applicable
 
     OS               = 'Microsoft Windows 11 Enterprise'
     OSBuild          = '23H2'
