@@ -15,6 +15,10 @@ function ConvertFrom-PrivilegeRightRawGPO {
     }
 
     process {
+        if(!($script:UserRights.ContainsKey($Policy))){
+            Write-Error "$($Policy) key missing from UserRights dictionary in CISDSCResourceGeneration.psm1"
+        }
+
         [string[]]$SortedIdentity = ($Identity -split ',') | Sort-Object
         $privilegeHash = @{
             'Policy' = $script:UserRights[$Policy]
