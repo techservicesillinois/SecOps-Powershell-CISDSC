@@ -7,12 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- Makefile to easily run Pester tests
+- New functions to simplify RegKey string operation testing: Get-RegKeyExpandHKLM and Get-RegPatternString
+- Pester tests for RegKey string manipulation operations
+- generate_resources_example with filled in values to make future resource generation attempts easier
+
+### Changed
+
+- 'AllowAdministratorLockout' key added to AccountPolicySettings dictionary
+- gitignore updated to ignore input files from CIS and Output folder from Pester tests
+- Get-RecommendationFromGPOHash Regkey string operations broken into new functions to simplify testing
+- In install_dependencies removed the AllowPreRelease flag from GPRegistryPolicyParser as it is no longer in pre-release
+
+## [2.4.2] - 2022-11-18
+
+### Added
+
 - Added an exception for when a parameter does not have a validation block assigned to it. [Issue 233](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/233)
 - Get-CISBenchmarkValidWorksheets was moved to be a public function to help with [Issue 237](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/237)
 - Added functionality to ignore GPO files for domain controllers when working on member servers and vice versa. [Issue 235](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/237)
 - Added Server 2022 to accepted OS names in ConvertTo-DSC [Issue 252](https://github.com/techservicesillinois/SecOps-Powershell-CISDSC/issues/252)
-
-## [2.4.2] - 2022-11-18
 
 ### Changed
 

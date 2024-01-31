@@ -6,8 +6,8 @@ Remove-Item -Path '.\output' -Recurse -Force -ErrorAction 'SilentlyContinue'
 # $repo_path = '\home\delaport\src\SecOps-Powershell-CISDSC'
 
 # Windows
-$files_root = '\\ad.uillinois.edu\techsvc\home\buch1\Documents\cis\Win11'
-$repo_path = 'C:\Users\buch1\OneDrive - University of Illinois - Urbana\code\SecOps-Powershell-CISDSC'
+$files_root = 'C:\temp\cis\Win11CISdocs'
+$repo_path = 'C:\Users\code\SecOps-Powershell-CISDSC'
 
 $Splat = @{
     BenchmarkPath    = "$files_root\CIS_Microsoft_Windows_11_Enterprise_Benchmark_v2.0.0.xlsx"

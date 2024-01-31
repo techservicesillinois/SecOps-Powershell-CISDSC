@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- Parameter overrides for Win 11 23H2
+- Parameter validations for Win 11 23H2
+- Static corrections for Win 11 23H2
+
+### Changed
+
+- Microsoft Windows 11 Enterprise added to OS parameter validation in ConvertTo-DSC
+
+### Removed
+
+- Failing tests from CISDSC.Tests (opened issue #269)
+
+###
+
 ## [3.1.1] - 2023-01-23
 
 ### Changed
