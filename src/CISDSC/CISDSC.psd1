@@ -87,7 +87,8 @@ DscResourcesToExport = @(
     'CIS_Microsoft_Windows_Server_2016_Member_Server_Release_1607',
     'CIS_Microsoft_Windows_Server_2019_Member_Server_Release_1809',
     'CIS_Microsoft_Windows_Server_2019_Member_Server_Release_20H2',
-    'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2'
+    'CIS_Microsoft_Windows_Server_2022_Member_Server_Release_21H2',
+    'CIS_Microsoft_Windows_11_Enterprise_Release_23H2'
 )
 
 # List of all modules packaged with this module
