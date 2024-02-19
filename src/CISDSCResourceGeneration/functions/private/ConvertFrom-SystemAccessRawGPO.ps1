@@ -25,6 +25,10 @@ function ConvertFrom-SystemAccessRawGPO {
             $ResourceName = "AccountPolicy"
         }
 
+        if(!($SecuritySetting)){
+            Write-Error "$($key) key missing from SecurityOptionSettings or AccountPolicySettings dictionary in CISDSCResourceGeneration.psm1"
+        }
+
         [int]$ValueData = 1
         if (![int]::TryParse($SecurityData, [ref]$ValueData)){
             [string]$ValueData = $SecurityData

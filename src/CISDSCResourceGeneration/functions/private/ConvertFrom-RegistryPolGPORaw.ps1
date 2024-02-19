@@ -20,6 +20,10 @@ function ConvertFrom-RegistryPolGPORaw {
     }
 
     process {
+        if(!($script:RegistryDataType.ContainsKey($ValueType.ToString()))){
+            Write-Error "$($ValueType.ToString()) key missing from RegistryDataType dictionary in CISDSCResourceGeneration.psm1"
+        }
+
         $regHash = @{
             'Key' = "HKLM:\$($KeyName)"
             'ValueName' = $ValueName

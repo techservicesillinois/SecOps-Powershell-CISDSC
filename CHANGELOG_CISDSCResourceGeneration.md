@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - gitignore updated to ignore input files from CIS and Output folder from Pester tests
 - Get-RecommendationFromGPOHash Regkey string operations broken into new functions to simplify testing
 - In install_dependencies removed the AllowPreRelease flag from GPRegistryPolicyParser as it is no longer in pre-release
+- Missing dictionary key error reporting for ConvertFrom-PrivilegeRightRawGPO, ConvertFrom-RegistryPolGPORaw and ConvertFrom-SystemAccessRawGPO
 
 ## [2.4.2] - 2022-11-18
 
