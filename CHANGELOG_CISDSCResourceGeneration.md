@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New functions to simplify RegKey string operation testing: Get-RegKeyExpandHKLM and Get-RegPatternString
 - Pester tests for RegKey string manipulation operations
 - generate_resources_example with filled in values to make future resource generation attempts easier
+- Parameter overrides for Win 11 23H2
+- Parameter validations for Win 11 23H2
+- Static corrections for Win 11 23H2
 
 ### Changed
 

@@ -9,9 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Parameter overrides for Win 11 23H2
-- Parameter validations for Win 11 23H2
-- Static corrections for Win 11 23H2
+- Windows 11 23H2 Resources, documentation and example scripts
 
 ### Changed
 
