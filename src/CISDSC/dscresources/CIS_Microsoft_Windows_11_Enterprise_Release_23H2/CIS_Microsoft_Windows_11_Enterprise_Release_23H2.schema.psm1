@@ -937,11 +937,13 @@ Configuration CIS_Microsoft_Windows_11_Enterprise_Release_23H2
             Name = 'bthserv'
         }
     }
-    if($ExcludeList -notcontains '5.3' -and $LevelOne){
-        CISService "5.3 - (L1) Ensure Computer Browser (Browser) is set to Disabled or Not Installed" {
-            Name = 'Browser'
-        }
-    }
+    # Removed
+    # See - https://workbench.cisecurity.org/benchmarks/16515/tickets/21051
+    # if($ExcludeList -notcontains '5.3' -and $LevelOne){
+    #     CISService "5.3 - (L1) Ensure Computer Browser (Browser) is set to Disabled or Not Installed" {
+    #         Name = 'Browser'
+    #     }
+    # }
     if($ExcludeList -notcontains '5.4' -and $LevelTwo){
         CISService "5.4 - (L2) Ensure Downloaded Maps Manager (MapsBroker) is set to Disabled" {
             Name = 'MapsBroker'
