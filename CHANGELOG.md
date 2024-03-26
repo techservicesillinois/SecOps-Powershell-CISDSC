@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [4.0.0] - 2024-03-26
+
 ### Added
 
 - Windows 11 23H2 Resources, documentation and example scripts
@@ -19,8 +21,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Failing tests from CISDSC.Tests (opened issue #269)
 - Remove 5.3 per https://workbench.cisecurity.org/benchmarks/16515/tickets/21051
-
-###
 
 ## [3.1.1] - 2023-01-23
 
