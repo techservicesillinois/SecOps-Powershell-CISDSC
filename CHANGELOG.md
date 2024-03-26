@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Failing tests from CISDSC.Tests (opened issue #269)
+- Remove 5.3 per https://workbench.cisecurity.org/benchmarks/16515/tickets/21051
 
 ###
 
