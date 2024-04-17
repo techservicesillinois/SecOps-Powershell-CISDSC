@@ -4711,18 +4711,6 @@ Configuration CIS_Microsoft_Windows_11_Enterprise_Release_23H2
             ValueName = 'EnableTranscripting'
             ValueType = 'Dword'
         }
-        Registry "18.10.87.2 - (L1) Ensure Turn on PowerShell Transcription is set to Enabled (2)" {
-            Ensure = 'Present'
-            Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription'
-            ValueData = ' '
-            ValueName = 'OutputDirectory'
-            ValueType = 'String'
-        }
-        Registry "18.10.87.2 - (L1) Ensure Turn on PowerShell Transcription is set to Enabled (3)" {
-            Ensure = 'Absent'
-            Key = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription'
-            ValueName = 'EnableInvocationHeader'
-        }
     }
     if($ExcludeList -notcontains '18.10.89.1.1' -and $LevelOne){
         Registry "18.10.89.1.1 - (L1) Ensure Allow Basic authentication is set to Disabled" {
