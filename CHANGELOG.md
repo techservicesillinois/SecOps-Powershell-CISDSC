@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [4.0.1] - 2024-04-17
+
 ### Removed
 
 - Removed 'Ensure Turn on PowerShell Transcription is set to Enabled (2)' and (3). These are subkeys of 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription' (OutputDirectory and EnableInvocationHeader) which are not mentioned by the CIS Benchmark and erroneously included in the GPOKit. Invalid ValueData for the OutputDirectory key was also causing issues with the MOF file in some cases, depending on how it was generated.
