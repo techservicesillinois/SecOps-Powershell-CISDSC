@@ -58,3 +58,16 @@ Any community engagement is subject to the [code of conduct](CODE_OF_CONDUCT.md)
 # Found a bug or a vulnerability?
 
 Disclosure details can be found in the [security documentation](SECURITY.md).
+
+# End-of-Life and End-of-Support Dates
+
+This product is supported by the Cybersecurity teams at the
+University of Illinois Urbana-Champaign on a best-effort basis.
+
+As of the last update to this README, the expected End-of-Life
+and End-of-Support dates of this product are 10 November 2026.
+
+End-of-Life was decided upon based on these dependencies:
+
+- PowerShell 7.4 (10 November 2026)
+- Windows 11 23H2 (10 November 2026)
